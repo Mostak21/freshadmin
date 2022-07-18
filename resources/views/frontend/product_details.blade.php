@@ -484,6 +484,7 @@
                                             <div class="aiz-radio-inline">
                                                 @php
                                                     $colorcheck2 =  0;
+                                                    $colorcheck =  0;
                                                 @endphp
                                                 @foreach (json_decode($detailedProduct->colors) as $keys => $color)
                                                     @php
