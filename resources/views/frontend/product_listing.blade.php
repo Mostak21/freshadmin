@@ -306,6 +306,11 @@
                                         $products1 = \App\Models\Product::where('brand_id',$brand_id)->where('published',1)->get();   
                                     }
                                 }
+								 elseif(Route::currentRouteName()=='search'){
+
+                                    $products1 = [];
+                                       
+                                }
                                 else {
                                     $products1 = \App\Models\Product::where('published',1)->get();   
                                 }
@@ -314,6 +319,7 @@
 
                                  
                                 $i=0;
+								if($products1){
                                 foreach($products1 as $key => $product){
                                     
                                     if($product->colors!=[]){
@@ -322,7 +328,7 @@
                                             $cat_color[$i]=$pcolor;
                                     }
                                     }     
-                                }
+                                }}
                                 if($cat_color){
                                     $cat_color=(array_unique($cat_color));
                                 }
