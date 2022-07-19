@@ -12,4 +12,4 @@ Disallow: /product/parachute-skinpure-soap-bar-coco-olive-n-argan-75gm-bJ2gj/
 Disallow: /product/parachute-skinpure-beauty-olive-oil-100ml-82Eo7/
 Disallow: /cart/
 Disallow: /dashboard/
-Disallow: /checkout/
+Disallow: /checkou
