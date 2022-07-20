@@ -298,7 +298,7 @@ class HomeController extends Controller
 
     public function load_custom_section(){
 
-        $category_id =360;
+        $category_id =61;
         $category_ids = CategoryUtility::children_ids($category_id);
         $category_ids[] = $category_id;
 
@@ -306,7 +306,7 @@ class HomeController extends Controller
         $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
         $wcategory_ids[] = $wcategory_id;
 
-        $kcategory_id =70;
+        $kcategory_id =88;
         $kcategory_ids = CategoryUtility::children_ids($kcategory_id);
         $kcategory_ids[] = $kcategory_id;
 
@@ -321,12 +321,12 @@ class HomeController extends Controller
         $ip=str_replace(".","",$ip);
         $seed=($ip+$hour+$day+$month);
 
-        $mensproducts=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+        $perfumeproducts=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
         $womensproducts=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();
         $kidsproducts=Product::whereIn('category_id', $kcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
         $gadgetproducts=Product::whereIn('category_id', $gcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
 
-        return view('frontend.partials.custom_section',compact('mensproducts','womensproducts','kidsproducts','gadgetproducts'));
+        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
     }
 
     public function load_featured_section(){
