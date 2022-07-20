@@ -3,6 +3,7 @@
 namespace App\Http\Resources\V2;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Utility\CategoryUtility;
 
 class SubCategoryCollection extends ResourceCollection
 {
@@ -11,10 +12,12 @@ class SubCategoryCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function($data) {
                 return [
+                    'id' => $data->id,
                     'name' => $data->name,
-                    'subSubCategories' => new SubSubCategoryCollection($data->subSubCategories),
+                    'number_of_children' => CategoryUtility::get_immediate_children_count($data->id),
+                    'subsubcategories' => new SubSubCategoryCollection($data->categories),
                     'links' => [
-                        'products' => route('products.subCategory', $data->id)
+                        'products' => route('api.products.category', $data->id)
                     ]
                 ];
             })
