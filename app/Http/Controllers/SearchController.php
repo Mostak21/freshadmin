@@ -27,12 +27,11 @@ class SearchController extends Controller
         $seller_id = $request->seller_id;
         $attributes = Attribute::all();
         $selected_attribute_values = array();
-        $colors = Color::all();
         $selected_color = null;
 
         $conditions = ['published' => 1];
 
-        $products = Product::where('published','1');
+//        $products = Product::where('published','1');
 
         if($brand_id != null){
             $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
@@ -57,26 +56,6 @@ class SearchController extends Controller
             //$attributes = Attribute::whereIn('id', $attribute_ids)->get();
         //Attribute Filter
         }
-        else {
-            // if ($query != null) {
-            //     foreach (explode(' ', trim($query)) as $word) {
-            //         $ids = Category::where('name', 'like', '%'.$word.'%')->pluck('id')->toArray();
-            //         if (count($ids) > 0) {
-            //             foreach ($ids as $id) {
-            //                 $category_ids[] = $id;
-            //                 array_merge($category_ids, CategoryUtility::children_ids($id));
-            //             }
-            //         }
-            //     }
-            //     $attribute_ids = AttributeCategory::whereIn('category_id', $category_ids)->pluck('attribute_id')->toArray();
-            //     $attributes = Attribute::whereIn('id', $attribute_ids)->get();
-            // }
-        }
-
-
-        if($min_price != null && $max_price != null){
-            $products->where('unit_price', '>=', $min_price)->where('unit_price', '<=', $max_price);
-        }
 
         if($query != null){
             $searchController = new SearchController;
@@ -87,14 +66,15 @@ class SearchController extends Controller
                 $orderQuery[$key]= "(name LIKE '%".$word."%')";
             }
             $orderQuery=implode("+",$orderQuery);
+            $orderQuery="(name LIKE '%".$query."%') +".$orderQuery;
 
-            $products->where('published', 1)->where('name', 'like', '%'.$query.'%')
-                ->orWhere(function ($q) use ($query){
+            $products->where(function ($q) use ($query){
+                $q->where('name', 'like', '%'.$query.'%');
                 foreach (explode(' ', trim($query)) as $word) {
                     if(strlen($word)>1){
-                        $q->where('name', 'like', '%'.$word.'%')
+                        $q->orWhere('name', 'like', '%'.$word.'%')
                             ->orWhere('tags', 'like', '%'.$word.'%')
-                            ->orWhereHas('product_translations', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
+//                            ->orWhereHas('product_translations', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
                             ->orWhereHas('brand', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
                             ->orWhereHas('category', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');});
                     }
@@ -103,6 +83,35 @@ class SearchController extends Controller
 //                ->orderBy($products->raw('(name LIKE \'%hair%\') + (name LIKE \'%dryer%\')'),'desc');
                 //->orderBy($products->raw($orderQuery),'desc');
         }
+
+//        $default_filter = (object)array();
+//        $default_filter = (object)[
+//            'max_price'=>$products->max('unit_price'),
+//            'min_price'=>$products->min('unit_price'),
+//        ];
+
+        $products_colors = $products->pluck('colors');
+        $colors_list = array();
+        foreach($products_colors as $key => $product_colors){
+            $product_colors = json_decode($product_colors);
+            if($product_colors != null){
+                foreach($product_colors as $key => $color){
+                    array_unshift($colors_list,$color);
+                }
+            }
+        }
+        if($product_colors){
+            $colors_list=(array_unique($colors_list));
+        }
+
+        $colors = Color::whereIn('code',$colors_list)->get();
+
+
+//        if($min_price != null && $max_price != null){
+//            $products->where('unit_price', '>=', $min_price)->where('unit_price', '<=', $max_price);
+//        }
+
+
 
  if($query != null){
 
@@ -155,7 +164,7 @@ class SearchController extends Controller
                 break;
             default:
 				//$products->orderBy('unit_price', 'desc');
-            $products->inRandomOrder($seed)->get();
+                $products->inRandomOrder($seed)->get();
                 break;
         }
 
@@ -179,6 +188,7 @@ class SearchController extends Controller
         }
 
 		$non_paginate_products = filter_products($products)->get();
+
 		$attributes = array();
         foreach ($non_paginate_products as $key => $product) {
             if($product->attributes != null && is_array(json_decode($product->attributes))){
@@ -233,12 +243,37 @@ class SearchController extends Controller
             }
         }
 
+        $default_filter = (object)array();
+        $default_filter = (object)[
+            'max_price'=>$products->max('unit_price'),
+            'min_price'=>$products->min('unit_price'),
+        ];
+        if($min_price != null && $max_price != null){
+            $products->where('unit_price', '>=', $min_price)->where('unit_price', '<=', $max_price);
+        }
+
+
 
 
         $products = filter_products($products)->with('taxes')->paginate(24)->appends(request()->query());
 
 
-        return view('frontend.product_listing', compact('products', 'query', 'category_id', 'brand_id', 'sort_by', 'seller_id','min_price', 'max_price', 'attributes', 'selected_attribute_values', 'colors', 'selected_color'));
+        return view('frontend.product_listing',
+                            compact('products',
+                                'query',
+                                'category_id',
+                                'brand_id',
+                                'sort_by',
+                                'seller_id',
+                                'min_price',
+                                'max_price',
+                                'attributes',
+                                'selected_attribute_values',
+                                'selected_attributes',
+                                'colors',
+                                'selected_color',
+                                'default_filter'
+                                ));
     }
 
    public function listing(Request $request)
