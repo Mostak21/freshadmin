@@ -98,62 +98,62 @@ class SearchController extends Controller
         $colors = Color::whereIn('code',$colors_list)->get();
 
 
-    if($query != null){
+        if($query != null){
 
-        if($brand_id != null){
-                  $products->where('brand_id',$brand_id);
-             }
-        switch ($sort_by) {
-            case 'newest':
-                $products->orderBy('created_at','desc');
-                break;
-            case 'oldest':
-                //$products->sortByAsc('created_at');
-                $products->orderBy('created_at','asc');
-                break;
-            case 'price-asc':
-                $products->orderBy('unit_price','asc');
-                break;
-            case 'price-desc':
-                $products->orderBy('unit_price','desc');
-                break;
-            default:
-              $products->orderBy($products->raw($orderQuery),'desc');
-                break;
+            if($brand_id != null){
+                      $products->where('brand_id',$brand_id);
+                 }
+            switch ($sort_by) {
+                case 'newest':
+                    $products->orderBy('created_at','desc');
+                    break;
+                case 'oldest':
+                    //$products->sortByAsc('created_at');
+                    $products->orderBy('created_at','asc');
+                    break;
+                case 'price-asc':
+                    $products->orderBy('unit_price','asc');
+                    break;
+                case 'price-desc':
+                    $products->orderBy('unit_price','desc');
+                    break;
+                default:
+                  $products->orderBy($products->raw($orderQuery),'desc');
+                    break;
+            }
+
         }
 
-		 }
+        if(empty($query)){
 
-		 if(empty($query)){
+            $ip=$_SERVER['REMOTE_ADDR'];
+            $hour=date("H");
+            $day=date("j");
+            $month=date("n");
+            $ip=str_replace(".","",$ip);
 
-		$ip=$_SERVER['REMOTE_ADDR'];
-		$hour=date("H");
-		$day=date("j");
-		$month=date("n");
-		$ip=str_replace(".","",$ip);
+            $seed=($ip+$hour+$day+$month);
 
-    	$seed=($ip+$hour+$day+$month);
+            switch ($sort_by) {
+                case 'newest':
+                    $products->orderBy('created_at', 'desc');
+                    break;
+                case 'oldest':
+                    $products->orderBy('created_at', 'asc');
+                    break;
+                case 'price-asc':
+                    $products->orderBy('unit_price', 'asc');
+                    break;
+                case 'price-desc':
+                    $products->orderBy('unit_price', 'desc');
+                    break;
+                default:
+                    //$products->orderBy('unit_price', 'desc');
+                    $products->inRandomOrder($seed)->get();
+                    break;
+            }
 
-        switch ($sort_by) {
-            case 'newest':
-                $products->orderBy('created_at', 'desc');
-                break;
-            case 'oldest':
-                $products->orderBy('created_at', 'asc');
-                break;
-            case 'price-asc':
-                $products->orderBy('unit_price', 'asc');
-                break;
-            case 'price-desc':
-                $products->orderBy('unit_price', 'desc');
-                break;
-            default:
-				//$products->orderBy('unit_price', 'desc');
-                $products->inRandomOrder($seed)->get();
-                break;
         }
-
-		 }
 
 
         if($request->has('color')){
@@ -256,13 +256,11 @@ class SearchController extends Controller
                                 ));
     }
 
-   public function listing(Request $request)
-    {
+    public function listing(Request $request){
         return $this->index($request);
     }
 
-    public function listingByCategory(Request $request, $category_slug)
-    {
+    public function listingByCategory(Request $request, $category_slug){
         $category = Category::where('slug', $category_slug)->first();
         if ($category != null) {
             return $this->index($request, $category->id);
@@ -270,8 +268,7 @@ class SearchController extends Controller
         abort(404);
     }
 
-    public function listingByBrand(Request $request, $brand_slug)
-    {
+    public function listingByBrand(Request $request, $brand_slug){
         $brand = Brand::where('slug', $brand_slug)->first();
         if ($brand != null) {
             return $this->index($request, null, $brand->id);
@@ -280,8 +277,7 @@ class SearchController extends Controller
     }
 
     //Suggestional Search
-    public function ajax_search(Request $request)
-    {
+    public function ajax_search(Request $request){
         $keywords = array();
         $query = $request->search;
 
