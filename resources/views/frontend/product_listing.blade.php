@@ -290,8 +290,8 @@
                                     @endif
                                 @endforeach
 
-                                @if (get_setting('color_filter_activation') && $colors)
 
+                                @if (get_setting('color_filter_activation') && $colors)
 
                                     <div class="bg-white shadow-sm rounded mb-3">
                                         <div class="fs-15 fw-600 p-3 border-bottom">

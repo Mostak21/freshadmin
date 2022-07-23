@@ -62,6 +62,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, To
                 ]);
 
 //                AWS Personalize inport item
+
 //                $personalize = new AWSPersonalizeController;
 //                if ($personalize){
 //                    $request1= (object)[];
@@ -69,6 +70,7 @@ class ProductsImport implements ToCollection, WithHeadingRow, WithValidation, To
 //                    $request1->AWSdata = $productId??"";
 //                    $personalize->index($request1);
 //                }
+
 //                Aws Personalize
             }
 

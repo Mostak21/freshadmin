@@ -128,6 +128,8 @@
     </div>
     @endif
 --}}
+
+
 {{-- Flash Deal --}}
     @php
         $flash_deal = \App\Models\FlashDeal::where('status', 1)->where('featured', 1)->first();

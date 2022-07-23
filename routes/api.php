@@ -59,6 +59,7 @@ Route::group(['prefix' => 'v2', 'middleware' => ['app_language']], function() {
     Route::get('categories/home', 'Api\V2\CategoryController@home');
     Route::get('categories/top', 'Api\V2\CategoryController@top');
     Route::apiResource('categories', 'Api\V2\CategoryController')->only('index');
+    Route::get('dropdowncategories', 'Api\V2\CategoryController@dropdowncategories');
     Route::get('sub-categories/{id}', 'Api\V2\SubCategoryController@index')->name('subCategories.index');
 
     Route::apiResource('colors', 'Api\V2\ColorController')->only('index');
