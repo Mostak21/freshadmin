@@ -23,6 +23,9 @@
     </div></div>
 </section>
 
+
+
+
 @php
     $cat=array("fashion","fragnance","Beauty_&_Skincare","electronics","others");
     $banner=array("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/YjB3W0K5JRnK6g6BGwow9qzkdxqlT1415cuL9e6w.webp",
