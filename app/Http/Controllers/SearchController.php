@@ -83,6 +83,7 @@ class SearchController extends Controller
 
         $products_colors = $products->pluck('colors');
         $colors_list = array();
+        $product_colors = array();
         foreach($products_colors as $key => $product_colors){
             $product_colors = json_decode($product_colors);
             if($product_colors != null){
