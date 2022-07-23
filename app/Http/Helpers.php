@@ -87,11 +87,6 @@ if (!function_exists('filter_products')) {
                     $q->whereIn('user_id', $verified_sellers);
                 });
             });
-//            return $products->where('approved', '1')->where('published', '1')->where('auction_product', 0)->orderBy('created_at', 'desc')->where(function ($p) use ($verified_sellers) {
-//                $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
-//                    $q->whereIn('user_id', $verified_sellers);
-//                });
-//            });
         } else {
             return $products->where('published', '1')->where('auction_product', 0)->where('added_by', 'admin');
         }

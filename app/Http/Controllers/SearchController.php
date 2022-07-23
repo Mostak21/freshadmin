@@ -31,8 +31,6 @@ class SearchController extends Controller
 
         $conditions = ['published' => 1];
 
-//        $products = Product::where('published','1');
-
         if($brand_id != null){
             $conditions = array_merge($conditions, ['brand_id' => $brand_id]);
         }elseif ($request->brand != null) {
@@ -74,7 +72,6 @@ class SearchController extends Controller
                     if(strlen($word)>1){
                         $q->orWhere('name', 'like', '%'.$word.'%')
                             ->orWhere('tags', 'like', '%'.$word.'%')
-//                            ->orWhereHas('product_translations', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
                             ->orWhereHas('brand', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
                             ->orWhereHas('category', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');});
                     }
@@ -83,12 +80,6 @@ class SearchController extends Controller
 //                ->orderBy($products->raw('(name LIKE \'%hair%\') + (name LIKE \'%dryer%\')'),'desc');
                 //->orderBy($products->raw($orderQuery),'desc');
         }
-
-//        $default_filter = (object)array();
-//        $default_filter = (object)[
-//            'max_price'=>$products->max('unit_price'),
-//            'min_price'=>$products->min('unit_price'),
-//        ];
 
         $products_colors = $products->pluck('colors');
         $colors_list = array();
@@ -107,13 +98,7 @@ class SearchController extends Controller
         $colors = Color::whereIn('code',$colors_list)->get();
 
 
-//        if($min_price != null && $max_price != null){
-//            $products->where('unit_price', '>=', $min_price)->where('unit_price', '<=', $max_price);
-//        }
-
-
-
- if($query != null){
+    if($query != null){
 
         if($brand_id != null){
                   $products->where('brand_id',$brand_id);
@@ -169,8 +154,6 @@ class SearchController extends Controller
         }
 
 		 }
-
-
 
 
         if($request->has('color')){
@@ -243,7 +226,6 @@ class SearchController extends Controller
             }
         }
 
-        $default_filter = (object)array();
         $default_filter = (object)[
             'max_price'=>$products->max('unit_price'),
             'min_price'=>$products->min('unit_price'),
@@ -251,8 +233,6 @@ class SearchController extends Controller
         if($min_price != null && $max_price != null){
             $products->where('unit_price', '>=', $min_price)->where('unit_price', '<=', $max_price);
         }
-
-
 
 
         $products = filter_products($products)->with('taxes')->paginate(24)->appends(request()->query());
@@ -305,10 +285,8 @@ class SearchController extends Controller
         $keywords = array();
         $query = $request->search;
 
-//        $products->where('published', 1)->where('name', 'like', '%'.$query.'%')
-
-     $products = Product::where('published', 1)->where('name', 'like', '%'.$query.'%')->get();
-       foreach ($products as $key => $product) {
+        $products = Product::where('published', 1)->where('name', 'like', '%'.$query.'%')->get();
+        foreach ($products as $key => $product) {
             foreach (explode(',',$product->tags) as $key => $tag) {
                 if(stripos($tag, $query) !== false){
                     if(sizeof($keywords) > 5){
@@ -323,27 +301,29 @@ class SearchController extends Controller
             }
         }
 
-           $products = filter_products(Product::query());
-            $orderQuery[]=Null;
+//        $products = filter_products(Product::query());
+        $products = Product::query();
+        $orderQuery[]=Null;
 
-            foreach (explode(' ', trim($query)) as $key=> $word) {
-                $orderQuery[$key]= "(name LIKE '%".$word."%')";
-            }
-            $orderQuery=implode("+",$orderQuery);
-		   $products = $products->where('published', 1)->where('name', 'like', '%'.$query.'%')
-                       ->orWhere(function ($q) use ($query){
-                           foreach (explode(' ', trim($query)) as $word) {
-                               if(strlen($word)>1){
-                                   $q->where('name', 'like', '%'.$word.'%')
-                                       ->orWhere('tags', 'like', '%'.$word.'%')
-                                       ->orWhereHas('product_translations', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
-                                       ->orWhereHas('brand', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
-                                       ->orWhereHas('category', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');});
-                               }
-                           }
-                       })->orderBy($products->raw($orderQuery),'desc')->get();
+        foreach (explode(' ', trim($query)) as $key=> $word) {
+            $orderQuery[$key]= "(name LIKE '%".$word."%')";
+        }
+        $orderQuery=implode("+",$orderQuery);
+        $orderQuery="(name LIKE '%".$query."%') +".$orderQuery;
 
-        $products = $products->whereNotIn('published', 0)->take(5);
+        $products = $products->where('published', 1)->where(function ($q) use ($query){
+            $q->where('name', 'like', '%'.$query.'%');
+            foreach (explode(' ', trim($query)) as $word) {
+                if(strlen($word)>1){
+                    $q->orWhere('name', 'like', '%'.$word.'%')
+                        ->orWhere('tags', 'like', '%'.$word.'%')
+                        ->orWhereHas('brand', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
+                        ->orWhereHas('category', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');});
+                }
+            }})->orderBy($products->raw($orderQuery),'desc')->get();
+
+        $products = $products->take(5);
+
         $categories = Category::where('name', 'like', '%'.$query.'%')->get()->take(3);
 
         $shops = Shop::whereIn('user_id', verified_sellers_id())->where('name', 'like', '%'.$query.'%')->get()->take(3);

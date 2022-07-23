@@ -12,12 +12,14 @@ class Product extends Model {
         'purchase_price', 'unit', 'slug', 'colors', 'choice_options', 'variations', 'thumbnail_img', 'meta_title', 'meta_description'
     ];
 
-    protected $with = ['product_translations', 'taxes'];
+//    protected $with = ['product_translations', 'taxes'];
+    protected $with = ['taxes'];
 
     public function getTranslation($field = '', $lang = false) {
-        $lang = $lang == false ? App::getLocale() : $lang;
-        $product_translations = $this->product_translations->where('lang', $lang)->first();
-        return $product_translations != null ? $product_translations->$field : $this->$field;
+//        $lang = $lang == false ? App::getLocale() : $lang;
+//        $product_translations = $this->product_translations->where('lang', $lang)->first();
+//        return $product_translations != null ? $product_translations->$field : $this->$field;
+        return $this->$field;
     }
 
     public function product_translations() {
