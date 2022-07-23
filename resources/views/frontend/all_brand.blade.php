@@ -25,11 +25,11 @@
 
 @php
     $cat=array("fashion","fragnance","Beauty_&_Skincare","electronics","others");
-    $banner=array("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/h9VubfVG8WiehSfx3qNNrmGkZu6JZIy0wjDbca5P.webp",
-    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xIUrz1Wwm85IdaSJZVOloTRO3Mw83qR9plAYCXuY.webp",
-    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/vTRqo2qgQG9BokUnlDBo77hIpdqHeLKNLPuOoKLi.webp",
-    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/BlxXhAmXRRC5a88oZSC3x5RTJZrAhY39lYan4oNI.webp",
-    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/aw7El8PQHpfacaTiliJRT63VvHDOvMcxgRfHf45i.webp");
+    $banner=array("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/YjB3W0K5JRnK6g6BGwow9qzkdxqlT1415cuL9e6w.webp",
+    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/pbLfjrmXpwZ78cZxTO4HelBBz2eTXuNKiPZP80IS.webp",
+    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/ShlmkoDOMO7iYtTLOYbqA9Vq8ioIV7dRmskb2Riw.webp",
+    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/2FFsunvKoqgKUBkpqUHo8rnzJ3MeLb5w528TdQQu.webp",
+    "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/dgB2kJE7A14s5NjZ9lfnvZ9vZHKAd0XmDfyNcFlz.webp");
 @endphp
 <section class="mb-4">
     <div class="container py-4">
