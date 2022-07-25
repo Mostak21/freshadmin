@@ -190,18 +190,21 @@ class OrderController extends Controller
         $delivery_status = null;
         $sort_search = null;
         $admin_user_id = User::where('user_type', 'admin')->first()->id;
-        $orders = Order::orderBy('code', 'desc')
-            ->where('orders.seller_id', '!=', $admin_user_id)->where('delivery_status','!=','delivered')->where('payment_status','!=','paid');
+        if(!$request->has('search')&& $request->delivery_status == null&& $request->seller==null && $date==null){
+            $orders = Order::where('delivery_status','!=','delivered')->orwhere('payment_status','!=','paid')->orderBy('id', 'desc');
+        }
+        else{
+            
+            $orders = Order::orderBy('id', 'desc');
+        }
 
-		  if($request->has('showall')){
-            if($request->showall=='showall'){
-                $orders = Order::orderBy('code', 'desc')
-            ->where('orders.seller_id', '!=', $admin_user_id);
+		      if($request->has('showall')){
+            if($request->showall=='hideall'){           
+                $orders = Order::where('delivery_status','!=','delivered')->orwhere('payment_status','!=','paid')->orderBy('id', 'desc');
             }
-
+            
             else{
-                $orders = Order::orderBy('code', 'desc')
-            ->where('orders.seller_id', '!=', $admin_user_id)->where('delivery_status','!=','delivered')->where('payment_status','!=','paid');
+                $orders = Order::orderBy('id', 'desc');
             }
             
         }
