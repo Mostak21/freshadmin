@@ -174,28 +174,8 @@
                                     </div>
                                 </div>
 								  @php
-                                //if(isset($category_id)){
-                                    //$category_ids = \App\Utility\CategoryUtility::children_ids($category_id);
-                                    //$category_ids[] = $category_id;
-
-                                    //$high = \App\Models\Product::whereIn('category_id',$category_ids)->where('published',1)->max('unit_price');
-                                    //$low = \App\Models\Product::whereIn('category_id',$category_ids)->where('published',1)->min('unit_price');
-
-                                    //}
-                                    /* elseif (Route::currentRouteName() == 'products.brand'){
-                                        if(isset($brand_id)){
-                                            $high = \App\Models\Product::where('brand_id',$brand_id)->where('published',1)->max('unit_price');
-                                            $low = \App\Models\Product::where('brand_id',$brand_id)->where('published',1)->min('unit_price');
-                                        }
-                                    }
-                                    else{
-                                        //$high = \App\Models\Product::max('unit_price');
-                                        //$low = \App\Models\Product::min('unit_price');
-                                    } */
-
                                     $high = $default_filter->max_price??0;
                                     $low = $default_filter->min_price??0;
-                                    
                                 @endphp
                                 <div class="bg-white shadow-sm rounded mb-3">
                                     <div class="fs-15 fw-600 p-3 border-bottom">
@@ -320,37 +300,10 @@
                                         </div> 
                                     </div>
                                 @endif
-								
-
-                               {{-- @if (get_setting('color_filter_activation'))
-                                    <div class="bg-white shadow-sm rounded mb-3">
-                                        <div class="fs-15 fw-600 p-3 border-bottom">
-                                            {{ translate('Filter by color')}}
-                                        </div>
-                                        <div class="p-3">
-                                            <div class="aiz-radio-inline">
-                                                @foreach ($colors as $key => $color)
-                                                <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ $color->name }}">
-                                                    <input
-                                                        type="radio"
-                                                        name="color"
-                                                        value="{{ $color->code }}"
-                                                        onchange="filter()"
-                                                        @if(isset($selected_color) && $selected_color == $color->code) checked @endif
-                                                    >
-                                                    <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
-                                                        <span class="size-30px d-inline-block rounded" style="background: {{ $color->code }};"></span>
-                                                    </span>
-                                                </label>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif--}}
-
-                                {{-- <button type="submit" class="btn btn-styled btn-block btn-base-4">Apply filter</button> --}}
+{{--                                 <button type="submit" class="btn btn-styled btn-block btn-base-4">Apply filter</button>--}}
                             </div>
-                        </div></div>
+                        </div>
+                        </div>
                     </div>
 
                     <div class="col-lg-8">

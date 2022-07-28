@@ -495,7 +495,6 @@
                                                             $colorcheck =  1;
                                                             }
                                                         }
-
                                                     @endphp
                                                     @if($colorcheck)
                                                         <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
