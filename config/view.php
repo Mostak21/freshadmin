@@ -1,5 +1,14 @@
 <?php
 
+use Jenssegers\Agent\Agent;
+$agent = new Agent;
+$path = $agent->isDesktop() ? 'views' : 'mobile_views';
+
+if (str_contains(url()->current(), 'admin')) {
+    $path = 'views';
+}
+
+
 return [
 
     /*
@@ -12,9 +21,13 @@ return [
     | the usual Laravel view path has already been registered for you.
     |
     */
-
+    /*
     'paths' => [
         resource_path('views'),
+    ],
+    */
+    'paths' => [
+        resource_path($path)
     ],
 
     /*
