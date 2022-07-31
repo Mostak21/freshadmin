@@ -5,8 +5,6 @@ $agent = new Agent;
 $path = $agent->isDesktop() ? 'views' : 'mobile_views';
 
 
-dd( Request::url()) ;
-
 return [
 
     /*
