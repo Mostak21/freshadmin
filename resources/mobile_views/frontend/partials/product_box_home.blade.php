@@ -1,19 +1,7 @@
-<div class="mcard product-card ">
+<div class="mcard product-card m-2">
     <div class="position-relative xcard">
-			@php
-			// $soldout=1;
-			// $stock=\App\Models\ProductStock::where('product_id',$product->id)->first();
-      //       //return $stock->qty;
-			// if(empty($stock)){
-			// 	$soldout=0;
-		  //    }
-		  //  if(!empty($stock)){
-      //
-		  //         if($stock->qty==0){
-			// 		$soldout=0;
-			// 			}
-		  //    }
-
+		
+        @php
       $Product_Stock = 0 ;
       if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
 
@@ -28,7 +16,7 @@
         <a href="{{ route('product', $product->slug) }}" class="d-block">
             @if ($product->shipping_type == "free") <span class="tag-text">Free Delivery</span> @endif
             <img
-                class="img-fit lazyload mx-auto h-140px h-md-210px"
+                class="img-fit lazyload mx-auto h-md-210px rounded-slider"
                 src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
                 data-src="{{ uploaded_asset($product->thumbnail_img) }}"
                 alt="{{  $product->getTranslation('name')  }}"
@@ -52,9 +40,9 @@
             </a>
         </div>
     </div>
-    <div class="p-md-3 p-2 text-left">
+    <div class="p-md-3 p-2 text-center">
         @if(!empty($product->brand->name))
-        <span class="text-reset ">	<a class="d-block text-reset" style="color: #8c8c8c !important; "><small class="fw-300"> {{  $product->brand->name }}</small></a></span>
+        <span class="text-black fw-600">	 {{  $product->brand->name }}</span>
 		@endif
 
 
@@ -63,13 +51,11 @@
         </h3>
 
         <div class="fs-15">
-            <span class="fw-400 text-primary"> <a href="{{ route('product', $product->slug) }}">{{ home_discounted_base_price($product) }}</a></span>
+            <span class="fw-500"> <a class=" text-black"href="{{ route('product', $product->slug) }}">{{ home_discounted_base_price($product) }}</a></span>
             @if(home_base_price($product) != home_discounted_base_price($product))
                 <del class="fw-400 mr-1 fs-12">{{ home_base_price($product) }}</del>
             @endif
-            <span class="rating rating-sm" style="float:right;">
-                {{ renderStarRating($product->rating) }}
-            </span>
+           
         </div>
        {{--@if (addon_is_activated('club_point'))
             <div class="rounded px-2 mt-2 bg-soft-secondary border-soft-secondary border">
@@ -78,9 +64,5 @@
             </div>
         @endif--}}
     </div>
-    <div class="mcard-body card-body-hidden">
-        <a href="javascript:void(0)" onclick="showAddToCartModal({{ $product->id }})">
-            <button class="btn btn-primary btn-sm d-block w-100 mb-2 text-white" type="button"><i class="la la-shopping-cart opacity-100 fs-18"></i>Add to Cart</button>
-        </a>
-      </div>
+
 </div>

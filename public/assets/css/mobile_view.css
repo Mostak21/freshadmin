@@ -52,11 +52,22 @@
     
   }
 
+  .rounded-slider{
+    border-radius: 20px;
+  }
+  
+  .rounded-footer-top{
+    border-radius: 20px 20px 0px 0px;
+  }
+  
+  .text-black{
+    color: rgba(0, 0, 0, 0.836);
+  }
 
   /*footer icon size*/
   
 
   .footer_icon_size{
-    height: 24px;
+    height: 20px;
   }
   

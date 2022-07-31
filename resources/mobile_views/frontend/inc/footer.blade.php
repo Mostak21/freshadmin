@@ -86,7 +86,7 @@
          @else
              <a href="{{ route('user.login') }}" class="text-reset d-block text-center pb-2 pt-3">
                  <span class="d-block mx-auto">
-                     <img class="footer_icon_size" src="{{ static_asset('m_asset/Artboard.png') }}" alt="">
+                     <img class="footer_icon_size" src="{{ static_asset('m_asset/profile.png') }}" alt="">
                  </span>
                  
              </a>
