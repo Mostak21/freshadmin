@@ -4,6 +4,11 @@ use Jenssegers\Agent\Agent;
 $agent = new Agent;
 $path = $agent->isDesktop() ? 'views' : 'mobile_views';
 
+if (str_contains(url()->current(), 'admin')) {
+//    dd(url()->current());
+    $path = 'views';
+}
+
 
 return [
 
