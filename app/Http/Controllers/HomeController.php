@@ -298,7 +298,7 @@ class HomeController extends Controller
 
     public function load_custom_section(){
 
-        $category_id =61;
+        $category_id =607;
         $category_ids = CategoryUtility::children_ids($category_id);
         $category_ids[] = $category_id;
 

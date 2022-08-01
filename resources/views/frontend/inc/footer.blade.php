@@ -214,11 +214,11 @@
 
 
              <div class="w-300px mw-100 mx-auto mx-md-0 text-right">
-                @if(get_setting('play_store_link') != null)
-                    <a href="{{ get_setting('play_store_link') }}" target="_blank" class="d-inline-block ml-0 mb-3 mb-md-3">
-                        <img src="{{ static_asset('assets/img/play.png') }}" class="mx-100 h-40px">
-                    </a>
-                @endif
+{{--                @if(get_setting('play_store_link') != null)--}}
+{{--                    <a href="{{ get_setting('play_store_link') }}" target="_blank" class="d-inline-block ml-0 mb-3 mb-md-3">--}}
+{{--                        <img src="{{ static_asset('assets/img/play.png') }}" class="mx-100 h-40px">--}}
+{{--                    </a>--}}
+{{--                @endif--}}
                @if(get_setting('app_store_link') != null)
                     <a href="{{ get_setting('app_store_link') }}" target="_blank" class="ml-3 d-inline-block">
                         <img src="{{ static_asset('assets/img/app.png') }}" class="mx-100 h-40px">
