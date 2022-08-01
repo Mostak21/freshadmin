@@ -39,6 +39,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        $value = Cache::get('key');
+
         $featured_categories = Cache::rememberForever('featured_categories', function () {
             return Category::where('featured', 1)->get();
         });
