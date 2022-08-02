@@ -314,12 +314,11 @@ class HomeController extends Controller
         $gcategory_ids = CategoryUtility::children_ids($gcategory_id);
         $gcategory_ids[] = $gcategory_id;
 
-		$ip=$_SERVER['REMOTE_ADDR'];
+		
         $hour=date("H");
         $day=date("j");
         $month=date("n");
-        $ip=str_replace(".","",$ip);
-        $seed=($ip+$hour+$day+$month);
+        $seed=($hour+$day+$month);
 
         $perfumeproducts=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
         $womensproducts=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();

@@ -3,12 +3,12 @@
        
         @if ($paginator->onFirstPage())
         <ul class="pagination">
-            <li class="page-item"><i class="ci-arrow-left me-2"></i>Prev</li>
+            <li class="page-item"> <span class="btn btn-sm btn-secondary"><i class="ci-arrow-left mr-2"></i>Prev</li></span>
         </ul>
         @else
             
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev"><i class="ci-arrow-left me-2"></i>Prev</a></li>
+                <li class="page-item"><a class="" href="{{ $paginator->previousPageUrl() }}" rel="prev"><span class="btn btn-sm btn-dark"><i class="ci-arrow-left mr-2"></i>Prev</a></span></li>
             </ul>
         @endif
 
@@ -40,10 +40,10 @@
 
    <ul class="pagination">  
         @if ($paginator->hasMorePages())
-        <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}" aria-label="Next" rel="next">Next<i class="ci-arrow-right ms-2"></i></a></li>
+        <li class="page-item"><a class="" href="{{ $paginator->nextPageUrl() }}" aria-label="Next" rel="next"><span class="btn btn-sm btn-dark">Next<i class="ci-arrow-right ml-2"></i></span></a></li>
             
         @else
-        <li class="page-item disable"><a class="page-link" href="" aria-label="Next" rel="next">Next<i class="ci-arrow-right ms-2"></i></a></li>
+        <li class="page-item disable"><span class="btn btn-sm btn-secondary" aria-label="Next" rel="next">Next<i class="ci-arrow-right ml-2"></i></span></li>
         @endif
    </ul>
 </nav>

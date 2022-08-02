@@ -35,78 +35,39 @@
 @endsection
 
 @section('content')
+<div class="container">
+    <h1 class="h3 fs-22 fw-600 text-body">
+        @if(isset($category_id))
+    
+            {{ \App\Models\Category::find($category_id)->name }}
+        @elseif(isset($query))
+            Search result for
+            "{{ $query }}"
+    
+        @else
+            All Products
+    
+        @endif
+    </h1>
+</div>
 
-    <div class="productheaderbg py-6 pb-8">
-        <div class="container d-lg-center">
-            <div class="row">
-                <div class="col-lg-6 text-center text-lg-left">
-                    <h1 class="h3 fw-600 text-body">
-                        @if(isset($category_id))
-{{--                            {{ \App\Models\Category::find($category_id)->getTranslation('name') }}--}}
-                            {{ \App\Models\Category::find($category_id)->name }}
-                        @elseif(isset($query))
-                            Search result for
-                            "{{ $query }}"
-{{--                            {{ translate('Search result for ') }}"{{ $query }}"--}}
-                        @else
-                            All Products
-{{--                            {{ translate('All Products') }}--}}
-                        @endif
-                    </h1>
-                </div>
+
+  
                 @php
             if(isset($category_id))
                 $item_category = category_bread_tree($category_id);
 
             @endphp
-            <div class="col-lg-6 fs-13">
-                <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                    <li class="breadcrumb-item ">
-                        <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i>
-                            Home
-{{--                            {{ translate('Home')}}--}}
-                        </a>
-                    </li>
-                   @if(isset($category_id))
-                    @if(isset($item_category[0][0]))
-                    <li class="breadcrumb-item  text-dark">
-                        <a class="text-reset" id="productsCategoryLevel1" href="{{ route('products.category', \App\Models\Category::find($item_category[0][1])->slug) }}">{!!$item_category[0][0] ??""!!}</a>
-
-                    </li>
-                    @endif
-                    @if(isset($item_category[1][0]))
-                    <li class="breadcrumb-item  text-dark">
-                        <a class="text-reset" id="productsCategoryLevel2" href="{{ route('products.category', \App\Models\Category::find($item_category[1][1])->slug) }}">{!!$item_category[1][0] ??""!!}</a>
-
-                    </li>
-                    @endif
-                    @if(isset($item_category[2][0]))
-                    <li class="breadcrumb-item  text-dark">
-                        <a class="text-reset" id="productsCategoryLevel3" href="{{ route('products.category', \App\Models\Category::find($item_category[2][1])->slug) }}">{!!$item_category[2][0] ??""!!}</a>
-                    </li>
-                    @endif
-
-                    @else
-                    <li class="breadcrumb-item  text-dark">
-                        <a class="text-reset" href="{{ route('search') }}">All Categories</a>
-                    </li>
-                    @endif
-
-
-                </ul>
-            </div>
-            </div>
+         
 
 
 
 
-        </div>
-    </div>
 
     <section class="mb-4 pt-3">
         <div class="container sm-px-0">
             <form class="" id="search-form" action="" method="GET">
-                <div class="row" style="margin-top:-100px">
+                <div class="row" style="">
                     <div class="col-lg-4 pr-5">
                         <div class="pr-4 ">
                         <div class=" bg-white shadow-lg rounded-md aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035 ">
@@ -315,7 +276,7 @@
                                     <input type="hidden" name="keyword" value="{{ $query }}">
                                 </div>
 
-                                <div class="form-group mr-0 w-200px d-none d-xl-block"> <!-- add "ml-auto" to float right-->
+                                <div class="form-group mr-2 w-200px"> <!-- add "ml-auto" to float right-->
                                     <label class="mb-0 opacity-50">
                                         Sort by
 {{--                                        {{ translate('Sort by')}}--}}
@@ -328,11 +289,11 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group w-200px ml-0 ml-xl-3">
+                                <div class="form-group w-150px">
                                     @if (Route::currentRouteName() != 'products.brand')
                                         @if(isset($category_id))
 											@if($products->count()>0)
-                                            <label class="mb-0 opacity-50">Brands by Category {{--{{ translate('Brands by Category')}}--}}</label>
+                                            <label class="mb-0 opacity-50">Sorts By Brand {{--{{ translate('Brands by Category')}}--}}</label>
                                             <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
                                                 <option value="">All Brands {{--{{ translate('All Brands')}}--}}</option>
                                                 @php
@@ -365,7 +326,7 @@
                                 </div>
                                 <div class="d-xl-none ml-auto ml-xl-3 mr-0 form-group align-self-end">
                                     <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
-                                        <i class="la la-filter la-2x"></i>
+                                        <img src="{{ static_asset('m_asset/filter.png') }}" height="32px" alt="">
                                     </button>
                                 </div>
                             </div>
@@ -381,7 +342,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="aiz-pagination aiz-pagination-center mt-4">
+                        <div class="aiz-pagination aiz-pagination-center container-custom mt-4">
                            {{-- $products->appends(request()->input())->links() --}}
 							{{ $products->appends(request()->input())->onEachSide(4)->links('vendor.cartzilla') }}
                         </div>

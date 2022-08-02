@@ -6,7 +6,7 @@
 
 @if (get_setting('best_selling') == 1)
     <section class="mb-4">
-        <div class="container">
+        <div class="container-custom">
             <div class="py-4 px-md-4 py-md-3 bg-white ">
                
                 <div class=" mb-3 ">

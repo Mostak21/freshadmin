@@ -1,6 +1,6 @@
 <a href="{{ route('wishlists.index') }}" class="d-flex align-items-center text-reset">
 
-   <b><i class="navbar-tool la la-heart-o fs-22 px-2"></i></b>
+   <b><i class="navbar-tool la la-heart-o fs-22 px-2 la-2x"></i></b>
   {{-- <span class="flex-grow-1 ml-1">
         @if(Auth::check())
             <span class="badge badge-primary badge-inline badge-pill">{{ count(Auth::user()->wishlists)}}</span>

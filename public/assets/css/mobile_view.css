@@ -1,6 +1,6 @@
-.container{
+.container-custom{
     width: auto;
-    margin: 0px 10px 0px 10px;
+    margin: 0px 15px 0px 15px;
   }
   
   /*product box*/
@@ -71,3 +71,4 @@
     height: 20px;
   }
   
+  .rounded-custom{ border-radius: .4375rem !important;}

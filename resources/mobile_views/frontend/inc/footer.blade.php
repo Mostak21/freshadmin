@@ -1,4 +1,4 @@
-<footer>
+<footer class="my-3">
 
 
 
@@ -14,12 +14,12 @@
      
              </a>
          </div>
-         {{-- <div class="col">
+         <div class="col">
              <a href="{{ route('categories.all') }}" class="text-reset d-block text-center pb-2 pt-3">
-                 <i class="las la-list-ul fs-20 opacity-60 {{ areActiveRoutes(['categories.all'],'opacity-100 text-primary')}}"></i>
-                 <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['categories.all'],'opacity-100 fw-600')}}">{{ translate('Categories') }}</span>
+                 <img src="{{ static_asset('m_asset/category.png') }}" class="footer_icon_size {{ areActiveRoutes(['categories.all'],'opacity-100 ')}}"/>
+            
              </a>
-         </div> --}}
+         </div>
          @php
              if(auth()->user() != null) {
                  $user_id = Auth::user()->id;
@@ -43,21 +43,24 @@
                      @endphp
                      (<span class="cart-count">{{$count}}</span>)
                  </span> --}}
+                    @php
+                         $count = (isset($cart) && count($cart)) ? count($cart) : 0;
+                     @endphp
                  <img class="footer_icon_size" src="{{ static_asset('m_asset/cart.png') }}" alt="">
              </a>
          </div>
-         <div class="col">
+         {{-- <div class="col">
              <a href="{{ route('all-notifications') }}" class="text-reset d-block text-center pb-2 pt-3">
-                 {{-- <span class="d-inline-block position-relative px-2">
+                 <span class="d-inline-block position-relative px-2">
                      <i class="las la-bell fs-20 opacity-60 {{ areActiveRoutes(['all-notifications'],'opacity-100 text-primary')}}"></i>
                      @if(Auth::check() && count(Auth::user()->unreadNotifications) > 0)
                          <span class="badge badge-sm badge-dot badge-circle badge-primary position-absolute absolute-top-right" style="right: 7px;top: -2px;"></span>
                      @endif
                  </span>
-                 <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['all-notifications'],'opacity-100 fw-600')}}">{{ translate('Notifications') }}</span> --}}
+                 <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['all-notifications'],'opacity-100 fw-600')}}">{{ translate('Notifications') }}</span>
                  <img class="footer_icon_size" src="{{ static_asset('m_asset/notification.png') }}" alt="">
              </a>
-         </div>
+         </div> --}}
          <div class="col">
          @if (Auth::check())
              @if(isAdmin())

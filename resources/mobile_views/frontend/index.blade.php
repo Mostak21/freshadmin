@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<div class="container mb-2">
+<div class="container-custom mb-2">
 <div class="w100 rounded-slider">
     @if (get_setting('home_slider_images') != null)
         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height " data-dots="true" data-autoplay="true">
@@ -28,6 +28,9 @@
 
 </div>
 </div>
+<div id="custom_section">
+
+</div>
 <div id="section_home_categories">
 
 </div>
@@ -36,7 +39,32 @@
 <div id="section_best_selling">
 
 </div>
-
+@if (get_setting('top10_brands') != null)
+<div class="container-custom">
+    <div class=" py-3 bg-white "> 
+        <div class=" mb-4">
+            <h3 class="h5 fw-700 mb-0">
+                 Top Brands
+            </h3>
+        </div>
+        
+    
+        <div class="row row-cols-xxl-7 row-cols-xl-7 row-cols-lg-4 row-cols-md-3 row-cols-2 gutters-300">
+        @php $top10_brands = json_decode(get_setting('top10_brands')); @endphp
+        @foreach ($top10_brands as $key => $value)
+            @php $brand = \App\Models\Brand::find($value); @endphp
+            @if ($brand != null)
+            <div class="col text-center">
+                <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-4 mb-4 card-mobile">
+                    <img src="{{ uploaded_asset($brand->logo) }}" class="lazyload mx-auto h-90px mw-100" alt="{{ $brand->getTranslation('name') }}">
+                </a>
+            </div>
+            @endif
+        @endforeach
+    </div>
+</div>
+</div>
+@endif
     
 @endsection
 

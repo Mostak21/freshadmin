@@ -4,7 +4,7 @@
 @foreach ($home_categories as $key => $value)
     @php $category = \App\Models\Category::find($value); @endphp
     <section class="">
-        <div class="container">
+        <div class="container-custom">
             <div class=" py-2 px-md-4 py-md-3 bg-white">
                 <div class=" mb-3 d-flex justify-content-between ">
                     <div>
