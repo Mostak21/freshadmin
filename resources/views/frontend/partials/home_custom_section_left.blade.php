@@ -1,5 +1,4 @@
-{{-- Womens section--}}
- 	   {{-- Banner section 1--}}
+ {{-- Banner section 1--}}
         @if (get_setting('home_banner1_images') != null)
         <div class="mb-4">
             <div class="container">
@@ -25,13 +24,14 @@
          <div class="row ">
              <div class="col-md-5 round-2 productheaderbg">
                  <div class="px-3 py-4 mparent" style="height: 100%;">
-                     <h3 class="fw-600">Fragrance</h3>
-                     <div><a class="text-primary" href="/category/fragrance">Shop fragrance <i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                     <h3 class="fw-600">{{$section_data->title}}</h3>
+                     <div><a class="text-primary" href="{{$section_data->link}}">Shop {{$section_data->title}} <i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                      <div class="mchild">
      
      
-                         <a class="d-none d-md-block mt-auto" href=""><img class="d-block w-100"
-                                                                                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp" alt="Fragrance"></a>
+                         <a class="d-none d-md-block mt-auto" href="">
+                             <img class="d-block w-100" src="{{$section_data->poster_image_link}}" alt="{{$section_data->title}}">
+                         </a>
                      </div>
                  </div>
              </div>
@@ -39,7 +39,7 @@
      
      
                  <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
-                     @foreach ($section_products->chunk(6) as $key => $chunk)
+                     @foreach ($section_data->products->chunk(6) as $key => $chunk)
                          <div class="carousel-box  px-1">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
      

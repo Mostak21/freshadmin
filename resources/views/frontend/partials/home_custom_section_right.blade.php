@@ -3,7 +3,7 @@
             <div class="mb-4">
                 <div class="container">
      
-                        @php $banner_1_imags = json_decode(get_setting('home_banner2_images')); @endphp
+                        @php $banner_1_imags = $section_data->banner_image_link; @endphp
                         @foreach ($banner_1_imags as $key => $value)
      
                              <div class="px-3">
@@ -26,7 +26,7 @@
      
      
                  <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
-                     @foreach ($womensproducts->chunk(6) as $key => $chunk)
+                     @foreach ($section_data->products->chunk(6) as $key => $chunk)
                          <div class="carousel-box pb-3 ">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
      
@@ -45,13 +45,13 @@
              </div>
              <div class="col-md-5 order-1 order-lg-2 round-2 productheaderbg">
                  <div class="px-3 py-4 mparent text-right" style="height: 100%;">
-                     <h3 class="fw-600">For Women</h3>
-                     <div><a class="text-primary" href="/category/mens-fashion">Shop for Women<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                     <h3 class="fw-600">{{$section_data->title}}</h3>
+                     <div><a class="text-primary" href="{{$section_data->link}}">Shop {{$section_data->title}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                      <div class="mchild">
      
      
-                         <a class="d-none d-md-block mt-auto" href=""><img class="d-block w-100"
-                                                                                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3HIsQ1ePljkYPv9ZZ0TuQKptmFBarj43AgznjAYX.webp" alt="For Women"></a>
+                         <a class="d-none d-md-block mt-auto" href="">
+                             <img class="d-block w-100" src="{{$section_data->poster_image_link}}" alt="{{$section_data->title}}"></a>
                      </div>
                  </div>
              </div>

@@ -301,94 +301,97 @@ class HomeController extends Controller
 
     public function load_custom_section_1(Request $request){
         $category_id =null;
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $seed=($hour+$day+$month);
+
         $section_data = (object) array();
 
+                dd(Cache::get('home_custom_section1'));
+
+
         if (str_contains($request->getUri(), 'custom_section1')){
-            $category_id =607;
-            $section_data->title= "category name";
-            $section_data->link= "#";
-            $section_data->banner_image_link= json_decode(get_setting('home_banner1_images'));
-            $section_data->poster_image_link= "#";
+            $section_data = Cache::rememberForever('home_custom_section1', function ($request) {
+                $section_data_c = (object) array();
+                $category_id =607;
+                $category_ids = CategoryUtility::children_ids($category_id);
+                $category_ids[] = $category_id;
+
+                $template = "left";
+                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+                $section_data_c->title= "Fragrance";
+                $section_data_c->link= $request->getBaseUrl()."/category/fragrance";
+                $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_images'));
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
+
+                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+                dd($section_data_c);
+            return $section_data_c;
+            });
         }
         elseif (str_contains($request->getUri(), 'custom_section2')){
-            $category_id =467;
-            $section_data->title= "category name";
-            $section_data->link= "#";
-            $section_data->banner_image_link= json_decode(get_setting('home_banner2_images'));
-            $section_data->poster_image_link= "#";
+            $section_data = Cache::rememberForever('home_custom_section2', function ($request) {
+                $section_data_c = (object) array();
+                $category_id =467;
+                $category_ids = CategoryUtility::children_ids($category_id);
+                $category_ids[] = $category_id;
+
+                $template = "right";
+                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+                $section_data_c->title= "For Women";
+                $section_data_c->link= $request->getBaseUrl()."/category/womens-fashion";
+                $section_data_c->banner_image_link= json_decode(get_setting('home_banner2_images'));
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3HIsQ1ePljkYPv9ZZ0TuQKptmFBarj43AgznjAYX.webp";
+
+                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();
+
+                return $section_data_c;
+            });
         }
         elseif (str_contains($request->getUri(), 'custom_section3')){
-            $category_id =88;
-            $section_data->title= "category name";
-            $section_data->link= "#";
-            $section_data->banner_image_link= json_decode(get_setting('home_banner3_images'));
-            $section_data->poster_image_link= "#";
+            $section_data = Cache::rememberForever('home_custom_section3', function ($request) {
+                $section_data_c = (object) array();
+                $category_id =88;
+                $category_ids = CategoryUtility::children_ids($category_id);
+                $category_ids[] = $category_id;
+
+                $template = "left";
+                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+                $section_data_c->title= "For Skin Care";
+                $section_data_c->link= $request->getBaseUrl()."/category/skincare-bath-body";
+                $section_data_c->banner_image_link= json_decode(get_setting('home_banner3_images'));
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xrHmac35BGmvU0uFf90x4bSDymlXV9twIR3BK5ot.webp";
+
+                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+                return $section_data_c;
+            });
         }
         elseif (str_contains($request->getUri(), 'custom_section4')){
-            $category_id =69;
-            $section_data->title= "category name";
-            $section_data->link= "#";
-            $section_data->banner_image_link= json_decode(get_setting('home_banner4_images'));
-            $section_data->poster_image_link= "#";
+            $section_data = Cache::rememberForever('home_custom_section3', function ($request) {
+                $section_data_c = (object) array();
+                $category_id =69;
+                $category_ids = CategoryUtility::children_ids($category_id);
+                $category_ids[] = $category_id;
+
+                $template = "right";
+                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+                $section_data_c->title= "Gadgets";
+                $section_data_c->link= $request->getBaseUrl()."/category/gadgets";
+                $section_data_c->banner_image_link= json_decode(get_setting('home_banner4_images'));
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
+
+                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+                return $section_data_c;
+            });
         }
 
-        $category_ids = CategoryUtility::children_ids($category_id);
-        $category_ids[] = $category_id;
 
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-        $seed=($hour+$day+$month);
 
-        $section_products=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-
-//        return view('frontend.partials.custom_section_left',compact('section_products'));
-        return view('frontend.partials.home_custom_section_left',compact('section_products','section_data'));
-
-    }
-
-    public function load_custom_section_2(){
-        $wcategory_id =467;
-        $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
-        $wcategory_ids[] = $wcategory_id;
-
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-        $seed=($hour+$day+$month);
-
-        $section_products=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();
-
-        return view('frontend.partials.custom_section',compact('section_products'));
-
-    }
-    public function load_custom_section_3(){
-        $kcategory_id =88;
-        $kcategory_ids = CategoryUtility::children_ids($kcategory_id);
-        $kcategory_ids[] = $kcategory_id;
-
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-        $seed=($hour+$day+$month);
-
-        $kidsproducts=Product::whereIn('category_id', $kcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-
-        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
-    }
-    public function load_custom_section_4(){
-        $gcategory_id =69;
-        $gcategory_ids = CategoryUtility::children_ids($gcategory_id);
-        $gcategory_ids[] = $gcategory_id;
-
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-        $seed=($hour+$day+$month);
-
-        $gadgetproducts=Product::whereIn('category_id', $gcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-
-        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
+        return view($section_data->template_view ,compact('section_data'));
     }
 
     public function load_custom_section(){
