@@ -297,6 +297,100 @@ class HomeController extends Controller
         }
     }
 
+//    Home Custom section product list with banner
+
+    public function load_custom_section_1(Request $request){
+        $category_id =null;
+        $section_data = (object) array();
+
+        if (str_contains($request->getUri(), 'custom_section1')){
+            $category_id =607;
+            $section_data->title= "category name";
+            $section_data->link= "#";
+            $section_data->banner_image_link= json_decode(get_setting('home_banner1_images'));
+            $section_data->poster_image_link= "#";
+        }
+        elseif (str_contains($request->getUri(), 'custom_section2')){
+            $category_id =467;
+            $section_data->title= "category name";
+            $section_data->link= "#";
+            $section_data->banner_image_link= json_decode(get_setting('home_banner2_images'));
+            $section_data->poster_image_link= "#";
+        }
+        elseif (str_contains($request->getUri(), 'custom_section3')){
+            $category_id =88;
+            $section_data->title= "category name";
+            $section_data->link= "#";
+            $section_data->banner_image_link= json_decode(get_setting('home_banner3_images'));
+            $section_data->poster_image_link= "#";
+        }
+        elseif (str_contains($request->getUri(), 'custom_section4')){
+            $category_id =69;
+            $section_data->title= "category name";
+            $section_data->link= "#";
+            $section_data->banner_image_link= json_decode(get_setting('home_banner4_images'));
+            $section_data->poster_image_link= "#";
+        }
+
+        $category_ids = CategoryUtility::children_ids($category_id);
+        $category_ids[] = $category_id;
+
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $seed=($hour+$day+$month);
+
+        $section_products=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+//        return view('frontend.partials.custom_section_left',compact('section_products'));
+        return view('frontend.partials.home_custom_section_left',compact('section_products','section_data'));
+
+    }
+
+    public function load_custom_section_2(){
+        $wcategory_id =467;
+        $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
+        $wcategory_ids[] = $wcategory_id;
+
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $seed=($hour+$day+$month);
+
+        $section_products=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();
+
+        return view('frontend.partials.custom_section',compact('section_products'));
+
+    }
+    public function load_custom_section_3(){
+        $kcategory_id =88;
+        $kcategory_ids = CategoryUtility::children_ids($kcategory_id);
+        $kcategory_ids[] = $kcategory_id;
+
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $seed=($hour+$day+$month);
+
+        $kidsproducts=Product::whereIn('category_id', $kcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
+    }
+    public function load_custom_section_4(){
+        $gcategory_id =69;
+        $gcategory_ids = CategoryUtility::children_ids($gcategory_id);
+        $gcategory_ids[] = $gcategory_id;
+
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $seed=($hour+$day+$month);
+
+        $gadgetproducts=Product::whereIn('category_id', $gcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
+    }
+
     public function load_custom_section(){
 
         $category_id =607;
@@ -330,6 +424,8 @@ class HomeController extends Controller
 
         return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
     }
+
+    //    Home Custom section product list with banner
 
     public function load_featured_section(){
         return view('frontend.partials.featured_products_section');
