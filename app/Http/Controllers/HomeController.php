@@ -136,7 +136,7 @@ class HomeController extends Controller
  * @return void
  */
 
- public function cart_login_guest(Request $request){
+    public function cart_login_guest(Request $request){
     $user = null;
 
     if($request->get('email') != null){
@@ -301,47 +301,41 @@ class HomeController extends Controller
 
     public function load_custom_section_1(Request $request){
         $category_id =null;
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-        $seed=($hour+$day+$month);
-
+        $seconds = 14400; //interval time in secounds for random product change
         $section_data = (object) array();
 
-                dd(Cache::get('home_custom_section1'));
-
-
         if (str_contains($request->getUri(), 'custom_section1')){
-            $section_data = Cache::rememberForever('home_custom_section1', function ($request) {
+            $section_data = Cache::remember('home_custom_section1', $seconds, function () {
                 $section_data_c = (object) array();
                 $category_id =607;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
+                $seed=(date("H")+date("j")+date("n"));
 
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
                 $section_data_c->title= "Fragrance";
-                $section_data_c->link= $request->getBaseUrl()."/category/fragrance";
+                $section_data_c->link= "fragrance"; //category slug
                 $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_images'));
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
 
-                dd($section_data_c);
             return $section_data_c;
             });
         }
         elseif (str_contains($request->getUri(), 'custom_section2')){
-            $section_data = Cache::rememberForever('home_custom_section2', function ($request) {
+            $section_data = Cache::remember('home_custom_section2', $seconds, function () {
                 $section_data_c = (object) array();
                 $category_id =467;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
+                $seed=(date("H")+date("j")+date("n"));
 
                 $template = "right";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
                 $section_data_c->title= "For Women";
-                $section_data_c->link= $request->getBaseUrl()."/category/womens-fashion";
+                $section_data_c->link= "womens-fashion"; //category slug
                 $section_data_c->banner_image_link= json_decode(get_setting('home_banner2_images'));
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3HIsQ1ePljkYPv9ZZ0TuQKptmFBarj43AgznjAYX.webp";
 
@@ -351,16 +345,17 @@ class HomeController extends Controller
             });
         }
         elseif (str_contains($request->getUri(), 'custom_section3')){
-            $section_data = Cache::rememberForever('home_custom_section3', function ($request) {
+            $section_data = Cache::remember('home_custom_section3', $seconds, function () {
                 $section_data_c = (object) array();
                 $category_id =88;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
+                $seed=(date("H")+date("j")+date("n"));
 
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
                 $section_data_c->title= "For Skin Care";
-                $section_data_c->link= $request->getBaseUrl()."/category/skincare-bath-body";
+                $section_data_c->link= "skincare-bath-body"; //category slug
                 $section_data_c->banner_image_link= json_decode(get_setting('home_banner3_images'));
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xrHmac35BGmvU0uFf90x4bSDymlXV9twIR3BK5ot.webp";
 
@@ -370,16 +365,17 @@ class HomeController extends Controller
             });
         }
         elseif (str_contains($request->getUri(), 'custom_section4')){
-            $section_data = Cache::rememberForever('home_custom_section3', function ($request) {
+            $section_data = Cache::remember('home_custom_section3', $seconds, function () {
                 $section_data_c = (object) array();
                 $category_id =69;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
+                $seed=(date("H")+date("j")+date("n"));
 
                 $template = "right";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
                 $section_data_c->title= "Gadgets";
-                $section_data_c->link= $request->getBaseUrl()."/category/gadgets";
+                $section_data_c->link= "gadgets"; //category slug
                 $section_data_c->banner_image_link= json_decode(get_setting('home_banner4_images'));
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
 
@@ -388,8 +384,6 @@ class HomeController extends Controller
                 return $section_data_c;
             });
         }
-
-
 
         return view($section_data->template_view ,compact('section_data'));
     }

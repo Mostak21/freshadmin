@@ -46,10 +46,8 @@
              <div class="col-md-5 order-1 order-lg-2 round-2 productheaderbg">
                  <div class="px-3 py-4 mparent text-right" style="height: 100%;">
                      <h3 class="fw-600">{{$section_data->title}}</h3>
-                     <div><a class="text-primary" href="{{$section_data->link}}">Shop {{$section_data->title}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                     <div><a class="text-primary" href="{{getBaseURL()}}category/{{$section_data->link}}">Shop {{$section_data->title}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                      <div class="mchild">
-     
-     
                          <a class="d-none d-md-block mt-auto" href="">
                              <img class="d-block w-100" src="{{$section_data->poster_image_link}}" alt="{{$section_data->title}}"></a>
                      </div>

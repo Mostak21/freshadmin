@@ -29,7 +29,7 @@
             @if ($product->shipping_type == "free") <span class="tag-text">Free Delivery</span> @endif
             <img
                 class="img-fit lazyload mx-auto h-140px h-md-210px"
-                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
+                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp"
                 data-src="{{ uploaded_asset($product->thumbnail_img) }}"
                 alt="{{  $product->getTranslation('name')  }}"
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
