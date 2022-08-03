@@ -22,9 +22,9 @@
     }
   
   .p-img-round{
-    background: #666666;
+    /* background: #666666; */
     border: #E9E9E9 1px solid;
-  border-radius: 7px;
+    border-radius: 7px;
     max-height: 100%;
     width: 100%;
     object-fit: cover;
@@ -72,3 +72,19 @@
   }
   
   .rounded-custom{ border-radius: .4375rem !important;}
+
+  .user-panel-icon{
+    padding: 3px!important;
+    margin: 0!important;
+    font-size: 20px;
+    color: black!important;
+  }
+
+  .user-panel-icon-bg{
+    border: #E9E9E9 1px solid;
+    border-radius: 7px;
+    align-items: center;
+    padding: 1px;
+    margin-right: 3px;
+   
+  }

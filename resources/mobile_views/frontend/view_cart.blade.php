@@ -82,6 +82,12 @@
 
 @section('content')
 
+<div class="container">
+    <h1 class="h3 py-2 fs-22 fw-600">
+                    Cart
+    </h1> 
+</div>
+
 <div class="productheaderbg  py-3">
     <div class="container d-lg-center">
         <div class="row">
@@ -112,14 +118,14 @@
 
 
 
-<section class="mb-4" id="cart-summary">
+<section class="my-4" id="cart-summary">
     <div class="container">
         @if( $carts && count($carts) > 0 )
             <form  action="{{ route('checkout.shipping_info') }}" role="form" method="POST">
                 @csrf
             <div class="row">
                 <div class="col-xxl-12 col-xl-12 mx-auto">
-                    <div class="shadow-sm bg-white p-3 p-lg-4 rounded text-left">
+                    <div class="rounded text-left">
                         <div class="mb-4">
                             <ul class="list-group list-group-flush">
                                 @php
@@ -148,11 +154,11 @@
                                             <div class="col-4">
                                                 <div class="control-group">
                                                     <label class="control control-checkbox">
-                                                        <span class="mr-2 ml-0 align-items-center image-cart">
+                                                        <span class=" ml-0 align-items-center image-cart">
                                                             <div class="img-fit rounded">
                                                                 <img
                                                                     src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                                                    class="img-fit rounded"
+                                                                    class="p-img-round"
                                                                     alt="{{ $product->getTranslation('name')  }}"
                                                                     @if( isset($product_stock) && $product_stock->qty ==0 || $product_stock == null)
                                                                     style="filter: grayscale(100%) blur(0.1px) opacity(0.5) brightness(0.9) contrast(1.3);"
@@ -174,9 +180,21 @@
 
 
                                             <div class="col-8 " @if( isset($product_stock) && $product_stock->qty ==0 || $product_stock == null) style="opacity: 0.6; " @endif>
-                                              <div class="fs-16 opacity-90 fw-600 pb-2"><a class="text-reset" href="{{ route('product', $product->slug) }}">{{ $product_name_with_choice }}</a> </div>
-                                          
-                                              <div class="d-flex justify-content-between">
+                                              <div class=" d-flex justify-content-between ">
+                                                <div class="fs-16 opacity-90 fw-600 pb-2">
+                                                <a class="text-reset" href="{{ route('product', $product->slug) }}">{{ $product_name_with_choice }}</a> 
+                                               </div>
+                                               <div>
+                                                <a href="javascript:void(0)" onclick="removeFromCartView(event, {{ $cartItem['id'] }}); removefromcartlayerv{!! $product->id!!}();addToWishList({{ $product->id }});" class="btn btn-icon btn-sm btn-soft-secondary btn-circle">
+                                                        <i class="las fs-16 la-trash"></i>
+                                                    </a>
+                                                </div>
+                                                </div>
+                                               
+                                               
+                                               <div class="mt-2" style="">
+                                                
+                                              <div class="d-flex justify-content-between ">
                                                 <div class=" d-flex align-items-center">
                                                     <span class=" fw-600 fs-18 text-black @if(isset($product_stock) && $product_stock->qty ==0 || $product_stock == null) text-brand-gray @endif">
                                                     {{ single_price(($cartItem['price'] + $cartItem['tax']) * $cartItem['quantity']) }}
@@ -202,42 +220,15 @@
                                                     </button>
                                                     @endif
                                                 </div>
+                                               
+
                                                 </div>
-                                            </div>
+                                               
+                                            </div></div></div>
 
                                             
 
-{{--
-                                            <div class="col-12 col-sm-3 col-md-3 d-flex justify-content-md-end justify-content-center">
-												<div class="row">
-                                                <div class="row no-gutters  align-items-center aiz-plus-minus mr-2 ml-0 " style="max-width: 100px">
-                                                    @if(isset($product_stock) && $product_stock->qty !=0 && $product_stock->qty != null)
-                                                    <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity[{{ $cartItem['id'] }}]">
-                                                        <i class="las la-minus"></i>
-                                                    </button>
 
-                                                        <input type="number"
-                                                           name="quantity[{{ $cartItem['id'] }}]"
-                                                           class="col border-0 text-center flex-grow-1 fs-16 input-number"
-                                                           placeholder="1"
-                                                           value="{{ $cartItem['quantity'] }}"
-                                                           min="{{ $product->min_qty??0 }}" max="{{ $product_stock->qty??0 }}"
-                                                           onchange="updateQuantity({{ $cartItem['id'] }}, this)">
-
-                                                    <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="plus" data-field="quantity[{{ $cartItem['id'] }}]">
-                                                        <i class="las la-plus"></i>
-                                                    </button>
-                                                    @endif
-                                                </div>
-                                                <div class="row d-flex justify-content-end align-items-center">
-                                                <div class="px-3 mr-2 py-2">
-                                                    <a href="javascript:void(0)" onclick="removeFromCartView(event, {{ $cartItem['id'] }}); removefromcartlayerv{!! $product->id!!}();addToWishList({{ $product->id }});" class="btn btn-icon btn-sm btn-soft-primary btn-circle">
-                                                        <i class="las la-trash"></i>
-                                                    </a>
-                                                </div>
-												</div>
-                                                </div>
-                                            </div>--}}
 
 
 
@@ -284,27 +275,20 @@
                             </ul>
                         </div>
 
-                        <div class="px-3 py-2 mb-4 border-top d-flex justify-content-between">
+                        <div class=" container-custom py-4 mb-4 d-flex justify-content-between">
                             <span class="opacity-60 fs-15">{{translate('Subtotal')}}</span>
                             <span class="fw-600 fs-17" id="subTotal">{{ single_price($total) }}</span>
                         </div>
-                        <div class="row align-items-center">
-                            <div class="col-md-6 text-center text-md-left order-1 order-md-0">
-                                <a href="{{ route('home') }}" class="btn btn-mleft">
-
-                                  <i class="ci-arrow-left fw-600"></i>  {{ translate('Return to shop')}}
-                                </a>
-                            </div>
-                            <div class="col-md-6 text-center text-md-right">
+                        <div class="row align-items-center mb-3"> 
+                            <div class="col-12 text-center text-md-right">
                                 @if(Auth::check())
 {{--                                    <a href="{{ route('checkout.shipping_info') }}" class="btn btn-primary fw-600 btn-mright">--}}
 {{--                                        {{ translate('Continue to Shipping')}} <i class="ci-arrow-right fw-600 pl-2"></i>--}}
 {{--                                    </a>--}}
 
-                                        <button type="submit" class="btn btn-primary fw-600 btn-mright">{{ translate('Continue to Shipping')}}<i class="ci-arrow-right fw-600 pl-2"></i></button>
-
+                                    <button type="submit" class="btn btn-dark rounded-custom fw-600 btn-mright"><div class="d-flex justify-content-between"><div>{{translate('Continue to Shipping')}}</div><div><img height="24px" src="{{ static_asset('m_asset/arrow-right.png') }}"/></div></div></button>
                                 @else
-                                    <button type="button" class="btn btn-primary fw-600 btn-mright" onclick="showCheckoutModal()">{{ translate('Continue to Shipping')}} <i class="ci-arrow-right fw-600 pl-2"></i></button>
+                                   <button type="button" class="btn btn-primary fw-600 btn-mright" onclick="showCheckoutModal()"><div class="d-flex justify-content-between"><div>{{translate('Continue to Shipping')}}</div><div><img height="24px" src="{{ static_asset('m_asset/arrow-right.png') }}"/></div></div></button>
                                 @endif
                             </div>
                         </div>

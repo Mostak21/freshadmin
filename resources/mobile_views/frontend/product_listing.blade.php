@@ -342,7 +342,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="aiz-pagination aiz-pagination-center container-custom mt-4">
+                        <div class="aiz-pagination aiz-pagination-center container-custom my-4">
                            {{-- $products->appends(request()->input())->links() --}}
 							{{ $products->appends(request()->input())->onEachSide(4)->links('vendor.cartzilla') }}
                         </div>

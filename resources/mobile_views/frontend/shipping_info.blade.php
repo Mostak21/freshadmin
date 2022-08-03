@@ -63,32 +63,20 @@ dataLayer.push({
 @endsection
 
 @section('content')
-<div class="productheaderbg pt-lg-5 py-3">
-    <div class="container d-lg-center">
-        <div class="row pb-4">
-            <div class="col-lg-6 text-center text-lg-left">
-                <h1 class="h3 mb-2  fw-600">
+
+
+<div class="container-custom">
+                <h1 class="h3 mb-2 fs-22 fw-600">
                     Shipping Info
                 </h1>
+ </div>
 
-            </div>
-            <div class="col-lg-6 fs-13">
-                <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                    <li class="breadcrumb-item ">
-
-                        <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i> {{ translate('Home')}}</a>
-                    </li>
-
-                    <li class="text-dark  breadcrumb-item">
-                        Shipping Info
-                    </li>
-
-                </ul>
-            </div>
-        </div>
+<div class="productheaderbg  py-3">
+    <div class="container d-lg-center">
+       
 
         <div class="row">
-            <div class="steps steps-light pt-lg-3 pb-3">
+            <div class="steps steps-light py-3">
                 <div class="step-item active current" >
                 <div class="step-progress"><span class="step-count">1</span></div>
                 <div class="step-label"><i class="las la-shopping-cart fs-24"></i>{{ translate(' My Cart')}}</div></div>
@@ -97,107 +85,41 @@ dataLayer.push({
                 <div class="step-progress"><span class="step-count">2</span></div>
                 <div class="step-label"><i class="las la-map fs-24"></i>{{ translate('Shipping info')}}</div></div>
 
-                <div class="step-item " >
+                <div class="step-item">
                 <div class="step-progress"><span class="step-count">3</span></div>
                 <div class="step-label"><i class="las la-truck fs-24"></i>{{ translate('Delivery info')}}</div></div>
 
-                <div class="step-item" >
+                <div class="step-item">
                 <div class="step-progress"><span class="step-count">4</span></div>
                 <div class="step-label"><i class="las la-credit-card fs-24"></i>{{ translate(' Payment')}}</div></div>
 
-                <div class="step-item" >
+                <div class="step-item">
                 <div class="step-progress"><span class="step-count">5</span></div>
                 <div class="step-label"><i class="las la-check-circle fs-24"></i>{{ translate(' Confirmation')}}</div></div></div>
         </div>
     </div>
 </div>
-{{--
-<section class="pt-5 mb-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-8 mx-auto">
-                <div class="row aiz-steps arrow-divider">
-                    <div class="col done">
-                        <div class="text-center text-success">
-                            <i class="la-3x mb-2 las la-shopping-cart"></i>
-                            <h3 class="fs-14 fw-600 d-none d-lg-block ">{{ translate('1. My Cart')}}</h3>
-                        </div>
-                    </div>
-                    <div class="col active">
-                        <div class="text-center text-primary">
-                            <i class="la-3x mb-2 las la-map"></i>
-                            <h3 class="fs-14 fw-600 d-none d-lg-block ">{{ translate('2. Shipping info')}}</h3>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <i class="la-3x mb-2 opacity-50 las la-truck"></i>
-                            <h3 class="fs-14 fw-600 d-none d-lg-block opacity-50 ">{{ translate('3. Delivery info')}}</h3>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <i class="la-3x mb-2 opacity-50 las la-credit-card"></i>
-                            <h3 class="fs-14 fw-600 d-none d-lg-block opacity-50 ">{{ translate('4. Payment')}}</h3>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <i class="la-3x mb-2 opacity-50 las la-check-circle"></i>
-                            <h3 class="fs-14 fw-600 d-none d-lg-block opacity-50 ">{{ translate('5. Confirmation')}}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
---}}
-<section class="mb-4 gry-bg">
-    <div class="container">
+
+<section class="my-3">
+    <div class="container-custom">
         <div class="row cols-xs-space cols-sm-space cols-md-space">
             <div class="col-xxl-10 col-xl-12 mx-auto">
                 <form class="form-default" data-toggle="validator" action="{{ route('checkout.store_shipping_infostore') }}" role="form" method="POST">
                     @csrf
                     @if(Auth::check())
-                        <div class="shadow-sm bg-white p-4 rounded mb-4">
+                        <div class=" bg-white rounded mb-4">
                             <div class="row gutters-5">
                                 @foreach (Auth::user()->addresses as $key => $address)
                                     <div class="col-md-12 mb-3 ">
-                                        <label class="aiz-megabox d-block bg-white mb-0">
+                                        <label class="aiz-megabox d-block card-mobile mb-0">
                                             <input type="radio" name="address_id" value="{{ $address->id }}" @if ($address->set_default)
                                                 checked
                                             @endif required>
                                             <span class="d-flex p-3 aiz-megabox-elem shadow-sm hov-shadow-md ">
                                                 <span class="aiz-rounded-check flex-shrink-0 mt-1 "></span>
-                                            {{--    <span class="flex-grow-1 pl-3 text-left">
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('Address') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ $address->address }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('Postal Code') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ $address->postal_code }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('City') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ optional($address->city)->name }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('State') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ optional($address->state)->name }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('Country') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ optional($address->country)->name }}</span>
-                                                    </div>
-                                                    <div>
-                                                        <span class="opacity-90 pr-2">{{ translate('Phone') }}:</span>
-                                                        <span class="fw-600 ml-2">{{ $address->phone }}</span>
-                                                    </div>
-                                                </span>--}}
-                                                <div class="row ml-2 px-2">
-                                                    <div class="col-6">
+                                           
+                                                <div class="row px-2">
+                                                    <div class="col-4">
                                                         <div>
                                                             <span class="opacity-90 pr-2">{{ translate('Address') }}:</span>
                                                     </div>
@@ -218,7 +140,7 @@ dataLayer.push({
                                                     </div>
 
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-8">
 
                                                     <div>
                                                         <span class="fw-600 ml-2">{{ $address->address }}</span>
@@ -259,15 +181,15 @@ dataLayer.push({
                             </div>
                         </div>
                     @endif
-                    <div class="row align-items-center">
-                        <div class="col-md-6 text-center text-md-left order-1 order-md-0">
+                    <div class="row align-items-center  mb-3">
+                       {{--<div class="col-md-6 text-center text-md-left order-1 order-md-0">
                             <a href="{{ route('home') }}" class="btn  btn-mleft ">
                                 <i class="ci-arrow-left"></i>
                                 {{ translate('Return to shop')}}
                             </a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-right">
-                            <button type="submit" class="btn btn-primary fw-600 btn-mright">{{ translate('Continue to Delivery Info')}}<i class="ci-arrow-right fw-600 pl-2"></i></button>
+                        </div>--}} 
+                        <div class="col-12 text-center text-md-right">
+                            <button type="submit" class="btn btn-block btn-dark rounded-custom fw-600 btn-mright"><div class="d-flex justify-content-between"><div>{{ translate('Continue to Delivery Info')}}</div><div><img height="24px" src="{{ static_asset('m_asset/arrow-right.png') }}"/></div></div></button>
                         </div>
                     </div>
                 </form>
