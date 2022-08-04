@@ -368,7 +368,7 @@ class HomeController extends Controller
             });
         }
         elseif (str_contains($request->getUri(), 'custom_section4')){
-            $section_data = Cache::remember('home_custom_section3', $seconds, function () {
+            $section_data = Cache::remember('home_custom_section4', $seconds, function () {
                 $section_data_c = (object) array();
                 $category_id =69;
                 $category_ids = CategoryUtility::children_ids($category_id);
