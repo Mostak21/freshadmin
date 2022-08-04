@@ -412,7 +412,18 @@ class HomeController extends Controller
     }
 
     public function load_home_categories_section(){
-        return view('frontend.partials.home_categories_section');
+
+        $home_categories_section = Cache::remember('home_categories_section',86400, function () {
+            $home_categories_section = (object)array();
+            $home_categories = json_decode(get_setting('home_categories'));
+            foreach ($home_categories as $key => $value){
+                $home_categories_section->categories[$key] = \App\Models\Category::find($value);
+                $home_categories_section->products[$key] =  get_cached_products($home_categories_section->categories[$key]->id);
+            }
+            return  $home_categories_section;
+        });
+
+        return view('frontend.partials.home_categories_section', compact('home_categories_section'));
     }
 
     public function load_best_sellers_section(){

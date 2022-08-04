@@ -494,10 +494,10 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#section_home_categories').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
+            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#section_home_categories').html(data);
+                AIZ.plugins.slickCarousel();
+            });
 
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
