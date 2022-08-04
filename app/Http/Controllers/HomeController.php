@@ -319,7 +319,10 @@ class HomeController extends Controller
                 $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_images'));
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
 
-                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+                $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)
+                    ->inRandomOrder($seed)
+//                    ->whereHas('brand', function($q) use ($word){ $q->where('name', 'like', '%'.$word.'%');})
+                    ->take(18)->get();
 
             return $section_data_c;
             });
@@ -380,6 +383,9 @@ class HomeController extends Controller
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
+
+                $Product_Stock = 0 ;
+                if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
 
                 return $section_data_c;
             });

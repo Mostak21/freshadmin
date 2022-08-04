@@ -1,19 +1,6 @@
 <div class="mcard product-card ">
     <div class="position-relative xcard">
-			@php
-			// $soldout=1;
-			// $stock=\App\Models\ProductStock::where('product_id',$product->id)->first();
-      //       //return $stock->qty;
-			// if(empty($stock)){
-			// 	$soldout=0;
-		  //    }
-		  //  if(!empty($stock)){
-      //
-		  //         if($stock->qty==0){
-			// 		$soldout=0;
-			// 			}
-		  //    }
-
+		@php
       $Product_Stock = 0 ;
       if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
 

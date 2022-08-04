@@ -175,13 +175,13 @@
         @include('frontend.partials.home_custom_section_left',['section_data' => null])
     </div>
     <div id="custom_section2">
-
+        @include('frontend.partials.home_custom_section_right',['section_data' => null])
     </div>
     <div id="custom_section3">
-
+        @include('frontend.partials.home_custom_section_left',['section_data' => null])
     </div>
     <div id="custom_section4">
-
+        @include('frontend.partials.home_custom_section_right',['section_data' => null])
     </div>
 
 {{-- Flash Deal
@@ -465,6 +465,22 @@
                 $('#section_featured').html(data);
                 AIZ.plugins.slickCarousel();
             });
+            $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#custom_section1').html(data);
+                AIZ.plugins.slickCarousel();
+            });
+            $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#custom_section2').html(data);
+                AIZ.plugins.slickCarousel();
+            });
+            $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#custom_section3').html(data);
+                AIZ.plugins.slickCarousel();
+            });
+            $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#custom_section4').html(data);
+                AIZ.plugins.slickCarousel();
+            });
             $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_selling').html(data);
                 AIZ.plugins.slickCarousel();
@@ -479,22 +495,6 @@
             });
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            {{--$.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#custom_section1').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
-            $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section2').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section3').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section4').html(data);
                 AIZ.plugins.slickCarousel();
             });
         });
