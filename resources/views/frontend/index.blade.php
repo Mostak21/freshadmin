@@ -461,10 +461,12 @@
 @section('script')
     <script>
         $(document).ready(function(){
+
             $.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_featured').html(data);
                 AIZ.plugins.slickCarousel();
             });
+
             $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section1').html(data);
                 AIZ.plugins.slickCarousel();
@@ -481,18 +483,22 @@
                 $('#custom_section4').html(data);
                 AIZ.plugins.slickCarousel();
             });
+
+
             $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_selling').html(data);
                 AIZ.plugins.slickCarousel();
             });
-            $.post('{{ route('home.section.auction_products') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#auction_products').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.auction_products') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#auction_products').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
+
+            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
+
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
                 AIZ.plugins.slickCarousel();

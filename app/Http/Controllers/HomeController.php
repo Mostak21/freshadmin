@@ -299,7 +299,7 @@ class HomeController extends Controller
 
 //    Home Custom section product list with banner
 
-    public function load_custom_section_1(Request $request){
+    public function load_custom_section(Request $request){
         $category_id =null;
         $seconds = 14400; //interval time in secounds for random product change
         $section_data = (object) array();
@@ -384,48 +384,14 @@ class HomeController extends Controller
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
 
-                $Product_Stock = 0 ;
-                if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+//                $Product_Stock = 0 ;
+//                if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
 
                 return $section_data_c;
             });
         }
 
         return view($section_data->template_view ,compact('section_data'));
-    }
-
-    public function load_custom_section(){
-
-        $category_id =607;
-        $category_ids = CategoryUtility::children_ids($category_id);
-        $category_ids[] = $category_id;
-
-        $wcategory_id =467;
-        $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
-        $wcategory_ids[] = $wcategory_id;
-
-        $kcategory_id =88;
-        $kcategory_ids = CategoryUtility::children_ids($kcategory_id);
-        $kcategory_ids[] = $kcategory_id;
-
-		$gcategory_id =69;
-        $gcategory_ids = CategoryUtility::children_ids($gcategory_id);
-        $gcategory_ids[] = $gcategory_id;
-
-//		$ip=$_SERVER['REMOTE_ADDR'];
-        $hour=date("H");
-        $day=date("j");
-        $month=date("n");
-//        $ip=str_replace(".","",$ip);
-//        $seed=($ip+$hour+$day+$month);
-        $seed=($hour+$day+$month);
-
-        $perfumeproducts=Product::whereIn('category_id', $category_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-        $womensproducts=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->where('unit_price','<',5000)->inRandomOrder($seed)->take(18)->get();
-        $kidsproducts=Product::whereIn('category_id', $kcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-        $gadgetproducts=Product::whereIn('category_id', $gcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(18)->get();
-
-        return view('frontend.partials.custom_section',compact('perfumeproducts','womensproducts','kidsproducts','gadgetproducts'));
     }
 
     //    Home Custom section product list with banner

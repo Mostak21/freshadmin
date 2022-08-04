@@ -73,10 +73,10 @@ Route::post('/users/login/guest', 'HomeController@cart_login_guest')->name('cart
 //Home Page
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::post('/home/section/custom_section1', 'HomeController@load_custom_section_1')->name('home.section.custom_section_1');
-Route::post('/home/section/custom_section2', 'HomeController@load_custom_section_1')->name('home.section.custom_section_2');
-Route::post('/home/section/custom_section3', 'HomeController@load_custom_section_1')->name('home.section.custom_section_3');
-Route::post('/home/section/custom_section4', 'HomeController@load_custom_section_1')->name('home.section.custom_section_4');
+Route::post('/home/section/custom_section1', 'HomeController@load_custom_section')->name('home.section.custom_section_1');
+Route::post('/home/section/custom_section2', 'HomeController@load_custom_section')->name('home.section.custom_section_2');
+Route::post('/home/section/custom_section3', 'HomeController@load_custom_section')->name('home.section.custom_section_3');
+Route::post('/home/section/custom_section4', 'HomeController@load_custom_section')->name('home.section.custom_section_4');
 
 Route::post('/home/section/featured', 'HomeController@load_featured_section')->name('home.section.featured');
 Route::post('/home/section/best_selling', 'HomeController@load_best_selling_section')->name('home.section.best_selling');
