@@ -1,7 +1,13 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<section class="pt-4 mb-4">
+
+<div class="container">
+    <h1 class="h3 py-2 fs-22 fw-600">
+        {{ translate('All Sellers') }}
+    </h1> 
+</div>
+{{-- <section class="pt-4 mb-4">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 text-center text-lg-left">
@@ -19,21 +25,21 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <section class="mb-2">
     <div class="container">
             <div class="row gutters-10 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-2 row-cols-1">
                 @foreach ($shops as $key => $shop)
                     @if($shop->user !=null && $shop->user->seller != null)
                         <div class="col">
-                            <div class="row no-gutters bg-white align-items-center border border-light rounded hov-shadow-md mb-3 has-transition">
+                            <div class="row no-gutters  align-items-center product-fullwidth  has-transition">
                                 <div class="col-4">
                                     <a href="{{ route('shop.visit', $shop->slug) }}" class="d-block p-3" tabindex="0">
                                         <img
                                             src="{{ static_asset('assets/img/placeholder-rect.jpg') }}"
                                             data-src="{{ uploaded_asset($shop->logo) }}"
                                             alt="{{ $shop->name }}"
-                                            class="img-fluid lazyload"
+                                            class="img-fit lazyload "
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
                                         >
                                     </a>
@@ -46,7 +52,7 @@
                                         <div class="rating rating-sm mb-2">
                                             {{ renderStarRating($shop->user->seller->rating) }}
                                         </div>
-                                        <a href="{{ route('shop.visit', $shop->slug) }}" class="btn btn-soft-primary btn-sm" tabindex="0">
+                                        <a href="{{ route('shop.visit', $shop->slug) }}" class="btn btn-primary btn-sm" tabindex="0">
                                             {{ translate('Visit Store') }}
                                             <i class="las la-angle-right"></i>
                                         </a>
@@ -57,8 +63,8 @@
                     @endif
                 @endforeach
             </div>
-            <div class="aiz-pagination aiz-pagination-center mt-4">
-                {{ $shops->links() }}
+            <div class="aiz-pagination aiz-pagination-center mt-4 mb-5">
+                {{ $shops->links('vendor.cartzilla') }}
             </div>
         </div>
     </section>

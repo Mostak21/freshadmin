@@ -88,3 +88,23 @@
     margin-right: 3px;
    
   }
+
+
+  /*.......login forn.....*/
+
+  .form-control-custom {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    height: calc(1.3125rem + 1.2rem + 2px);
+    border-bottom: 1px solid #e2e5ec;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    color: #898b92;
+    width: 100%;
+}
+
+.facebook{
+  background-color: #3b5998!important;
+  
+}

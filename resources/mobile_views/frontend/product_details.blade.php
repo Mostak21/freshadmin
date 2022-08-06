@@ -179,7 +179,7 @@
 
 @section('content')
 
-    <div class="productheaderbg py-6 pb-8">
+   {{-- <div class="productheaderbg py-6 pb-8">
         <div class="container d-lg-center">
             <div class="row ">
                 <div class="col-lg-6 text-center text-lg-left">
@@ -191,45 +191,20 @@
                 @php
                     $item_category = category_bread_tree($detailedProduct->category->id);
                 @endphp
-                <div class="col-lg-6 fs-13">
-                    <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                        <li class="breadcrumb-item ">
-                            <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i> {{ translate('Home')}}</a>
-                        </li>
-                        @if(isset($item_category[0][0]))
-                            <li class="breadcrumb-item  ">
-                                <a class="text-reset" id="productsCategoryLevel1" href="{{ route('products.category', \App\Models\Category::find($item_category[0][1])->slug) }}">{!!$item_category[0][0] ??""!!}</a>
-
-                            </li>
-                        @endif
-                        @if(isset($item_category[1][0]))
-                            <li class="breadcrumb-item  ">
-                                <a class="text-reset" id="productsCategoryLevel2" href="{{ route('products.category', \App\Models\Category::find($item_category[1][1])->slug) }}">{!!$item_category[1][0] ??""!!}</a>
-
-                            </li>
-                        @endif
-                        @if(isset($item_category[2][0]))
-                            <li class="breadcrumb-item  ">
-                                <a class="text-reset" id="productsCategoryLevel3" href="{{ route('products.category', \App\Models\Category::find($item_category[2][1])->slug) }}">{!!$item_category[2][0] ??""!!}</a>
-                            </li>
-                        @endif
-
-                    </ul>
-                </div>
             </div>
         </div>
-    </div>
+    </div>--}}
     <section class="mb-4 pt-3">
-        <div class="container">
+        <div class="">
             <div class="bg-white  p-3">
-                <div class="row negativemargin bg-white shadow-lg rounded px-3 py-5">
-                    <div class="col-xl-7 col-lg-7 mb-4">
+                <div class="row px-3 py-3">
+                    <div class="col-12 mb-4">
                         <div class="sticky-top z-3 row gutters-10">
                             @php
                                 $photos = explode(',', $detailedProduct->photos);
                             @endphp
                             <div class="col order-1 order-md-2">
-                                <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
+                                <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true' data-dots="true"  >
                                     @foreach ($photos as $key => $photo)
                                         <div class="carousel-box img-zoom rounded">
                                             <img
@@ -243,7 +218,7 @@
                                     @endforeach
                                     @foreach ($detailedProduct->stocks as $key => $stock)
                                         @if ($stock->image != null)
-                                            <div class="carousel-box img-zoom rounded">
+                                            <div class="carousel-box img-zoom rounded" >
                                                 <img
                                                     class="img-fluid lazyload"
                                                     src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
@@ -255,7 +230,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="col-12 col-md-auto w-md-100px order-2 order-md-1 mt-3 mt-md-0">
+                          <div class="col-12 col-md-auto w-md-100px order-2 order-md-1 mt-3 mt-md-0">
                                 <div class="aiz-carousel product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-vertical-sm='false' data-focus-select='true' data-arrows='true'>
                                     @foreach ($photos as $key => $photo)
                                         <div class="carousel-box c-pointer border p-1 rounded">
@@ -281,11 +256,66 @@
                                     @endforeach
                                 </div>
                             </div>
+                            
+
+
                         </div>
                     </div>
+                </div>
+                <div class="d-flex justify-content-end mb-2">
+                                <!-- Add to wishlist button -->
+                                <span class="">
+                                    <button type="button" class="btn btn-sm btn-icon user-panel-icon-bg" onclick="addToWishList({{ $detailedProduct->id }})" id="wishbtn">
+                                        <b><i class="navbar-tool la la-heart-o  "></i></b>
+                                    </button>
+                                </span>
+                                <span class="" >
+                                    <button type="button" class="btn btn-sm btn-icon user-panel-icon-bg" onclick="addToCompare({{ $detailedProduct->id }})">
+                                        <i class="la la-refresh "></i>
+                                    </button>
+                                </span>
 
-                    <div class="col-xl-5 col-lg-5 ">
-                        <div class="text-left px-3">
+                            </div>
+                
+                <div class="row">
+                    <div class="col-12 m-0 p-0 bg-white  shadow-lg border-top rounded-footer-top" style="box-shadow: 0px -1px 20px rgb(0 0 0 / 15%)!important; ">
+                        <div class="text-left px-3 py-3">
+                            <form id="option-choice-form">
+                                @csrf
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h3 class="fw-600 fs-15">
+                                        {{ $detailedProduct->getTranslation('name') }}</h3>
+                                    </div>
+                                    <div>
+                                        <div class="product-quantity ">
+                                            <div class="row no-gutters price-range-bg align-items-center aiz-plus-minus px-2 ml-0 " style="width: 100px;">
+                                                <button class="btn col-auto " type="button" data-type="minus" data-field="quantity" disabled="">
+                                                    <i class="las la-minus"></i>
+                                                </button>
+                                                <input type="number" name="quantity" class="col border-0 text-center flex-grow-1 fs-16 price-range-input-bg p-0" placeholder="1" value="{{ $detailedProduct->min_qty }}" min="{{ $detailedProduct->min_qty }}" max="10">
+                                                <button class="btn  col-auto " type="button" data-type="plus" data-field="quantity">
+                                                    <i class="las la-plus"></i>
+                                                </button>
+                                            </div>
+                                            @php
+                                                $qty = 0;
+                                                foreach ($detailedProduct->stocks as $key => $stock) {
+                                                    $qty += $stock->qty;
+                                                }
+                                            @endphp
+                                            <div class="avialable-amount opacity-60">
+                                                @if($detailedProduct->stock_visibility_state == 'quantity')
+                                                    (<span id="available-quantity">{{ $qty }}</span> {{ translate('available')}})
+                                                @elseif($detailedProduct->stock_visibility_state == 'text' && $qty >= 1)
+                                                    (<span id="available-quantity">{{ translate('In Stock') }}</span>)
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
                             <div class="row align-items-center pb-2">
                                 <div class="col-12">
                                     @php
@@ -307,8 +337,10 @@
 
 
 
-                            <div class="row align-items-center">
-                                <div class="col-auto">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <div class="row">
+                                    <div class="col">
                                     <small class="mr-2 opacity-50">{{ translate('Sold by')}}: </small><br>
                                     @if ($detailedProduct->added_by == 'seller' && get_setting('vendor_system_activation') == 1)
                                         <a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}" class="text-reset">{{ $detailedProduct->user->shop->name }}</a>
@@ -316,16 +348,6 @@
                                         {{  translate('Inhouse product') }}
                                     @endif
                                 </div>
-                                @if (get_setting('conversation_system') == 1)
-                                    <div class="col-auto">
-
-                                        {{--  <button class="btn btn-sm btn-soft-primary" onclick="show_chat_modal()">{{ translate('Message Seller')}}</button>--}}
-
-
-                                        <a href="tel:01750100647"><button class="btn btn-sm btn-soft-secondary" >{{ translate('Call Us')}}</button></a>
-
-                                    </div>
-                                @endif
 
                                 @if ($detailedProduct->brand != null)
                                     <div class="col-auto">
@@ -334,6 +356,24 @@
                                         </a>
                                     </div>
                                 @endif
+                            </div>
+                                </div>
+                                <div>
+                                    @if (get_setting('conversation_system') == 1)
+                                    
+
+                                        {{--  <button class="btn btn-sm btn-soft-primary" onclick="show_chat_modal()">{{ translate('Message Seller')}}</button>--}}
+
+
+                                        <a href="tel:01750100647"><button class="btn btn-sm btn-soft-secondary" >{{ translate('Call Us')}}</button></a>
+
+                                    
+                                @endif
+                                </div>
+                                
+                     
+
+                              
                             </div>
 
 
@@ -361,8 +401,8 @@
                                 @if(home_price($detailedProduct) != home_discounted_price($detailedProduct))
 
 
-                                    <div class="pb-3">
-                                        <strong class="h2 fw-500 text-primary">
+                                    <div class="py-3 mb-3">
+                                        <strong class="h4 fw-500 text-primary">
                                             {{ home_discounted_price($detailedProduct) }}
                                         </strong>
                                         @if($detailedProduct->unit != null)
@@ -380,8 +420,8 @@
                                     </div>
 
                                 @else
-                                    <div class="pb-3">
-                                        <strong class="h2 fw-500 text-primary">
+                                    <div class="py-3 mb-3">
+                                        <strong class="h4 fw-500 text-primary">
                                             {{ home_discounted_price($detailedProduct) }}
                                         </strong>
                                         @if($detailedProduct->unit != null)
@@ -394,22 +434,21 @@
 
 
 
-                            <form id="option-choice-form">
-                                @csrf
+                            
                                 <input type="hidden" name="id" value="{{ $detailedProduct->id }}">
 
                                 @if ($detailedProduct->choice_options != null)
                                     @php $selectedColor = 0; @endphp
                                     @foreach (json_decode($detailedProduct->choice_options) as $key => $choice)
 
-                                        <div class="row no-gutters pb-2">
-                                            <div class="col-sm-3 ">
+                                        <div class="row no-gutters ">
+                                            <div class="col-auto">
                                                 @if(\App\Models\Attribute::find($choice->attribute_id))
-                                                    <div class="fs-15 fw-500 my-2 pr-2">{{ \App\Models\Attribute::find($choice->attribute_id)->getTranslation('name') }}</div>
+                                                    <div class="fs-15 fw-500  pr-2">{{ \App\Models\Attribute::find($choice->attribute_id)->getTranslation('name') }} :</div>
                                                 @endif
                                             </div>
-                                            <div class="col-sm-9">
-                                                <div class="aiz-radio-inline fs-custom">
+                                            <div class="col-auto">
+                                                <div class="aiz-radio-inline  fs-custom">
                                                     @php
                                                         $attributecheck =  0;
                                                         $key2 = null;
@@ -449,7 +488,7 @@
                                                                     value="{{ $value }}"
                                                                     @if($valuex === $value ) checked @endif
                                                                 >
-                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
+                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center px-1 mb-2 fs-custom">
                                                         {{ $value }}
                                                     </span>
                                                             </label>
@@ -461,7 +500,7 @@
                                                                     value="{{ $value }}"
                                                                     @if($keys == 0) checked @endif
                                                                 >
-                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
+                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center px-1 mb-2 fs-custom">
                                                         {{ $value }}
                                                         </span>
                                                             </label>
@@ -476,11 +515,11 @@
 
 
                                 @if (count(json_decode($detailedProduct->colors)) > 0)
-                                    <div class="row no-gutters pb-2">
-                                        <div class="col-sm-3">
-                                            <div class="fs-15 fw-500 py-2">Color Family:</div>
+                                    <div class="row no-gutters">
+                                        <div class="col-auto">
+                                            <div class="fs-15 fw-500 pt-1 pr-2">Color Family:</div>
                                         </div>
-                                        <div class="col-sm-9">
+                                        <div class="col-auto">
                                             <div class="aiz-radio-inline">
                                                 @php
                                                     $colorcheck2 =  0;
@@ -507,8 +546,9 @@
                                                                 checked
                                                                 @endif
                                                             >
-                                                            <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
-                                                        <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
+                                                         
+                                                            <span class="aiz-megabox-elem rounded-circle d-flex align-items-center justify-content-center p-1 mb-2">
+                                                        <span class="size-20px d-inline-block  rounded-circle " style="background: {{ $color }};"></span>
                                                     </span>
                                                         </label>
 
@@ -532,39 +572,7 @@
                                     </div>
                             @endif
                             <!-- Quantity + Add to cart -->
-                                <div class="row no-gutters pb-2">
-                                    <div class="col-sm-3">
-                                        <div class="fs-15 fw-500 my-2">{{ translate('Quantity')}}:</div>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <div class="product-quantity d-flex align-items-center">
-                                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
-                                                <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity" disabled="">
-                                                    <i class="las la-minus"></i>
-                                                </button>
-                                                <input type="number" name="quantity" class="col border-0 text-center flex-grow-1 fs-16 input-number" placeholder="1" value="{{ $detailedProduct->min_qty }}" min="{{ $detailedProduct->min_qty }}" max="10">
-                                                <button class="btn  col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="plus" data-field="quantity">
-                                                    <i class="las la-plus"></i>
-                                                </button>
-                                            </div>
-                                            @php
-                                                $qty = 0;
-                                                foreach ($detailedProduct->stocks as $key => $stock) {
-                                                    $qty += $stock->qty;
-                                                }
-                                            @endphp
-                                            <div class="avialable-amount opacity-60">
-                                                @if($detailedProduct->stock_visibility_state == 'quantity')
-                                                    (<span id="available-quantity">{{ $qty }}</span> {{ translate('available')}})
-                                                @elseif($detailedProduct->stock_visibility_state == 'text' && $qty >= 1)
-                                                    (<span id="available-quantity">{{ translate('In Stock') }}</span>)
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                             
 
                                 <div class="row no-gutters pb-3 d-none" id="chosen_price_div">
                                     <div class="col-sm-3">
@@ -583,6 +591,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                
 
                             </form>
 
@@ -609,13 +619,13 @@
                                     </a>
                                 @else
                                     <div class="row">
-                                        <div class="col-md-6 pb-2">
+                                        <div class="col-6 pb-2">
                                             <button type="button" class="btn btn-soft-primary mr-2 add-to-cart fw-600 bblock"  onclick="addToCart()" id="addtocart">
                                                 <i class="las la-shopping-bag"></i>
                                                 {{ translate('Add to cart')}}
                                             </button>
                                         </div>
-                                        <div class="col-md-6 pb-2">
+                                        <div class="col-6 pb-2">
                                             <button type="button" class="btn btn-primary buy-now fw-600 bblock text-white" onclick="buyNow()">
                                                 <i class="la la-shopping-cart"></i> {{ translate('Buy Now')}}
                                             </button>
@@ -630,36 +640,8 @@
                                 </button>
                             </div>
 
-                            <div class="row ">
-                                <!-- Add to wishlist button -->
-                                <span class="w-sm-50 text-center d-none d-lg-block">
-                                    <button type="button" class="btn pl-0 btn-link fw-600" onclick="addToWishList({{ $detailedProduct->id }})" id="wishbtn">
-                                        {{ translate('Add to wishlist')}}
-                                    </button>
-                                </span>
-                                <span class="w-sm-50 text-center d-none d-lg-block" >
-                                    <button type="button" class="btn btn-link btn-icon-left fw-600" onclick="addToCompare({{ $detailedProduct->id }})">
-                                        {{ translate('Add to compare')}}
-                                    </button>
-                                </span>
-
-                            </div>
-                            <div class="row d-lg-none">
-                                <!-- Add to wishlist button -->
-                                <div class="mx-auto">
-                                <span class="w-sm-50 text-center ">
-                                    <button type="button" class="btn pl-0 btn-link fw-600" onclick="addToWishList({{ $detailedProduct->id }})">
-                                        {{ translate('Add to wishlist')}}
-                                    </button>
-                                </span>
-                                    <span class="w-sm-50 text-center " >
-                                    <button type="button" class="btn btn-link btn-icon-left fw-600" onclick="addToCompare({{ $detailedProduct->id }})">
-                                        {{ translate('Add to compare')}}
-                                    </button>
-                                </span>
-                                </div>
-
-                            </div>
+                       
+                            
 
                             <div class="d-table width-100 mt-3 ">
                                 <div class="d-table-cell ">
@@ -679,7 +661,7 @@
                                             }
                                         @endphp
                                         <div>
-                                            <button type=button id="ref-cpurl-btn" class="btn btn-sm btn-secondary" data-attrcpy="{{ translate('Copied')}}" onclick="CopyToClipboard(this)" data-url="{{$referral_code_url}}">{{ translate('Copy the Promote Link')}}</button>
+                                            <button type="button" id="ref-cpurl-btn" class="btn btn-sm btn-secondary" data-attrcpy="{{ translate('Copied')}}" onclick="CopyToClipboard(this)" data-url="{{$referral_code_url}}">{{ translate('Copy the Promote Link')}}</button>
                                         </div>
                                     @endif
                                 </div>
@@ -721,7 +703,7 @@
     </section>
 
     <section class="mb-4">
-        <div class="container">
+        <div class="container-custom">
             <div class="row gutters-10">
                 {{-- <div class="col-xl-3 order-1 order-xl-0">
                       @if ($detailedProduct->added_by == 'seller' && $detailedProduct->user->seller != null)

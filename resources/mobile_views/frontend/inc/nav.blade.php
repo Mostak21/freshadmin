@@ -16,12 +16,12 @@
                
 
                 <div class="col-auto col-xl-2 pl-0 d-flex align-items-center">
-                    {{-- @if(Route::currentRouteName()!='home')
+                    @if(Route::currentRouteName()!='home')
                     <img class="pr-2" src="{{ static_asset('m_asset/arrow.png') }}" height="32px" alt="" onclick="history.back()">
                     @else
                     <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="">
-                    @endif --}}
-                    <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="">
+                    @endif
+                    
                     {{-- <a class="d-block py-20px ml-0" href="{{ route('home') }}">
                         @php
                             $header_logo = get_setting('header_logo');

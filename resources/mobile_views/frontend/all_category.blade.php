@@ -6,7 +6,7 @@
 <section class="">
 	
 	
-	 <div class="container-custom">
+	 <div class="container-custom mb-5">
         
         @foreach (\App\Category::where('level', 0)->orderBy('order_level', 'desc')->get()->take(11) as $key => $category)
                

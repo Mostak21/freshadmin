@@ -6,9 +6,8 @@
             <li class="page-item"> <span class="btn btn-sm btn-secondary"><i class="ci-arrow-left mr-2"></i>Prev</li></span>
         </ul>
         @else
-            
             <ul class="pagination">
-                <li class="page-item"><a class="" href="{{ $paginator->previousPageUrl() }}" rel="prev"><span class="btn btn-sm btn-dark"><i class="ci-arrow-left mr-2"></i>Prev</a></span></li>
+                <li class="page-item"><a  href="{{ $paginator->previousPageUrl() }}" rel="prev"><span class="btn btn-sm btn-dark"><i class="ci-arrow-left mr-2"></i>Prev</a></span></li>
             </ul>
         @endif
 

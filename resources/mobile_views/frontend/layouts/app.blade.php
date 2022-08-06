@@ -121,9 +121,9 @@
 				-webkit-text-stroke-color: none;
         }
         :root{
-            --primary: {{ get_setting('base_color', '#111111') }};
-            --hov-primary: {{ get_setting('base_hov_color', '#000000ad') }};
-            --soft-primary: {{ hex2rgba(get_setting('base_color','#111111'),.15) }};
+            --primary: #111111;
+            --hov-primary: #000000ad;
+            --soft-primary: {{ hex2rgba('#111111',.15) }};
         }
 
         #map{
