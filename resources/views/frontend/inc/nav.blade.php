@@ -357,13 +357,24 @@
             <div class="container d-none d-lg-block" id="dnav">
                 <div class="row">
 
-                 <span class=" py-1 pb-3"  onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)"><a class="text-reset" href="{{route('categories.all')}}"><span class="d-none d-lg-block fs-16 bg-white px-1 py-1 hov-text-primary c-pointer">  <li class="list-inline-item pr-4 pl-2 w-100 fs-16" id="category-menu-icon" ><i class="ci-view-grid fs-16 pr-2"></i>All Categories <i class="fa fa-caret-down pl-2"></i></li></span></a></span>
+                 <span class=" py-1 pb-3"  onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)">
+                     <a class="text-reset" href="{{route('categories.all')}}">
+                         <span class="d-none d-lg-block fs-16 bg-white px-1 py-1 hov-text-primary c-pointer">
+                             <li class="list-inline-item pr-4 pl-2 w-100 fs-16" id="category-menu-icon" >
+                                 <i class="ci-view-grid fs-16 pr-2"></i>
+                                 All Categories
+                                 <i class="fa fa-caret-down pl-2"></i>
+                             </li>
+                         </span>
+                     </a>
+                 </span>
 
                <span class=" py-1 pb-3" > <span class="d-none d-lg-block fs-16 bg-white py-3 hov-text-primary c-pointer" style="border-right:solid 1px #cccdce"></span> </span>
                 <ul class="list-inline mb-0 pl-1 mobile-hor-swipe text-center py-1 pb-3 ">
                     @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
                     <li class="list-inline-item mr-0">
-                    <span class=" bg-white px-1 py-1 hov-text-primary"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-16 px-3 py-1 d-inline-block hov-opacity-100 text-reset">
+                    <span class=" bg-white px-1 py-1 hov-text-primary">
+                        <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-16 px-3 py-1 d-inline-block hov-opacity-100 text-reset">
                             {{ translate($value) }}
                         </a>
                     </span>
@@ -378,7 +389,8 @@
                 <ul class="list-inline mb-0 pl-0 mobile-hor-swipe text-center">
                     @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
                     <li class="list-inline-item mr-0">
-                    <span class=" bg-white px-1 py-2 hov-text-primary"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset">
+                    <span class=" bg-white px-1 py-2 hov-text-primary">
+                        <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset">
                             {{ translate($value) }}
                         </a>
                     </span>
