@@ -13,7 +13,7 @@
                 @foreach ($top10_brands as $key => $value)
                     @php $brand = \App\Models\Brand::find($value); @endphp
                     @if ($brand != null)
-                        <div class="col text-center">
+                        <div class="col text-center card-mobile">
                             <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-4 mb-4 border border-light rounded-custom shadow-md-custom">
                                 <img src="{{ uploaded_asset($brand->logo) }}" class="lazyload mx-auto h-90px mw-100" alt="{{ $brand->getTranslation('name') }}">
                             </a>
