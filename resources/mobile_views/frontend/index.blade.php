@@ -558,7 +558,7 @@
             });
 
             $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
+                $('#section_top10_brands').html(data);
                 AIZ.plugins.slickCarousel();
             });
 
