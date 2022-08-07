@@ -16,7 +16,7 @@
         <a href="{{ route('product', $product->slug) }}" class="d-block">
             @if ($product->shipping_type == "free") <span class="tag-text">Free Delivery</span> @endif
             <img
-                class="img-fit lazyload mx-auto h-md-210px rounded-slider"
+                class="img-fit lazyload mx-auto h-md-210px h-150px rounded-slider"
                 src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
                 data-src="{{ uploaded_asset($product->thumbnail_img) }}"
                 alt="{{  $product->getTranslation('name')  }}"

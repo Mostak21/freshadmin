@@ -19,7 +19,7 @@
                     @if(Route::currentRouteName()!='home')
                     <img class="pr-2" src="{{ static_asset('m_asset/arrow.png') }}" height="32px" alt="" onclick="history.back()">
                     @else
-                    <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="">
+                    <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="" onclick="dclicknav()">
                     @endif
                     
                     {{-- <a class="d-block py-20px ml-0" href="{{ route('home') }}">
@@ -88,6 +88,18 @@
         </div>
 
     </div>
+<div class="container-custom d-none "  id="dnav" >
+    <div class="d-flex justify-content-start mb-2" >
+        @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
+        <div>
+        <span class=" bg-dark rounded-custom py-2 mr-2"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-2 py-1 d-inline-block  text-light">
+                {{ translate($value) }}
+            </a>
+        </span>
+        </div>
+        @endforeach
+    </div>
+</div>
 </header>
 
 <div class="modal fade" id="order_details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

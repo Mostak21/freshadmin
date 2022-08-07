@@ -1,6 +1,6 @@
 @php
     $best_selers = Cache::remember('best_selers_mobile', 86400, function () {
-        return \App\Models\Seller::where('verification_status', 1)->orderBy('num_of_sale', 'desc')->take(7)->get();
+        return \App\Models\Seller::where('verification_status', 1)->orderBy('num_of_sale', 'desc')->take(5)->get();
     });
 @endphp
 
@@ -41,7 +41,7 @@
                                                     src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                                     data-src="@if ($seller->user->shop->logo !== null) {{ uploaded_asset($seller->user->shop->logo) }} @else {{ static_asset('assets/img/placeholder.jpg') }} @endif"
                                                     alt="{{ $seller->user->shop->name }}"
-                                                    class="p-img-round lazyload h-60px"
+                                                    class="img-fluid lazyload"
 
                                                 >
                                             </a>
