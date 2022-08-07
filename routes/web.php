@@ -77,6 +77,7 @@ Route::post('/home/section/custom_section1', 'HomeController@load_custom_section
 Route::post('/home/section/custom_section2', 'HomeController@load_custom_section')->name('home.section.custom_section_2');
 Route::post('/home/section/custom_section3', 'HomeController@load_custom_section')->name('home.section.custom_section_3');
 Route::post('/home/section/custom_section4', 'HomeController@load_custom_section')->name('home.section.custom_section_4');
+Route::post('/home/section/top10_brands', 'HomeController@load_section_top10_brands')->name('home.section.top10_brands');
 
 Route::post('/home/section/featured', 'HomeController@load_featured_section')->name('home.section.featured');
 Route::post('/home/section/best_selling', 'HomeController@load_best_selling_section')->name('home.section.best_selling');
