@@ -323,30 +323,30 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            @if(Cache::get('home_custom_section1')!=null)
+{{--            @if(Cache::get('home_custom_section1')==null)--}}
             $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section1').html(data);
                 AIZ.plugins.slickCarousel();
             });
-            @endif
-            @if(Cache::get('home_custom_section2')!=null)
+{{--            @endif--}}
+{{--            @if(Cache::get('home_custom_section2')==null)--}}
             $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section2').html(data);
                 AIZ.plugins.slickCarousel();
             });
-            @endif
-            @if(Cache::get('home_custom_section3')!=null)
+{{--            @endif--}}
+{{--            @if(Cache::get('home_custom_section3')==null)--}}
             $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section3').html(data);
                 AIZ.plugins.slickCarousel();
             });
-            @endif
-            @if(Cache::get('home_custom_section4')!=null)
+{{--            @endif--}}
+{{--            @if(Cache::get('home_custom_section4')==null)--}}
             $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section4').html(data);
                 AIZ.plugins.slickCarousel();
             });
-            @endif
+{{--            @endif--}}
 
 
 
