@@ -76,7 +76,7 @@
     <div class="col-6 mb-4">
         <a class="" href="{{ route('home') }}">
             @if(get_setting('footer_logo') != null)
-                <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="44">
+                <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{Cache::rememberForever('footer_logo', function () { return uploaded_asset(get_setting('footer_logo')); })}}" alt="{{ env('APP_NAME') }}" height="44">
             @else
                 <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="44">
             @endif
@@ -233,9 +233,18 @@
                 <div class="text-center pb-0 pb-md-4">
                     <ul class="list-inline mb-0 pl-4 pr-4">
                         @if ( get_setting('payment_method_images') !=  null )
-                            @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
+                            @php
+                            $payment_method_images = Cache::rememberForever('payment_method_images', function () {
+                                foreach (explode(',', get_setting('payment_method_images')) as $key => $value){
+                                    $images[$key] = uploaded_asset($value);
+                                }
+                             return $images;
+                             });
+                            @endphp
+                            @foreach ($payment_method_images as $key => $value)
                                 <li class="list-inline-item">
-                                    <img src="{{ uploaded_asset($value) }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
+
+                                    <img src="{{ $value }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
                                 </li>
                             @endforeach
                         @endif

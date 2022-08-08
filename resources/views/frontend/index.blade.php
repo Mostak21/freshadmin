@@ -19,13 +19,23 @@
                 <div class="@if($num_todays_deal > 0) col-lg-12 @else col-lg-12 @endif">
                     @if (get_setting('home_slider_images') != null)
                         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-dots="true" data-autoplay="true">
-                            @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
+                            @php
+                                //$slider_images = json_decode(get_setting('home_slider_images'), true);
+                                $slider_images = Cache::rememberForever('home_slider_images', function () {
+                                    $slider_images = json_decode(get_setting('home_slider_images'), true);
+                                    foreach ($slider_images as $key => $value){
+                                        $images[$key] = uploaded_asset($value);
+                                    }
+                                    return $images;
+                                });
+                            @endphp
                             @foreach ($slider_images as $key => $value)
+{{--                                {{dd($slider_images)}}--}}
                                 <div class="carousel-box">
                                     <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
                                         <img
                                             class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
-                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            src="{{ $value }}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             @if(count($featured_categories) == 0)
                                             height="auto"
@@ -293,27 +303,35 @@
     <script>
         $(document).ready(function(){
 
-            $.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_featured').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_featured').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
+            @if(Cache::get('home_custom_section1')==null)
             $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section1').html(data);
                 AIZ.plugins.slickCarousel();
             });
+            @endif
+            @if(Cache::get('home_custom_section2')==null)
             $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section2').html(data);
                 AIZ.plugins.slickCarousel();
             });
+            @endif
+            @if(Cache::get('home_custom_section3')==null)
             $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section3').html(data);
                 AIZ.plugins.slickCarousel();
             });
+            @endif
+            @if(Cache::get('home_custom_section4')==null)
             $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section4').html(data);
                 AIZ.plugins.slickCarousel();
             });
+            @endif
 
 
 
@@ -322,25 +340,25 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_best_selling').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_best_selling').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_best_sellers').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_best_sellers').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
         });
     </script>
 @endsection

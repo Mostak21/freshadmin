@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-@if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-<html dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@else
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@endif
+{{--@if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--<html dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+{{--@else--}}
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+{{--@endif--}}
+<html lang="en">
 <head>
     <meta name="p:domain_verify" content="5861a5107cb561900d2381c36d5c252b"/>
 	<!-- Google Tag Manager -->
@@ -34,7 +35,8 @@
         <!-- Schema.org markup for Google+ -->
         <meta itemprop="name" content="{{ get_setting('meta_title') }}">
         <meta itemprop="description" content="{{ get_setting('meta_description') }}">
-        <meta itemprop="image" content="{{ uploaded_asset(get_setting('meta_image')) }}">
+{{--        <meta itemprop="image" content="{{ uploaded_asset(get_setting('meta_image')) }}">--}}
+        <meta itemprop="image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}">
 
         <!-- Twitter Card data -->
         <meta name="twitter:card" content="product">
@@ -42,20 +44,20 @@
         <meta name="twitter:title" content="{{ get_setting('meta_title') }}">
         <meta name="twitter:description" content="{{ get_setting('meta_description') }}">
         <meta name="twitter:creator" content="@author_handle">
-        <meta name="twitter:image" content="{{ uploaded_asset(get_setting('meta_image')) }}">
+        <meta name="twitter:image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}">
 
         <!-- Open Graph data -->
         <meta property="og:title" content="{{ get_setting('meta_title') }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ route('home') }}" />
-        <meta property="og:image" content="{{ uploaded_asset(get_setting('meta_image')) }}" />
+        <meta property="og:image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}" />
         <meta property="og:description" content="{{ get_setting('meta_description') }}" />
         <meta property="og:site_name" content="{{ env('APP_NAME') }}" />
         <meta property="fb:app_id" content="{{ env('FACEBOOK_PIXEL_ID') }}">
     @endif
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ uploaded_asset(get_setting('site_icon')) }}">
+    <link rel="icon" href="{{ Cache::rememberForever('site_icon', function () { return uploaded_asset(get_setting('site_icon')); }) }}">
 	<script src="https://kit.fontawesome.com/103bf7be9c.js" crossorigin="anonymous"></script>
 
     <!-- Google Fonts -->
@@ -66,16 +68,16 @@
 
 
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
-    @endif
+{{--    @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">--}}
+{{--    @endif--}}
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
 
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
 
-     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
-     @endif
+{{--     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">--}}
+{{--     @endif--}}
  <!-- Main Theme Styles + Bootstrap-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
