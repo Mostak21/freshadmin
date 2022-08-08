@@ -162,18 +162,33 @@
 </div>
 
 {{-- Custom Section --}}
-    <div id="custom_section1">
-        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section1')??null])
-    </div>
-    <div id="custom_section2">
-        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])
-    </div>
-    <div id="custom_section3">
-        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section3')??null])
-    </div>
-    <div id="custom_section4">
-        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])
-    </div>
+{{--    <div id="custom_section1">--}}
+{{--        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section1')??null])--}}
+{{--    </div>--}}
+{{--    <div id="custom_section2">--}}
+{{--        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])--}}
+{{--    </div>--}}
+{{--    <div id="custom_section3">--}}
+{{--        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section3')??null])--}}
+{{--    </div>--}}
+{{--    <div id="custom_section4">--}}
+{{--        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])--}}
+{{--    </div>--}}
+
+
+<div id="custom_section1">
+    @include('frontend.partials.home_custom_section_left',['section_data' => null])
+</div>
+<div id="custom_section2">
+{{--    @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])--}}
+</div>
+<div id="custom_section3">
+{{--    @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section3')??null])--}}
+</div>
+<div id="custom_section4">
+{{--    @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])--}}
+</div>
+
 
 {{-- Flash Deal
     @php
@@ -308,25 +323,25 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            @if(Cache::get('home_custom_section1')==null)
+            @if(Cache::get('home_custom_section1')!=null)
             $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section1').html(data);
                 AIZ.plugins.slickCarousel();
             });
             @endif
-            @if(Cache::get('home_custom_section2')==null)
+            @if(Cache::get('home_custom_section2')!=null)
             $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section2').html(data);
                 AIZ.plugins.slickCarousel();
             });
             @endif
-            @if(Cache::get('home_custom_section3')==null)
+            @if(Cache::get('home_custom_section3')!=null)
             $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section3').html(data);
                 AIZ.plugins.slickCarousel();
             });
             @endif
-            @if(Cache::get('home_custom_section4')==null)
+            @if(Cache::get('home_custom_section4')!=null)
             $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section4').html(data);
                 AIZ.plugins.slickCarousel();
