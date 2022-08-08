@@ -37,6 +37,12 @@
     width: 100%;
     object-fit: cover;
   }
+
+  .p-img-shadow{
+    border: #E9E9E9 1px solid;
+    border-radius: 7px;
+    object-fit: cover;
+  }
   
   .btn-p-0{ 
     font-size: 0.875rem;
