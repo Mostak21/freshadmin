@@ -8,6 +8,9 @@
     </button>
 </div>
 @endif
+
+
+
 <header class="@if(get_setting('header_stikcy') == 'on')  @endif mostak22 z-1020 bg-white " id="navbar_top">
     <div class="position-relative logo-bar-area z-1">
         <div class="container-custom">
@@ -70,9 +73,9 @@
                 </div>
                 <div class="d-flex align-items-center ml-auto d-none">
 				</div>
-<div class=" ml-auto d-flex">
+
                  <div class=" mr-0">
-                    <a class="p-2 d-block text-reset" href="javascript:void(0);" data-toggle="class-toggle" data-target=".front-header-search">
+                    <a class="py-2 d-block text-reset" href="javascript:void(0);" data-toggle="class-toggle" data-target=".front-header-search">
                         <i class="las la-search la-flip-horizontal la-2x"></i>
                     </a>
                 </div>
@@ -82,8 +85,30 @@
                         @include('frontend.partials.wishlist')
                     </div>
                 </div>
+                <div class="mr-0">
+                    
+                    <div class="py-2 d-block text-reset " id="app">
+                        @if($agent->is('iPhone'))
+                        @if(get_setting('app_store_link') != null)
+                        <a href="{{ get_setting('app_store_link') }}" target="blank">
+                            <i class="fa-brands fa-app-store fs-22"></i>
+                        </a>
+                        @endif                        
+                        @else
+                        @if(get_setting('play_store_link') != null)
+                             <a href="{{ get_setting('play_store_link') }}" target="blank">
+                                <i class="fa-brands fa-google-play fs-20"></i>
+                            </a>
+                        @endif
+                      
+                        @endif
+                    </div>
+                </div>
+
+
+   
 		
-			</div>
+			
             </div>
         </div>
 
