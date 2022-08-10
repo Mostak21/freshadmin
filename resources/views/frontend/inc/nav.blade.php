@@ -1,4 +1,3 @@
-{{--{{dd(uploaded_asset(31271))}}--}}
 @if(get_setting('topbar_banner') != null)
 <div class="position-relative top-banner removable-session z-1035 d-none" data-key="top-banner" data-value="removed">
     <a href="{{ get_setting('topbar_banner_link') }}" class="d-block text-reset">
@@ -75,7 +74,7 @@
                         <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
                             <a href="tel:{{ get_setting('helpline_number') }}" class="text-reset d-inline-block opacity-60 py-2">
                                 <i class="la la-phone"></i>
-                                <span>{{ translate('Help line')}}</span>
+                                <span>Help line</span>
                                 <span>{{ get_setting('helpline_number') }}</span>
                             </a>
                         </li>
@@ -205,7 +204,7 @@
                                 <div class="input-group">
                                     <input class="form-control rounded-end search-field " type="text" id="search" name="keyword" @isset($query)
                                     value="{{ $query }}"
-                                @endisset placeholder="{{translate('Search for products')}}" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
+                                @endisset placeholder="Search for products" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
                                   </div>
                              {{--  <div class="input-group">
                                     <input type="text" class="border-0 border-lg form-control" id="search" name="keyword" @isset($query)
@@ -269,20 +268,20 @@
 						<div class="">
 
                         <a href="{{ route('admin.dashboard') }}" class="text-reset d-inline-block opacity-60">
-							{{ translate('My Panel')}}</a></div>
-                         <div><a href="{{ route('logout') }}">{{ translate('Logout')}}</a></div>
+							My Panel</a></div>
+                         <div><a href="{{ route('logout') }}">Logout</a></div>
 						 @else
 						<div class="">
 						 <a href="{{ route('dashboard') }}" class="text-reset d-inline-block opacity-60 ">
-							{{ translate('My Panel')}}</a></div>
-                         <div><a href="{{ route('logout') }}">{{ translate('Logout')}}</a></div>
+							My Panel</a></div>
+                         <div><a href="{{ route('logout') }}"> Logout</a></div>
 						@endif
 						@else
 						<div class="">
 
                         <a href="{{ route('user.registration') }}" class="text-reset d-inline-block opacity-60 ">
-							{{ translate('Registration')}}</a></div>
-                         <div><a href="{{ route('user.login') }}">{{ translate('Login')}}</a></div>
+							Registration</a></div>
+                         <div><a href="{{ route('user.login') }}">Login</a></div>
 						@endauth
 						</span>
                     </div>
@@ -379,7 +378,7 @@
                     <li class="list-inline-item mr-0">
                     <span class=" bg-white px-1 py-1 hov-text-primary">
                         <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-16 px-3 py-1 d-inline-block hov-opacity-100 text-reset">
-                            {{ translate($value) }}
+                            {{ $value }}
                         </a>
                     </span>
                     </li>
@@ -395,7 +394,7 @@
                     <li class="list-inline-item mr-0">
                     <span class=" bg-white px-1 py-2 hov-text-primary">
                         <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset">
-                            {{ translate($value) }}
+                            {{ $value }}
                         </a>
                     </span>
                     </li>

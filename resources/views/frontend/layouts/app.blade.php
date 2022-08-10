@@ -86,26 +86,26 @@
     <script>
         var AIZ = AIZ || {};
         AIZ.local = {
-            nothing_selected: '{{ translate('Nothing selected') }}',
-            nothing_found: '{{ translate('Nothing found') }}',
-            choose_file: '{{ translate('Choose file') }}',
-            file_selected: '{{ translate('File selected') }}',
-            files_selected: '{{ translate('Files selected') }}',
-            add_more_files: '{{ translate('Add more files') }}',
-            adding_more_files: '{{ translate('Adding more files') }}',
-            drop_files_here_paste_or: '{{ translate('Drop files here, paste or') }}',
-            browse: '{{ translate('Browse') }}',
-            upload_complete: '{{ translate('Upload complete') }}',
-            upload_paused: '{{ translate('Upload paused') }}',
-            resume_upload: '{{ translate('Resume upload') }}',
-            pause_upload: '{{ translate('Pause upload') }}',
-            retry_upload: '{{ translate('Retry upload') }}',
-            cancel_upload: '{{ translate('Cancel upload') }}',
-            uploading: '{{ translate('Uploading') }}',
-            processing: '{{ translate('Processing') }}',
-            complete: '{{ translate('Complete') }}',
-            file: '{{ translate('File') }}',
-            files: '{{ translate('Files') }}',
+            nothing_selected: 'Nothing selected',
+            nothing_found: 'Nothing found',
+            choose_file: 'Choose file',
+            file_selected: 'File selected',
+            files_selected: 'Files selected',
+            add_more_files: 'Add more files',
+            adding_more_files: 'Adding more files',
+            drop_files_here_paste_or: 'Drop files here, paste or',
+            browse: 'Browse',
+            upload_complete: 'Upload complete',
+            upload_paused: 'Upload paused',
+            resume_upload: 'Resume upload',
+            pause_upload: 'Pause upload',
+            retry_upload: 'Retry upload',
+            cancel_upload: 'Cancel upload',
+            uploading: 'Uploading',
+            processing: 'Processing',
+            complete: 'Complete',
+            file: 'File',
+            files: 'Files',
         }
     </script>
 
@@ -205,7 +205,7 @@
                     @endphp
                 </div>
                 <button class="btn btn-primary aiz-cookie-accept">
-                    {{ translate('Ok. I Understood') }}
+                    Ok. I Understood
                 </button>
             </div>
         </div>
@@ -224,10 +224,10 @@
                             <form class="" method="POST" action="{{ route('subscribers.store') }}">
                                 @csrf
                                 <div class="form-group mb-0">
-                                    <input type="email" class="form-control" placeholder="{{ translate('Your Email Address') }}" name="email" required>
+                                    <input type="email" class="form-control" placeholder="Your Email Address" name="email" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block mt-3">
-                                    {{ translate('Subscribe Now') }}
+                                    Subscribe Now
                                 </button>
                             </form>
                         </div>
@@ -406,7 +406,7 @@
             }, function(data){
                 updateNavCart(data.nav_cart_view,data.cart_count);
                 $('#cart-summary').html(data.cart_view);
-                AIZ.plugins.notify('success', "{{ translate('Item has been removed from cart') }}");
+                AIZ.plugins.notify('success', "Item has been removed from cart");
                 $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html())-1);
             });
         }
@@ -414,7 +414,7 @@
         function addToCompare(id){
             $.post('{{ route('compare.addToCompare') }}', {_token: AIZ.data.csrf, id:id}, function(data){
                 $('#compare').html(data);
-                AIZ.plugins.notify('success', "{{ translate('Item has been added to compare list') }}");
+                AIZ.plugins.notify('success', "Item has been added to compare list");
                 $('#compare_items_sidenav').html(parseInt($('#compare_items_sidenav').html())+1);
             });
         }
@@ -424,14 +424,14 @@
                 $.post('{{ route('wishlists.store') }}', {_token: AIZ.data.csrf, id:id}, function(data){
                     if(data != 0){
                         $('#wishlist').html(data);
-                        AIZ.plugins.notify('success', "{{ translate('Item has been added to wishlist') }}");
+                        AIZ.plugins.notify('success', "Item has been added to wishlist");
                     }
                     else{
-                        AIZ.plugins.notify('warning', "{{ translate('Please login first') }}");
+                        AIZ.plugins.notify('warning', "Please login first");
                     }
                 });
             @else
-                AIZ.plugins.notify('warning', "{{ translate('Please login first') }}");
+                AIZ.plugins.notify('warning', "Please login first");
             @endif
         }
 
@@ -526,7 +526,7 @@
                 });
             }
             else{
-                AIZ.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
+                AIZ.plugins.notify('warning', "Please choose all the options");
             }
         }
 
@@ -557,7 +557,7 @@
                });
             }
             else{
-                AIZ.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
+                AIZ.plugins.notify('warning', "Please choose all the options");
             }
         }
 

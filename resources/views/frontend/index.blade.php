@@ -75,9 +75,9 @@
                     <div class="bg-white rounded shadow-sm">
                         <div class="bg-soft-primary rounded-top p-3 d-flex align-items-center justify-content-center">
                             <span class="fw-600 fs-16 mr-2 text-truncate">
-                                {{ translate('Todays Deal') }}
+                                Todays Deal
                             </span>
-                            <span class="badge badge-primary badge-inline">{{ translate('Hot') }}</span>
+                            <span class="badge badge-primary badge-inline">Hot</span>
                         </div>
                         <div class="c-scrollbar-light overflow-auto h-lg-400px p-2 bg-primary rounded-bottom">
                             <div class="gutters-5 lg-no-gutters row row-cols-2 row-cols-lg-1">
@@ -92,7 +92,7 @@
                                                         class="lazyload img-fit h-140px h-lg-80px"
                                                         src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                                         data-src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                                        alt="{{ $product->getTranslation('name') }}"
+                                                        alt="{{ $product->name }}"
                                                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
                                                     >
                                                 </div>
@@ -135,7 +135,7 @@
                         <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Brand Of The Week</span>
                     </h3>
                     <div class="aiz-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
-                    <a href="{{ route('flash-deal-details', $flash_deal->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md w-100 w-md-auto">{{ translate('View More') }}</a>
+                    <a href="{{ route('flash-deal-details', $flash_deal->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md w-100 w-md-auto"> View More</a>
                 </div>
 
                 <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
@@ -253,9 +253,9 @@
                        <div class="px-2 py-4 px-md-4 py-md-3 bg-white shadow-sm rounded">
                             <div class="d-flex mb-3 align-items-baseline border-bottom">
                                 <h3 class="h5 fw-700 mb-0">
-                                    <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">{{ translate('Classified Ads') }}</span>
+                                    <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block"> Classified Ads</span>
                                 </h3>
-                                <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">{{ translate('View More') }}</a>
+                                <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View More</a>
                             </div>
                            <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
                                @foreach ($classified_products as $key => $classified_product)
@@ -267,15 +267,15 @@
                                                         class="img-fit lazyload mx-auto h-140px h-md-210px"
                                                         src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                                         data-src="{{ uploaded_asset($classified_product->thumbnail_img) }}"
-                                                        alt="{{ $classified_product->getTranslation('name') }}"
+                                                        alt="{{ $classified_product->name }}"
                                                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
                                                     >
                                                 </a>
                                                 <div class="absolute-top-left pt-2 pl-2">
                                                     @if($classified_product->conditon == 'new')
-                                                       <span class="badge badge-inline badge-success">{{translate('new')}}</span>
+                                                       <span class="badge badge-inline badge-success">new</span>
                                                     @elseif($classified_product->conditon == 'used')
-                                                       <span class="badge badge-inline badge-danger">{{translate('Used')}}</span>
+                                                       <span class="badge badge-inline badge-danger">Used</span>
                                                     @endif
                                                 </div>
                                             </div>
@@ -284,7 +284,7 @@
                                                     <span class="fw-700 text-primary">{{ single_price($classified_product->unit_price) }}</span>
                                                 </div>
                                                 <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                                                    <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block text-reset">{{ $classified_product->getTranslation('name') }}</a>
+                                                    <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block text-reset">{{ $classified_product->name }}</a>
                                                 </h3>
                                             </div>
                                        </div>
