@@ -127,13 +127,11 @@ class SearchController extends Controller
 
         if(empty($query)){
 
-            $ip=$_SERVER['REMOTE_ADDR'];
             $hour=date("H");
             $day=date("j");
             $month=date("n");
-            $ip=str_replace(".","",$ip);
 
-            $seed=($ip+$hour+$day+$month);
+            $seed=($hour+$day+$month);
 
             switch ($sort_by) {
                 case 'newest':

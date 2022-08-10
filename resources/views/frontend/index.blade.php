@@ -177,7 +177,7 @@
 
 
 <div id="custom_section1">
-    @include('frontend.partials.home_custom_section_left',['section_data' => null])
+    @include('frontend.partials.home_custom_section_left_demo')
 </div>
 <div id="custom_section2">
 {{--    @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])--}}
