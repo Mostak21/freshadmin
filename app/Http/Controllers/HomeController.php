@@ -295,6 +295,8 @@ class HomeController extends Controller
         }
     }
 
+
+
 //    Home Custom section product list with banner
 
     public function load_custom_section(Request $request){
@@ -443,6 +445,7 @@ class HomeController extends Controller
                     $productsData[$key] = $product;
                 }
                 $section_data_c->products = collect( $productsData);
+
 
                 return $section_data_c;
             });

@@ -1,1 +1,124 @@
-/*hello*/
+.container-custom{
+    width: auto;
+    margin: 0px 15px 0px 15px;
+  }
+  
+  /*product box*/
+  .product-fullwidth{
+  margin: 8px 0px 8px 0px;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  }
+  
+  .card-mobile{
+    margin: 8px 0px 8px 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.1);
+    border-radius: .7375rem !important;
+    margin: 2px;
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+    }
+    .cat-mobile{
+      margin: 8px 0px 8px 0px;
+      background: #FFFFFF;
+      box-shadow: 0px 10px 35px rgba(0, 0, 0, 0.279);
+      border-radius: .7375rem !important;
+      margin: 2px;
+      /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+      }
+  
+  .p-img-round{
+    /* background: #666666; */
+    border: #E9E9E9 1px solid;
+    border-radius: 7px;
+    max-height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .p-img-shadow{
+    border: #E9E9E9 1px solid;
+    border-radius: 7px;
+    object-fit: cover;
+  }
+  
+  .btn-p-0{ 
+    font-size: 0.875rem;
+    color: #2a3242;
+    font-weight: inherit;
+  }
+  
+  .aiz-plus-minus> .btn{
+    padding: 0;
+    font-size: 0.875rem;
+    color: #2a3242;
+    font-weight: inherit;
+  }
+  
+  .price-range-bg{
+    background-color: #EEEEEE;
+    border-radius: 20px;
+  }
+  .price-range-input-bg{
+    background-color: #EEEEEE;
+    
+  }
+
+  .rounded-slider{
+    border-radius: 20px;
+  }
+  
+  .rounded-footer-top{
+    border-radius: 20px 20px 0px 0px;
+  }
+  
+  .text-black{
+    color: rgba(0, 0, 0, 0.836);
+  }
+
+  /*footer icon size*/
+  
+
+  .footer_icon_size{
+    height: 20px;
+  }
+  
+  .rounded-custom{ border-radius: .4375rem !important;}
+
+  .user-panel-icon{
+    padding: 3px!important;
+    margin: 0!important;
+    font-size: 20px;
+    color: black!important;
+  }
+
+  .user-panel-icon-bg{
+    border: #E9E9E9 1px solid;
+    border-radius: 7px;
+    align-items: center;
+    padding: 1px;
+    margin-right: 3px;
+   
+  }
+
+
+  /*.......login forn.....*/
+
+  .form-control-custom {
+    padding: 0.6rem 1rem;
+    font-size: 0.875rem;
+    height: calc(1.3125rem + 1.2rem + 2px);
+    border-bottom: 1px solid #e2e5ec;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    color: #898b92;
+    width: 100%;
+}
+
+.facebook{
+  background-color: #3b5998!important;
+  
+}

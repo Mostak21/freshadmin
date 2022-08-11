@@ -29,10 +29,10 @@
 
 @section('content')
     <section class="pt-5 mb-4 bg-white">
-        <div class="container">
+        <div class="container-custom">
             <div class="row">
-                <div class="col-md-6 mx-auto">
-                    <div class="d-flex justify-content-center">
+                <div class="col-12 m-0">
+                    <div class="d-flex justify-content-center card-mobile py-2">
                         <img
                             height="70"
                             class="lazyload"
@@ -56,22 +56,25 @@
                     </div>
                 </div>
             </div>
-            <div class="border-bottom mt-5"></div>
+            <div class="mt-5"></div>
+            <div class="container-custom">
+
+           
             <div class="row align-items-center">
-                <div class="col-lg-6 order-2 order-lg-0">
-                    <ul class="list-inline mb-0 text-center text-lg-left">
-                        <li class="list-inline-item ">
-                            <a class="text-reset d-inline-block fw-600 fs-15 p-3 @if(!isset($type)) border-bottom border-primary border-width-2 @endif" href="{{ route('shop.visit', $shop->slug) }}">{{ translate('Store Home')}}</a>
-                        </li>
-                        <li class="list-inline-item ">
-                            <a class="text-reset d-inline-block fw-600 fs-15 p-3 @if(isset($type) && $type == 'top-selling') border-bottom border-primary border-width-2 @endif" href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'top-selling']) }}">{{ translate('Top Selling')}}</a>
-                        </li>
-                        <li class="list-inline-item ">
-                            <a class="text-reset d-inline-block fw-600 fs-15 p-3 @if(isset($type) && $type == 'all-products') border-bottom border-primary border-width-2 @endif" href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'all-products']) }}">{{ translate('All Products')}}</a>
-                        </li>
-                    </ul>
+                <div class="col-12 p-0">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a class="btn fw-600 fs-14 p-2 @if(!isset($type)) btn-primary @else btn-soft-dark @endif" href="{{ route('shop.visit', $shop->slug) }}">{{ translate('Store Home')}}</a>
+                        </div>
+                        <div>
+                            <a class="btn fw-600 fs-14 p-2 @if(isset($type) && $type == 'top-selling') btn-primary  @else btn-soft-dark @endif" href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'top-selling']) }}">{{ translate('Top Selling')}}</a>
+                        </div>
+                        <div>
+                            <a class="btn fw-600 fs-14 p-2 @if(isset($type) && $type == 'all-products') btn-primary  @else btn-soft-dark @endif" href="{{ route('shop.visit.type', ['slug'=>$shop->slug, 'type'=>'all-products']) }}">{{ translate('All Products')}}</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-0">
+                <div class="col-12">
                     <ul class="text-center text-lg-right mt-4 mt-lg-0 social colored list-inline mb-0">
                         @if ($shop->facebook != null)
                             <li class="list-inline-item">
@@ -103,13 +106,13 @@
                         @endif
                     </ul>
                 </div>
-            </div>
+            </div> </div>
         </div>
     </section>
 
     @if (!isset($type))
         <section class="mb-5">
-            <div class="container">
+            <div class="container-custom rounded-custom">
                 <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
                     @if ($shop->sliders != null)
                         @foreach (explode(',',$shop->sliders) as $key => $slide)
@@ -130,21 +133,17 @@
 	
         <section class="mb-4">
 			@if($featured!=0)
-            <div class="container">
-                <div class="text-center mb-4">
-                    <h3 class="h3 fw-600 border-bottom">
-                        <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">{{ translate('Featured Products')}}</span>
+            <div class="container-custom">
+                <div class="text-left mb-4">
+                    <h3 class="h3 fw-600 fs-20 border-bottom">
+                        <span class="border-bottom border-primary border-width-2 pb-2 d-inline-block">{{ translate('Featured Products')}}</span>
                     </h3>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div class="aiz-carousel gutters-10" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-autoplay='true' data-infinute="true" data-dots="true">
-                            @foreach ($shop->user->products->where('published', 1)->where('approved', 1)->where('seller_featured', 1) as $key => $product)
-                                <div class="carousel-box">
-                                    @include('frontend.partials.product_box_1',['product' => $product])
-                                </div>
+                    <div class="col-12">
+                            @foreach ($shop->user->products->where('published', 1)->where('approved', 1)->where('seller_featured', 1) as $key => $product)                              
+                                    @include('frontend.partials.product_box_fullwidth',['product' => $product])                               
                             @endforeach
-                        </div>
                     </div>
                 </div>
             </div>@endif
@@ -152,10 +151,10 @@
     @endif
 
     <section class="mb-4">
-        <div class="container">
+        <div class="container-custom">
             <div class="mb-4">
-                <h3 class="h3 fw-600 border-bottom">
-                    <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">
+                <h3 class="h3 fw-600 fs-20 border-bottom">
+                    <span class="border-bottom border-primary border-width-2 pb-2 d-inline-block">
                         @if (!isset($type))
                             {{ translate('New Arrival Products')}}
                         @elseif ($type == 'top-selling')
@@ -168,13 +167,13 @@
             </div>
             <div class="row gutters-5 row-cols-xxl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
                 @php
-				$ip=$_SERVER['REMOTE_ADDR'];
+			
 				$hour=date("H");
 				$day=date("j");
 				$month=date("n");
-				$ip=str_replace(".","",$ip);
+				
 
-				$seed=($ip+$hour+$day+$month);
+				$seed=($hour+$day+$month);
 				
                     if (!isset($type)){
                         $products = \App\Models\Product::where('user_id', $shop->user->id)->where('published', 1)->where('approved', 1)->inRandomOrder("$seed")->paginate(24);

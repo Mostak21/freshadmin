@@ -1,8 +1,13 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+<div class="container">
+    <h1 class="h3 py-2 fs-22 fw-600">
+        {{ translate('All Brands') }}
+    </h1> 
+</div>
 
-<section class="pt-4 mb-4">
+{{-- <section class="pt-4 mb-4">
     <div class="productheaderbg py-5">
     <div class="container">
         <div class="row">
@@ -20,8 +25,8 @@
                 </ul>
             </div>
         </div>
-    </div></div>
-</section>
+    </div></div> 
+</section> --}}
 
 
 
@@ -40,7 +45,7 @@
 @foreach($cat as $key => $category)
 			<div class="mb-5">
 {{--<h5 class="pb-3 text-capitalize text-center">{{str_replace("_"," ",$category)}}</h5>--}}
-<img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/btcHvC3sJ4m5K4VYwoNgMcURYE2CeaKrqswFQ7cs.webp" data-src="{{$banner[$key]}}" alt="{{str_replace("_"," ",$category)}}" class="img-fluid lazyload w-100 mb-5">
+<img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/btcHvC3sJ4m5K4VYwoNgMcURYE2CeaKrqswFQ7cs.webp" data-src="{{$banner[$key]}}" alt="{{str_replace("_"," ",$category)}}" class="img-fluid lazyload w-100 mb-5 rounded-custom">
 
 <div class="row row-cols-xxl-7 row-cols-xl-7 row-cols-lg-4 row-cols-md-3 row-cols-2 gutters-300">
     @foreach(\App\Models\Brand::where('published',1)->orderBy('name', 'ASC')->get() as $brand)
@@ -50,7 +55,7 @@
 
         @if(array_search($category,explode(",",$brand->cat))!==false)
         <div class="col text-center">
-            <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-3 mb-3 border border-light rounded hov-shadow-md">
+            <a href="{{ route('products.brand', $brand->slug) }}" class="d-block p-3 mb-3 card-mobile border border-light rounded hov-shadow-md">
                 <img src="{{ uploaded_asset($brand->logo) }}" class="lazyload mx-auto h-90px mw-100" alt="{{ $brand->getTranslation('name') }}">
             </a>
     </div>
