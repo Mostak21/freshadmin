@@ -1,129 +1,33 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<section class="d-none d-lg-block">
-    <div class="productheaderbg py-5">
-        <div class="container d-lg-center">
-            <div class="row ">
-                <div class="col-lg-6 text-center text-lg-left">
-                    <h1 class="h3 fw-600">
-                        {{ translate('All Categories') }}
-                    </h1>
-                  
-                </div>
-                <div class="col-lg-6 fs-13">
-                    <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                        <li class="breadcrumb-item ">
-                            
-                            <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i> {{ translate('Home')}}</a>
-                        </li>
-                        <li class="text-dark  breadcrumb-item">
-                            <a class="text-reset" href="{{ route('categories.all') }}">{{ translate('All Categories') }}</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>    
-        </div>
-    </div>
-</section>
-<section class="mb-4 d-none d-lg-block">
-    <div class="container">
-        @foreach ($categories as $key => $category)
-            <div class="mb-3 bg-white ">
-                
-                <div class="mt-2 mb-3 text-center">
-                    <h3 class="h5 fw-700 mb-0">
-                        <a href="{{ route('products.category', $category->slug) }}">  <span class=" px-2 py-2 bg-white c-pointer has-transition">{{  $category->getTranslation('name') }}</span></a>
-                    </h3>
-                </div>
-                <div class="p-3 p-lg-4">
-                    <div class="row">
-                    @foreach (\App\Utility\CategoryUtility::get_immediate_children_ids($category->id) as $key => $first_level_id)
-                        <div class="col-lg-4 col-6 text-left">
-                            <a class="text-reset fw-600 fs-18" href="{{ route('products.category', \App\Models\Category::find($first_level_id)->slug) }}"> 
-                               @php
-                                   $p = \App\Models\Category::find($first_level_id);
-                               @endphp
-                               
-                                <img class="w-100 rounded lazyload" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/5ABazMntewtJzb87ssoHZmo5utCeJqwxdmLMgWva.png"
-                                 data-src="{{ uploaded_asset($p->banner) }}"
-
-                                 onerror="this.onerror=null;this.src='https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/5ABazMntewtJzb87ssoHZmo5utCeJqwxdmLMgWva.png';"/></a>
 
 
-
-                            <h6 class="mb-3 mt-2"><a class="text-reset fw-600 fs-18" href="{{ route('products.category', \App\Models\Category::find($first_level_id)->slug) }}">{{ \App\Models\Category::find($first_level_id)->getTranslation('name') }}</a></h6>
-                            <ul class="mb-3 list-unstyled pl-2">
-                                @foreach (\App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id) as $key => $second_level_id)
-                                    
-                                    @if($loop->iteration<10)
-                                    <li class="mb-2">
-                                        <i class="fa fa-chevron-circle-right"></i> <a class="text-reset" href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}" >{{ \App\Models\Category::find($second_level_id)->getTranslation('name') }}</a>
-                                    </li>
-                                    @endif
-
-                                    @if($loop->iteration==10)
-                                    <li class="mb-2">
-                                        <i class="fa fa-chevron-circle-right"></i> <a class="text-reset" href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}" >{{ \App\Models\Category::find($second_level_id)->getTranslation('name') }}</a>
-                                    </li>
-                                        <li class="mb-2 text-primary c-pointer" onclick="collapsecat('{{$second_level_id}}') ">
-                                            <i class="fa fa-chevron-circle-right"></i> View More
-                                        </li>
-                                        <span class="d-none bg-gray" id="catcollapse{{$second_level_id}}">
-                                    @endif
-                                    
-                                    
-                                    
-                                    @if($loop->iteration>10)
-                                    
-                                        <li class="mb-2">
-                                            <i class="fa fa-chevron-circle-right"></i> <a class="text-reset" href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}" >{{ \App\Models\Category::find($second_level_id)->getTranslation('name') }}</a>
-                                        </li>
-                                    @endif
-                                
-                                    
-                                @endforeach
-                                </span>
-                            </ul>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section>
-
-<section class="d-lg-none">
+<section class="">
 	
 	
-	 <div class="row">
-        <div class="col-md-5 mx-auto" >  
-        @foreach (\App\Category::where('level', 0)->orderBy('order_level', 'desc')->get()->take(11) as $key => $category)
+	 <div class="container-custom mb-5">
+    
+        @foreach (Cache::remember('parent_cat_main', 86400, function () {
+          return \App\Category::where('level', 0)->orderBy('order_level', 'desc')->get()->take(11);
+      }) as $key => $category)
                
-        <div class="" style="background-image: url('{{ uploaded_asset($category->m_bg) }}');
-        border-bottom:solid #FAFAFA 3px;
+        <div class="cat-mobile mb-2 rounded-custom overflow-hidden" style="background-image: url('{{ uploaded_asset($category->m_bg) }}'); background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center ;
             ">
         <div class=""  onClick="mainmenu({!! $category->id!!})"
                   
-                style="background: {{$category->m_color}}"
+                {{-- style="background: {{$category->m_color}}" --}}
                 >
-                <div class="row">
-                <div class="col-8  py-4"> 
-                  <div class="px-3">
+                <div class="row m-0">
+                <div class="col-12 p-0"> 
+                  <div class="px-3 py-4">
                     <h4>{{$category->name}}</h4>
                     <div class="fs-14"> {{$category->m_slogan}}</div>
                  </div>
                 </div>
-                <div class="col-4"> 
-                     <div class="px-3 py-4 mparent" style="height: 100%;"> 
-                    <div class="mchild">
-                        <a class="mt-auto">
-                          @if($category->m_image)  <img class="d-block w-100" src="{{ uploaded_asset($category->m_image) }}" height="100px" alt="For Women">@endif
-                        </a>
-                    </div>
-                </div>
-                </div>
+                
                     
                  </div></div></div>
                 <div id='grow{!! $category->id!!}' style=" -moz-transition: height .5s;
@@ -136,11 +40,19 @@
                     position: relative;">
                     <div class='measuringWrapper{!! $category->id!!}'>
                 <div class=" grow  " id="submenu{!! $category->id!!}"> 
-                    @foreach (\App\Utility\CategoryUtility::get_immediate_children_ids($category->id) as $key => $first_level_id)
+                  @php
+                    $cat=0;
+                    $cat=$category->id;
+                    $cachename= "sub_cat".$cat;
+                  @endphp
+         
+                    @foreach (Cache::remember($cachename, 86400, function () use($cat) {
+                      return \App\Utility\CategoryUtility::get_immediate_children_ids($cat);
+                  }) as $key => $first_level_id)
                             <div class="p-2 pl-3" style="background-color: #FAFAFA;"   onClick="subsubmenu({!! \App\Models\Category::find($first_level_id)->id!!},{!! $category->id!!})">
                               <div class="d-flex justify-content-between">
                                   <div>
-                                                                       <a class="text-reset hov-text-primary " href="{{ route('products.category', \App\Models\Category::find($first_level_id)->slug) }}">{{ \App\Models\Category::find($first_level_id)->getTranslation('name') }}</a>
+                                                                       <a class="text-reset hov-text-primary " href="{{ route('products.category', \App\Models\Category::find($first_level_id)->slug) }}">{{ \App\Models\Category::find($first_level_id)->name }}</a>
 
                                   </div>
                                   <div class="pr-3 fs-10 fw-600">
@@ -158,9 +70,17 @@
                                 position: relative;">
                                 <div class='measuringWrapper{!! \App\Models\Category::find($first_level_id)->id!!}'>
                             <div class="ml-3 subsubmenu" id="subsubmenu{!! \App\Models\Category::find($first_level_id)->id!!}">
-                                 @foreach (\App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id) as $key => $second_level_id)
+                              @php
+                                $first_level_id=0;
+                                $first_level_id=$first_level_id;
+                                $childcachename= "child_cat".$first_level_id;
+                              @endphp
+                              
+                                 @foreach ( Cache::remember($childcachename, 86400, function () use($first_level_id) {
+                                  return \App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id);
+                              }) as $key => $second_level_id)
                                <div class="px-3 py-2 bg-white">
-                                    <a class="text-reset hov-text-primary " href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}">{{ \App\Models\Category::find($second_level_id)->getTranslation('name') }}</a>
+                                    <a class="text-reset hov-text-primary " href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}">{{ \App\Models\Category::find($second_level_id)->name }}</a>
                                 </div> 
                                  @endforeach
                             
@@ -168,14 +88,12 @@
                     @endforeach
                 </div></div></div>
         @endforeach
-    </div></div>
-	
+    </div>
+		
+</section>	
    <script>
       function subsubmenu(id,catid){
-                         
 
-                          
-                               
                                 var growDiv = document.getElementById('grow'+id);
                                 
                                 if (growDiv.clientHeight) {                               
@@ -255,7 +173,6 @@
 
 
     </script>	
-	
-</section	
+
 
 @endsection

@@ -3,33 +3,21 @@
 @section('content') 
 
 
-<div class="productheaderbg py-5">
-    <div class="container">
+
+    <div class="container-custom">
         <div class="row">
-            <div class="col-lg-6 text-center text-lg-left">
+            <div class="col-lg-6 text-left">
                 <h1 class="fw-600 h4">
                     {{ $category->category_name}}
                 </h1>
             </div>
-            <div class="col-lg-6 fs-13">
-                <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                    <li class="breadcrumb-item opacity-50">
-                       <a class="text-dark" href="{{ route('home') }}">   <i class="ci-home"> </i> {{ translate('Home')}}</a>
-                    </li>
-                    <li class="text-dark breadcrumb-item">
-                        <a class="text-reset" href="{{ route('blog') }}">{{ translate('Blog') }}</a>
-                    </li>
-                    <li class="text-dark breadcrumb-item">
-                        {{ $category->category_name}}
-                    </li>
-                </ul>
-            </div>
+           
         </div>
     </div>
-</div>
 
 
-<section class="pb-4 pt-5">
+
+<section class="pb-4 pt-3">
     <div class="container">
         <div class="row">
 
@@ -65,12 +53,7 @@
                                     <p class="opacity-70 mb-2">
                                         {{ $blog->short_description }}
                                     </p>
-                                    @if($blog->category != null)
-                                        <a href="{{route('blog.category',$blog->category->slug)}}" class="text-reset">
-                                        <span class="mb-2 opacity-50 border py-5px px-10px hov-bg-soft-secondary rounded">
-                                        {{ $blog->category->category_name }}
-                                        </span> </a> 
-                                    @endif
+                                  
                                 
                                 </div>
                                 <div class="card-footer d-flex justify-content-end">

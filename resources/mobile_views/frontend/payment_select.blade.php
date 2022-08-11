@@ -50,33 +50,21 @@ dataLayer.push({
 
 @endsection
 @section('content')
+
+<div class="container-custom">
+    <h1 class="h3 mb-3 fs-22 fw-600">
+        Choose payment Method
+    </h1>    
+</div>
+
+
 <div class="productheaderbg pt-lg-5 py-3">
     <div class="container d-lg-center">
-        <div class="row pb-4">
-            <div class="col-lg-6 text-center text-lg-left">
-                <h1 class="h3 mb-2  fw-600">
-                    Select Payment
-                </h1>
-              
-            </div>
-            <div class="col-lg-6 fs-13">
-                <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                    <li class="breadcrumb-item ">
-                        
-                        <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i> {{ translate('Home')}}</a>
-                    </li>   
-                    
-                    <li class="text-dark  breadcrumb-item">
-                        Payment
-                    </li>
-                    
-                </ul>
-            </div>
-        </div>    
+        
 
         <div class="row">
             <div class="col-lg-8">
-            <div class="steps steps-light pt-lg-3 pb-3">
+            <div class="steps steps-light py-3">
                 <div class="step-item active current" >
                 <div class="step-progress"><span class="step-count">1</span></div>
                 <div class="step-label"><i class="las la-shopping-cart fs-24"></i>{{ translate(' My Cart')}}</div></div>
@@ -144,16 +132,12 @@ dataLayer.push({
 <section class="mb-4">
     <div class="container text-left">
         <div class="row">
-            <div class="col-lg-8  mb-6">
+            <div class="col-12  mb-6">
                 <form action="{{ route('payment.checkout') }}" class="form-default" role="form" method="POST" id="checkout-form">
                     @csrf
                     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
-                    <div class="py-4">
-                        <h3 class="fs-18 fw-600 mb-0">
-                            {{ translate('Choose payment method')}}
-                        </h3>
-                    </div>
-                    <div class="card border shadow-sm  rounded">
+                 
+                    <div class="card my-3">
                         
                         <div class="card-body text-center">
                             <div class="row">
@@ -186,13 +170,13 @@ dataLayer.push({
                                             </div>
                                         @endif
                                         @if(get_setting('sslcommerz_payment') == 1)
-                                            <div class="col-6 col-md-6">
-                                                <label class="aiz-megabox d-block mb-3">
+                                            <div class="col-6  col-md-6">
+                                                <label class="aiz-megabox card-mobile d-block mb-3">
                                                     <input value="sslcommerz" class="online_payment" type="radio" name="payment_option" checked>
                                                     <span class="d-block p-3 aiz-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/sslcommerz.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
-                                                            <span class="d-block fw-600 fs-15">{{ translate('sslcommerz')}}</span>
+                                                            <span class="d-block fw-600 fs-13">{{ translate('sslcommerz')}}</span>
                                                         </span>
                                                     </span>
                                                 </label>
@@ -417,12 +401,12 @@ dataLayer.push({
                                             @endphp
                                             @if($digital != 1 && $cod_on == 1)
                                                 <div class="col-6 col-md-6">
-                                                    <label class="aiz-megabox d-block mb-3">
+                                                    <label class="aiz-megabox card-mobile d-block mb-3">
                                                         <input value="cash_on_delivery" class="online_payment pls" type="radio" name="payment_option" checked>
                                                         <span class="d-block p-3 aiz-megabox-elem">
                                                             <img src="{{ static_asset('assets/img/cards/cod.png')}}" class="img-fluid mb-2">
                                                             <span class="d-block text-center">
-                                                                <span class="d-block fw-600 fs-15">{{ translate('Cash on Delivery')}}</span>
+                                                                <span class="d-block fw-600 fs-13">{{ translate('Cash on Delivery')}}</span>
                                                             </span>
                                                         </span>
                                                     </label>
@@ -471,33 +455,35 @@ dataLayer.push({
                                         <span class=" fs-18"><b>{{ translate('Select Payment Option')}}</b></span>
                                     </span>
                             </div> <!-- #ch11 option for 100% payment-->
+                            <div class="row">
                             <div class="col-6 col-md-4" style="display: inline-block;">
-                                <label class="aiz-megabox d-block mb-3">
+                                <label class="aiz-megabox d-block mb-3 card-mobile">
                                     <input value="null" class="online_payment" type="radio" name="partial_pay" id="pam" >
                                     <span class="d-block p-3 aiz-megabox-elem">
                                         <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/bCARNJGeMglSjo4HQC8wPLrHQ6BkQMhNDP81sYyy.webp" class="img-fluid mb-2">
                                         <span class="d-block text-center">
-                                            <span class="d-block fw-600 fs-15">Total Amount: {{single_price($total)}}</span>
+                                            <span class="d-block fw-600 fs-13">Total Amount: {{single_price($total)}}</span>
                                         </span>
                                     </span>
                                 </label>
                             </div>
 								<!-- #ch11 end option for 100% payment-->
 								  <div class="col-6 col-md-4" style="display: inline-block;">
-                                <label class="aiz-megabox d-block mb-3">
+                                <label class="aiz-megabox card-mobile d-block mb-3">
                                     <input value="partial" class="online_payment" type="radio" name="partial_pay" id="pam" >
                                     <span class="d-block p-3 aiz-megabox-elem">
                                         <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/rEdbnVmfqVUfKmxkopvCEaQ2IQtEbU2ytivpd5NL.webp" class="img-fluid mb-2">
                                         <span class="d-block text-center">
-                                            <span class="d-block fw-600 fs-15">Partial Amount: {{single_price($partial_payment)}}</span>
+                                            <span class="d-block fw-600 fs-13">Partial Amount: {{single_price($partial_payment)}}</span>
                                         </span>
                                     </span>
                                 </label>
                             </div>
-									
+                        </div>
                             <div class="form-group aiz-checkbox-inline">
 {{--                                <input type="checkbox" class="form aiz-checkbox" name="partial_pay_amount" value="partial" required="" id="pam" min="10" disabled="disabled" style="width: 20px; height: 20px;">--}}
-{{--                                <label for="pam" style="font-size:20px;"><span><h3>Pay Partial Amount: {{$partial_payment}} </h3></span></label>--}} <small id="emailHelp" style="font-size:13px;" class="form-text text-muted mt-3"><b>Note* :</b> For partial payment (10% payment) pay 10% in advance & pay rest after receive the product.</small>
+{{--                                <label for="pam" style="font-size:20px;"><span><h3>Pay Partial Amount: {{$partial_payment}} </h3></span></label>--}}
+                                 <small id="emailHelp" style="font-size:13px;" class="form-text text-muted mt-3"><b>Note* :</b> For partial payment (10% payment) pay 10% in advance & pay rest after receive the product.</small>
                         {{--             <small id="emailHelp" style="font-size:14px;" class="form-text text-muted">Pay 50% of your current amount.</small> --}}
                             </div>
 							 
@@ -536,7 +522,12 @@ dataLayer.push({
 --}}
                         </div>
                     </div>
-                    <div class="pt-3">
+                   
+                    <div class="col-12 p-0 mt-4" id="cart_summary">
+                        @include('frontend.partials.cart_summary')
+                    </div>
+                
+                    <div class="p-2 py-3">
                         <b>
                         <label class="aiz-checkbox">
                             <input type="checkbox" required id="agree_checkbox">
@@ -549,25 +540,25 @@ dataLayer.push({
                         </b>
                     </div>
 
+                
+
                     <div class="row align-items-center pt-3">
-                        <div class="col-6">
+                       {{--<div class="col-6">
                             <a href="{{ route('home') }}" class="text-reset">
                                 <button type="button" class="btn btn-mleft">
                                 <i class="ci-arrow-left"></i>
                                 {{ translate('Return to shop')}}</button>
                             </a>
-                        </div>
-                        <div class="col-6 text-right">
-                            <button type="button" onclick="submitOrder(this)" class="btn btn-primary fw-600 btn-mright">{{ translate('Complete Order')}}<i class="ci-arrow-right fw-600 pl-2"></i></button>
+                        </div>--}} 
+                        <div class="col-12 text-right">
+                            <button type="button" onclick="submitOrder(this)" class="btn btn-block btn-dark rounded-custom fw-600"><div class="d-flex justify-content-between"><div>{{ translate('Complete Order')}}</div><div><img height="24px" src="{{ static_asset('m_asset/arrow-right.png') }}"/></div></div></button>
                         </div>
                     </div>
                 </form>
             </div>
 
 
-            <div class="col-lg-4 mt-4 mt-lg-0" id="cart_summary">
-                @include('frontend.partials.cart_summary')
-            </div>
+            
 
         </div>
     </div>

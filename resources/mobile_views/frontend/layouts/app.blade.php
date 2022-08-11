@@ -80,6 +80,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/mobile_view.css') }}">
 
     <script>
         var AIZ = AIZ || {};
@@ -120,9 +121,9 @@
 				-webkit-text-stroke-color: none;
         }
         :root{
-            --primary: {{ get_setting('base_color', '#e62d04') }};
-            --hov-primary: {{ get_setting('base_hov_color', '#c52907') }};
-            --soft-primary: {{ hex2rgba(get_setting('base_color','#e62d04'),.15) }};
+            --primary: #111111;
+            --hov-primary: #000000ad;
+            --soft-primary: {{ hex2rgba('#111111',.15) }};
         }
 
         #map{
@@ -175,7 +176,6 @@
 
 </head>
 <body>
-
 
 	 <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W68M279"

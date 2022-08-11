@@ -2,32 +2,17 @@
 
 @section('content')
 
+<div class="container-custom">
+    <h1 class="h3 mb-3 fs-22 fw-600">
+       Shipping Method
+    </h1>
+</div>
     <div class="productheaderbg pt-lg-5 py-3">
         <div class="container d-lg-center">
-            <div class="row pb-4">
-                <div class="col-lg-6 text-center text-lg-left">
-                    <h1 class="h3 mb-2  fw-600">
-                        Delivery info
-                    </h1>
-
-                </div>
-                <div class="col-lg-6 fs-13">
-                    <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                        <li class="breadcrumb-item ">
-
-                            <a class="text-reset" href="{{ route('home') }}"> <i class="fa fa-home"></i> {{ translate('Home')}}</a>
-                        </li>
-
-                        <li class="text-dark  breadcrumb-item">
-                            Delivery info
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
+           
 
             <div class="row">
-                <div class="steps steps-light pt-lg-3 pb-3">
+                <div class="steps steps-light pt-3 pb-3">
                     <div class="step-item active current" >
                         <div class="step-progress"><span class="step-count">1</span></div>
                         <div class="step-label"><i class="las la-shopping-cart fs-24"></i>{{ translate(' My Cart')}}</div></div>
@@ -92,7 +77,7 @@
 </section>--}}
 
     <section class="py-4 gry-bg">
-        <div class="container">
+        <div class="container-custom">
             <div class="row">
                 <div class="col-xxl-10 col-xl-12 mx-auto">
                     <form class="form-default" action="{{ route('checkout.store_delivery_info') }}" role="form" method="POST" id="deleveryskip">
@@ -320,12 +305,13 @@
 {{--                            @endforeach--}}
 
                             <!-- Shipping methods table-->
-                            <div class="card mb-3 shadow-sm border-0 rounded">
-                                <h2 class="h5 pb-3 mb-2">Choose shipping method</h2>
-                                <div class="table-responsive fs-14">
-                                    <table class="table table-hover fs-sm border-top">
+                            <div class="mb-5">
+                                
+                                <div class=" fs-14">
+                                    <table class="table fs-sm"style="border-collapse:separate; 
+                                    border-spacing: 0 1em;">
                                         <thead>
-                                        <tr>
+                                        <tr class="bg-soft-secondary">
                                             <th class="align-middle"></th>
                                             <th class="align-middle">Shipping method</th>
                                             <th class="align-middle">Delivery time</th>
@@ -356,7 +342,7 @@
 
                                             @if($agent->status==1 && $cost_status == 1)
 
-                                                <tr >
+                                                <tr class="card-mobile rounded-custom">
                                                     <td>
                                                         <div class="form-check mb-4 ">
                                                             <input class="form-check-input aiz-rounded-check" type="radio" id="{{$agent->id}}" value="{{$agent->id}}" name="shipping_method" @php if($checked==1) echo "checked"; $checked =0; @endphp>
@@ -378,12 +364,12 @@
                                 </div>
                         @endif
 
-                        <div class="pt-4 d-flex justify-content-between align-items-center">
-                            <a href="{{ route('home') }}" >
+                        <div class=" my-3 d-flex justify-content-between align-items-center">
+                            {{-- <a href="{{ route('home') }}" >
                                 <i class="la la-angle-left"></i>
                                 {{ translate('Return to shop')}}
-                            </a>
-                            <button type="submit" class="btn fw-600 btn-primary">{{ translate('Continue to Payment')}}</button>
+                            </a> --}}
+                            <button type="submit" class="btn btn-block btn-dark rounded-custom fw-600"><div class="d-flex justify-content-between"><div>{{ translate('Continue to Payment')}}</div><div><img height="24px" src="{{ static_asset('m_asset/arrow-right.png') }}"/></div></div></button>
                         </div>
                     </form>
                 </div>

@@ -3,38 +3,38 @@
 @section('content')
     <section class="gry-bg py-4">
         <div class="profile">
-            <div class="container">
+            <div class="container-custom">
                 <div class="row">
-                    <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-8 mx-auto">
-                        <div class="card">
-                            <div class="text-left px-4 pt-4">
+                    <div class="col-12 mx-auto">
+                        <div class="">
+                            <div class="text-left pt-2">
                                 <h1 class="h4 fw-600">
                                     No account? Sign up
                                 </h1>
                             </div>
-							<div class="px-4 fw-400">Registration takes less than a minute but gives you full control over your orders.</div>
-							<div class="px-4 pt-4">
+							<div class="mb-5 fw-400">Registration takes less than a minute but gives you full control over your orders.</div>
+							{{-- <div class="px-4 pt-4">
 								<span class="fs-18 fw-600"> Or, Login With </span><a class="btn-social bs-facebook me-2 mb-2" href="{{ route('social.login', ['provider' => 'facebook']) }}" ><i class="ci-facebook"></i></a>
-							</div>
-                            <div class="px-4 py-3 py-lg-4">
+							</div> --}}
+                            <div class=" py-3 py-lg-4">
                                 <div class="">
                                     <form id="reg-form" class="form-default" role="form" action="{{ route('register') }}" method="POST">
                                         @csrf
 										<div class="row">
-										<div class="col-sm-6">
+										<div class="col-md-6">
 											<div class="form-group">
-											<label class="fw-600">Full Name</label>
-                                            <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="" name="name">
+											<label class="fw-600 m-0">Full Name</label>
+                                            <input type="text" class="form-control-custom{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}" placeholder="" name="name">
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('name') }}</strong>
                                                 </span>
                                             @endif
                                         </div></div>
-										<div class="col-sm-6">
+										<div class="col-md-6">
 											 <div class="form-group">
-												 <label class="fw-600">Gender</label>
-                                            <select name="gender" id="gender" class="form-control" required>
+												 <label class="fw-600 m-0">Gender</label>
+                                            <select name="gender" id="gender" class="form-control-custom" required>
                                                 <option value="NULL" selected hidden>Select your Gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
@@ -80,8 +80,8 @@
 {{--                                        @endif--}}
 
                                         <div class="form-group">
-                                             <label class="fw-600">Email or Phone</label>
-                                            <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="" name="email">
+                                             <label class="fw-600 m-0">Email or Phone</label>
+                                            <input type="text" class="form-control-custom{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="" name="email">
                                             @if ($errors->has('email'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('email') }}</strong>
@@ -89,10 +89,10 @@
                                             @endif
                                         </div>
                                         <div class="row">
-											<div class="col-sm-6">
+											<div class="col-md-6">
 												 <div class="form-group">
-													 <label class="fw-600">Password</label>
-                                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" name="password">
+													 <label class="fw-600 m-0">Password</label>
+                                            <input type="password" class="form-control-custom{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="" name="password">
                                             @if ($errors->has('password'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('password') }}</strong>
@@ -100,10 +100,10 @@
                                             @endif
                                         </div>
 											</div>
-											<div class="col-sm-6">
+											<div class="col-md-6">
 												 <div class="form-group">
-													 <label class="fw-600">Confirm Password</label>
-                                            <input type="password" class="form-control" placeholder="" name="password_confirmation">
+													 <label class="fw-600 m-0">Confirm Password</label>
+                                            <input type="password" class="form-control-custom" placeholder="" name="password_confirmation">
                                         </div>
 											</div>
 
@@ -126,10 +126,16 @@
                                             </label>
                                         </div>
 
-                                        <div class="mb-5 text-right">
-                                            <button type="submit" class="btn btn-primary  fw-600"><i class="ci-user pr-2 ms-n1"></i>{{  translate('Create Account') }}</button>
+                                        <div class="mb-2 text-right">
+                                            <button type="submit" class="btn btn-block btn-primary  fw-600"><i class="ci-user pr-2 ms-n1"></i>{{  translate('Create Account') }}</button>
                                         </div>
                                     </form>
+                                    <div class="separator mb-2">
+                                        <span class="bg-white px-3 opacity-60">{{ translate('Or Login With')}}</span>
+                                    </div>
+                                    <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="btn-soft-dark facebook text-light btn btn-block mb-3">
+                                        <i class="lab la-facebook-f"></i> Facebook
+                                    </a>
 									{{--
                                     @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1)
                                         <div class="separator mb-3">

@@ -295,6 +295,8 @@ class HomeController extends Controller
         }
     }
 
+
+
 //    Home Custom section product list with banner
 
     public function load_custom_section(Request $request){
@@ -444,6 +446,7 @@ class HomeController extends Controller
                 }
                 $section_data_c->products = collect( $productsData);
 
+
                 return $section_data_c;
             });
         }
@@ -452,6 +455,10 @@ class HomeController extends Controller
     }
 
     //    Home Custom section product list with banner
+
+    public function home_sliderimages(){
+        return view('frontend.partials.home_sliderimages');
+    }
 
     public function load_featured_section(){
         return view('frontend.partials.featured_products_section');
