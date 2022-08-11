@@ -73,6 +73,8 @@ Route::post('/users/login/guest', 'HomeController@cart_login_guest')->name('cart
 //Home Page
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::post('/home/section/sliderimages', 'HomeController@home_sliderimages')->name('home.section.sliderimages');
+
 Route::post('/home/section/custom_section1', 'HomeController@load_custom_section')->name('home.section.custom_section_1');
 Route::post('/home/section/custom_section2', 'HomeController@load_custom_section')->name('home.section.custom_section_2');
 Route::post('/home/section/custom_section3', 'HomeController@load_custom_section')->name('home.section.custom_section_3');

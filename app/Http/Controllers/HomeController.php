@@ -453,6 +453,10 @@ class HomeController extends Controller
 
     //    Home Custom section product list with banner
 
+    public function home_sliderimages(){
+        return view('frontend.partials.home_sliderimages');
+    }
+
     public function load_featured_section(){
         return view('frontend.partials.featured_products_section');
     }

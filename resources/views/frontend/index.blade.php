@@ -2,8 +2,6 @@
 
 @section('content')
 
-{{--    {{dd(Cache::get('featured_categories'))}}--}}
-
     {{-- Categories , Sliders . Today's deal --}}
     <div class="home-banner-area overflow-hidden mb-3">
         <div class="">
@@ -17,38 +15,30 @@
                 @endphp
 
                 <div class="@if($num_todays_deal > 0) col-lg-12 @else col-lg-12 @endif">
-                    @if (get_setting('home_slider_images') != null)
-                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-dots="true" data-autoplay="true">
-                            @php
-                                //$slider_images = json_decode(get_setting('home_slider_images'), true);
-                                $slider_images = Cache::rememberForever('home_slider_images', function () {
-                                    $slider_images = json_decode(get_setting('home_slider_images'), true);
-                                    foreach ($slider_images as $key => $value){
-                                        $images[$key] = uploaded_asset($value);
-                                    }
-                                    return $images;
-                                });
-                            @endphp
-                            @foreach ($slider_images as $key => $value)
-{{--                                {{dd($slider_images)}}--}}
-                                <div class="carousel-box">
-                                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
-                                        <img
-                                            class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
-                                            src="{{ $value }}"
-                                            alt="{{ env('APP_NAME')}} promo"
-                                            @if(count($featured_categories) == 0)
-                                            height="auto"
-                                            @else
-                                            height="auto"
-                                            @endif
-                                            onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
-                                        >
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
+                    <div id="sliderimages">
+                        @if (get_setting('home_slider_images') != null)
+                            <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-dots="true" data-autoplay="true">
+                                @php
+                                    $slider_images = Cache::get('home_slider_images')??null;
+                                @endphp
+                                    <div class="carousel-box">
+                                        <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}">
+                                            <img
+                                                class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
+                                                src="{{ $slider_images[0]}}"
+                                                alt="{{ env('APP_NAME')}} promo"
+                                                @if(count($featured_categories) == 0)
+                                                height="auto"
+                                                @else
+                                                height="auto"
+                                                @endif
+                                                onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
+                                            >
+                                        </a>
+                                    </div>
+                            </div>
+                        @endif
+                    </div>
                  {{--   @if (count($featured_categories) > 0)
                         <ul class="list-unstyled mb-0 row gutters-5">
                             @foreach ($featured_categories as $key => $category)
@@ -355,25 +345,30 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            {{--$.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#section_best_selling').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
+            $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#section_best_selling').html(data);
+                AIZ.plugins.slickCarousel();
+            });
 
-            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#section_home_categories').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
+            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#section_home_categories').html(data);
+                AIZ.plugins.slickCarousel();
+            });
 
-            {{--$.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#section_home_categories').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
+            $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#section_home_categories').html(data);
+                AIZ.plugins.slickCarousel();
+            });
 
-            {{--$.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
-            {{--    $('#section_best_sellers').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
-            {{--});--}}
+            $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#section_best_sellers').html(data);
+                AIZ.plugins.slickCarousel();
+            });
+
+            $.post('{{ route('home.section.sliderimages') }}', {_token:'{{ csrf_token() }}'}, function(data){
+                $('#sliderimages').html(data);
+                AIZ.plugins.slickCarousel();
+            });
         });
     </script>
 @endsection
