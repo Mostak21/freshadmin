@@ -35,7 +35,7 @@
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="d-flex"><i class="ci-document text-brand-gray" style="font-size: 2.25rem;"></i>
             <div class="px-3">
-                <a class="text-light fs-16 fw-500" href="{{ route('terms') }}" style="font-size: 1rem !important;">{{ translate('Terms & Conditions') }}</a>
+                <a class="text-light fs-16 fw-500" href="{{ route('terms') }}" style="font-size: 1rem !important;">Terms & Conditions</a>
                 <p class="mb-0 fs-ms fw-300 text-light opacity-50">Outline the rules and regulations</p>
             </div>
           </div>
@@ -43,7 +43,7 @@
         <div class="col-md-3 col-sm-6 mb-4">
           <div class="d-flex"><i class="ci-currency-exchange text-brand-gray" style="font-size: 2.25rem;"></i>
             <div class="px-3">
-                <a class="text-light fs-16 fw-500" href="{{ route('returnpolicy') }}">{{ translate('Return Policy') }}</a>
+                <a class="text-light fs-16 fw-500" href="{{ route('returnpolicy') }}">Return Policy</a>
               	<p class="mb-0 fs-ms fw-300 text-light opacity-50">We return money within 14 days</p>
             </div>
           </div>
@@ -52,7 +52,7 @@
           <div class="d-flex"><i class="ci-support text-brand-gray" style="font-size: 2.25rem;"></i>
             <div class="px-3">
 
-             <a class="text-light fs-16 fw-500" href="{{ route('supportpolicy') }}">{{ translate('Support Policy') }}</a>
+             <a class="text-light fs-16 fw-500" href="{{ route('supportpolicy') }}">Support Policy</a>
 			<p class="mb-0 fs-ms fw-300 text-light opacity-50">Friendly 24/7 customer support</p>
 
             </div>
@@ -62,7 +62,7 @@
           <div class="d-flex"><i class="ci-security-check text-brand-gray" style="font-size: 2.25rem;"></i>
             <div class="px-3">
 
-       <a class="text-light fs-16 fw-500" href="{{ route('privacypolicy') }}"> {{ translate('Privacy Policy') }}</a>
+       <a class="text-light fs-16 fw-500" href="{{ route('privacypolicy') }}">Privacy Policy</a>
 				<p class="mb-0 fs-ms fw-300 text-light opacity-50">Information about our Privacy Policy</p>
 
             </div>
@@ -76,7 +76,7 @@
     <div class="col-6 mb-4">
         <a class="" href="{{ route('home') }}">
             @if(get_setting('footer_logo') != null)
-                <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="44">
+                <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{Cache::rememberForever('footer_logo', function () { return uploaded_asset(get_setting('footer_logo')); })}}" alt="{{ env('APP_NAME') }}" height="44">
             @else
                 <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="44">
             @endif
@@ -109,15 +109,15 @@
 
 
                     <span class="pr-lg-2">
-                        <span class=" text-light fw-600">{{ translate('Address') }}:</span>
+                        <span class=" text-light fw-600">Address:</span>
                         <span class="  text-light ">{{ get_setting('contact_address',null,App::getLocale()) }}</span>
                      </span>
                      <span class="pr-lg-2">
-                        <span class=" text-light fw-600">{{translate('Phone')}}:</span>
+                        <span class=" text-light fw-600">Phone:</span>
                         <span class=" text-light ">{{ get_setting('contact_phone') }}</span>
                      </span >
                      <span class="pr-lg-2">
-                        <span class=" text-light fw-600">{{translate('Email')}}:</span>
+                        <span class=" text-light fw-600">Email:</span>
                         <span class=" text-light ">
                             <a href="mailto:{{ get_setting('contact_email') }}" class="text-reset">{{ get_setting('contact_email')  }}</a>
                          </span>
@@ -130,29 +130,29 @@
                      @if (Auth::check())
                      <span class="pr-2 fw-500">
                              <a class="text-light" href="{{ route('logout') }}">
-                                 {{ translate('Logout') }}
+                                 Logout
                              </a>
                      </span>
                      @else
                      <span class="pr-2 fw-500">
                              <a class="text-light" href="{{ route('user.login') }}">
-                                 {{ translate('Login') }}
+                                 Login
                              </a>
                          </span>
                      @endif
                      <span class="pr-2">
                          <a class="text-light fw-500" href="{{ route('purchase_history.index') }}">
-                             {{ translate('Order History') }}
+                             Order History
                          </a>
                      </span>
                      <span class="pr-2">
                          <a class=" text-light fw-500" href="{{ route('wishlists.index') }}">
-                             {{ translate('My Wishlist') }}
+                             My Wishlist
                          </a>
                      </span>
                      <span class="pr-2">
                          <a class=" text-light fw-500" href="{{ route('orders.track') }}">
-                             {{ translate('Track Order') }}
+                             Track Order
                          </a>
                      </span>
 				    <span class="pr-2">
@@ -163,14 +163,15 @@
                          </span>
                      @if (addon_is_activated('affiliate_system'))
                      <span class="pr-2">
-                             <a class="text-light fw-500" href="{{ route('affiliate.apply') }}">{{ translate('Be an affiliate partner')}}</a>
+                             <a class="text-light fw-500" href="{{ route('affiliate.apply') }}">
+                                 Be an affiliate partner</a>
                          </span>
 
                      @endif
 
                      @if (get_setting('vendor_system_activation') == 1)
                             <span class="text-uppercase fw-500  ">
-                            <a class="text-light" href="{{ route('shops.create') }}">  {{ translate('Be a Seller') }}</a>
+                            <a class="text-light" href="{{ route('shops.create') }}"> Be a Seller</a>
                             </span>
                     @endif
 
@@ -214,11 +215,11 @@
 
 
              <div class="w-300px mw-100 mx-auto mx-md-0 text-right">
-                @if(get_setting('play_store_link') != null)
-                    <a href="{{ get_setting('play_store_link') }}" target="_blank" class="d-inline-block ml-0 mb-3 mb-md-3">
-                        <img src="{{ static_asset('assets/img/play.png') }}" class="mx-100 h-40px">
-                    </a>
-                @endif
+{{--                @if(get_setting('play_store_link') != null)--}}
+{{--                    <a href="{{ get_setting('play_store_link') }}" target="_blank" class="d-inline-block ml-0 mb-3 mb-md-3">--}}
+{{--                        <img src="{{ static_asset('assets/img/play.png') }}" class="mx-100 h-40px">--}}
+{{--                    </a>--}}
+{{--                @endif--}}
                @if(get_setting('app_store_link') != null)
                     <a href="{{ get_setting('app_store_link') }}" target="_blank" class="ml-3 d-inline-block">
                         <img src="{{ static_asset('assets/img/app.png') }}" class="mx-100 h-40px">
@@ -233,9 +234,18 @@
                 <div class="text-center pb-0 pb-md-4">
                     <ul class="list-inline mb-0 pl-4 pr-4">
                         @if ( get_setting('payment_method_images') !=  null )
-                            @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
+                            @php
+                            $payment_method_images = Cache::rememberForever('payment_method_images', function () {
+                                foreach (explode(',', get_setting('payment_method_images')) as $key => $value){
+                                    $images[$key] = uploaded_asset($value);
+                                }
+                             return $images;
+                             });
+                            @endphp
+                            @foreach ($payment_method_images as $key => $value)
                                 <li class="list-inline-item">
-                                    <img src="{{ uploaded_asset($value) }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
+
+                                    <img src="{{ $value }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
                                 </li>
                             @endforeach
                         @endif
@@ -261,13 +271,13 @@
         <div class="col">
             <a href="{{ route('home') }}" class="text-reset d-block text-center pb-2 pt-3">
                 <i class="las la-home fs-20 opacity-60 {{ areActiveRoutes(['home'],'opacity-100 text-primary')}}"></i>
-                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['home'],'opacity-100 fw-600')}}">{{ translate('Home') }}</span>
+                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['home'],'opacity-100 fw-600')}}">Home</span>
             </a>
         </div>
         <div class="col">
             <a href="{{ route('categories.all') }}" class="text-reset d-block text-center pb-2 pt-3">
                 <i class="las la-list-ul fs-20 opacity-60 {{ areActiveRoutes(['categories.all'],'opacity-100 text-primary')}}"></i>
-                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['categories.all'],'opacity-100 fw-600')}}">{{ translate('Categories') }}</span>
+                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['categories.all'],'opacity-100 fw-600')}}">Categories</span>
             </a>
         </div>
         @php
@@ -287,7 +297,7 @@
                     <i class="las la-shopping-bag la-2x text-white"></i>
                 </span>
                 <span class="d-block mt-1 fs-10 fw-600 opacity-60 {{ areActiveRoutes(['cart'],'opacity-100 fw-600')}}">
-                    {{ translate('Cart') }}
+                    Cart
                     @php
                         $count = (isset($cart) && count($cart)) ? count($cart) : 0;
                     @endphp
@@ -303,7 +313,7 @@
                         <span class="badge badge-sm badge-dot badge-circle badge-primary position-absolute absolute-top-right" style="right: 7px;top: -2px;"></span>
                     @endif
                 </span>
-                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['all-notifications'],'opacity-100 fw-600')}}">{{ translate('Notifications') }}</span>
+                <span class="d-block fs-10 fw-600 opacity-60 {{ areActiveRoutes(['all-notifications'],'opacity-100 fw-600')}}">Notifications</span>
             </a>
         </div>
         <div class="col">
@@ -317,7 +327,7 @@
                             <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="rounded-circle size-20px">
                         @endif
                     </span>
-                    <span class="d-block fs-10 fw-600 opacity-60">{{ translate('Account') }}</span>
+                    <span class="d-block fs-10 fw-600 opacity-60">Account</span>
                 </a>
             @else
                 <a href="{{ route('dashboard') }}" class="text-reset d-block text-center pb-2 pt-3 mobile-side-nav-thumb" >
@@ -328,7 +338,7 @@
                             <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="rounded-circle size-20px">
                         @endif
                     </span>
-                    <span class="d-block fs-10 fw-600 opacity-60">{{ translate('Account') }}</span>
+                    <span class="d-block fs-10 fw-600 opacity-60">Account</span>
                 </a>
             @endif
         @else
@@ -336,7 +346,7 @@
                 <span class="d-block mx-auto">
                     <img src="{{ static_asset('assets/img/avatar-place.png') }}" class="rounded-circle size-20px">
                 </span>
-                <span class="d-block fs-10 fw-600 opacity-60">{{ translate('Account') }}</span>
+                <span class="d-block fs-10 fw-600 opacity-60">Account</span>
             </a>
         @endif
         </div>

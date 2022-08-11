@@ -1,7 +1,9 @@
 @if(get_setting('topbar_banner') != null)
 <div class="position-relative top-banner removable-session z-1035 d-none" data-key="top-banner" data-value="removed">
     <a href="{{ get_setting('topbar_banner_link') }}" class="d-block text-reset">
-        <img src="{{ uploaded_asset(get_setting('topbar_banner')) }}" class="w-100 mw-100 h-50px h-lg-auto img-fit">
+        <img src="{{ Cache::rememberForever('topbar_banner', function () { return uploaded_asset(get_setting('topbar_banner')); }) }}" class="w-100 mw-100 h-50px h-lg-auto img-fit">
+
+
     </a>
     <button class="btn text-white absolute-top-right set-session" data-key="top-banner" data-value="removed" data-toggle="remove-parent" data-parent=".top-banner">
         <i class="la la-close la-2x"></i>
@@ -14,55 +16,55 @@
         <div class="row">
             <div class="col-lg-7 col">
                 <ul class="list-inline d-flex justify-content-between justify-content-lg-start mb-0">
-                    @if(get_setting('show_language_switcher') == 'on')
-                    <li class="list-inline-item dropdown mr-3" id="lang-change">
-                        @php
-                            if(Session::has('locale')){
-                                $locale = Session::get('locale', Config::get('app.locale'));
-                            }
-                            else{
-                                $locale = 'en';
-                            }
-                        @endphp
-                        <a href="javascript:void(0)" class="dropdown-toggle text-reset py-2" data-toggle="dropdown" data-display="static">
-                            <img src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ static_asset('assets/img/flags/'.$locale.'.png') }}" class="mr-2 lazyload" alt="{{ \App\Models\Language::where('code', $locale)->first()->name }}" height="11">
-                            <span class="opacity-60">{{ \App\Models\Language::where('code', $locale)->first()->name }}</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-left">
-                            @foreach (\App\Models\Language::all() as $key => $language)
-                                <li>
-                                    <a href="javascript:void(0)" data-flag="{{ $language->code }}" class="dropdown-item @if($locale == $language) active @endif">
-                                        <img src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" class="mr-1 lazyload" alt="{{ $language->name }}" height="11">
-                                        <span class="language">{{ $language->name }}</span>
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @endif
+{{--                    @if(get_setting('show_language_switcher') == 'on')--}}
+{{--                    <li class="list-inline-item dropdown mr-3" id="lang-change">--}}
+{{--                        @php--}}
+{{--                            if(Session::has('locale')){--}}
+{{--                                $locale = Session::get('locale', Config::get('app.locale'));--}}
+{{--                            }--}}
+{{--                            else{--}}
+{{--                                $locale = 'en';--}}
+{{--                            }--}}
+{{--                        @endphp--}}
+{{--                        <a href="javascript:void(0)" class="dropdown-toggle text-reset py-2" data-toggle="dropdown" data-display="static">--}}
+{{--                            <img src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ static_asset('assets/img/flags/'.$locale.'.png') }}" class="mr-2 lazyload" alt="{{ \App\Models\Language::where('code', $locale)->first()->name }}" height="11">--}}
+{{--                            <span class="opacity-60">{{ \App\Models\Language::where('code', $locale)->first()->name }}</span>--}}
+{{--                        </a>--}}
+{{--                        <ul class="dropdown-menu dropdown-menu-left">--}}
+{{--                            @foreach (\App\Models\Language::all() as $key => $language)--}}
+{{--                                <li>--}}
+{{--                                    <a href="javascript:void(0)" data-flag="{{ $language->code }}" class="dropdown-item @if($locale == $language) active @endif">--}}
+{{--                                        <img src="{{ static_asset('assets/img/placeholder.jpg') }}" data-src="{{ static_asset('assets/img/flags/'.$language->code.'.png') }}" class="mr-1 lazyload" alt="{{ $language->name }}" height="11">--}}
+{{--                                        <span class="language">{{ $language->name }}</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    @endif--}}
 
-                    @if(get_setting('show_currency_switcher') == 'on')
-                    <li class="list-inline-item dropdown ml-auto ml-lg-0 mr-0" id="currency-change">
-                        @php
-                            if(Session::has('currency_code')){
-                                $currency_code = Session::get('currency_code');
-                            }
-                            else{
-                                $currency_code = \App\Models\Currency::findOrFail(get_setting('system_default_currency'))->code;
-                            }
-                        @endphp
-                        <a href="javascript:void(0)" class="dropdown-toggle text-reset py-2 opacity-60" data-toggle="dropdown" data-display="static">
-                            {{ \App\Models\Currency::where('code', $currency_code)->first()->name }} {{ (\App\Models\Currency::where('code', $currency_code)->first()->symbol) }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">
-                            @foreach (\App\Models\Currency::where('status', 1)->get() as $key => $currency)
-                                <li>
-                                    <a class="dropdown-item @if($currency_code == $currency->code) active @endif" href="javascript:void(0)" data-currency="{{ $currency->code }}">{{ $currency->name }} ({{ $currency->symbol }})</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    @endif
+{{--                    @if(get_setting('show_currency_switcher') == 'on')--}}
+{{--                    <li class="list-inline-item dropdown ml-auto ml-lg-0 mr-0" id="currency-change">--}}
+{{--                        @php--}}
+{{--                            if(Session::has('currency_code')){--}}
+{{--                                $currency_code = Session::get('currency_code');--}}
+{{--                            }--}}
+{{--                            else{--}}
+{{--                                $currency_code = \App\Models\Currency::findOrFail(get_setting('system_default_currency'))->code;--}}
+{{--                            }--}}
+{{--                        @endphp--}}
+{{--                        <a href="javascript:void(0)" class="dropdown-toggle text-reset py-2 opacity-60" data-toggle="dropdown" data-display="static">--}}
+{{--                            {{ \App\Models\Currency::where('code', $currency_code)->first()->name }} {{ (\App\Models\Currency::where('code', $currency_code)->first()->symbol) }}--}}
+{{--                        </a>--}}
+{{--                        <ul class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left">--}}
+{{--                            @foreach (\App\Models\Currency::where('status', 1)->get() as $key => $currency)--}}
+{{--                                <li>--}}
+{{--                                    <a class="dropdown-item @if($currency_code == $currency->code) active @endif" href="javascript:void(0)" data-currency="{{ $currency->code }}">{{ $currency->name }} ({{ $currency->symbol }})</a>--}}
+{{--                                </li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    @endif--}}
                 </ul>
             </div>
 
@@ -72,7 +74,7 @@
                         <li class="list-inline-item mr-3 border-right border-left-0 pr-3 pl-0">
                             <a href="tel:{{ get_setting('helpline_number') }}" class="text-reset d-inline-block opacity-60 py-2">
                                 <i class="la la-phone"></i>
-                                <span>{{ translate('Help line')}}</span>
+                                <span>Help line</span>
                                 <span>{{ get_setting('helpline_number') }}</span>
                             </a>
                         </li>
@@ -177,7 +179,8 @@
                             $header_logo = get_setting('header_logo');
                         @endphp
                         @if($header_logo != null)
-                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
+                            <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
+{{--                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">--}}
                         @else
                             <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
                         @endif
@@ -201,7 +204,7 @@
                                 <div class="input-group">
                                     <input class="form-control rounded-end search-field " type="text" id="search" name="keyword" @isset($query)
                                     value="{{ $query }}"
-                                @endisset placeholder="{{translate('Search for products')}}" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
+                                @endisset placeholder="Search for products" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
                                   </div>
                              {{--  <div class="input-group">
                                     <input type="text" class="border-0 border-lg form-control" id="search" name="keyword" @isset($query)
@@ -265,20 +268,20 @@
 						<div class="">
 
                         <a href="{{ route('admin.dashboard') }}" class="text-reset d-inline-block opacity-60">
-							{{ translate('My Panel')}}</a></div>
-                         <div><a href="{{ route('logout') }}">{{ translate('Logout')}}</a></div>
+							My Panel</a></div>
+                         <div><a href="{{ route('logout') }}">Logout</a></div>
 						 @else
 						<div class="">
 						 <a href="{{ route('dashboard') }}" class="text-reset d-inline-block opacity-60 ">
-							{{ translate('My Panel')}}</a></div>
-                         <div><a href="{{ route('logout') }}">{{ translate('Logout')}}</a></div>
+							My Panel</a></div>
+                         <div><a href="{{ route('logout') }}"> Logout</a></div>
 						@endif
 						@else
 						<div class="">
 
                         <a href="{{ route('user.registration') }}" class="text-reset d-inline-block opacity-60 ">
-							{{ translate('Registration')}}</a></div>
-                         <div><a href="{{ route('user.login') }}">{{ translate('Login')}}</a></div>
+							Registration</a></div>
+                         <div><a href="{{ route('user.login') }}">Login</a></div>
 						@endauth
 						</span>
                     </div>
@@ -357,14 +360,25 @@
             <div class="container d-none d-lg-block" id="dnav">
                 <div class="row">
 
-                 <span class=" py-1 pb-3"  onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)"><a class="text-reset" href="{{route('categories.all')}}"><span class="d-none d-lg-block fs-16 bg-white px-1 py-1 hov-text-primary c-pointer">  <li class="list-inline-item pr-4 pl-2 w-100 fs-16" id="category-menu-icon" ><i class="ci-view-grid fs-16 pr-2"></i>All Categories <i class="fa fa-caret-down pl-2"></i></li></span></a></span>
+                 <span class=" py-1 pb-3"  onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)">
+                     <a class="text-reset" href="{{route('categories.all')}}">
+                         <span class="d-none d-lg-block fs-16 bg-white px-1 py-1 hov-text-primary c-pointer">
+                             <li class="list-inline-item pr-4 pl-2 w-100 fs-16" id="category-menu-icon" >
+                                 <i class="ci-view-grid fs-16 pr-2"></i>
+                                 All Categories
+                                 <i class="fa fa-caret-down pl-2"></i>
+                             </li>
+                         </span>
+                     </a>
+                 </span>
 
                <span class=" py-1 pb-3" > <span class="d-none d-lg-block fs-16 bg-white py-3 hov-text-primary c-pointer" style="border-right:solid 1px #cccdce"></span> </span>
                 <ul class="list-inline mb-0 pl-1 mobile-hor-swipe text-center py-1 pb-3 ">
                     @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
                     <li class="list-inline-item mr-0">
-                    <span class=" bg-white px-1 py-1 hov-text-primary"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-16 px-3 py-1 d-inline-block hov-opacity-100 text-reset">
-                            {{ translate($value) }}
+                    <span class=" bg-white px-1 py-1 hov-text-primary">
+                        <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-16 px-3 py-1 d-inline-block hov-opacity-100 text-reset">
+                            {{ $value }}
                         </a>
                     </span>
                     </li>
@@ -378,8 +392,9 @@
                 <ul class="list-inline mb-0 pl-0 mobile-hor-swipe text-center">
                     @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
                     <li class="list-inline-item mr-0">
-                    <span class=" bg-white px-1 py-2 hov-text-primary"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset">
-                            {{ translate($value) }}
+                    <span class=" bg-white px-1 py-2 hov-text-primary">
+                        <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-3 py-2 d-inline-block fw-600 hov-opacity-100 text-reset">
+                            {{ $value }}
                         </a>
                     </span>
                     </li>

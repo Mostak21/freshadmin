@@ -64,8 +64,6 @@
 </head>
 <body class="">
 
-<h1>Mobile</h1>
-
 	<div class="aiz-main-wrapper">
         @include('backend.inc.admin_sidenav')
 		<div class="aiz-content-wrapper">

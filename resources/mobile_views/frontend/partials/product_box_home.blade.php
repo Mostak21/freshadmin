@@ -1,22 +1,12 @@
+{{--{{dd($product->productData->thumbnail)}}--}}
 <div class="mcard product-card ">
     <div class="position-relative xcard">
-			@php
-			// $soldout=1;
-			// $stock=\App\Models\ProductStock::where('product_id',$product->id)->first();
-      //       //return $stock->qty;
-			// if(empty($stock)){
-			// 	$soldout=0;
-		  //    }
-		  //  if(!empty($stock)){
-      //
-		  //         if($stock->qty==0){
-			// 		$soldout=0;
-			// 			}
-		  //    }
-
+		@php
       $Product_Stock = 0 ;
+      if($product->productData != null)
+      $Product_Stock = $product->productData->stock;
+      else
       if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
-
 		@endphp
         @if ($product->unit_price > 5000 && ($product->unit_price-$product->discount)>= 5000)
        <div class="ribbon ribbon-top-right"><span>EMI</span></div> 
@@ -29,37 +19,36 @@
             @if ($product->shipping_type == "free") <span class="tag-text">Free Delivery</span> @endif
             <img
                 class="img-fit lazyload mx-auto h-140px h-md-210px"
-                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
-                data-src="{{ uploaded_asset($product->thumbnail_img) }}"
-                alt="{{  $product->getTranslation('name')  }}"
+                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp"
+                data-src="{{$product->productData->thumbnail?? uploaded_asset($product->thumbnail_img) }}"
+                alt="{{ $product->name }}"
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
             >
         </a>
         @if ($product->wholesale_product)
             <span class="absolute-bottom-left fs-11 text-white fw-600 px-2 lh-1-8" style="background-color: #455a64">
-                {{ translate('Wholesale') }}
+                Wholesale
             </span>
         @endif
         <div class="absolute-top-right aiz-p-hov-icon">
-            <a href="javascript:void(0)" onclick="addToWishList({{ $product->id }});" data-toggle="tooltip" data-title="{{ translate('Add to wishlist') }}" data-placement="left">
+            <a href="javascript:void(0)" onclick="addToWishList({{ $product->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                 <i class="la la-heart-o"></i>
             </a>
-            <a href="javascript:void(0)" onclick="addToCompare({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to compare') }}" data-placement="left">
+            <a href="javascript:void(0)" onclick="addToCompare({{ $product->id }})" data-toggle="tooltip" data-title="Add to compare" data-placement="left">
                 <i class="las la-sync"></i>
             </a>
-           <a class="d-lg-none" href="javascript:void(0)" onclick="showAddToCartModal({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to cart') }}" data-placement="left">
+           <a class="d-lg-none" href="javascript:void(0)" onclick="showAddToCartModal({{ $product->id }})" data-toggle="tooltip" data-title="Add to cart" data-placement="left">
                 <i class="las la-shopping-cart"></i>
             </a>
         </div>
     </div>
     <div class="p-md-3 p-2 text-left">
-        @if(!empty($product->brand->name))
-        <span class="text-reset ">	<a class="d-block text-reset" style="color: #8c8c8c !important; "><small class="fw-300"> {{  $product->brand->name }}</small></a></span>
-		@endif
+
+        <span class="text-reset ">	<a class="d-block text-reset" style="color: #8c8c8c !important; "><small class="fw-300"> {{  $product->productData->brand??$product->brand->name??"" }}</small></a></span>
 
 
         <h3 class="fw-500 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-            <a href="{{ route('product', $product->slug) }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
+            <a href="{{ route('product', $product->slug) }}" class="d-block text-reset">{{  $product->name }}</a>
         </h3>
 
         <div class="fs-15">
