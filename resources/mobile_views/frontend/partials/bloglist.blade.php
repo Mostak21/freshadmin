@@ -1,6 +1,6 @@
 @php
     $blogs = Cache::remember('bloglist', 86400, function () {
-        return \App\models\Blog::where('status',1)->latest()->take(5)->get();
+        return \App\Models\Blog::where('status',1)->latest()->take(5)->get();
     });   
 @endphp
 <div class=" mb-3 d-flex justify-content-between ">
