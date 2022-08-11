@@ -1,27 +1,18 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<section class="productheaderbg py-5">
-    <div class="container text-center">
+<section class="py-3">
+    <div class="container-custom ">
         <div class="row">
-            <div class="col-lg-6 text-center text-lg-left">
-                <h1 class="fw-600 h4">{{ translate('Track Order') }}:   @isset($order) {{ $order->code }} @endisset</h1>
-            </div>
-            <div class="col-lg-6">
-                <ul class="breadcrumb bg-transparent p-0 justify-content-center justify-content-lg-end">
-                    <li class="breadcrumb-item opacity-50">
-                        <a class="text-reset" href="{{ route('home') }}"><i class="fa fa-home"></i> {{ translate('Home') }}</a>
-                    </li>
-                    <li class="text-dark fw-600 breadcrumb-item">
-                        <a class="text-reset" href="{{ route('orders.track') }}">{{ translate('Track Order') }}</a>
-                    </li>
-                </ul>
+            <div class="col-12">
+                <h1 class="fw-600 h4">{{ translate('Track Order') }} </h1> 
+               
             </div>
         </div>
     </div>
 </section>
 <section class="mb-5">
-    <div class="container text-left">
+    <div class="container-custom text-left">
         <div class="row">
             <div class="col-xxl-5 col-xl-6 col-lg-8 mx-auto">
                 <form class="" action="{{ route('orders.track') }}" method="GET" enctype="multipart/form-data">
@@ -42,11 +33,11 @@
             </div>
         </div>
         
-
+       
         @isset($order)
-
+        <div class="py-2 fw-600 fs-18">  Order code: {{ $order->code }} </div> 
         <div class="row my-4">
-            <div class="col-lg-4">
+            <div class="col-12">
                 <div class=" bg-soft-secondary p-4 mr-lg-2 mb-2 rounded">
                    <span class="fw-500 pr-2">
                     Payment method:
@@ -56,7 +47,7 @@
                    </span>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12">
                 <div class=" bg-soft-secondary p-4 mb-2 rounded">
                     <span class="fw-500 pr-2">
                         Delivery Status:
@@ -66,7 +57,7 @@
                        </span>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12">
                 <div class=" bg-soft-secondary p-4 mb-2 ml-lg-2 rounded">
                     <span class="fw-500 pr-2">
                         {{ translate('Order date')}}:
@@ -124,8 +115,8 @@
 
             </div>
         </div>
-        <div class="text-right pt-2">
-            <button class="btn btn-primary btn-sm" onclick="showorderModalm()">Order Details</button>
+        <div class="text-center pt-2">
+            <button class="btn btn-primary btn-sm btn-block fs-15" onclick="showorderModalm()">Order Details</button>
         </div>
 
 

@@ -88,7 +88,7 @@
                 <div class="mr-1">
                     
                     <div class="py-2 d-block text-reset " id="app">
-                        @if($agent->is('iPhone'))
+                        @if($iphone)
                         @if(get_setting('app_store_link') != null)
                         <a href="{{ get_setting('app_store_link') }}" target="blank">
                             <i class="fa-brands fa-app-store fs-22"></i>

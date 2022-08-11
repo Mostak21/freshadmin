@@ -18,7 +18,8 @@ class AppServiceProvider extends ServiceProvider
       Schema::defaultStringLength(191);
       Paginator::useBootstrap();
       $agent = new Agent();
-      view()->share('agent', $agent);
+      $iphone=$agent->is('iPhone')?true:false;
+      view()->share('iphone', $iphone);
       
   }
 

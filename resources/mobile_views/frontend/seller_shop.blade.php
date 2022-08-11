@@ -29,9 +29,9 @@
 
 @section('content')
     <section class="pt-5 mb-4 bg-white">
-        <div class="container">
+        <div class="container-custom">
             <div class="row">
-                <div class="col-md-6 mx-auto">
+                <div class="col-12 m-0">
                     <div class="d-flex justify-content-center card-mobile py-2">
                         <img
                             height="70"
@@ -112,7 +112,7 @@
 
     @if (!isset($type))
         <section class="mb-5">
-            <div class="container rounded-custom">
+            <div class="container-custom rounded-custom">
                 <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
                     @if ($shop->sliders != null)
                         @foreach (explode(',',$shop->sliders) as $key => $slide)
@@ -133,7 +133,7 @@
 	
         <section class="mb-4">
 			@if($featured!=0)
-            <div class="container">
+            <div class="container-custom">
                 <div class="text-left mb-4">
                     <h3 class="h3 fw-600 fs-20 border-bottom">
                         <span class="border-bottom border-primary border-width-2 pb-2 d-inline-block">{{ translate('Featured Products')}}</span>
@@ -151,7 +151,7 @@
     @endif
 
     <section class="mb-4">
-        <div class="container">
+        <div class="container-custom">
             <div class="mb-4">
                 <h3 class="h3 fw-600 fs-20 border-bottom">
                     <span class="border-bottom border-primary border-width-2 pb-2 d-inline-block">

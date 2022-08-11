@@ -289,6 +289,10 @@
 
     </div>
 
+    <div class="container-custom mb-3" id="blog_post">
+        @include('frontend.partials.bloglist')
+    </div>
+
     <div class="pt-5" style="background: #4b566b">
     <div class="container">
       <div class="row pb-3">
@@ -567,6 +571,10 @@
                 $('#section_best_sellers').html(data);
                 AIZ.plugins.slickCarousel();
             });
+
+           
+
+            
         });
     </script>
 @endsection
