@@ -21,11 +21,13 @@
                                 @php
                                     $slider_images = Cache::get('home_slider_images')??null;
                                 @endphp
+{{--                                @if($slider_images)--}}
                                     <div class="carousel-box">
-                                        <a href="{{ json_decode(get_setting('home_slider_links'), true)[0] }}">
+                                        <a href="{{ json_decode(get_setting('home_slider_links'), true)[0]??"#" }}">
                                             <img
                                                 class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
-                                                src="{{ $slider_images[0]}}"
+                                                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/jmxgK2FuCfMtPQVPyxpLH8X3NePdkvx5X95knuAx.svg"
+                                                data-src="{{ $slider_images[0]??"#"}}"
                                                 alt="{{ env('APP_NAME')}} promo"
                                                 @if(count($featured_categories) == 0)
                                                 height="auto"
@@ -36,8 +38,10 @@
                                             >
                                         </a>
                                     </div>
+{{--                                    @endif--}}
                             </div>
                         @endif
+
                     </div>
                  {{--   @if (count($featured_categories) > 0)
                         <ul class="list-unstyled mb-0 row gutters-5">
@@ -165,10 +169,12 @@
 {{--        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])--}}
 {{--    </div>--}}
 
-
-<div id="custom_section1">
-    @include('frontend.partials.home_custom_section_left_demo')
+<div id="fastIndex">
+    <div id="custom_section1">
+        @include('frontend.partials.home_custom_section_left_demo')
+    </div>
 </div>
+
 <div id="custom_section2">
 {{--    @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])--}}
 </div>
@@ -320,22 +326,22 @@
             });
 {{--            @endif--}}
 {{--            @if(Cache::get('home_custom_section2')==null)--}}
-            $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section2').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+{{--            $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+{{--                $('#custom_section2').html(data);--}}
+{{--                AIZ.plugins.slickCarousel();--}}
+{{--            });--}}
 {{--            @endif--}}
 {{--            @if(Cache::get('home_custom_section3')==null)--}}
-            $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section3').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+{{--            $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+{{--                $('#custom_section3').html(data);--}}
+{{--                AIZ.plugins.slickCarousel();--}}
+{{--            });--}}
 {{--            @endif--}}
 {{--            @if(Cache::get('home_custom_section4')==null)--}}
-            $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section4').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+{{--            $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+{{--                $('#custom_section4').html(data);--}}
+{{--                AIZ.plugins.slickCarousel();--}}
+{{--            });--}}
 {{--            @endif--}}
 
 
@@ -345,25 +351,25 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_best_selling').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_best_selling').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_best_sellers').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_best_sellers').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
             $.post('{{ route('home.section.sliderimages') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#sliderimages').html(data);

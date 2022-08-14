@@ -4,7 +4,7 @@
             <div class="px-3">
                 <div class="mb-3 mb-lg-0 rounded">
                     <a href="" class="d-block text-reset">
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/jsvttELRjZRHx1cmfid53jD1NeosxecgXz1Xt2C6.jpg" data-src="" alt="BRAND HOOK LIFESTYLE promo" class="img-fluid w-100 ls-is-cached lazyloaded">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3fitI85JmDtaFNTObXGjV4fKuqvseqovkzg2CNNg.svg" data-src="" alt="BRAND HOOK LIFESTYLE promo" class="img-fluid w-100 ls-is-cached lazyloaded">
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 
@@ -97,7 +97,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 
@@ -155,7 +155,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 
@@ -213,7 +213,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 
@@ -271,7 +271,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 
@@ -329,7 +329,7 @@
 
                                                         <a href="#" class="d-block" tabindex="0">
 
-                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
+                                                            <img class="img-fit mx-auto h-140px h-md-210px ls-is-cached lazyloaded" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg" data-src="" alt="" onerror="this.onerror=null;this.src='https://localhost/httpdocs/public/assets/img/placeholder.jpg';">
                                                         </a>
 
 

@@ -2,12 +2,13 @@
 <div class="mcard product-card ">
     <div class="position-relative xcard">
 		@php
-      $Product_Stock = 0 ;
-      if($product->productData != null)
-      $Product_Stock = $product->productData->stock;
-      else
-      if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+          $Product_Stock = 0 ;
+          if($product->productData != null)
+          $Product_Stock = $product->productData->stock;
+          else
+          if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
 		@endphp
+
         @if ($product->unit_price > 5000 && ($product->unit_price-$product->discount)>= 5000)
        <div class="ribbon ribbon-top-right"><span>EMI</span></div> 
         @endif
@@ -19,7 +20,7 @@
             @if ($product->shipping_type == "free") <span class="tag-text">Free Delivery</span> @endif
             <img
                 class="img-fit lazyload mx-auto h-140px h-md-210px"
-                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp"
+                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg"
                 data-src="{{$product->productData->thumbnail?? uploaded_asset($product->thumbnail_img) }}"
                 alt="{{ $product->name }}"
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"

@@ -313,7 +313,7 @@ class HomeController extends Controller
                 $seed=(date("H")+date("j")+date("n"));
 
                 $template = "left";
-                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template."_fastIndex";
                 $section_data_c->title= "Fragrance";
                 $section_data_c->link= "fragrance"; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
@@ -450,6 +450,8 @@ class HomeController extends Controller
                 return $section_data_c;
             });
         }
+
+//        dd($section_data->banner_image_link);
 
         return view($section_data->template_view ,compact('section_data'));
     }
