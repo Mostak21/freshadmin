@@ -1,13 +1,14 @@
 <?php
 
-use Jenssegers\Agent\Agent;
-$agent = new Agent;
-//$path = 'views';
-$path = $agent->isDesktop() ? 'views' : 'mobile_views';
+//use Jenssegers\Agent\Agent;
+//$agent = new Agent;
+$path = 'views';
 
-if (str_contains(url()->current(), 'admin')) {
-    $path = 'views';
-}
+//$path = $agent->isDesktop() ? 'views' : 'mobile_views';
+//
+//if (str_contains(url()->current(), 'admin')) {
+//    $path = 'views';
+//}
 
 
 return [
