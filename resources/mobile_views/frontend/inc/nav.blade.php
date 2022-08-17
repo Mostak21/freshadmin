@@ -54,7 +54,7 @@
                                 <div class="input-group">
                                     <input class="form-control rounded-end search-field " type="text" id="search" name="keyword" @isset($query)
                                     value="{{ $query }}"
-                                @endisset placeholder="{{translate('Search for products')}}" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
+                                @endisset placeholder="Search for products" autocomplete="off"><i class="ci-search position-absolute top-50 end-0 translate-middle-y text-muted fs-base me-3"></i>
                                   </div>
                             </div>
                         </form>
@@ -88,20 +88,20 @@
                 <div class="mr-1">
                     
                     <div class="py-2 d-block text-reset " id="app">
-                        @if($iphone)
-                        @if(get_setting('app_store_link') != null)
-                        <a href="{{ get_setting('app_store_link') }}" target="blank">
-                            <i class="fa-brands fa-app-store fs-22"></i>
-                        </a>
-                        @endif                        
-                        @else
-                        @if(get_setting('play_store_link') != null)
-                             <a href="{{ get_setting('play_store_link') }}" target="blank">
-                                <i class="fa-brands fa-google-play fs-20"></i>
-                             </a>
-                        @endif
+{{--                        @if($iphone)--}}
+                            @if(get_setting('app_store_link') != null)
+                            <a href="{{ get_setting('app_store_link') }}" target="blank">
+                                <i class="fa-brands fa-app-store fs-22"></i>
+                            </a>
+                            @endif
+{{--                        @else--}}
+                            @if(get_setting('play_store_link') != null)
+                                 <a href="{{ get_setting('play_store_link') }}" target="blank">
+                                    <i class="fa-brands fa-google-play fs-20"></i>
+                                 </a>
+                            @endif
                       
-                        @endif
+{{--                        @endif--}}
                     </div>
                 </div>
 
@@ -117,8 +117,9 @@
     <div class="d-flex justify-content-start mb-2" >
         @foreach (json_decode( get_setting('header_menu_labels'), true) as $key => $value)
         <div>
-        <span class=" bg-dark rounded-custom py-2 mr-2"> <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-2 py-1 d-inline-block  text-light">
-                {{ translate($value) }}
+        <span class=" bg-dark rounded-custom py-2 mr-2">
+            <a href="{{ json_decode( get_setting('header_menu_links'), true)[$key] }}" class="fs-14 px-2 py-1 d-inline-block  text-light">
+                {{ $value }}
             </a>
         </span>
         </div>
