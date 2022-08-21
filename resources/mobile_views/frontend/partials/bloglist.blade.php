@@ -11,7 +11,6 @@
     </div>
     <div>
         <a href="{{  url("blog") }}" class="text-black">View All</a> 
-
     </div>
    
 </div>

@@ -4,7 +4,7 @@
 
 </footer>
 
-
+@if(Route::currentRouteName()!='product')
 <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-footer-top" style="box-shadow: 0px -1px 20px rgb(0 0 0 / 15%)!important; ">
     <div class="mx-4 mb-3"><div class="row align-items-center gutters-5">
          <div class="col">
@@ -96,6 +96,7 @@
          </div></div> 
      </div>
  </div>
+ @endif
  @if (Auth::check() && !isAdmin())
      <div class="aiz-mobile-side-nav collapxe-sidebar-wrap sidebar-xl d-xl-none z-1035">
          <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-backdrop="static" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>

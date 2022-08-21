@@ -25,16 +25,18 @@
                     <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="" onclick="dclicknav()">
                     @endif
                     
-                    {{-- <a class="d-block py-20px ml-0" href="{{ route('home') }}">
+                    <a class="d-block px-2 ml-0" href="{{ route('home') }}">
                         @php
                             $header_logo = get_setting('header_logo');
                         @endphp
                         @if($header_logo != null)
-                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
+                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px" height="30">
+                            {{-- <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/qOOCpKA060DfF6U40HN2IxH8UaDNx2wrqiS7hUzm.png" alt="{{ env('APP_NAME') }}" class="mw-100" height="20"> --}}
+
                         @else
                             <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
                         @endif
-                    </a> --}}
+                    </a>
 
 
                 </div>

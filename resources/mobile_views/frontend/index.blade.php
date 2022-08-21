@@ -41,25 +41,25 @@
                             @endforeach
                         </div>
                     @endif
-                 {{--   @if (count($featured_categories) > 0)
+                   @if (count($featured_categories) > 0)
                         <ul class="list-unstyled mb-0 row gutters-5">
                             @foreach ($featured_categories as $key => $category)
                                 <li class="minw-0 col-4 col-md mt-3">
-                                    <a href="{{ route('products.category', $category->slug) }}" class="d-block rounded bg-white p-2 text-reset shadow-sm">
+                                    <a href="{{ route('products.category', $category->slug) }}" class="card-mobile">
                                         <img
                                             src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                             data-src="{{ uploaded_asset($category->banner) }}"
                                             alt="{{ $category->getTranslation('name') }}"
-                                            class="lazyload img-fit"
-                                            height="78"
+                                            class="lazyload img-fit p-img-round"
+                                            height="80"
                                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
                                         >
-                                        <div class="text-truncate fs-12 fw-600 mt-2 opacity-70">{{ $category->getTranslation('name') }}</div>
+                                        <div class="text-truncate mt-1 fs-14 fw-600 text-center">{{ $category->getTranslation('name') }}</div>
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
-                    @endif --}}
+                    @endif
                 </div>
 
                 @if($num_todays_deal > 0)
@@ -293,7 +293,7 @@
         @include('frontend.partials.bloglist')
     </div>
 
-    <div class="pt-5" style="background: #4b566b">
+    <div class="pt-5" style="background: #1a1f29">
     <div class="container">
       <div class="row pb-3">
         <div class="col-md-3 col-sm-6 mb-4">
