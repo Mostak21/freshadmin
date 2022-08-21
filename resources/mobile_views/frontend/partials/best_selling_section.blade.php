@@ -3,7 +3,9 @@
 {{--        return filter_products(\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(5)->get();--}}
 {{--    });   --}}
 {{--@endphp--}}
-
+@php
+$best_selling_products = $best_selling_products->take(5)??null;
+@endphp
 @if (get_setting('best_selling') == 1)
     <section class="mb-4">
         <div class="container-custom">
