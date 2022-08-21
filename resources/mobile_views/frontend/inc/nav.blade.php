@@ -85,25 +85,25 @@
                         @include('frontend.partials.wishlist')
                     </div>
                 </div>
-                <div class="mr-1">
-                    
-                    <div class="py-2 d-block text-reset " id="app">
+{{--                <div class="mr-1">--}}
+{{--                    --}}
+{{--                    <div class="py-2 d-block text-reset " id="app">--}}
 {{--                        @if($iphone)--}}
-                            @if(get_setting('app_store_link') != null)
-                            <a href="{{ get_setting('app_store_link') }}" target="blank">
-                                <i class="fa-brands fa-app-store fs-22"></i>
-                            </a>
-                            @endif
+{{--                            @if(get_setting('app_store_link') != null)--}}
+{{--                            <a href="{{ get_setting('app_store_link') }}" target="blank">--}}
+{{--                                <i class="fa-brands fa-app-store fs-22"></i>--}}
+{{--                            </a>--}}
+{{--                            @endif--}}
 {{--                        @else--}}
-                            @if(get_setting('play_store_link') != null)
-                                 <a href="{{ get_setting('play_store_link') }}" target="blank">
-                                    <i class="fa-brands fa-google-play fs-20"></i>
-                                 </a>
-                            @endif
-                      
+{{--                            @if(get_setting('play_store_link') != null)--}}
+{{--                                 <a href="{{ get_setting('play_store_link') }}" target="blank">--}}
+{{--                                    <i class="fa-brands fa-google-play fs-20"></i>--}}
+{{--                                 </a>--}}
+{{--                            @endif--}}
+{{--                      --}}
 {{--                        @endif--}}
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
 
 
    
