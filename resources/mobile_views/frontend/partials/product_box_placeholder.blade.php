@@ -5,7 +5,7 @@
 
             <img
                 class="img-fit lazyload mx-auto h-140px h-md-210px"
-                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n5CaJ3EwblTB9K4aaVJIBRj35kW3I67DlyO8vzyc.webp"
+                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg"
                 data-src=""
                 alt=""
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"

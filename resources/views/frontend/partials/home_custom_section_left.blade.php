@@ -2,15 +2,15 @@
         @if (get_setting('home_banner1_images') != null)
         <div class="mb-4">
             <div class="container">
-{{--     {{dd($section_data->productsData)}}--}}
 {{--                    @php $banner_1_imags = json_decode(get_setting('home_banner1_images')); @endphp--}}
 {{--                    @php $banner_1_imags = $section_data->banner_image_link??[1]; @endphp--}}
 {{--                    @foreach ($banner_1_imags as $key => $value)--}}
      
                          <div class="px-3">
                             <div class="mb-3 mb-lg-0 rounded">
-                                <a href="{{ json_decode(get_setting('home_banner1_links'), true)[0] }}" class="d-block text-reset" >
-                                    <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/jsvttELRjZRHx1cmfid53jD1NeosxecgXz1Xt2C6.jpg"
+                                <a href="{{ json_decode(get_setting('home_banner1_links'), true)[0] }}"
+                                   class="d-block text-reset" >
+                                    <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3fitI85JmDtaFNTObXGjV4fKuqvseqovkzg2CNNg.svg"
 {{--                                         data-src="{{ uploaded_asset($banner_1_imags[$key]) }}"--}}
                                          data-src="{{$section_data->banner_image_link??"" }}"
                                          alt="{{ env('APP_NAME') }} promo"

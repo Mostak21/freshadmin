@@ -314,6 +314,7 @@ class HomeController extends Controller
 
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
+//                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template."_fastIndex";
                 $section_data_c->title= "Fragrance";
                 $section_data_c->link= "fragrance"; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
@@ -451,6 +452,8 @@ class HomeController extends Controller
             });
         }
 
+//        dd($section_data->banner_image_link);
+
         return view($section_data->template_view ,compact('section_data'));
     }
 
@@ -465,11 +468,39 @@ class HomeController extends Controller
     }
 
     public function load_best_selling_section(){
-        return view('frontend.partials.best_selling_section');
+
+        $best_selling_products = Cache::remember('best_selling_products', 86400, function () {
+        $products = filter_products(\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(20)->get();
+            foreach ($products as $key => $product){
+                $Product_Stock=0;
+                if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+                $brand = $product->brand->name??"";
+                $Data = (object)array(
+                    'thumbnail' => uploaded_asset($product->thumbnail_img),
+                    'stock' => $Product_Stock,
+                    'brand' => $brand,
+                );
+                $product->productData=$Data;
+                $productsData[$key] = $product;
+            }
+            $products = collect( $productsData);
+        return $products;
+    });
+
+        return view('frontend.partials.best_selling_section',compact('best_selling_products'));
     }
 
     public function load_section_top10_brands(){
-        return view('frontend.partials.top10_brands');
+        $top10_brands = Cache::remember('home_top10_brands', 86400, function () {
+            $top10_brands_id = json_decode(get_setting('top10_brands'));
+            $top10_brands = \App\Models\Brand::whereIn('id', $top10_brands_id)->get();
+            foreach ($top10_brands as $key => $brand) {
+                $brand->logo_link = uploaded_asset($brand->logo);
+            }
+            return $top10_brands;
+        });
+
+        return view('frontend.partials.top10_brands',compact('top10_brands'));
     }
 
     public function load_auction_products_section(){
@@ -486,7 +517,23 @@ class HomeController extends Controller
             $home_categories = json_decode(get_setting('home_categories'));
             foreach ($home_categories as $key => $value){
                 $home_categories_section->categories[$key] = \App\Models\Category::find($value);
-                $home_categories_section->products[$key] =  get_cached_products($home_categories_section->categories[$key]->id);
+                $products = get_cached_products($home_categories_section->categories[$key]->id);
+
+                foreach ($products as $key2 => $product){
+                    $Product_Stock=0;
+                    if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+                    $brand = $product->brand->name??"";
+                    $Data = (object)array(
+                        'thumbnail' => uploaded_asset($product->thumbnail_img),
+                        'stock' => $Product_Stock,
+                        'brand' => $brand,
+                    );
+                    $product->productData=$Data;
+//                    $productsData[$key2] = $product;
+                }
+
+
+                $home_categories_section->products[$key] =  $products;
             }
             return  $home_categories_section;
         });
@@ -495,7 +542,24 @@ class HomeController extends Controller
     }
 
     public function load_best_sellers_section(){
-        return view('frontend.partials.best_sellers_section');
+        $best_selers = Cache::remember('best_selers', 86400, function () {
+            $best_selers =  \App\Models\Seller::where('verification_status', 1)->orderBy('num_of_sale', 'desc')->take(20)->get();
+
+            foreach ($best_selers as $key => $seller){
+                if ($seller->user != null){
+                    $Data = (object)array(
+
+                        'logo' => uploaded_asset($seller->user->shop->logo)??'https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg',
+                        'slug' => $seller->user->shop->slug??null,
+                        'shop_name' => $seller->user->shop->name??null,
+                    );
+                }
+                $seller->sellerData=$Data;
+            }
+
+            return $best_selers;
+        });
+        return view('frontend.partials.best_sellers_section',compact('best_selers'));
     }
 
     public function trackOrder(Request $request)
