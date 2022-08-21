@@ -19,15 +19,21 @@
                 @endphp
 
                 <div class="@if($num_todays_deal > 0) col-lg-12 @else col-lg-12 @endif">
+                    <div id="sliderimages">
                     @if (get_setting('home_slider_images') != null)
                         <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height rounded-slider" data-dots="true" data-autoplay="true">
-                            @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
-                            @foreach ($slider_images as $key => $value)
+
+{{--                            @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp--}}
+                            @php
+                                $slider_images = Cache::get('home_slider_images')??null;
+                            @endphp
+{{--                            @foreach ($slider_images as $key => $value)--}}
                                 <div class="carousel-box">
-                                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[$key] }}">
+                                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[0]??"#" }}">
                                         <img
                                             class="d-block mw-100 img-fit rounded-slider overflow-hidden"
-                                            src="{{ uploaded_asset($slider_images[$key]) }}"
+                                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/jmxgK2FuCfMtPQVPyxpLH8X3NePdkvx5X95knuAx.svg"
+                                            data-src="{{ $slider_images[0]??"#"}}"
                                             alt="{{ env('APP_NAME')}} promo"
                                             @if(count($featured_categories) == 0)
                                             height="auto"
@@ -38,9 +44,10 @@
                                         >
                                     </a>
                                 </div>
-                            @endforeach
+{{--                            @endforeach--}}
                         </div>
                     @endif
+                    </div>
                  {{--   @if (count($featured_categories) > 0)
                         <ul class="list-unstyled mb-0 row gutters-5">
                             @foreach ($featured_categories as $key => $category)
@@ -84,7 +91,7 @@
                                                         class="lazyload img-fit h-140px h-lg-80px"
                                                         src="{{ static_asset('assets/img/placeholder.jpg') }}"
                                                         data-src="{{ uploaded_asset($product->thumbnail_img) }}"
-                                                        alt="{{ $product->getTranslation('name') }}"
+                                                        alt="{{ $product->name }}"
                                                         onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
                                                     >
                                                 </div>
@@ -155,16 +162,16 @@
 
 {{-- Custom Section --}}
     <div id="custom_section1">
-        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section1')??null])
+        @include('frontend.partials.home_custom_section_left_demo')
     </div>
     <div id="custom_section2">
-        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section2')??null])
+        @include('frontend.partials.home_custom_section_left_demo')
     </div>
     <div id="custom_section3">
-        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section3')??null])
+{{--        @include('frontend.partials.home_custom_section_left',['section_data' => Cache::get('home_custom_section3')??null])--}}
     </div>
     <div id="custom_section4">
-        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])
+{{--        @include('frontend.partials.home_custom_section_right',['section_data' => Cache::get('home_custom_section4')??null])--}}
     </div>
 
 {{-- Flash Deal
@@ -220,59 +227,59 @@
     </div>
 
     {{-- Classified Product --}}
-    @if(get_setting('classified_product') == 1)
-        @php
-            $classified_products = \App\Models\CustomerProduct::where('status', '1')->where('published', '1')->take(10)->get();
-        @endphp
-           @if (count($classified_products) > 0)
-               <section class="mb-4">
-                   <div class="container">
-                       <div class="px-2 py-4 px-md-4 py-md-3 bg-white shadow-sm rounded">
-                            <div class="d-flex mb-3 align-items-baseline border-bottom">
-                                <h3 class="h5 fw-700 mb-0">
-                                    <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Classified Ads</span>
-                                </h3>
-                                <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View More</a>
-                            </div>
-                           <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
-                               @foreach ($classified_products as $key => $classified_product)
-                                   <div class="carousel-box">
-                                        <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
-                                            <div class="position-relative">
-                                                <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block">
-                                                    <img
-                                                        class="img-fit lazyload mx-auto h-140px h-md-210px"
-                                                        src="{{ static_asset('assets/img/placeholder.jpg') }}"
-                                                        data-src="{{ uploaded_asset($classified_product->thumbnail_img) }}"
-                                                        alt="{{ $classified_product->getTranslation('name') }}"
-                                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"
-                                                    >
-                                                </a>
-                                                <div class="absolute-top-left pt-2 pl-2">
-                                                    @if($classified_product->conditon == 'new')
-                                                       <span class="badge badge-inline badge-success">new</span>
-                                                    @elseif($classified_product->conditon == 'used')
-                                                       <span class="badge badge-inline badge-danger">Used</span>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            <div class="p-md-3 p-2 text-left">
-                                                <div class="fs-15 mb-1">
-                                                    <span class="fw-700 text-primary">{{ single_price($classified_product->unit_price) }}</span>
-                                                </div>
-                                                <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
-                                                    <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block text-reset">{{ $classified_product->getTranslation('name') }}</a>
-                                                </h3>
-                                            </div>
-                                       </div>
-                                   </div>
-                               @endforeach
-                           </div>
-                       </div>
-                   </div>
-               </section>
-           @endif
-       @endif
+{{--    @if(get_setting('classified_product') == 1)--}}
+{{--        @php--}}
+{{--            $classified_products = \App\Models\CustomerProduct::where('status', '1')->where('published', '1')->take(10)->get();--}}
+{{--        @endphp--}}
+{{--           @if (count($classified_products) > 0)--}}
+{{--               <section class="mb-4">--}}
+{{--                   <div class="container">--}}
+{{--                       <div class="px-2 py-4 px-md-4 py-md-3 bg-white shadow-sm rounded">--}}
+{{--                            <div class="d-flex mb-3 align-items-baseline border-bottom">--}}
+{{--                                <h3 class="h5 fw-700 mb-0">--}}
+{{--                                    <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Classified Ads</span>--}}
+{{--                                </h3>--}}
+{{--                                <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View More</a>--}}
+{{--                            </div>--}}
+{{--                           <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>--}}
+{{--                               @foreach ($classified_products as $key => $classified_product)--}}
+{{--                                   <div class="carousel-box">--}}
+{{--                                        <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">--}}
+{{--                                            <div class="position-relative">--}}
+{{--                                                <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block">--}}
+{{--                                                    <img--}}
+{{--                                                        class="img-fit lazyload mx-auto h-140px h-md-210px"--}}
+{{--                                                        src="{{ static_asset('assets/img/placeholder.jpg') }}"--}}
+{{--                                                        data-src="{{ uploaded_asset($classified_product->thumbnail_img) }}"--}}
+{{--                                                        alt="{{ $classified_product->name }}"--}}
+{{--                                                        onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';"--}}
+{{--                                                    >--}}
+{{--                                                </a>--}}
+{{--                                                <div class="absolute-top-left pt-2 pl-2">--}}
+{{--                                                    @if($classified_product->conditon == 'new')--}}
+{{--                                                       <span class="badge badge-inline badge-success">new</span>--}}
+{{--                                                    @elseif($classified_product->conditon == 'used')--}}
+{{--                                                       <span class="badge badge-inline badge-danger">Used</span>--}}
+{{--                                                    @endif--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="p-md-3 p-2 text-left">--}}
+{{--                                                <div class="fs-15 mb-1">--}}
+{{--                                                    <span class="fw-700 text-primary">{{ single_price($classified_product->unit_price) }}</span>--}}
+{{--                                                </div>--}}
+{{--                                                <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">--}}
+{{--                                                    <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block text-reset">{{ $classified_product->name }}</a>--}}
+{{--                                                </h3>--}}
+{{--                                            </div>--}}
+{{--                                       </div>--}}
+{{--                                   </div>--}}
+{{--                               @endforeach--}}
+{{--                           </div>--}}
+{{--                       </div>--}}
+{{--                   </div>--}}
+{{--               </section>--}}
+{{--           @endif--}}
+{{--       @endif--}}
 
 	 {{-- Best Selling  --}}
     <div id="section_best_selling">
@@ -289,9 +296,9 @@
 
     </div>
 
-    <div class="container-custom mb-3" id="blog_post">
-        @include('frontend.partials.bloglist')
-    </div>
+{{--    <div class="container-custom mb-3" id="blog_post">--}}
+{{--        @include('frontend.partials.bloglist')--}}
+{{--    </div>--}}
 
 <footer >
 
@@ -342,7 +349,7 @@
                         <div class="col-6 mb-4">
                             <a class="" href="{{ route('home') }}">
                                 @if(get_setting('footer_logo') != null)
-                                    <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset(get_setting('footer_logo')) }}" alt="{{ env('APP_NAME') }}" height="44">
+                                    <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ Cache::rememberForever('footer_logo', function () { return uploaded_asset(get_setting('footer_logo')); })}}" alt="{{ env('APP_NAME') }}" alt="{{ env('APP_NAME') }}" height="44">
                                 @else
                                     <img class="lazyload" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" height="44">
                                 @endif
@@ -499,9 +506,17 @@
                     <div class="text-center pb-0 pb-md-4">
                         <ul class="list-inline mb-0 pl-4 pr-4">
                             @if ( get_setting('payment_method_images') !=  null )
-                                @foreach (explode(',', get_setting('payment_method_images')) as $key => $value)
+                                @php
+                                    $payment_method_images = Cache::rememberForever('payment_method_images', function () {
+                                        foreach (explode(',', get_setting('payment_method_images')) as $key => $value){
+                                            $images[$key] = uploaded_asset($value);
+                                        }
+                                     return $images;
+                                     });
+                                @endphp
+                                @foreach ($payment_method_images as $key => $value)
                                     <li class="list-inline-item">
-                                        <img src="{{ uploaded_asset($value) }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
+                                        <img src="{{ $value }}" height="30" class="mw-100 h-auto" style="max-height: 30px">
                                     </li>
                                 @endforeach
                             @endif
@@ -529,27 +544,30 @@
     <script>
         $(document).ready(function(){
 
-            $.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_featured').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_featured').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section1').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section2').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section3').html(data);
-                AIZ.plugins.slickCarousel();
-            });
-            $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#custom_section4').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#custom_section1').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
+
+            {{--$.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#custom_section2').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
+
+            {{--$.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#custom_section3').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
+
+            {{--$.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#custom_section4').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
 
 
@@ -558,29 +576,30 @@
             {{--    AIZ.plugins.slickCarousel();--}}
             {{--});--}}
 
-            $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_best_selling').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_best_selling').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_home_categories').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
-            $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
-                $('#section_top10_brands').html(data);
-                AIZ.plugins.slickCarousel();
-            });
+            {{--$.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#section_top10_brands').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
 
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
                 AIZ.plugins.slickCarousel();
             });
 
-           
-
-            
+            {{--$.post('{{ route('home.section.sliderimages') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
+            {{--    $('#sliderimages').html(data);--}}
+            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--});--}}
         });
     </script>
 @endsection

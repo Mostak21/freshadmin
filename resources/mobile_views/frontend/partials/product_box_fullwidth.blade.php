@@ -1,18 +1,26 @@
+@php
+    $Product_Stock = 0 ;
+    if($product->productData != null)
+    $Product_Stock = $product->productData->stock;
+    else
+    if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+@endphp
+
 <div class="row no-gutters  box-3 align-items-center  product-fullwidth">
   
     <div class="col-3">
         <a href="" class="d-block p-2">
             <img class=" p-img-round lazyload"
-                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
-                data-src="{{ uploaded_asset($product->thumbnail_img) }}" alt="{{  $product->getTranslation('name')  }}"
+                 src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg"
+                 data-src="{{$product->productData->thumbnail?? uploaded_asset($product->thumbnail_img) }}"
                 onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
         </a>
     </div>
     <div class="col-6 ">
         <div class="p-2 text-left">
-            @if(!empty($product->brand->name))
-            <span class="text-black fw-600">	 {{  $product->brand->name }}</span>
-            @endif
+
+            <span class="text-black fw-600">{{ $product->productData->brand??$product->brand->name??""}}</span>
+
     
             <div class="fs-14 fw-500 text-truncate">
                 <a href="{{ route('product', $product->slug) }}" class="d-block text-reset">{{  $product->getTranslation('name')  }}</a>
@@ -27,11 +35,6 @@
     </div>
     <div class="col-3">
 
-        @php
-        $Product_Stock = 0 ;
-        if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
-    
-          @endphp
           {{-- @if ($product->unit_price > 5000 && ($product->unit_price-$product->discount)>= 5000)
                  <div class="bg-dark rounded-custom"><span>EMI</span></div> 
           @endif --}}

@@ -1,4 +1,3 @@
-{{--{{dd($product->productData->thumbnail)}}--}}
 <div class="mcard product-card ">
     <div class="position-relative xcard">
 		@php

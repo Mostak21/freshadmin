@@ -4,9 +4,10 @@
                 <div class="container-custom">
                              <div class="">
                                 <div class="mb-3 mb-lg-0">
-                                    <a href="{{ json_decode(get_setting('home_banner2_links'), true)[0] }}" class="d-block text-reset" >
-                                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/jsvttELRjZRHx1cmfid53jD1NeosxecgXz1Xt2C6.jpg"
-                                             data-src="{{ $section_data->banner_image_link??"" }}"
+                                    <a href="{{ json_decode(get_setting('home_banner2_links'), true)[0] }}"
+                                       class="d-block text-reset" >
+                                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3fitI85JmDtaFNTObXGjV4fKuqvseqovkzg2CNNg.svg"
+                                             data-src="{{$section_data->banner_image_link??"" }}"
                                              alt="{{ env('APP_NAME') }} promo"
                                              class="img-fluid lazyload w-100 rounded-custom">
                                     </a>

@@ -468,7 +468,26 @@ class HomeController extends Controller
     }
 
     public function load_best_selling_section(){
-        return view('frontend.partials.best_selling_section');
+
+        $best_selling_products = Cache::remember('best_selling_products', 86400, function () {
+        $products = filter_products(\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(20)->get();
+            foreach ($products as $key => $product){
+                $Product_Stock=0;
+                if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
+                $brand = $product->brand->name??"";
+                $Data = (object)array(
+                    'thumbnail' => uploaded_asset($product->thumbnail_img),
+                    'stock' => $Product_Stock,
+                    'brand' => $brand,
+                );
+                $product->productData=$Data;
+                $productsData[$key] = $product;
+            }
+            $products = collect( $productsData);
+        return $products;
+    });
+
+        return view('frontend.partials.best_selling_section',compact('best_selling_products'));
     }
 
     public function load_section_top10_brands(){

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-@if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-<html dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@else
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@endif
+{{--@if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--<html dir="rtl" lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+{{--@else--}}
+{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+{{--@endif--}}
+<html lang="en">
 <head>
     <meta name="p:domain_verify" content="5861a5107cb561900d2381c36d5c252b"/>
 	<!-- Google Tag Manager -->
@@ -34,7 +35,8 @@
         <!-- Schema.org markup for Google+ -->
         <meta itemprop="name" content="{{ get_setting('meta_title') }}">
         <meta itemprop="description" content="{{ get_setting('meta_description') }}">
-        <meta itemprop="image" content="{{ uploaded_asset(get_setting('meta_image')) }}">
+            {{--        <meta itemprop="image" content="{{ uploaded_asset(get_setting('meta_image')) }}">--}}
+            <meta itemprop="image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}">
 
         <!-- Twitter Card data -->
         <meta name="twitter:card" content="product">
@@ -42,20 +44,20 @@
         <meta name="twitter:title" content="{{ get_setting('meta_title') }}">
         <meta name="twitter:description" content="{{ get_setting('meta_description') }}">
         <meta name="twitter:creator" content="@author_handle">
-        <meta name="twitter:image" content="{{ uploaded_asset(get_setting('meta_image')) }}">
+            <meta name="twitter:image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}">
 
         <!-- Open Graph data -->
         <meta property="og:title" content="{{ get_setting('meta_title') }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ route('home') }}" />
-        <meta property="og:image" content="{{ uploaded_asset(get_setting('meta_image')) }}" />
+            <meta property="og:image" content="{{ Cache::rememberForever('meta_image', function () { return uploaded_asset(get_setting('meta_image')); }) }}" />
         <meta property="og:description" content="{{ get_setting('meta_description') }}" />
         <meta property="og:site_name" content="{{ env('APP_NAME') }}" />
         <meta property="fb:app_id" content="{{ env('FACEBOOK_PIXEL_ID') }}">
     @endif
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ uploaded_asset(get_setting('site_icon')) }}">
+    <link rel="icon" href="{{ Cache::rememberForever('site_icon', function () { return uploaded_asset(get_setting('site_icon')); })  }}">
 	<script src="https://kit.fontawesome.com/103bf7be9c.js" crossorigin="anonymous"></script>
 
     <!-- Google Fonts -->
@@ -66,16 +68,16 @@
 
 
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
-    @endif
+{{--    @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">--}}
+{{--    @endif--}}
     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
 
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
 
-     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
-     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
-     @endif
+{{--     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
+{{--     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">--}}
+{{--     @endif--}}
  <!-- Main Theme Styles + Bootstrap-->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -85,26 +87,26 @@
     <script>
         var AIZ = AIZ || {};
         AIZ.local = {
-            nothing_selected: '{{ translate('Nothing selected') }}',
-            nothing_found: '{{ translate('Nothing found') }}',
-            choose_file: '{{ translate('Choose file') }}',
-            file_selected: '{{ translate('File selected') }}',
-            files_selected: '{{ translate('Files selected') }}',
-            add_more_files: '{{ translate('Add more files') }}',
-            adding_more_files: '{{ translate('Adding more files') }}',
-            drop_files_here_paste_or: '{{ translate('Drop files here, paste or') }}',
-            browse: '{{ translate('Browse') }}',
-            upload_complete: '{{ translate('Upload complete') }}',
-            upload_paused: '{{ translate('Upload paused') }}',
-            resume_upload: '{{ translate('Resume upload') }}',
-            pause_upload: '{{ translate('Pause upload') }}',
-            retry_upload: '{{ translate('Retry upload') }}',
-            cancel_upload: '{{ translate('Cancel upload') }}',
-            uploading: '{{ translate('Uploading') }}',
-            processing: '{{ translate('Processing') }}',
-            complete: '{{ translate('Complete') }}',
-            file: '{{ translate('File') }}',
-            files: '{{ translate('Files') }}',
+            nothing_selected: 'Nothing selected',
+            nothing_found: 'Nothing found',
+            choose_file: 'Choose file',
+            file_selected: 'File selected',
+            files_selected: 'Files selected',
+            add_more_files: 'Add more files',
+            adding_more_files: 'Adding more files',
+            drop_files_here_paste_or: 'Drop files here, paste or',
+            browse: 'Browse',
+            upload_complete: 'Upload complete',
+            upload_paused: 'Upload paused',
+            resume_upload: 'Resume upload',
+            pause_upload: 'Pause upload',
+            retry_upload: 'Retry upload',
+            cancel_upload: 'Cancel upload',
+            uploading: 'Uploading',
+            processing: 'Processing',
+            complete: 'Complete',
+            file: 'File',
+            files: 'Files',
         }
     </script>
 
@@ -313,19 +315,19 @@
                   }
               });
           });
-            if ($('#lang-change').length > 0) {
-                $('#lang-change .dropdown-menu a').each(function() {
-                    $(this).on('click', function(e){
-                        e.preventDefault();
-                        var $this = $(this);
-                        var locale = $this.data('flag');
-                        $.post('{{ route('language.change') }}',{_token: AIZ.data.csrf, locale:locale}, function(data){
-                            location.reload();
-                        });
+            {{--if ($('#lang-change').length > 0) {--}}
+            {{--    $('#lang-change .dropdown-menu a').each(function() {--}}
+            {{--        $(this).on('click', function(e){--}}
+            {{--            e.preventDefault();--}}
+            {{--            var $this = $(this);--}}
+            {{--            var locale = $this.data('flag');--}}
+            {{--            $.post('{{ route('language.change') }}',{_token: AIZ.data.csrf, locale:locale}, function(data){--}}
+            {{--                location.reload();--}}
+            {{--            });--}}
 
-                    });
-                });
-            }
+            {{--        });--}}
+            {{--    });--}}
+            {{--}--}}
 
             if ($('#currency-change').length > 0) {
                 $('#currency-change .dropdown-menu a').each(function() {
