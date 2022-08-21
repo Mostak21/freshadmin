@@ -1,5 +1,5 @@
-{{--<footer class="mt-5">--}}
-{{--</footer>--}}
+<div class="mt-5">
+</div>
 
 
 <div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-footer-top" style="box-shadow: 0px -1px 20px rgb(0 0 0 / 15%)!important; ">
