@@ -608,7 +608,7 @@
                                     </span>
                                 </div>
                             @endif
-                            <div class="mt-3 p-3 fixed-bottom bg-white shadow-lg border-top rounded-footer-top" style="box-shadow: 0px -1px 20px rgb(0 0 0 / 15%)!important;">
+                            <div class="mt-3 px-3 pt-3 pb-2 fixed-bottom bg-white shadow-lg border-top rounded-footer-top" style="box-shadow: 0px -1px 20px rgb(0 0 0 / 15%)!important;">
                                 @if ($detailedProduct->external_link != null)
                                     <a type="button" class="btn btn-soft-primary mr-2 add-to-cart fw-600" href="{{ $detailedProduct->external_link }}">
                                         <i class="las la-shopping-bag "></i>
