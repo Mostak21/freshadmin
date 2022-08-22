@@ -7,7 +7,7 @@
 
 use Jenssegers\Agent\Agent;
 $agent = new Agent;
-$path = $agent->isDesktop() ? 'views' : 'mobile_views';
+$path = $agent->isMobile() ? 'mobile_views' : 'views';
 if (str_contains(url()->current(), 'admin')) {
     $path = 'views';
 }
