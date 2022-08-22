@@ -54,7 +54,7 @@
         <div class="fs-15">
             <span class="fw-500"> <a class=" text-black"href="{{ route('product', $product->slug) }}">{{ home_discounted_base_price($product) }}</a></span>
             @if(home_base_price($product) != home_discounted_base_price($product))
-                <del class="fw-400 mr-1 fs-12">{{ home_base_price($product) }}</del>
+                <del class="fw-400 mr-1 fs-12" style="color: #be1e2d">{{ home_base_price($product) }}</del>
             @endif
            
         </div>
