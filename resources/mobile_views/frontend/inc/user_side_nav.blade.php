@@ -26,7 +26,7 @@
         </div>  
         
     </div>
-    
+
     @if(Route::currentRouteName()=='dashboard')
         
   
@@ -81,6 +81,9 @@
     </div>
     <!--  when user doing shortcut login// order without password// provider use so that social login dont interapt here  -->
     @if(Auth::user()->password==null && Auth::user()->provider_id==null)
+    <div class="row my-2">
+        <span class="text-danger">*please add password for future login</span>
+    </div>
     <div class="row">
         <div class="col-3">
             <div class="d-flex position-relative align-items-center container-custom h-100">
