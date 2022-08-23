@@ -255,6 +255,7 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $user->name = $request->name;
+        $user->gender= $request->gender;
         $user->address = $request->address;
         $user->country = $request->country;
         $user->city = $request->city;
