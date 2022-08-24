@@ -157,7 +157,7 @@ class CheckoutController extends Controller
             $order = Order::findOrFail($order->id);
             $order->payment_status = 'paid';
             if ($order->partial_pay != null){
-             $order->payment_status = 'partial';
+             $order->payment_status = 'partial_paid';
             }
             $order->payment_details = $payment;
             $order->save();

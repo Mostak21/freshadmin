@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Session;
 use Auth;
 use App\Models\CombinedOrder;
+use App\Models\Order;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\WalletController;
 use App\Models\CustomerPackage;
@@ -219,14 +220,17 @@ class PublicSslCommerzPaymentController extends Controller
 
           #Check order status in order tabel against the transaction id or order id.
           $combined_order = CombinedOrder::findOrFail($request->session()->get('combined_order_id'));
+          $order = Order::where('combined_order_id', $request->session()->get('combined_order_id'))->firstOrFail();
+
+
 
                 if($order->payment_status =='Pending')
                 {
                     $sslc = new SSLCommerz();
-                    $validation = $sslc->orderValidate($tran_id, $order->grand_total, 'BDT', $request->all());
+                    $validation = $sslc->orderValidate($tran_id, $combined_order->grand_total, 'BDT', $request->all());
                     
                     if (!empty($request->partial_pay) && $request->partial_pay == "partial"){
-                        $validation = $sslc->orderValidate($tran_id, $order->partial_pay, 'BDT', $request->all());
+                        $validation = $sslc->orderValidate($tran_id, $combined_order->partial_pay, 'BDT', $request->all());
                     }
                     if($validation == TRUE)
                     {

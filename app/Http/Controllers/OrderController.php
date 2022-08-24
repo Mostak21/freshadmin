@@ -467,9 +467,6 @@ class OrderController extends Controller
 
             $order->grand_total = $subtotal + $tax + $shipping;
 
-            if (!empty($request->partial_pay) && $request->partial_pay == "partial"){
-                $order->partial_pay = ceil($order->grand_total*(10/100));
-            }
 
             if ($seller_product[0]->coupon_code != null) {
                 // if (Session::has('club_point')) {
@@ -487,8 +484,8 @@ class OrderController extends Controller
             $combined_order->grand_total += $order->grand_total;
 
              if (!empty($request->partial_pay) && $request->partial_pay == "partial"){
-                $order->partial_pay = ceil($order->grand_total*(10/100));
-				$order->payment_status = "partial";
+                $order->partial_pay = ceil($order->grand_total*(10/100));  //PublicSslCommerzPaymentController
+				$order->payment_status = "partial_attempt";
             }
 
             $order->save();

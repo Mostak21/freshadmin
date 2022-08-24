@@ -179,8 +179,12 @@
                         <td>
                            @if ($order->payment_status == 'paid')
                             <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
+                            @elseif($order->payment_status == 'partial_paid')
+                                <span class="badge badge-inline badge-success">{{translate('Partial Paid')}}</span>
+                            @elseif($order->payment_status == 'partial_attempt')
+                                <span class="badge badge-inline badge-success">{{translate('Partial Attempt')}}</span>
                             @elseif($order->payment_status == 'partial')
-                                <span class="badge badge-inline badge-warning">{{translate('Partial')}}</span>
+                                <span class="badge badge-inline badge-success">{{translate('Partial')}}</span>
                             @else
                             <span class="badge badge-inline badge-danger">{{translate('Unpaid')}}</span>
                             @endif
