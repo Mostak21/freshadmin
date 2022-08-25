@@ -152,6 +152,9 @@ dataLayer.push({
                         <h3 class="fs-18 fw-600 mb-0">
                             {{ translate('Choose payment method')}}
                         </h3>
+                        @if( $carts[0]->address->city_id !=7291)
+                            <span class="badge badge-inline badge-warning">{{translate('For outside Dhaka city delivery charge must be paid in advance.')}}</span>
+                        @endif
                     </div>
                     <div class="card border shadow-sm  rounded">
                         
