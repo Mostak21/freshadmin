@@ -136,9 +136,11 @@ dataLayer.push({
                 <form action="{{ route('payment.checkout') }}" class="form-default" role="form" method="POST" id="checkout-form">
                     @csrf
                     <input type="hidden" name="owner_id" value="{{ $carts[0]['owner_id'] }}">
-                 
+
                     <div class="card my-3">
-                        
+                        @if( $carts[0]->address->city_id !=7291)
+                            <span class="badge badge-inline badge-warning">{{translate('For outside Dhaka city delivery charge must be paid in advance.')}}</span>
+                        @endif
                         <div class="card-body text-center">
                             <div class="row">
                                 <div class="col-xxl-10 col-xl-12 mx-auto">
