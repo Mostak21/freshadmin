@@ -117,14 +117,11 @@
 @endif
     <div class="text-center my-3">
 		<button class="btn btn-dark" onclick="growDiv()"><i class="ci-menu mr-2"></i>Account menu</button>
-		</div>
+	</div>
 <div class="card-mobile border border-lg border-gray-500">
     <div class=" rounded ">
-      
-		
         <div class="sidemnenu mb-3 d-none d-lg-block" id='grow'>
             <ul class="aiz-side-nav-list  ">
-
                 <li class="aiz-side-nav-item ">
                     <a href="{{ route('dashboard') }}" class="aiz-side-nav-link {{ areActiveRoutes(['dashboard'])}}">
                        <span class="user-panel-icon-bg bg-soft-dark mr-3" ><i class="las la-home user-panel-icon  user-panel-icon aiz-side-nav-icon"></i></span>
