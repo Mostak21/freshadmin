@@ -821,17 +821,29 @@
                 <div class="col-xl-12 order-0 order-xl-1 ">
                     <div class="px-lg-0">
                         <div class="bg-white mb-3 ">
+                            @if($detailedProduct->video_link != null)
+                                    <span class="mb-2 fs-16 fw-600 text-reset">{{ translate('Video')}}</span>
+                            @endif
+                            <div class="embed-responsive embed-responsive-16by9 rounded-custom mb-2">
+                                            @if ($detailedProduct->video_provider == 'youtube' && isset(explode('=', $detailedProduct->video_link)[1]))
+                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ explode('=', $detailedProduct->video_link)[1] }}"></iframe>
+                                            @elseif ($detailedProduct->video_provider == 'dailymotion' && isset(explode('video/', $detailedProduct->video_link)[1]))
+                                                <iframe class="embed-responsive-item" src="https://www.dailymotion.com/embed/video/{{ explode('video/', $detailedProduct->video_link)[1] }}"></iframe>
+                                            @elseif ($detailedProduct->video_provider == 'vimeo' && isset(explode('vimeo.com/', $detailedProduct->video_link)[1]))
+                                                <iframe src="https://player.vimeo.com/video/{{ explode('vimeo.com/', $detailedProduct->video_link)[1] }}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                            @endif
+                            </div>
                             <div class="nav aiz-nav-tabs">
-                                {{--    <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>--}}
+                                {{--    <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>
                                 @if($detailedProduct->video_link != null)
                                     <a href="#tab_default_2" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Video')}}</a>
                                 @endif
                                 @if($detailedProduct->pdf != null)
                                     <a href="#tab_default_3" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Downloads')}}</a>
-                                @endif
+                                @endif--}}
                                 {{-- <a href="#tab_default_4" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Reviews')}}</a>--}}
                             </div>
-
+                            <span class="mb-2 fs-16 fw-600 text-reset">Description</span>
                             <div class="tab-content pt-0">
                                 <div class="tab-pane fade active show" id="tab_default_1">
                                     <div class="p-0">
@@ -841,7 +853,7 @@
                                     </div>
                                 </div>
 
-                                <div class="tab-pane fade" id="tab_default_2">
+                             {{--  <div class="tab-pane fade" id="tab_default_2">
                                     <div class="p-4">
                                         <div class="embed-responsive embed-responsive-16by9">
                                             @if ($detailedProduct->video_provider == 'youtube' && isset(explode('=', $detailedProduct->video_link)[1]))
@@ -858,7 +870,7 @@
                                     <div class="p-4 text-center ">
                                         <a href="{{ uploaded_asset($detailedProduct->pdf) }}" class="btn btn-primary">{{  translate('Download') }}</a>
                                     </div>
-                                </div>
+                                </div>--}} 
                                 <div class="tab-pane fade" id="tab_default_4">
                                     <div class="p-4">
                                         <ul class="list-group list-group-flush">

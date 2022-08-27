@@ -11,7 +11,7 @@
 
 
 
-<header class="@if(get_setting('header_stikcy') == 'on')  @endif mostak22 z-1020 bg-white " id="navbar_top">
+<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 bg-white  mb-2 shadow-sm">
     <div class="position-relative logo-bar-area z-1">
         <div class="container-custom">
             <div class="d-flex align-items-center py-2">
