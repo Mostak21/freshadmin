@@ -823,7 +823,7 @@
                         <div class="bg-white mb-3 ">
                             @if($detailedProduct->video_link != null)
                                     <span class="mb-2 fs-16 fw-600 text-reset">{{ translate('Video')}}</span>
-                            @endif
+                            
                             <div class="embed-responsive embed-responsive-16by9 rounded-custom mb-2">
                                             @if ($detailedProduct->video_provider == 'youtube' && isset(explode('=', $detailedProduct->video_link)[1]))
                                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ explode('=', $detailedProduct->video_link)[1] }}"></iframe>
@@ -832,7 +832,7 @@
                                             @elseif ($detailedProduct->video_provider == 'vimeo' && isset(explode('vimeo.com/', $detailedProduct->video_link)[1]))
                                                 <iframe src="https://player.vimeo.com/video/{{ explode('vimeo.com/', $detailedProduct->video_link)[1] }}" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                                             @endif
-                            </div>
+                            </div>@endif
                             <div class="nav aiz-nav-tabs">
                                 {{--    <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>
                                 @if($detailedProduct->video_link != null)
