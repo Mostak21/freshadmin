@@ -11,7 +11,7 @@
 
 
 
-<header class="@if(get_setting('header_stikcy') == 'on')  @endif mostak22 z-1020 bg-white " id="navbar_top">
+<header class="@if(get_setting('header_stikcy') == 'on') sticky-top @endif z-1020 bg-white  mb-2 shadow-sm">
     <div class="position-relative logo-bar-area z-1">
         <div class="container-custom">
             <div class="d-flex align-items-center py-2">
@@ -25,16 +25,18 @@
                     <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="" onclick="dclicknav()">
                     @endif
                     
-                    {{-- <a class="d-block py-20px ml-0" href="{{ route('home') }}">
+                    <a class="d-block px-2 ml-0" href="{{ route('home') }}">
                         @php
                             $header_logo = get_setting('header_logo');
                         @endphp
                         @if($header_logo != null)
-                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
+                            <img src="{{ uploaded_asset($header_logo) }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px" height="30">
+                            {{-- <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/qOOCpKA060DfF6U40HN2IxH8UaDNx2wrqiS7hUzm.png" alt="{{ env('APP_NAME') }}" class="mw-100" height="20"> --}}
+
                         @else
                             <img src="{{ static_asset('assets/img/logo.png') }}" alt="{{ env('APP_NAME') }}" class="mw-100 h-30px h-md-40px" height="40">
                         @endif
-                    </a> --}}
+                    </a>
 
 
                 </div>
@@ -85,25 +87,25 @@
                         @include('frontend.partials.wishlist')
                     </div>
                 </div>
-{{--                <div class="mr-1">--}}
-{{--                    --}}
-{{--                    <div class="py-2 d-block text-reset " id="app">--}}
-{{--                        @if($iphone)--}}
-{{--                            @if(get_setting('app_store_link') != null)--}}
-{{--                            <a href="{{ get_setting('app_store_link') }}" target="blank">--}}
-{{--                                <i class="fa-brands fa-app-store fs-22"></i>--}}
-{{--                            </a>--}}
-{{--                            @endif--}}
-{{--                        @else--}}
-{{--                            @if(get_setting('play_store_link') != null)--}}
-{{--                                 <a href="{{ get_setting('play_store_link') }}" target="blank">--}}
-{{--                                    <i class="fa-brands fa-google-play fs-20"></i>--}}
-{{--                                 </a>--}}
-{{--                            @endif--}}
-{{--                      --}}
-{{--                        @endif--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+               <div class="mr-1">
+                  
+                   <div class="py-2 d-block text-reset " id="app">
+                       @if($iphone)
+                           @if(get_setting('app_store_link') != null)
+                           <a href="{{ get_setting('app_store_link') }}" target="blank">
+                               <i class="fa-brands fa-app-store fs-22"></i>
+                           </a>
+                           @endif
+                       @else
+                           @if(get_setting('play_store_link') != null)
+                                <a href="{{ get_setting('play_store_link') }}" target="blank">
+                                   <i class="fa-brands fa-google-play fs-20"></i>
+                                </a>
+                           @endif
+                    
+                       @endif
+                   </div>
+               </div>
 
 
    

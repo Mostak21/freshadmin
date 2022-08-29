@@ -6,38 +6,122 @@
         <div class="row ">
             <div class="col-3 text-center">
               <span class=" mb-3 shadow-sm border">
-            @if (Auth::user()->avatar_original != null)
-                <img class="p-img-round img-fit" src="{{ uploaded_asset(Auth::user()->avatar_original) }}" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
-            @else
-                <img class="p-img-round img-fit" src="{{ static_asset('assets/img/avatar-place.png') }}" class="image rounded-circle" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
-            @endif
-        </span>
+                    @if (Auth::user()->avatar_original != null)
+                        <img class="p-img-round img-fit" src="{{ uploaded_asset(Auth::user()->avatar_original) }}" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                    @else
+                        <img class="p-img-round img-fit" src="{{ static_asset('assets/img/avatar-place.png') }}" class="image rounded-circle" onerror="this.onerror=null;this.src='{{ static_asset('assets/img/avatar-place.png') }}';">
+                    @endif
+              </span>
             </div>
             <div class="col-9 text-left">
                 <div class="">
-            <h4 class="h5 fs-16 mb-1 fw-600">{{ Auth::user()->name }}</h4>
-        @if(Auth::user()->phone != null)
-            <div class="text-truncate ">{{ Auth::user()->phone }}</div>
-        @else
-            <div class="text-truncate">{{ Auth::user()->email }}</div>
-        @endif</div>
+                    <h4 class="h5 fs-16 mb-1 fw-600">{{ Auth::user()->name }}</h4>
+                    @if(Auth::user()->phone != null)
+                        <div class="text-truncate ">{{ Auth::user()->phone }}</div>
+                    @else
+                        <div class="text-truncate">{{ Auth::user()->email }}</div>
+                    @endif
+                </div>
             </div>
-        </div>
-        
-        
-      
+        </div>  
         
     </div>
+
+    @if(Route::currentRouteName()=='dashboard')
+        
+  
+    <div class=" p-2 card-mobile">
+        <form action="{{ route('user.profile.update') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+    <div class="row">
+        <div class="col-3 ">
+            <div class="d-flex position-relative align-items-center container-custom h-100">
+            <span>
+                Name:
+            </span>
+             </div>
+        </div>
+        <div class="col-9">
+
+            <input type="text" class="form-control-custom" placeholder="{{ translate('Your Name') }}" name="name" value="{{ Auth::user()->name }}">
+
+        </div>
+    </div>
+    <input type="hidden" name="photo" value="{{ Auth::user()->avatar_original }}">
+    
+
+    <div class="row my-1"> 
+        <div class="col-3">
+            <div class="d-flex position-relative align-items-center container-custom h-100">
+                <span>
+                    Gender:
+                </span>
+                 </div>
+        </div>
+        <div class="col-9">
+            <label class=" border border-sm rounded  p-2 mr-2"> <input type="radio" class=" mr-2 " name="gender" value="male"  @if( Auth::user()->gender == "male" )checked @endif>Male</label>
+            <label class=" border border-sm rounded  p-2"> <input type="radio" class=" mr-2 " name="gender" value="female" @if( Auth::user()->gender == "female" )checked @endif>Female</label>
+            
+            
+
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-3">
+            <div class="d-flex position-relative align-items-center container-custom h-100">
+                <span>
+                    Phone:
+                </span>
+                 </div>
+        </div>
+        <div class="col-9">
+            <input type="text" class="form-control-custom" placeholder="{{ translate('Your Phone')}}" name="phone" value="{{ Auth::user()->phone }}">
+        </div>
+    </div>
+    <!--  when user doing shortcut login// order without password// provider use so that social login dont interapt here  -->
+    @if(Auth::user()->password==null && Auth::user()->provider_id==null)
+    <div class="row my-2">
+        <span class="text-danger">*please add password for future login</span>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <div class="d-flex position-relative align-items-center container-custom h-100">
+                <span>
+                    Password:
+                </span>
+                 </div>
+        </div>
+        <div class="col-9">
+            <input type="password" class="form-control-custom" placeholder="{{ translate('New Password') }}" name="new_password">        </div>
+    </div>
+  
+    <div class="row">
+        <div class="col-3">
+            <div class="d-flex position-relative align-items-center container-custom h-100">
+                <span>
+                    Confirm Password:
+                </span>
+                 </div>
+        </div>
+        <div class="col-9">
+            <input type="password" class="form-control-custom" placeholder="{{ translate('Confirm Password') }}" name="confirm_password">
+        </div>
+    </div>
+    @endif
+    <div class="form-group mb-0 text-right">
+        <button type="submit" class="btn btn-primary btn-sm m-1">{{translate('Save')}}</button>
+    </div>
+        </form>
+</div>  
+@endif
     <div class="text-center my-3">
 		<button class="btn btn-dark" onclick="growDiv()"><i class="ci-menu mr-2"></i>Account menu</button>
-		</div>
+	</div>
 <div class="card-mobile border border-lg border-gray-500">
     <div class=" rounded ">
-      
-		
         <div class="sidemnenu mb-3 d-none d-lg-block" id='grow'>
             <ul class="aiz-side-nav-list  ">
-
                 <li class="aiz-side-nav-item ">
                     <a href="{{ route('dashboard') }}" class="aiz-side-nav-link {{ areActiveRoutes(['dashboard'])}}">
                        <span class="user-panel-icon-bg bg-soft-dark mr-3" ><i class="las la-home user-panel-icon  user-panel-icon aiz-side-nav-icon"></i></span>

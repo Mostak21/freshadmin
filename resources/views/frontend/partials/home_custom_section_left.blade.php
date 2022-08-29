@@ -35,7 +35,7 @@
                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                          </a>
                      </h3> @endif
-                     <div><a class="text-primary" href="{{getBaseURL()}}category/{{$section_data->link??""}}">Shop {{$section_data->title??""}} <i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                     <div><a class="text-primary" href="{{getBaseURL()}}category/{{$section_data->link??""}}">Shop now{{--{{$section_data->title??""}}--}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                      <div class="mchild">
      
      

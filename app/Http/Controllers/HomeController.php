@@ -255,6 +255,7 @@ class HomeController extends Controller
 
         $user = Auth::user();
         $user->name = $request->name;
+        $user->gender= $request->gender;
         $user->address = $request->address;
         $user->country = $request->country;
         $user->city = $request->city;
@@ -307,7 +308,10 @@ class HomeController extends Controller
         if (str_contains($request->getUri(), 'custom_section1')){
             $section_data = Cache::remember('home_custom_section1', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_id =607;
+                $category_slug ="fragrance";
+                $category = Category::where('slug', $category_slug)->first();
+                $category_id = $category->id;
+//                $category_id =607;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
                 $seed=(date("H")+date("j")+date("n"));
@@ -315,8 +319,8 @@ class HomeController extends Controller
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
 //                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template."_fastIndex";
-                $section_data_c->title= "Fragrance";
-                $section_data_c->link= "fragrance"; //category slug
+                $section_data_c->title= $category->name;
+                $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
 //                $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_links'), true)[$key];
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
@@ -344,17 +348,19 @@ class HomeController extends Controller
         elseif (str_contains($request->getUri(), 'custom_section2')){
             $section_data = Cache::remember('home_custom_section2', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_id =467;
+                $category_slug ="smart-wearables";
+                $category = Category::where('slug', $category_slug)->first();
+                $category_id = $category->id;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
                 $seed=(date("H")+date("j")+date("n"));
 
                 $template = "right";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
-                $section_data_c->title= "For Women";
-                $section_data_c->link= "womens-fashion"; //category slug
+                $section_data_c->title= $category->name;
+                $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner2_images'))[0]);
-                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3HIsQ1ePljkYPv9ZZ0TuQKptmFBarj43AgznjAYX.webp";
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/wuLPPz51YsFtA0P2fGARcc5coLY0wzcZMZya3RMo.webp";
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)
                     ->where('published', 1)
@@ -381,15 +387,17 @@ class HomeController extends Controller
         elseif (str_contains($request->getUri(), 'custom_section3')){
             $section_data = Cache::remember('home_custom_section3', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_id =88;
+                $category_slug ="skincare-bath-body";
+                $category = Category::where('slug', $category_slug)->first();
+                $category_id = $category->id;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
                 $seed=(date("H")+date("j")+date("n"));
 
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
-                $section_data_c->title= "For Skin Care";
-                $section_data_c->link= "skincare-bath-body"; //category slug
+                $section_data_c->title= $category->name;
+                $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner3_images'))[0]);
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xrHmac35BGmvU0uFf90x4bSDymlXV9twIR3BK5ot.webp";
 
@@ -417,15 +425,17 @@ class HomeController extends Controller
         elseif (str_contains($request->getUri(), 'custom_section4')){
             $section_data = Cache::remember('home_custom_section4', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_id =69;
+                $category_slug ="gadgets";
+                $category = Category::where('slug', $category_slug)->first();
+                $category_id = $category->id;
                 $category_ids = CategoryUtility::children_ids($category_id);
                 $category_ids[] = $category_id;
                 $seed=(date("H")+date("j")+date("n"));
 
                 $template = "right";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
-                $section_data_c->title= "Gadgets";
-                $section_data_c->link= "gadgets"; //category slug
+                $section_data_c->title= $category->name;
+                $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner4_images'))[0]);
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
 

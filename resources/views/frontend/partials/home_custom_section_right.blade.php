@@ -62,7 +62,7 @@
                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                              </a>
                          </h3> @endif
-                     <div><a class="text-primary" href="{{getBaseURL()}}category/{{$section_data->link??""}}">Shop {{$section_data->title??""}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                     <div><a class="text-primary" href="{{getBaseURL()}}category/{{$section_data->link??""}}">Shop now{{--{{$section_data->title??""}}--}}<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                      <div class="mchild">
                          <a class="d-none d-md-block mt-auto" href="">
                              <img class="d-block w-100" src="{{$section_data->poster_image_link??""}}" alt="{{$section_data->title??""}}"></a>
