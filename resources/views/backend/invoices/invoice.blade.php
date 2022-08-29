@@ -82,10 +82,20 @@
 					<td class="gry-color small">{{  translate('Email') }}: {{ get_setting('contact_email') }}</td>
                     <td class="text-right small"><span class="gry-color small">{{  translate('Order Date') }}:</span> <span class=" strong">{{ date('d-m-Y', $order->date) }}</span></td>
 				</tr>
-				<tr>
-					<td class="gry-color small">{{  translate('Phone') }}: {{ get_setting('contact_phone') }}</td>
-                    <td class="text-right small"><span class="gry-color small">{{  translate('Order Status') }}:</span> <span class=" strong"> Delivered </span></td>
-				</tr>
+
+                    <tr>
+
+                        <td class="gry-color small">{{  translate('Phone') }}: {{ get_setting('contact_phone') }}</td>
+                        <td class="text-right small"><span class="gry-color small">{{  translate('Order Status') }}:</span> <span class=" strong">
+                                @if(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff')
+                                Delivered
+                                @else
+                                    {{$order->delivery_status}}
+                                @endif
+                            </span></td>
+
+                    </tr>
+
 			</table>
 
 		</div>
@@ -108,7 +118,6 @@
 				<thead>
 	                <tr class="gry-color" style="background: #eceff4;">
 	                    <th width="20%" class="text-left">{{ translate('Product Name') }}</th>
-
 						<th width="15%" class="text-left">{{ translate('Delivery Type') }}</th>
 						<th width="15%" class="textleft">{{ translate('Vendor') }}</th>
 	                    <th width="10%" class="text-left">{{ translate('Qty') }}</th>
@@ -123,8 +132,8 @@
 							<tr class="">
 								<td>{{ $orderDetail->product->name }} @if($orderDetail->variation != null) ({{ $orderDetail->variation }}) @endif</td>
 								<td>
-									@if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'home_delivery')
-										{{ translate('Home Delivery') }}
+                                    @if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'delivery_agent')
+                                        {{  $orderDetail->shipping_method }}
 									@elseif ($orderDetail->shipping_type == 'pickup_point')
 										@if ($orderDetail->pickup_point != null)
 											{{ $orderDetail->pickup_point->getTranslation('name') }} ({{ translate('Pickip Point') }})
@@ -193,7 +202,7 @@
                               <th class="text-left strong"><b>{{ translate('Due') }}</b></th>
                               <td class="currency"><b>{{ single_price($order->grand_total - $order->grand_total) }}</b></td>
                           </tr>
-                        @elseif ($order->payment_status == 'partial')
+                        @elseif ($order->payment_status == 'partial' || $order->payment_status == 'delivery_paid')
                           <tr class="border-bottom">
                               <th class="gry-color text-left ">{{ translate('Partial Paid') }}</th>
                               <td class="currency">{{ single_price($order->partial_pay) }}</td>

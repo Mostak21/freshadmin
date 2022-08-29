@@ -36,17 +36,25 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if ($order->payment_status == 'paid')
-                                            <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
-										@elseif($order->payment_status == 'partial')
-                                            <span class="badge badge-inline badge-warning">{{translate('Partial')}}</span>
-                                       
-                                        @else
-                                            <span class="badge badge-inline badge-danger">{{translate('Unpaid')}}</span>
-                                        @endif
-                                        @if($order->payment_status_viewed == 0)
-                                            <span class="ml-2" style="color:green"><strong>*</strong></span>
-                                        @endif
+                                            @if ($order->payment_status == 'paid')
+                                                <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
+                                            @elseif($order->payment_status == 'partial_paid')
+                                                <span class="badge badge-inline badge-info">{{translate('Partial Paid')}}</span>
+                                            @elseif($order->payment_status == 'delivery_paid')
+                                                <span class="badge badge-inline badge-info">{{translate('Delivery Paid')}}</span>
+                                            @elseif($order->payment_status == 'partial_attempt')
+                                                <span class="badge badge-inline badge-warning">{{translate('Partial Attempt')}}</span>
+                                            @elseif($order->payment_status == 'partial')
+                                                <span class="badge badge-inline badge-warning">{{translate('Partial')}}</span>
+                                            @elseif($order->payment_status == 'refund')
+                                                <span class="badge badge-inline badge-danger">{{translate('Refund')}}</span>
+                                            @else
+                                                <span class="badge badge-inline badge-secondary">{{translate('Unpaid')}}</span>
+                                            @endif
+
+                                                @if($order->payment_status_viewed == 0)
+                                                    <span class="ml-2" style="color:green"><strong>*</strong></span>
+                                                @endif
                                     </td>
                                     <td class="text-right">
                                         @if ($order->orderDetails->first()->delivery_status == 'pending' && $order->payment_status == 'unpaid')

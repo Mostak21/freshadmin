@@ -39,9 +39,11 @@
                 <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                     <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>Unpaid</option>
                     <option value="paid" @if ($payment_status == 'paid') selected @endif>Paid</option>
-                    <option value="delivery_paid" @if ($payment_status == 'delivery_paid') selected @endif>Delivery Paid</option>
+                    <option value="refund" @if ($payment_status == 'refund') selected @endif>Refund</option>
                     @if ($payment_status == 'partial_paid')
                         <option value="partial_paid"  selected>Partial Paid </option>
+                    @else
+                        <option value="delivery_paid" @if ($payment_status == 'delivery_paid') selected @endif>Delivery Paid</option>
                     @endif
                 </select>
             </div>
@@ -226,7 +228,7 @@
                             {{ single_price($order->grand_total) }}
                         </td>
                     </tr>
-                     @if ($payment_status == 'partial_paid')
+                     @if ($payment_status == 'partial_paid' || $payment_status == 'delivery_paid' )
                         <tr>
                             <td>
                                 <strong class="text-muted">{{translate('Partial Paid')}} :</strong>
@@ -287,6 +289,7 @@
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
             $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
+                console.log(data);
                 AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             });
         });

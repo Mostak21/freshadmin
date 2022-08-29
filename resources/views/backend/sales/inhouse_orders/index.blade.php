@@ -15,11 +15,12 @@
         </div>
           <div class="col-lg-2 ml-auto">
             <select class="form-control aiz-selectpicker" name="payment_type" id="payment_type" onchange="sort_orders()">
-                <option value="">{{translate('Filter by Payment Status')}}</option>
+                <option value="">{{translate('Payment Status')}}</option>
                 <option value="paid"  @isset($payment_status) @if($payment_status == 'paid') selected @endif @endisset>{{translate('Paid')}}</option>
                 <option value="partial_paid"  @isset($payment_status) @if($payment_status == 'partial_paid') selected @endif @endisset>{{translate('Partial-Paid')}}</option>
                 <option value="partial_attempt"  @isset($payment_status) @if($payment_status == 'partial_attempt') selected @endif @endisset>{{translate('Partial-Attempt')}}</option>
                 <option value="unpaid"  @isset($payment_status) @if($payment_status == 'unpaid') selected @endif @endisset>{{translate('Un-Paid')}}</option>
+                <option value="refund"  @isset($payment_status) @if($payment_status == 'refund') selected @endif @endisset>{{translate('Refund')}}</option>
             </select>
           </div>
 
@@ -101,8 +102,15 @@
                             @elseif ($order->payment_status == 'partial_paid')
                             <span class="badge badge-inline badge-success">{{translate('Partial-Paid')}}</span>
 
+                            @elseif ($order->payment_status == 'delivery_paid')
+                                <span class="badge badge-inline badge-success">{{translate('Delivery-Paid')}}</span>
+
                             @elseif ($order->payment_status == 'partial_attempt')
                             <span class="badge badge-inline badge-success">{{translate('Partial-Attempt')}}</span>
+
+                            @elseif ($order->payment_status == 'refund')
+                                <span class="badge badge-inline badge-success">{{translate('Refund')}}</span>
+
                             @else
                             <span class="badge badge-inline badge-danger">{{translate('Unpaid')}}</span>
                             @endif

@@ -707,26 +707,32 @@ class OrderController extends Controller
 
     public function update_payment_status(Request $request)
     {
+//        dd($request);
         $order = Order::findOrFail($request->order_id);
         $order->payment_status_viewed = '0';
         $order->save();
 
         if (Auth::user()->user_type == 'seller') {
             foreach ($order->orderDetails->where('seller_id', Auth::user()->id) as $key => $orderDetail) {
-                $orderDetail->payment_status = $request->status;
+                $orderDetail->payment_status = $request->status=='paid'?'paid':'unpaid';
                 $orderDetail->save();
             }
         } else {
             foreach ($order->orderDetails as $key => $orderDetail) {
-                $orderDetail->payment_status = $request->status;
+                $orderDetail->payment_status = $request->status=='paid'?'paid':'unpaid';
                 $orderDetail->save();
             }
         }
 
-        $status = 'paid';
+//        $status = 'paid';
+        $status = $request->status;
+        if ($status == 'delivery_paid' && $order->payment_status != 'partial_paid'){
+            $order->partial_pay = 150;
+        }
         foreach ($order->orderDetails as $key => $orderDetail) {
             if ($orderDetail->payment_status != 'paid') {
-                $status = 'unpaid';
+//                $status = 'unpaid';
+                $status = $request->status;
             }
         }
         $order->payment_status = $status;
@@ -760,7 +766,7 @@ class OrderController extends Controller
 
             }
         }
-        return 1;
+        return $request;
     }
 
     public function assign_delivery_boy(Request $request)

@@ -147,8 +147,10 @@
                                         {{ $orderDetail->quantity }}
                                     </td>
                                     <td>
-                                        @if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'home_delivery')
-                                            {{  translate('Home Delivery') }}
+{{--                                        @if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'home_delivery')--}}
+                                        @if ($orderDetail->shipping_type != null && $orderDetail->shipping_type == 'delivery_agent')
+{{--                                            {{  translate('Home Delivery') }}--}}
+                                            {{  $orderDetail->shipping_method }}
                                         @elseif ($orderDetail->shipping_type == 'pickup_point')
                                             @if ($orderDetail->pickup_point != null)
                                                 {{ $orderDetail->pickup_point->name }} ({{  translate('Pickip Point') }})
@@ -228,7 +230,7 @@
                                     <strong><span>{{ single_price($order->grand_total) }}</span></strong>
                                 </td>
                             </tr>
-							 @if ($order->payment_status == 'partial')
+							 @if ($order->payment_status == 'partial_paid' || $order->payment_status == 'delivery_paid' )
                                 <tr class="border-bottom">
                                     <td> <strong class="w-50 fw-600">{{translate('Partial Pay')}} :</strong> </td>
                                     <td class="text-right">

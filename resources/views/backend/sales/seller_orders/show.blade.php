@@ -22,10 +22,13 @@
             <div class="col-md-3 ml-auto">
                 <label for=update_payment_status"">{{translate('Payment Status')}}</label>
                 <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
-                    <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>{{translate('Unpaid')}}</option>
-                    <option value="paid" @if ($payment_status == 'paid') selected @endif>{{translate('Paid')}}</option>
-                    @if ($payment_status == 'partial')
-                        <option value="partial"  selected> {{translate('Partial')}}</option>
+                    <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>Unpaid</option>
+                    <option value="paid" @if ($payment_status == 'paid') selected @endif>Paid</option>
+                    <option value="refund" @if ($payment_status == 'refund') selected @endif>Refund</option>
+                    @if ($payment_status == 'partial_paid')
+                        <option value="partial_paid"  selected>Partial Paid </option>
+                    @else
+                        <option value="delivery_paid" @if ($payment_status == 'delivery_paid') selected @endif>Delivery Paid</option>
                     @endif
                 </select>
             </div>
@@ -206,6 +209,24 @@
             					{{ single_price($order->grand_total) }}
             				</td>
             			</tr>
+                        @if ($payment_status == 'partial_paid' || $payment_status == 'delivery_paid' )
+                            <tr>
+                                <td>
+                                    <strong class="text-muted">{{translate('Partial Paid')}} :</strong>
+                                </td>
+                                <td class="text-muted">
+                                    {{ single_price($order->partial_pay) }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong class="text-muted">{{translate('Due')}} :</strong>
+                                </td>
+                                <td class="text-muted h5">
+                                    {{ single_price($order->grand_total - $order->partial_pay) }}
+                                </td>
+                            </tr>
+                        @endif
           			</tbody>
     			</table>
                 <div class="text-right no-print">

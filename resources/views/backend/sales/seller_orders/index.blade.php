@@ -106,9 +106,19 @@
                         </td>
                         <td>
                             @if ($order->payment_status == 'paid')
-                            <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
+                                <span class="badge badge-inline badge-success">{{translate('Paid')}}</span>
+                            @elseif($order->payment_status == 'partial_paid')
+                                <span class="badge badge-inline badge-info">{{translate('Partial Paid')}}</span>
+                            @elseif($order->payment_status == 'delivery_paid')
+                                <span class="badge badge-inline badge-info">{{translate('Delivery Paid')}}</span>
+                            @elseif($order->payment_status == 'partial_attempt')
+                                <span class="badge badge-inline badge-warning">{{translate('Partial Attempt')}}</span>
+                            @elseif($order->payment_status == 'partial')
+                                <span class="badge badge-inline badge-warning">{{translate('Partial')}}</span>
+                            @elseif($order->payment_status == 'refund')
+                                <span class="badge badge-inline badge-danger">{{translate('Refund')}}</span>
                             @else
-                            <span class="badge badge-inline badge-danger">{{translate('Unpaid')}}</span>
+                                <span class="badge badge-inline badge-secondary">{{translate('Unpaid')}}</span>
                             @endif
                         </td>
                         @if (addon_is_activated('refund_request'))
