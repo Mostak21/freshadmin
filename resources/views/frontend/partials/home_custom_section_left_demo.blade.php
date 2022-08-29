@@ -18,7 +18,7 @@
                         <a style="background: rgba(183,183,183,0.18)">
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </a>
-                    </h3>                      <div><a class="text-primary" href="//localhost/httpdocs/category/">Shop  <i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
+                    </h3>                      <div><a class="text-primary" href="//localhost/httpdocs/category/">Shop now<i class="ci-arrow-right fs-xs align-middle ms-1"></i></a></div>
                     <div class="mchild">
 
 
