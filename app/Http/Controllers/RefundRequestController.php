@@ -24,12 +24,12 @@ class RefundRequestController extends Controller
     {
         $order_detail = OrderDetail::where('id', $id)->first();
         $refund = new RefundRequest;
-        $refund->user_id = Auth::user()->id;
+        $refund->user_id = $request->customer_id??Auth::user()->id;
         $refund->order_id = $order_detail->order_id;
         $refund->order_detail_id = $order_detail->id;
         $refund->seller_id = $order_detail->seller_id;
         $refund->seller_approval = 0;
-        $refund->reason = $request->reason;
+        $refund->reason = $request->reason??"";
         $refund->admin_approval = 0;
         $refund->admin_seen = 0;
         $refund->refund_amount = $order_detail->price + $order_detail->tax;

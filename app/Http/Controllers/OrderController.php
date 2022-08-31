@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\AffiliateController;
+use App\Http\Controllers\RefundRequestController;
 use App\Http\Controllers\OTPVerificationController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ClubPointController;
@@ -733,6 +734,11 @@ class OrderController extends Controller
             if ($orderDetail->payment_status != 'paid') {
 //                $status = 'unpaid';
                 $status = $request->status;
+            }
+            if ($request->status == 'refund' && $order->payment_status != 'unpaid'){
+                $refundRequest = new RefundRequestController;
+                $request->customer_id = $order->user_id;
+                $refundRequest->request_store($request, $orderDetail->id);
             }
         }
         $order->payment_status = $status;
