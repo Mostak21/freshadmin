@@ -319,7 +319,7 @@ class HomeController extends Controller
                 $template = "left";
                 $section_data_c->template_view = "frontend.partials.home_custom_section_".$template;
 //                $section_data_c->template_view = "frontend.partials.home_custom_section_".$template."_fastIndex";
-                $section_data_c->title= $category->name;
+                $section_data_c->title= "FRAGRANCE"??$category->name;
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
                 $section_data_c->banner_image_url= json_decode(get_setting('home_banner1_links'))[0];
