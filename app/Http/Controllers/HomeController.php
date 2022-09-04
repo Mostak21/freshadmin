@@ -308,7 +308,7 @@ class HomeController extends Controller
         if (str_contains($request->getUri(), 'custom_section1')){
             $section_data = Cache::remember('home_custom_section1', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_slug ="fragrance";
+                $category_slug ="premium-fragrances-inpot";
                 $category = Category::where('slug', $category_slug)->first();
                 $category_id = $category->id;
 //                $category_id =607;
