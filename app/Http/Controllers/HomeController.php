@@ -322,6 +322,7 @@ class HomeController extends Controller
                 $section_data_c->title= $category->name;
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
+                $section_data_c->banner_image_url= json_decode(get_setting('home_banner1_links'))[0];
 //                $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_links'), true)[$key];
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
                 $section_data_c->poster_link= null;
@@ -361,6 +362,7 @@ class HomeController extends Controller
                 $section_data_c->title= $category->name;
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner2_images'))[0]);
+                $section_data_c->banner_image_url= json_decode(get_setting('home_banner2_links'))[0];
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/wuLPPz51YsFtA0P2fGARcc5coLY0wzcZMZya3RMo.webp";
                 $section_data_c->poster_link= "https://brandhook.com.bd/product/haylou-rs4-plus-retina-amoled--smart-watch";
 
@@ -401,6 +403,7 @@ class HomeController extends Controller
                 $section_data_c->title= $category->name;
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner3_images'))[0]);
+                $section_data_c->banner_image_url= json_decode(get_setting('home_banner3_links'))[0];
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xrHmac35BGmvU0uFf90x4bSDymlXV9twIR3BK5ot.webp";
                 $section_data_c->poster_link= null;
 
@@ -440,6 +443,7 @@ class HomeController extends Controller
                 $section_data_c->title= $category->name;
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner4_images'))[0]);
+                $section_data_c->banner_image_url= json_decode(get_setting('home_banner4_links'))[0];
                 $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
                 $section_data_c->poster_link= null;
 

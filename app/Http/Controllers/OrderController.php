@@ -120,7 +120,7 @@ class OrderController extends Controller
             $orders = $orders->where('created_at', '>=', date('Y-m-d', strtotime(explode(" to ", $date)[0])))->where('created_at', '<=', date('Y-m-d', strtotime(explode(" to ", $date)[1])));
         }
         $orders = $orders->paginate(30);
-        return view('backend.sales.all_orders.index', compact('orders', 'sort_search', 'delivery_status', 'date','sellers','selectseller'));
+        return view('backend.sales.all_orders.index2', compact('orders', 'sort_search', 'delivery_status', 'date','sellers','selectseller'));
     }
 
     public function all_orders_show($id)

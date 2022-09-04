@@ -1,10 +1,10 @@
  {{-- Banner section 2--}}
-            @if (get_setting('home_banner2_images') != null)
+            @if ($section_data->banner_image_link != null)
             <div class="mb-4">
                 <div class="container-custom">
                              <div class="">
                                 <div class="mb-3 mb-lg-0">
-                                    <a href="{{ json_decode(get_setting('home_banner2_links'), true)[0] }}"
+                                    <a href="{{ $section_data->banner_image_url??"" }}"
                                        class="d-block text-reset" >
                                         <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3fitI85JmDtaFNTObXGjV4fKuqvseqovkzg2CNNg.svg"
                                              data-src="{{$section_data->banner_image_link??"" }}"
