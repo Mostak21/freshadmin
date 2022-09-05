@@ -9,18 +9,18 @@
                 <h5 class="mb-md-0 h6">{{ translate('All Orders') }}</h5>
             </div>
             
-            <div class="dropdown mb-2 mb-md-0">
-                <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
-                    {{translate('Bulk Action')}}
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#" onclick="bulk_delete()"> {{translate('Delete selection')}}</a>
-<!--                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
-                        <i class="las la-sync-alt"></i>
-                        {{translate('Change Order Status')}}
-                    </a>-->
-                </div>
-            </div>
+{{--            <div class="dropdown mb-2 mb-md-0">--}}
+{{--                <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">--}}
+{{--                    {{translate('Bulk Action')}}--}}
+{{--                </button>--}}
+{{--                <div class="dropdown-menu dropdown-menu-right">--}}
+{{--                    <a class="dropdown-item" href="#" onclick="bulk_delete()"> {{translate('Delete selection')}}</a>--}}
+{{--<!--                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">--}}
+{{--                        <i class="las la-sync-alt"></i>--}}
+{{--                        {{translate('Change Order Status')}}--}}
+{{--                    </a>-->--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!-- Change Status Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -110,24 +110,24 @@
                 <thead>
                     <tr>
                         <!--<th>#</th>-->
-                        <th>
-                            <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
-                                        <input type="checkbox" class="check-all">
-                                        <span class="aiz-square-check"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </th>
-                        <th>{{ translate('Order Code') }}</th>
-                        <th data-breakpoints="md">{{ translate('Num. of Products') }}</th>
+{{--                        <th>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="aiz-checkbox-inline">--}}
+{{--                                    <label class="aiz-checkbox">--}}
+{{--                                        <input type="checkbox" class="check-all">--}}
+{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </th>--}}
+                        <th width="175px">{{ translate('Order Code') }}</th>
+                        <th data-breakpoints="md">{{ translate('Vandor') }}</th>
                         <th data-breakpoints="md">{{ translate('Customer') }}</th>
                         <th data-breakpoints="md">{{ translate('Amount') }}</th>
                         <th data-breakpoints="md">{{ translate('Delivery Status') }}</th>
                         <th data-breakpoints="md">{{ translate('Payment Status') }}</th>
                         @if (addon_is_activated('refund_request'))
-                        <th>{{ translate('Refund') }}</th>
+                        <th>{{ translate('Shipping Agent') }}</th>
                         @endif
                         <th class="text-right" width="15%">{{translate('options')}}</th>
                         <th></th>
@@ -140,21 +140,23 @@
     <!--                    <td>
                             {{ ($key+1) + ($orders->currentPage() - 1)*$orders->perPage() }}
                         </td>-->
-                        <td>
-                            <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
-                                        <input type="checkbox" class="check-one" name="id[]" value="{{$order->id}}">
-                                        <span class="aiz-square-check"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </td>
+{{--                        <td>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="aiz-checkbox-inline">--}}
+{{--                                    <label class="aiz-checkbox">--}}
+{{--                                        <input type="checkbox" class="check-one" name="id[]" value="{{$order->id}}">--}}
+{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
                         <td>
                             {{ $order->code }}
                         </td>
                         <td>
-                            {{ count($order->orderDetails) }}
+{{--                            {{ count($order->orderDetails) }}--}}
+                            {{ $order->seller->name??"" }}
+                            {{$order->brand??""}}
                         </td>
                         <td>
                             @if ($order->user != null)
@@ -196,28 +198,29 @@
                         </td>
                         @if (addon_is_activated('refund_request'))
                         <td>
-                            @if (count($order->refund_requests) > 0)
-                            {{ count($order->refund_requests) }} {{ translate('Refund') }}
-                            @else
-                            {{ translate('No Refund') }}
-                            @endif
+{{--                            @if (count($order->refund_requests) > 0)--}}
+{{--                            {{ count($order->refund_requests) }} {{ translate('Refund') }}--}}
+{{--                            @else--}}
+{{--                            {{ translate('No Refund') }}--}}
+{{--                            @endif--}}
+                            {{$order->orderDetails[0]->shipping_method??""}}
                         </td>
                         @endif
                         <td class="text-right">
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('all_orders.show', encrypt($order->id))}}" title="{{ translate('View') }}">
                                 <i class="las la-eye"></i>
                             </a>
-                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">
-                                <i class="las la-download"></i>
-                            </a>
+{{--                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">--}}
+{{--                                <i class="las la-download"></i>--}}
+{{--                            </a>--}}
                              @if(Auth::user()->user_type == 'admin')
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('orders.destroy', $order->id)}}" title="{{ translate('Delete') }}">
                                 <i class="las la-trash"></i>
                             </a>
                             @endif
-                            
+                            <span class="btn btn-soft-success btn-icon btn-circle btn-sm" onclick="notemodal({{$order->id}})"><i class=" las la-notes-medical"></i></span>
                         </td>
-                        <td> <span class="btn btn-soft-success btn-icon btn-circle btn-sm" onclick="notemodal({{$order->id}})"><i class=" las la-notes-medical"></i></span></td>
+{{--                        <td> </td>--}}
                     </tr>
                     
                     @endforeach
