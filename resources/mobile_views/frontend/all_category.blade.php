@@ -8,9 +8,8 @@
 	
 	 <div class="container-custom mb-5">
     
-        @foreach (Cache::remember('parent_cat_main', 86400, function () {
-          return \App\Category::where('level', 0)->orderBy('order_level', 'desc')->get()->take(11);
-      }) as $key => $category)
+        @foreach (\App\Category::where('level', 0)->orderBy('order_level', 'desc')->get()->take(11);
+       as $key => $category)
                
         <div class="cat-mobile mb-2 rounded-custom overflow-hidden" style="background-image: url('{{ uploaded_asset($category->m_bg) }}'); background-size: cover;
           background-repeat: no-repeat;
@@ -40,15 +39,11 @@
                     position: relative;">
                     <div class='measuringWrapper{!! $category->id!!}'>
                 <div class=" grow  " id="submenu{!! $category->id!!}"> 
-                  @php
-                    $cat=0;
-                    $cat=$category->id;
-                    $cachename= "sub_cat".$cat;
-                  @endphp
+                
          
-                    @foreach (Cache::remember($cachename, 86400, function () use($cat) {
-                      return \App\Utility\CategoryUtility::get_immediate_children_ids($cat);
-                  }) as $key => $first_level_id)
+                    @foreach (
+                     \App\Utility\CategoryUtility::get_immediate_children_ids($category->id);
+                   as $key => $first_level_id)
                             <div class="p-2 pl-3" style="background-color: #FAFAFA;"   onClick="subsubmenu({!! \App\Models\Category::find($first_level_id)->id!!},{!! $category->id!!})">
                               <div class="d-flex justify-content-between">
                                   <div>
@@ -70,15 +65,11 @@
                                 position: relative;">
                                 <div class='measuringWrapper{!! \App\Models\Category::find($first_level_id)->id!!}'>
                             <div class="ml-3 subsubmenu" id="subsubmenu{!! \App\Models\Category::find($first_level_id)->id!!}">
-                              @php
-                                $first_level_id=0;
-                                $first_level_id=$first_level_id;
-                                $childcachename= "child_cat".$first_level_id;
-                              @endphp
                               
-                                 @foreach ( Cache::remember($childcachename, 86400, function () use($first_level_id) {
-                                  return \App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id);
-                              }) as $key => $second_level_id)
+                              
+                                 @foreach ( 
+                                 \App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id);
+                             as $key => $second_level_id)
                                <div class="px-3 py-2 bg-white">
                                     <a class="text-reset hov-text-primary " href="{{ route('products.category', \App\Models\Category::find($second_level_id)->slug) }}">{{ \App\Models\Category::find($second_level_id)->name }}</a>
                                 </div> 
