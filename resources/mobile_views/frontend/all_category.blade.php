@@ -39,14 +39,10 @@
                     position: relative;">
                     <div class='measuringWrapper{!! $category->id!!}'>
                 <div class=" grow  " id="submenu{!! $category->id!!}"> 
-                  @php
-                    $cat=0;
-                    $cat=$category->id;
-                    
-                  @endphp
+                
          
                     @foreach (
-                     \App\Utility\CategoryUtility::get_immediate_children_ids($cat);
+                     \App\Utility\CategoryUtility::get_immediate_children_ids($category->id);
                    as $key => $first_level_id)
                             <div class="p-2 pl-3" style="background-color: #FAFAFA;"   onClick="subsubmenu({!! \App\Models\Category::find($first_level_id)->id!!},{!! $category->id!!})">
                               <div class="d-flex justify-content-between">
@@ -69,11 +65,7 @@
                                 position: relative;">
                                 <div class='measuringWrapper{!! \App\Models\Category::find($first_level_id)->id!!}'>
                             <div class="ml-3 subsubmenu" id="subsubmenu{!! \App\Models\Category::find($first_level_id)->id!!}">
-                              @php
-                                $first_level_id=0;
-                                $first_level_id=$first_level_id;
-                               
-                              @endphp
+                              
                               
                                  @foreach ( 
                                  \App\Utility\CategoryUtility::get_immediate_children_ids($first_level_id);
