@@ -270,6 +270,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/orders/details', 'OrderController@order_details')->name('orders.details');
     Route::post('/orders/update_delivery_status', 'OrderController@update_delivery_status')->name('orders.update_delivery_status');
     Route::post('/orders/update_payment_status', 'OrderController@update_payment_status')->name('orders.update_payment_status');
+    Route::post('/orders/update_shipping_status', 'OrderController@update_shipping_status')->name('orders.update_shipping_status');
     Route::post('/orders/delivery-boy-assign', 'OrderController@assign_delivery_boy')->name('orders.delivery-boy-assign');
 
     Route::resource('/reviews', 'ReviewController');

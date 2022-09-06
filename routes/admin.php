@@ -179,7 +179,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::get('/inhouse-orders/{id}/show', 'OrderController@show')->name('inhouse_orders.show');
 
     // Seller Orders
-    Route::get('/seller_orders', 'OrderController@seller_orders')->name('seller_orders.index');
+//    Route::get('/seller_orders', 'OrderController@seller_orders')->name('seller_orders.index');
+//    Route::get('/seller_orders/{id}/show', 'OrderController@seller_orders_show')->name('seller_orders.show');
+
+    Route::get('/seller_orders', 'OrderController@all_orders')->name('seller_orders.index');
     Route::get('/seller_orders/{id}/show', 'OrderController@seller_orders_show')->name('seller_orders.show');
 
     Route::post('/bulk-order-status', 'OrderController@bulk_order_status')->name('bulk-order-status');

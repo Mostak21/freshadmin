@@ -13,6 +13,7 @@
             @php
             $delivery_status = $order->delivery_status;
             $payment_status = $order->payment_status;
+            $shipping_status = $order->shipping_status??"";
             @endphp
 
             <!--Assign Delivery Boy-->
@@ -48,20 +49,41 @@
                 </select>
             </div>
             <div class="col-md-3 ml-auto">
-                <label for=update_delivery_status"">{{translate('Delivery Status')}}</label>
-                @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
-                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
-                        <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
-                        <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
-                        <option value="picked_up" @if ($delivery_status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
-                        <option value="on_the_way" @if ($delivery_status == 'on_the_way') selected @endif>{{translate('On The Way')}}</option>
-                        <option value="return" @if ($delivery_status == 'return') selected @endif>{{translate('Return')}}</option>
-                        <option value="delivered" @if ($delivery_status == 'delivered') selected @endif>{{translate('Delivered')}}</option>
-                        <option value="cancelled" @if ($delivery_status == 'cancelled') selected @endif>{{translate('Cancel')}}</option>
+
+                <div class="pb-2">
+                    <label for=update_delivery_status"">{{translate('Delivery Status')}}</label>
+                    @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
+                        <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                            <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
+                            <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
+                            <option value="picked_up" @if ($delivery_status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
+                            <option value="on_the_way" @if ($delivery_status == 'on_the_way') selected @endif>{{translate('On The Way')}}</option>
+                            <option value="return" @if ($delivery_status == 'return') selected @endif>{{translate('Return')}}</option>
+                            <option value="delivered" @if ($delivery_status == 'delivered') selected @endif>{{translate('Delivered')}}</option>
+                            <option value="cancelled" @if ($delivery_status == 'cancelled') selected @endif>{{translate('Cancel')}}</option>
+                        </select>
+                    @else
+                        <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
+                    @endif
+                </div>
+
+                <div class="pb-4">
+                    <label for=update_shipping_status"">{{translate('Shipping Status')}}</label>
+                    {{--                    @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')--}}
+                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_shipping_status">
+                        <option value="" @if ($shipping_status == '') selected @endif>{{translate('Pending')}}</option>
+                        <option value="picked" @if ($shipping_status == 'picked') selected @endif>{{translate('Picked')}}</option>
+                        <option value="at_hub" @if ($shipping_status == 'at_hub') selected @endif>{{translate('At Hub')}}</option>
+                        <option value="on_hold" @if ($shipping_status == 'on_hold') selected @endif>{{translate('On Hold')}}</option>
+                        <option value="delivered" @if ($shipping_status == 'delivered') selected @endif>{{translate('Delivered')}}</option>
+                        <option value="paid" @if ($shipping_status == 'paid') selected @endif>{{translate('Paid')}}</option>
+                        <option value="return" @if ($shipping_status == 'return') selected @endif>{{translate('Return')}}</option>
                     </select>
-                @else
-                    <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>
-                @endif
+                    {{--                    @else--}}
+                    {{--                        <input type="text" class="form-control" value="{{ $delivery_status }}" disabled>--}}
+                    {{--                    @endif--}}
+                </div>
+
             </div>
         </div>
         <div class="row gutters-5">
@@ -82,7 +104,7 @@
                 @endif
             </div>
             <div class="col-md-4 ml-auto">
-                <table>
+                <table class="table table-bordered aiz-table">
                     <tbody>
                         <tr>
                             <td class="text-main text-bold">{{translate('Order #')}}</td>
@@ -150,7 +172,7 @@
                             <td>
                                 @if ($orderDetail->product != null && $orderDetail->product->auction_product == 0)
                                     <strong><a href="{{ route('product', $orderDetail->product->slug) }}" target="_blank" class="text-muted">{{ $orderDetail->product->getTranslation('name') }}</a></strong>
-                                    <small>{{ $orderDetail->variation }}</small>
+                                    <br><small>{{ $orderDetail->variation }}</small>
                                 @elseif ($orderDetail->product != null && $orderDetail->product->auction_product == 1)
                                     <strong><a href="{{ route('auction-product', $orderDetail->product->slug) }}" target="_blank" class="text-muted">{{ $orderDetail->product->getTranslation('name') }}</a></strong>
                                 @else
@@ -293,5 +315,16 @@
                 AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             });
         });
+
+
+        $('#update_shipping_status').on('change', function(){
+            var order_id = {{ $order->id }};
+            var status = $('#update_shipping_status').val();
+            $.post('{{ route('orders.update_shipping_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
+                console.log(data);
+                AIZ.plugins.notify('success', '{{ translate('Shipping status has been updated') }}');
+            });
+        });
+
     </script>
 @endsection
