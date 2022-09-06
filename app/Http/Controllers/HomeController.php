@@ -593,7 +593,18 @@ class HomeController extends Controller
 
     public function product(Request $request, $slug)
     {
-        $detailedProduct  = Product::with('reviews','category', 'brand', 'stocks', 'user', 'user.shop')->where('auction_product', 0)->where('slug', $slug)->where('approved', 1)->first();
+        $verified_sellers = verified_sellers_id();
+        $detailedProduct  = Product::with('reviews','category', 'brand', 'stocks', 'user', 'user.shop')
+            ->where('auction_product', 0)
+            ->where('slug', $slug)
+            ->where('approved', 1)
+            ->where('published', 1)
+            ->where(function ($p) use ($verified_sellers) {
+                $p->where('added_by', 'admin')->orWhere(function ($q) use ($verified_sellers) {
+                    $q->whereIn('user_id', $verified_sellers);
+                });
+            })
+            ->first();
 
         if($detailedProduct != null && $detailedProduct->published){
             if($request->has('product_referral_code') && addon_is_activated('affiliate_system')) {
@@ -616,21 +627,20 @@ class HomeController extends Controller
 
 
 //                AWS Personalize inport interactions
-            $personalize = new AWSPersonalizeController;
-//            $request1= (object)[];
-            $userClient = Auth::user()->id??$request->session()->get('temp_user_id')??"";
-            $request->AWSdataset = "getRecommandation"??"";
-            $request->AWSuser = $userClient;
-            $request->AWSitem = $detailedProduct->id??"";
-            $personalize->index($request);
+//            $personalize = new AWSPersonalizeController;
+////            $request1= (object)[];
+//            $userClient = Auth::user()->id??$request->session()->get('temp_user_id')??"";
+//            $request->AWSdataset = "getRecommandation"??"";
+//            $request->AWSuser = $userClient;
+//            $request->AWSitem = $detailedProduct->id??"";
+//            $personalize->index($request);
 
 //            $personalize->getRecommendations();
-//
+
 //            $request->AWSdataset = "interactions-dataset"??"";
 //            $request->AWSdata = $productId??"";
 //            $personalize->index($request);
 //                Aws Personalize
-
 
 
             if($detailedProduct->digital == 1){
