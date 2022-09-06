@@ -36,22 +36,41 @@
             @endif
 
             <div class="col-md-3 ml-auto">
-                <label for=update_payment_status"">{{translate('Payment Status')}}</label>
-                <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
-                    <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>Unpaid</option>
-                    <option value="paid" @if ($payment_status == 'paid') selected @endif>Paid</option>
-                    <option value="refund" @if ($payment_status == 'refund') selected @endif>Refund</option>
-                    @if ($payment_status == 'partial_paid')
-                        <option value="partial_paid"  selected>Partial Paid </option>
-                    @else
-                        <option value="delivery_paid" @if ($payment_status == 'delivery_paid') selected @endif>Delivery Paid</option>
-                    @endif
-                </select>
+                <label for="assign_deliver_boy">{{translate('Assign Staff')}}</label>
+{{--                @if($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up')--}}
+                    <select class="form-control aiz-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_staff">
+                        <option value="">{{translate('Select Staff Name')}}</option>
+                        @foreach($staffs as $staff)
+                            <option value="{{ $staff->id }}" @if($order->assign_staff == $staff->id) selected @endif>
+                                {{ $staff->name }}
+                            </option>
+                        @endforeach
+                    </select>
+{{--                @else--}}
+{{--                    <input type="text" class="form-control" value="{{ optional($order->delivery_boy)->name }}" disabled>--}}
+{{--                @endif--}}
+            </div>
+
+            <div class="col-md-3 ml-auto">
+
+                <div class="pb-2">
+                    <label for="update_payment_status">{{translate('Payment Status')}}</label>
+                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
+                        <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>Unpaid</option>
+                        <option value="paid" @if ($payment_status == 'paid') selected @endif>Paid</option>
+                        <option value="refund" @if ($payment_status == 'refund') selected @endif>Refund</option>
+                        @if ($payment_status == 'partial_paid')
+                            <option value="partial_paid"  selected>Partial Paid </option>
+                        @else
+                            <option value="delivery_paid" @if ($payment_status == 'delivery_paid') selected @endif>Delivery Paid</option>
+                        @endif
+                    </select>
+                </div>
             </div>
             <div class="col-md-3 ml-auto">
 
                 <div class="pb-2">
-                    <label for=update_delivery_status"">{{translate('Delivery Status')}}</label>
+                    <label for="update_delivery_status">{{translate('Delivery Status')}}</label>
                     @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
                         <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
                             <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
@@ -68,7 +87,7 @@
                 </div>
 
                 <div class="pb-4">
-                    <label for=update_shipping_status"">{{translate('Shipping Status')}}</label>
+                    <label for="update_shipping_status">{{translate('Shipping Status')}}</label>
                     {{--                    @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')--}}
                     <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_shipping_status">
                         <option value="" @if ($shipping_status == '') selected @endif>{{translate('Pending')}}</option>
@@ -292,6 +311,18 @@
                 delivery_boy    :delivery_boy
             }, function(data){
                 AIZ.plugins.notify('success', '{{ translate('Delivery boy has been assigned') }}');
+            });
+        });
+
+        $('#assign_staff').on('change', function(){
+            var order_id = {{ $order->id }};
+            var staff = $('#assign_staff').val();
+            $.post('{{ route('orders.staff-assign') }}', {
+                _token      :'{{ @csrf_token() }}',
+                order_id    :order_id,
+                staff       :staff
+            }, function(data){
+                AIZ.plugins.notify('success', '{{ translate('Staff has been assigned') }}');
             });
         });
 

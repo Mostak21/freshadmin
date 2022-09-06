@@ -139,7 +139,7 @@
                         <th data-breakpoints="md">{{ translate('Payment Status') }}</th>
 {{--                        @if (addon_is_activated('refund_request'))--}}
                         <th data-breakpoints="md">{{ translate('Shipping Agent') }}</th>
-                        <th>{{ translate('Assigned') }}</th>
+                        <th>{{ translate('Assigned Staff') }}</th>
 {{--                        @endif--}}
                         <th class="text-right" width="15%">{{translate('options')}}</th>
                         <th></th>
@@ -214,7 +214,7 @@
                             {{$order->orderDetails[0]->shipping_method??""}}
                         </td>
                         <td>
-                            meee
+                            {{$order->staff->name??""}}
                         </td>
                         @endif
                         <td class="text-right">

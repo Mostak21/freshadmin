@@ -136,7 +136,10 @@ class OrderController extends Controller
             ->where('user_type', 'delivery_boy')
             ->get();
 
-        return view('backend.sales.all_orders.show', compact('order', 'delivery_boys'));
+        $staffs = User::where('user_type', 'staff')
+            ->get();
+
+        return view('backend.sales.all_orders.show', compact('order', 'delivery_boys','staffs'));
     }
 
     // Inhouse Orders
@@ -833,6 +836,39 @@ class OrderController extends Controller
                 }
             }
         }
+
+        return 1;
+    }
+
+    public function assign_staff(Request $request)
+    {
+
+            $order = Order::findOrFail($request->order_id);
+            $order->assign_staff = $request->staff;
+            $order->save();
+
+
+            if (env('MAIL_USERNAME') != null ) {
+                $array['view'] = 'emails.invoice';
+                $array['subject'] = translate('You are assigned to manage an order. Order code') . ' - ' . $order->code;
+                $array['from'] = env('MAIL_FROM_ADDRESS');
+                $array['order'] = $order;
+
+                try {
+                    Mail::to($order->staff->email)->queue(new InvoiceEmailManager($array));
+                } catch (\Exception $e) {
+
+                }
+            }
+
+//            if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'assign_delivery_boy')->first()->status == 1) {
+//                try {
+//                    SmsUtility::assign_delivery_boy($order->delivery_boy->phone, $order->code);
+//                } catch (\Exception $e) {
+//
+//                }
+//            }
+
 
         return 1;
     }
