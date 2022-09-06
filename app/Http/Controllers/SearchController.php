@@ -296,8 +296,8 @@ class SearchController extends Controller
             }
         }
 
-//        $products = filter_products(Product::query());
-        $products = Product::query();
+        $products = filter_products(Product::query());
+//        $products = Product::query();
         $orderQuery[]=Null;
 
         foreach (explode(' ', trim($query)) as $key=> $word) {

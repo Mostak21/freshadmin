@@ -78,14 +78,14 @@ class OrderController extends Controller
     public function all_orders(Request $request)
     {
          CoreComponentRepository::instantiateShopRepository();
-
         $date = $request->date;
         $sort_search = null;
         $delivery_status = null;
+        $shipping_status = null;
         $selectseller=null;
         $sellers=Order::select('seller_id')->distinct()->get();
 
-          if(!$request->has('search')&& $request->delivery_status == null&& $request->seller==null && $date==null){
+        if(!$request->has('search')&& $request->delivery_status == null&& $request->seller==null && $date==null){
             $orders = Order::where('delivery_status','!=','delivered')->orwhere('payment_status','!=','paid')->orderBy('id', 'desc');
         }
         else{
@@ -101,8 +101,8 @@ class OrderController extends Controller
             else{
                 $orders = Order::orderBy('id', 'desc');
             }
-            
         }
+
         if ($request->has('search')) {
             $sort_search = $request->search;
             $orders = $orders->where('code', 'like', '%' . $sort_search . '%');
@@ -116,11 +116,16 @@ class OrderController extends Controller
             $orders = $orders->where('delivery_status', $request->delivery_status);
             $delivery_status = $request->delivery_status;
         }
+        if ($request->shipping_status != null) {
+            $orders = $orders->where('shipping_status', $request->shipping_status);
+            $delivery_status = $request->shipping_status;
+
+        }
         if ($date != null) {
             $orders = $orders->where('created_at', '>=', date('Y-m-d', strtotime(explode(" to ", $date)[0])))->where('created_at', '<=', date('Y-m-d', strtotime(explode(" to ", $date)[1])));
         }
         $orders = $orders->paginate(30);
-        return view('backend.sales.all_orders.index2', compact('orders', 'sort_search', 'delivery_status', 'date','sellers','selectseller'));
+        return view('backend.sales.all_orders.index2', compact('orders', 'sort_search', 'delivery_status','shipping_status', 'date','sellers','selectseller'));
     }
 
     public function all_orders_show($id)
@@ -131,7 +136,10 @@ class OrderController extends Controller
             ->where('user_type', 'delivery_boy')
             ->get();
 
-        return view('backend.sales.all_orders.show', compact('order', 'delivery_boys'));
+        $staffs = User::where('user_type', 'staff')
+            ->get();
+
+        return view('backend.sales.all_orders.show', compact('order', 'delivery_boys','staffs'));
     }
 
     // Inhouse Orders
@@ -706,6 +714,14 @@ class OrderController extends Controller
 //        return 1;
 //    }
 
+    public function update_shipping_status(Request $request)
+    {
+        $order = Order::findOrFail($request->order_id);
+        $order->shipping_status = $request->status;
+        $order->save();
+        return $order->shipping_status;
+    }
+
     public function update_payment_status(Request $request)
     {
 //        dd($request);
@@ -820,6 +836,39 @@ class OrderController extends Controller
                 }
             }
         }
+
+        return 1;
+    }
+
+    public function assign_staff(Request $request)
+    {
+
+            $order = Order::findOrFail($request->order_id);
+            $order->assign_staff = $request->staff;
+            $order->save();
+
+
+            if (env('MAIL_USERNAME') != null ) {
+                $array['view'] = 'emails.invoice';
+                $array['subject'] = translate('You are assigned to manage an order. Order code') . ' - ' . $order->code;
+                $array['from'] = env('MAIL_FROM_ADDRESS');
+                $array['order'] = $order;
+
+                try {
+                    Mail::to($order->staff->email)->queue(new InvoiceEmailManager($array));
+                } catch (\Exception $e) {
+
+                }
+            }
+
+//            if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'assign_delivery_boy')->first()->status == 1) {
+//                try {
+//                    SmsUtility::assign_delivery_boy($order->delivery_boy->phone, $order->code);
+//                } catch (\Exception $e) {
+//
+//                }
+//            }
+
 
         return 1;
     }
