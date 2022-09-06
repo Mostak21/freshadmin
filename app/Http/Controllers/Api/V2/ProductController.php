@@ -134,11 +134,11 @@ class ProductController extends Controller
         $ip=$_SERVER['REMOTE_ADDR'];
         $hour=date("H");
         $day=date("j");
-        $month=date("n");
+        $month=date("n"); 
         $ip=str_replace(".","",$ip);
         $seed=($ip+$hour+$day+$month);
 
-        $wcategory_id =70;
+        $wcategory_id =88;
         $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
         $wcategory_ids[] = $wcategory_id;
         $products=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(10)->get();
@@ -160,6 +160,44 @@ class ProductController extends Controller
         $wcategory_ids = CategoryUtility::children_ids($wcategory_id);
         $wcategory_ids[] = $wcategory_id;
         $products=Product::whereIn('category_id', $wcategory_ids)->where('published', 1)->inRandomOrder($seed)->take(10)->get();
+	
+        return new ProductMiniCollection($products);
+
+    }
+
+    public function homecat1()
+    {
+
+        $ip=$_SERVER['REMOTE_ADDR'];
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $ip=str_replace(".","",$ip);
+        $seed=($ip+$hour+$day+$month);
+
+        $homecat1_id =90;
+        $homecat1_ids = CategoryUtility::children_ids($homecat1_id);
+        $wcategory_ids[] = $homecat1_id;
+        $products=Product::whereIn('category_id', $homecat1_ids)->where('published', 1)->inRandomOrder($seed)->take(10)->get();
+	
+        return new ProductMiniCollection($products);
+
+    }
+
+    public function homecat2()
+    {
+
+        $ip=$_SERVER['REMOTE_ADDR'];
+        $hour=date("H");
+        $day=date("j");
+        $month=date("n");
+        $ip=str_replace(".","",$ip);
+        $seed=($ip+$hour+$day+$month);
+
+        $homecat1_id =607;
+        $homecat1_ids = CategoryUtility::children_ids($homecat1_id);
+        $wcategory_ids[] = $homecat1_id;
+        $products=Product::whereIn('category_id', $homecat1_ids)->where('published', 1)->inRandomOrder($seed)->take(10)->get();
 	
         return new ProductMiniCollection($products);
 

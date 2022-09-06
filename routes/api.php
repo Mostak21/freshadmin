@@ -103,6 +103,8 @@ Route::group(['prefix' => 'v2', 'middleware' => ['app_language']], function() {
     Route::get('mensproducts','Api\V2\ProductController@mensproducts');
     Route::get('kidsproducts','Api\V2\ProductController@kidsproducts');
     Route::get('gadgetproducts','Api\V2\ProductController@gadgetproducts'); 
+    Route::get('homecat1','Api\V2\ProductController@homecat1'); 
+    Route::get('homecat2','Api\V2\ProductController@homecat2'); 
 
     Route::get('cart-summary/{user_id}', 'Api\V2\CartController@summary')->middleware('auth:api');
     Route::post('carts/process', 'Api\V2\CartController@process')->middleware('auth:api');
