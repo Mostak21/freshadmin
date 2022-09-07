@@ -38,14 +38,20 @@
             <div class="col-md-3 ml-auto">
                 <label for="assign_deliver_boy">{{translate('Assign Staff')}}</label>
 {{--                @if($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up')--}}
+                @if($order->assign_staff == null)
                     <select class="form-control aiz-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_staff">
                         <option value="">{{translate('Select Staff Name')}}</option>
+
                         @foreach($staffs as $staff)
                             <option value="{{ $staff->id }}" @if($order->assign_staff == $staff->id) selected @endif>
                                 {{ $staff->name }}
                             </option>
                         @endforeach
+
                     </select>
+                @else
+                    <input type="text" class="form-control" value="{{ optional($order->staff)->name }}" disabled>
+                @endif
 {{--                @else--}}
 {{--                    <input type="text" class="form-control" value="{{ optional($order->delivery_boy)->name }}" disabled>--}}
 {{--                @endif--}}

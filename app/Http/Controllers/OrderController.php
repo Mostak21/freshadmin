@@ -844,31 +844,23 @@ class OrderController extends Controller
     {
 
             $order = Order::findOrFail($request->order_id);
-            $order->assign_staff = $request->staff;
-            $order->save();
+            if ($order->assign_staff==null){
+                $order->assign_staff = $request->staff;
+                $order->save();
 
+                if (env('MAIL_USERNAME') != null ) {
+                    $array['view'] = 'emails.invoice';
+                    $array['subject'] = translate('You are assigned to manage an order. Order code') . ' - ' . $order->code;
+                    $array['from'] = env('MAIL_FROM_ADDRESS');
+                    $array['order'] = $order;
 
-            if (env('MAIL_USERNAME') != null ) {
-                $array['view'] = 'emails.invoice';
-                $array['subject'] = translate('You are assigned to manage an order. Order code') . ' - ' . $order->code;
-                $array['from'] = env('MAIL_FROM_ADDRESS');
-                $array['order'] = $order;
+                    try {
+                        Mail::to($order->staff->email)->queue(new InvoiceEmailManager($array));
+                    } catch (\Exception $e) {
 
-                try {
-                    Mail::to($order->staff->email)->queue(new InvoiceEmailManager($array));
-                } catch (\Exception $e) {
-
+                    }
                 }
             }
-
-//            if (addon_is_activated('otp_system') && SmsTemplate::where('identifier', 'assign_delivery_boy')->first()->status == 1) {
-//                try {
-//                    SmsUtility::assign_delivery_boy($order->delivery_boy->phone, $order->code);
-//                } catch (\Exception $e) {
-//
-//                }
-//            }
-
 
         return 1;
     }
