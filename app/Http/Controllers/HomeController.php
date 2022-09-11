@@ -959,6 +959,26 @@ class HomeController extends Controller
         return back();
     }
 
+    public function delete_account(Request $request)
+    {
+        $password = $request->delete_account;
+        $user = auth()->user();
+
+        if($user != null){
+
+            if(Hash::check($password, $user->password)){
+                User::where('id',$user->id)->delete();
+                flash(translate('Account has been deleted'))->success();
+                return redirect()->route('home');
+            }
+            else {
+                flash(translate('Invalid password!'))->warning();
+            }
+        }
+
+        return back();
+    }
+
     public function send_email_change_verification_mail($request, $email)
     {
         $response['status'] = 0;

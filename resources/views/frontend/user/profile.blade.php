@@ -219,6 +219,43 @@
         </div>
     </form>
 
+    <!-- Delete account -->
+    <form action="{{ route('user.delete.account') }}" method="POST">
+        @csrf
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0 h6">{{ translate('Delete your account')}}</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group mb-0" >
+                            <p>Enter <code class="text-primary">Password</code> for delete your account permanently</p>
+                        </div>
+                        <div class="input-group mb-3">
+
+                            <input type="password" class="form-control" placeholder="Password" name="delete_account" value="" />
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-primary">
+                               <span class="d-none loading">
+                                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>{{ translate('Sending Email...') }}
+                               </span>
+                                    <span class="default">{{ translate('Delete Account') }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+{{--                    <div class="col-md-2">--}}
+{{--                        <div class="form-group mb-0 text-right">--}}
+{{--                            <button type="submit" class="btn btn-primary">{{translate('Delete')}}</button>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </div>
+            </div>
+        </div>
+    </form>
+
 @endsection
 
 @section('modal')

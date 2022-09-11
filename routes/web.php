@@ -191,6 +191,7 @@ Route::group(['middleware' => ['user', 'verified', 'unbanned']], function() {
     Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('/new-user-verification', 'HomeController@new_verify')->name('user.new.verify');
     Route::post('/new-user-email', 'HomeController@update_email')->name('user.change.email');
+    Route::post('/user-delete-account', 'HomeController@delete_account')->name('user.delete.account');
 
     Route::post('/user/update-profile', 'HomeController@userProfileUpdate')->name('user.profile.update');
 
