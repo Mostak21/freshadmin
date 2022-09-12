@@ -350,7 +350,7 @@ class CheckoutController extends Controller
 
         if ($coupon != null) {
             if (strtotime(date('d-m-Y')) >= $coupon->start_date && strtotime(date('d-m-Y')) <= $coupon->end_date) {
-                if (CouponUsage::where('user_id', Auth::user()->id)->where('coupon_id', $coupon->id)->first() == null) {
+                if (CouponUsage::where('user_id', Auth::user()->id)->where('coupon_id', $coupon->id)->first() == null || $coupon->discount_use == 'multiple') {
                     $coupon_details = json_decode($coupon->details);
 
                     if ($coupon->type == 'cart_base') {

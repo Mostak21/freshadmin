@@ -15,15 +15,22 @@
 </div>
 <div class="form-group row">
    <label class="col-lg-3 col-from-label">{{translate('Discount')}}</label>
-   <div class="col-lg-7">
+   <div class="col-lg-3">
       <input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" required>
    </div>
-   <div class="col-lg-2">
+   <div class="col-lg-3">
        <select class="form-control aiz-selectpicker" name="discount_type">
            <option value="amount">{{translate('Amount')}}</option>
            <option value="percent">{{translate('Percent')}}</option>
        </select>
    </div>
+    <div class="col-lg-3">
+        <select class="form-control aiz-selectpicker" name="discount_use">
+            <option value="single" >{{translate('Single')}}</option>
+            <option value="multiple" >{{translate('Multiple')}}</option>
+        </select>
+    </div>
+
 </div>
 <div class="form-group row">
    <label class="col-lg-3 col-from-label">{{translate('Maximum Discount Amount')}}</label>
