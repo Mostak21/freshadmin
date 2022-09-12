@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="aiz-titlebar text-left mt-2 mb-3">
-    <h1 class="mb-0 h6">{{ translate('Edit Product') }}</h5>
+    <h1 class="mb-0 h6">{{ translate('Edit Product') }} <br> <a href="{{getBaseURL()}}product/{{$product->slug}}" target="_blank"><u>{{$product->name}}<i class="las la-external-link-alt" title="Open in new tab"></i></u></a> </h1>
 </div>
 <div class="">
     <form class="form form-horizontal mar-top" action="{{route('products.update', $product->id)}}" method="POST" enctype="multipart/form-data" id="choice_form">

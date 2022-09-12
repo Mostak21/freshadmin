@@ -133,7 +133,7 @@
                                     <img src="{{ uploaded_asset($product->thumbnail_img)}}" alt="Image" class="size-50px img-fit">
                                 </div>
                                 <div class="col">
-                                    <span class="text-muted text-truncate-2">{{ $product->getTranslation('name') }}</span>
+                                    <a href="{{getBaseURL()}}product/{{$product->slug}}" target="_blank" class="text-muted text-truncate-2">{{ $product->name }}</a>
                                 </div>
                             </div>
                         </td>
