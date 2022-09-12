@@ -233,6 +233,7 @@ Route::group(['prefix' => 'v2', 'middleware' => ['app_language']], function() {
     Route::post('profile/update-image', 'Api\V2\ProfileController@updateImage')->middleware('auth:api');
     Route::post('profile/image-upload', 'Api\V2\ProfileController@imageUpload')->middleware('auth:api');
     Route::post('profile/check-phone-and-email', 'Api\V2\ProfileController@checkIfPhoneAndEmailAvailable')->middleware('auth:api');
+    Route::post('profile/delete-account', 'Api\V2\UserController@delete_account')->middleware('auth:api');
 
     Route::post('file/image-upload', 'Api\V2\FileController@imageUpload')->middleware('auth:api');
 
