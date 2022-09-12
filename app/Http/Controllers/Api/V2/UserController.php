@@ -76,22 +76,27 @@ class UserController extends Controller
 
     }
 
-    public function delete_account(Request $request)
+    public function delete_account($id)
     {
-        $password = $request->password;
+        // $password = $request->password;
         // $user = auth()->user();
-        $user=User::findOrFail($request->user_id);
+        // $user=User::findOrFail($id);
+       if(User::where('id',$id)->delete()) {
+        return response()->json([
+            'result' => "Acount Deleted",]);
+           
+       };
 
-        if($user != null){
+        // if($user != null){
 
-            if(Hash::check($password, $user->password)){
-                User::where('id',$user->id)->delete();
-                return response()->json("Account Deleted");
-            }
-            else {
-                return response()->json("Invalid password!");
-            }
-        }
+        //     if(Hash::check($password, $user->password)){
+        //         User::where('id',$user->id)->delete();
+        //         return response()->json("Account Deleted");
+        //     }
+        //     else {
+        //         return response()->json("Invalid password!");
+        //     }
+        // }
 
         
     }
