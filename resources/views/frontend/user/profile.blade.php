@@ -246,11 +246,6 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="col-md-2">--}}
-{{--                        <div class="form-group mb-0 text-right">--}}
-{{--                            <button type="submit" class="btn btn-primary">{{translate('Delete')}}</button>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>
