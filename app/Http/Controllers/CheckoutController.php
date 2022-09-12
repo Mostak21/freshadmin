@@ -375,6 +375,9 @@ class CheckoutController extends Controller
                             }
 
                         }
+                        else{
+                            $coupon_discount = 0;
+                        }
                     } elseif ($coupon->type == 'product_base') {
                         $coupon_discount = 0;
                         foreach ($carts as $key => $cartItem) {
@@ -419,10 +422,16 @@ class CheckoutController extends Controller
 //                    }
 //                    else{
 //                    }
-
-                    $response_message['response'] = 'success';
-                    $response_message['message'] = translate('Coupon has been applied');
+                    if ($coupon_discount == 0){
+                        $response_message['response'] = 'warning';
+                        $response_message['message'] = translate('Coupon can not be applied');
+                    }
+                    else{
+                        $response_message['response'] = 'success';
+                        $response_message['message'] = translate('Coupon has been applied');
 //                    flash(translate('Coupon has been applied'))->success();
+                    }
+
                 } else {
                     $response_message['response'] = 'warning';
                     $response_message['message'] = translate('You already used this coupon!');
