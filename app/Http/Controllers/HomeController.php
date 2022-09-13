@@ -97,16 +97,16 @@ class HomeController extends Controller
 
         if($request->get('email') != null){
 
-          $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->first();
-          if($user == null){
-            if(strlen($request->email)==14 && strpos($request->email,"+88")==0 && is_numeric($request->email)){
+            $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->first();
+            if($user == null){
+                if(strlen($request->email)==14 && strpos($request->email,"+88")==0 && is_numeric($request->email)){
 
-                $user = User::whereIn('user_type', ['customer', 'seller'])->where('phone', $request->email)->first();
+                    $user = User::whereIn('user_type', ['customer', 'seller'])->where('phone', $request->email)->first();
+                }
+                elseif (strlen($request->email)==11 && strpos($request->email,"01")==0  && is_numeric($request->email)){
+                    $user = User::whereIn('user_type', ['customer', 'seller'])->where('phone', "+88".$request->email)->first();
+                }
             }
-            elseif (strlen($request->email)==11 && strpos($request->email,"01")==0  && is_numeric($request->email)){
-                $user = User::whereIn('user_type', ['customer', 'seller'])->where('phone', "+88".$request->email)->first();
-            }
-          }
         }
 
         if($user != null){
@@ -128,51 +128,51 @@ class HomeController extends Controller
         return back()->withInput();
     }
 
- /**
- * Create a new controller instance.
- *
- * @return void
- */
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
 
     public function cart_login_guest(Request $request){
-    $user = null;
+        $user = null;
 
-    if($request->get('email') != null){
-        $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->first();
-        if($user == null){
-            $user = User::where('phone', '+88'.$request->email)->orWhere('phone', $request->email)->first();
-        }
-
-        if ($user != null && $user->password != null && password_verify(null, $user->password) && $user->email_verified_at != null){
-            $user->email_verified_at = null;
-            $user->save();
-        }
-        if ($user != null && $user->password != null && password_verify(null, $user->password) && $user->email_verified_at == null){
-            $user->verification_code = rand(100000, 999999);
-            $user->verification_code_sending_at = date('Y-m-d h:m:s');
-            $user->save();
-            $otpController = new OTPVerificationController;
-            $otpController->send_code($user);
-            if($user->email != null){
-                event(new Registered($user));
+        if($request->get('email') != null){
+            $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->first();
+            if($user == null){
+                $user = User::where('phone', '+88'.$request->email)->orWhere('phone', $request->email)->first();
             }
-            auth()->login($user, false);
-        }
-    }
 
-    $registration = null;
-    if ($user == null){
-        $request->guest = 1;
-        $registerController = new RegisterController;
-        $registration = $registerController->register($request);
-        $registration = json_decode($registration->content());
-        if (!isset($registration->errors)){
-            $user = Auth::user();
+            if ($user != null && $user->password != null && password_verify(null, $user->password) && $user->email_verified_at != null){
+                $user->email_verified_at = null;
+                $user->save();
+            }
+            if ($user != null && $user->password != null && password_verify(null, $user->password) && $user->email_verified_at == null){
+                $user->verification_code = rand(100000, 999999);
+                $user->verification_code_sending_at = date('Y-m-d h:m:s');
+                $user->save();
+                $otpController = new OTPVerificationController;
+                $otpController->send_code($user);
+                if($user->email != null){
+                    event(new Registered($user));
+                }
+                auth()->login($user, false);
+            }
         }
-    }
 
-    return  view('frontend.partials.cart_login_guest',compact('user','registration'))->render();
-}
+        $registration = null;
+        if ($user == null){
+            $request->guest = 1;
+            $registerController = new RegisterController;
+            $registration = $registerController->register($request);
+            $registration = json_decode($registration->content());
+            if (!isset($registration->errors)){
+                $user = Auth::user();
+            }
+        }
+
+        return  view('frontend.partials.cart_login_guest',compact('user','registration'))->render();
+    }
 
 
     /**
@@ -324,7 +324,7 @@ class HomeController extends Controller
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner1_images'))[0]);
                 $section_data_c->banner_image_url= json_decode(get_setting('home_banner1_links'))[0];
 //                $section_data_c->banner_image_link= json_decode(get_setting('home_banner1_links'), true)[$key];
-                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/707VCGinE8G9p80x5Bv6xHolGXDuZPoZO3I6kp5p.webp";
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/evMmZ6fieOftcGv1ug637GJB8h4Pd5B8EM2lcu8R.webp";
                 $section_data_c->poster_link= null;
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)->where('published', 1)
@@ -344,7 +344,7 @@ class HomeController extends Controller
                 }
                 $section_data_c->products = collect( $productsData);
 
-            return $section_data_c;
+                return $section_data_c;
             });
         }
         elseif (str_contains($request->getUri(), 'custom_section2')){
@@ -404,7 +404,7 @@ class HomeController extends Controller
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner3_images'))[0]);
                 $section_data_c->banner_image_url= json_decode(get_setting('home_banner3_links'))[0];
-                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/xrHmac35BGmvU0uFf90x4bSDymlXV9twIR3BK5ot.webp";
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Ixcj2BtqyusLJaRHnSRO154iDslnAMswmntFG6sw.webp";
                 $section_data_c->poster_link= null;
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)
@@ -444,7 +444,7 @@ class HomeController extends Controller
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner4_images'))[0]);
                 $section_data_c->banner_image_url= json_decode(get_setting('home_banner4_links'))[0];
-                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Wk2t2DRROfge5DyCLSpz3PWVyvu45iHIIScaNtBq.webp";
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/ueNKSTzMmKjCyJ5g5oEQxeuuCXAyFHaa2iRBTquX.webp";
                 $section_data_c->poster_link= null;
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)
@@ -488,7 +488,7 @@ class HomeController extends Controller
     public function load_best_selling_section(){
 
         $best_selling_products = Cache::remember('best_selling_products', 86400, function () {
-        $products = filter_products(\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(20)->get();
+            $products = filter_products(\App\Models\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(20)->get();
             foreach ($products as $key => $product){
                 $Product_Stock=0;
                 if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
@@ -502,8 +502,8 @@ class HomeController extends Controller
                 $productsData[$key] = $product;
             }
             $products = collect( $productsData);
-        return $products;
-    });
+            return $products;
+        });
 
         return view('frontend.partials.best_selling_section',compact('best_selling_products'));
     }
@@ -1093,19 +1093,19 @@ class HomeController extends Controller
         return view('frontend.inhouse_products', compact('products'));
     }
 
-	public function perfumecustom(){
+    public function perfumecustom(){
 
-       // $orderidlist= OrderDetail::where('seller_id',178)->pluck('product_id')->toArray();
-       // $brandlist= array('118','98','89');
-       // $orderproduct=Product::whereIn('id',$orderidlist)->pluck('id');
-       // $bbrands=array('276','39','119','106','105','264','270','18','40','70','121','277','99','110','72','103','253','285','21','95','96','104','254','255','16','259','256','286','260','261','76','111','250','251','265');
+        // $orderidlist= OrderDetail::where('seller_id',178)->pluck('product_id')->toArray();
+        // $brandlist= array('118','98','89');
+        // $orderproduct=Product::whereIn('id',$orderidlist)->pluck('id');
+        // $bbrands=array('276','39','119','106','105','264','270','18','40','70','121','277','99','110','72','103','253','285','21','95','96','104','254','255','16','259','256','286','260','261','76','111','250','251','265');
 
         //$product3=Product::where('user_id',178)->count();
-		//$product3=Product::where('brand_id',null)->where('user_id',178)->pluck('id')->toArray();
+        //$product3=Product::where('brand_id',null)->where('user_id',178)->pluck('id')->toArray();
         //$product3=Product::wherenotIN('brand_id',$bbrands)->where('user_id',864)->pluck('id')->toArray();
         //$product2=Product::where('user_id',864)->count();
 
-      //  return $product3;
+        //  return $product3;
 
         // foreach($product3 as $p){
         //     $product = Product::find($p);
@@ -1114,16 +1114,16 @@ class HomeController extends Controller
 
         // }
 
-     // Product::destroy($product3);
+        // Product::destroy($product3);
 
         //foreach($product4 as $p){
         //   $product = Product::find($p);
         //    $product->user_id = 864;
         //   $product->save();
 
-      //  }
+        //  }
 
-      // return [ $product2,$product3,];
+        // return [ $product2,$product3,];
     }
 
 
