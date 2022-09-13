@@ -21,8 +21,8 @@
                 <div class="col-auto col-xl-2 pl-0 d-flex align-items-center">
                     @if(Route::currentRouteName()!='home')
                     <img class="pr-2" src="{{ static_asset('m_asset/arrow.png') }}" height="32px" alt="" onclick="history.back()">
-                    @else
-                    <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="" onclick="dclicknav()">
+{{--                    @else--}}
+{{--                    <img src="{{ static_asset('m_asset/menu.png') }}" height="32px" alt="" onclick="dclicknav()">--}}
                     @endif
                     
                     <a class="d-block px-2 ml-0" href="{{ route('home') }}">
@@ -78,34 +78,41 @@
 
                  <div class=" mr-0">
                     <a class="py-2 d-block text-reset" href="javascript:void(0);" data-toggle="class-toggle" data-target=".front-header-search">
-                        <i class="las la-search la-flip-horizontal la-2x"></i>
+                        <i class="ci-search fs-22 px-1 la-2x " ></i>
                     </a>
                 </div>
                 <div class="mr-0">
-                    
-                    <div class="py-2 d-block text-reset " id="wishlist">
+                    <div class="py-2 px-1 d-block text-reset " id="wishlist">
+                        @include('frontend.partials.compare')
+                    </div>
+                </div>
+                <div class="mr-0">
+                    <div class="py-2 px-1 d-block text-reset " id="wishlist">
                         @include('frontend.partials.wishlist')
                     </div>
                 </div>
-               <div class="mr-1">
-                  
-                   <div class="py-2 d-block text-reset " id="app">
+               <div class="mr-0">
+                   <div class="py-2 px-2 d-block " id="app">
                        @if($iphone)
                            @if(get_setting('app_store_link') != null)
-                           <a href="{{ get_setting('app_store_link') }}" target="blank">
+                           <a class="text-reset " href="{{ get_setting('app_store_link') }}" target="blank">
                                <i class="fa-brands fa-app-store fs-22"></i>
                            </a>
                            @endif
                        @else
                            @if(get_setting('play_store_link') != null)
-                                <a href="{{ get_setting('play_store_link') }}" target="blank">
+                                <a class="text-reset " href="{{ get_setting('play_store_link') }}" target="blank">
                                    <i class="fa-brands fa-google-play fs-20"></i>
                                 </a>
                            @endif
-                    
                        @endif
                    </div>
                </div>
+                <div class="mr-1" id="ci-menu">
+                    <div class="py-2 pl-2 d-block align-items-center" style="vertical-align: middle;">
+                        <i class="ci-menu fs-22 " onclick="dclicknav()"></i>
+                    </div>
+                </div>
 
 
    
