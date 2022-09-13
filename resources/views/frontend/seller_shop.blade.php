@@ -114,7 +114,7 @@
                     @if ($shop->sliders != null)
                         @foreach (explode(',',$shop->sliders) as $key => $slide)
                             <div class="carousel-box">
-                                <img class="d-block w-100 lazyload rounded h-200px h-lg-380px img-fit" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset($slide) }}" alt="{{ $key }} offer">
+                                <img class="d-block w-100 lazyload rounded h-auto img-fit" src="{{ static_asset('assets/img/placeholder-rect.jpg') }}" data-src="{{ uploaded_asset($slide) }}" alt="{{ $key }} offer">
                             </div>
                         @endforeach
                     @endif
@@ -168,7 +168,8 @@
             </div>
             <div class="row gutters-5 row-cols-xxl-5 row-cols-lg-4 row-cols-md-3 row-cols-2">
                 @php
-				$ip=$_SERVER['REMOTE_ADDR'];
+                //dd(session());
+				$ip=(int)Session::getId();
 				$hour=date("H");
 				$day=date("j");
 				$month=date("n");
