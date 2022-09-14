@@ -14,11 +14,11 @@
             @if ($wishlist->product != null)
 
 
-            <div class="row no-gutters box-3 align-items-center  product-fullwidth">
+            <div class="row no-gutters box-3 align-items-center  product-fullwidth" id="wishlist_{{ $wishlist->id }}">
                 <div class="col-3">
                     <a href="" class="d-block p-2">
                         <img class=" p-img-round lazyload"
-                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/QvA2RYQWO25rdXdlABjiqOulRlthFzqzwG5xus5n.png"
+                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/3TnNLBsHYoEfQ5A4rcAzr9CzdDwezNqG1d6WZkQ6.svg"
                             data-src="{{ uploaded_asset($wishlist->product->thumbnail_img) }}" alt="{{  $wishlist->product->getTranslation('name')  }}"
                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder.jpg') }}';">
                     </a>
@@ -29,10 +29,10 @@
                         @if(!empty($wishlist->product->brand->name))
                         <span class="text-black fw-600">	 {{  $wishlist->product->brand->name }}</span>
                         @endif
-                
-                        <div class="fs-14 fw-500 text-truncate">
+
+                        <div class="fs-14 fw-500">
                             <a href="{{ route('product', $wishlist->product->slug) }}" class="d-block text-reset">{{  $wishlist->product->getTranslation('name')  }}</a>
-            
+
                         </div>
                     </div>
                     <div class="d-flex justify-content-between  align-items-center ">
@@ -42,11 +42,16 @@
                                 @endif
                             <span class="fw-600 text-primary ">{{ home_discounted_base_price($wishlist->product) }}</span>
                         </div>
+
                         <div class="p-1">
                             <button type="button" class="btn btn-sm rounded-custom btn-dark fs-14 px-2 py-1" onclick="showAddToCartModal({{ $wishlist->product->id }})">
-                                {{ translate('Add to cart')}}
+                                <b><i class="ci-cart"></i></b>
+                            </button>
+                            <button type="button" class="btn btn-sm rounded-custom btn-dark fs-14 px-2 py-1" onclick="removeFromWishlist({{ $wishlist->id }})">
+                                <b><i class="ci-trash"></i></b>
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -81,6 +86,10 @@
                         </div>
                     </div>
                 </div>--}}
+            @elseif($wishlist->product == null && $wishlist->product_id)
+                <button type="button" class="btn btn-sm rounded-custom btn-dark fs-14 px-2 py-1" id="wishlist_{{ $wishlist->id }}" onclick="removeFromWishlist({{ $wishlist->id }})">
+                    <b><i class="ci-trash"></i></b>
+                </button>
             @endif
         @empty
             <div class="col">

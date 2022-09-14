@@ -4,7 +4,7 @@
 {{--    <b><i class="fs-22  ci-heart"></i></b>--}}
 <span class="flex-grow-1 ml-1">
         @if(Auth::check()&& count(Auth::user()->wishlists)>0)
-        <i class="red-dot opacity-80" title="Compare" style=""></i>
+        <i class="red-dot opacity-80" title="Wishlist" style=""></i>
 {{--            <span class="badge badge-primary badge-inline badge-pill">{{ count(Auth::user()->wishlists)}}</span>--}}
 {{--        @else--}}
 {{--            <span class="badge badge-primary badge-inline badge-pill">0</span>--}}

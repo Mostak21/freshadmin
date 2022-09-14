@@ -82,7 +82,7 @@
                     </a>
                 </div>
                 <div class="mr-0">
-                    <div class="py-2 px-1 d-block text-reset " id="wishlist">
+                    <div class="py-2 px-1 d-block text-reset " id="compare">
                         @include('frontend.partials.compare')
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     </div>
                 </div>
                <div class="mr-0">
-                   <div class="py-2 px-2 d-block " id="app">
+                   <div class="py-2 px-1 d-block " id="app">
                        @if($iphone)
                            @if(get_setting('app_store_link') != null)
                            <a class="text-reset " href="{{ get_setting('app_store_link') }}" target="blank">
