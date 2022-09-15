@@ -228,8 +228,20 @@ class CheckoutController extends Controller
         $city = Address::where('id', $request->address_id)->first();
         $agents = DeliveryAgent::get();
         $agent_costs = DeliveryCost::where('city_id',$city->city_id)->get();
-
-        return view('frontend.delivery_info', compact('carts','city','agents','agent_costs'));
+        foreach ($agents as $key => $agent){
+            if ($agent_costs){
+                foreach ($agent_costs as $key2 => $cost){
+                    if ($agent->id == $cost->delivery_agent_id && $cost->status == 0 ){
+                        unset($agents[$key]);
+                    }
+                    elseif ($agent->id == $cost->delivery_agent_id && $cost->status == 1){
+                        $agents[$key]->cost = $cost->cost;
+                        $agents[$key]->time = $cost->time;
+                    }
+                }
+            }
+        }
+        return view('frontend.delivery_info', compact('carts','agents'));
         // return view('frontend.payment_select', compact('total'));
     }
 
