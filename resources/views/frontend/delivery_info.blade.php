@@ -190,34 +190,16 @@
                                         </thead>
                                         <tbody>
 
-                                        @php $checked = 1; @endphp
+
                                         @foreach($agents as $key=> $agent)
-{{--                                            @php--}}
-{{--                                                if( !empty($agent_costs)){--}}
-{{--                                                    foreach($agent_costs as $key=> $costs){--}}
-{{--                                                        if ($costs->delivery_agent_id == $agent->id){--}}
-{{--                                                            $cost=$costs;--}}
-{{--                                                            if ($cost->status == 0){--}}
-{{--                                                                $cost_status= 0;--}}
-{{--                                                            }--}}
-{{--                                                            if ($cost->status == 1){--}}
-{{--                                                                $cost_status= 1;--}}
-{{--                                                            }--}}
-{{--                                                        }--}}
-{{--                                                    }--}}
-{{--                                                }--}}
-{{--                                            @endphp--}}
-
-{{--                                                    {{var_dump($cost_status)}}--}}
-
-{{--                                            @if($agent->status==1 && $cost_status == 1)--}}
-
                                                 <tr >
                                                     <td>
                                                         <div class="form-check mb-4 ">
-
-                                                            <input class="form-check-input aiz-rounded-check" type="radio" id="{{$agent->id}}" value="{{$agent->id}}" name="shipping_method" @php if($checked==1) echo "checked"; $checked =0; @endphp >
-
+                                                            <input class="form-check-input aiz-rounded-check" type="radio"
+                                                                   id="{{$agent->id}}"
+                                                                   value="{{$agent->id}}"
+                                                                   name="shipping_method"
+                                                                   @if($key==0) checked @endif >
                                                             <label class="form-check-label" for="{{$agent->id}}"></label>
 
                                                         </div>
@@ -226,7 +208,6 @@
                                                     <td class="align-middle">{{$agent->time??''}}</td>
                                                     <td class="align-middle">{{$agent->cost??''}}</td>
                                                 </tr>
-{{--                                            @endif--}}
                                         @endforeach
 
 

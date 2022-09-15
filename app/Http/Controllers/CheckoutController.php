@@ -231,7 +231,7 @@ class CheckoutController extends Controller
         foreach ($agents as $key => $agent){
             if ($agent_costs){
                 foreach ($agent_costs as $key2 => $cost){
-                    if ($agent->id == $cost->delivery_agent_id && $cost->status == 0 ){
+                    if ($agent->id == $cost->delivery_agent_id && $cost->status == 0 || $agent->status == 0 ){
                         unset($agents[$key]);
                     }
                     elseif ($agent->id == $cost->delivery_agent_id && $cost->status == 1){
@@ -241,6 +241,9 @@ class CheckoutController extends Controller
                 }
             }
         }
+
+        $agents = $agents->values();
+
         return view('frontend.delivery_info', compact('carts','agents'));
         // return view('frontend.payment_select', compact('total'));
     }
