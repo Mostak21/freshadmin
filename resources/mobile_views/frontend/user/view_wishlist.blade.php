@@ -30,7 +30,7 @@
                         <span class="text-black fw-600">	 {{  $wishlist->product->brand->name }}</span>
                         @endif
                 
-                        <div class="fs-14 fw-500 text-truncate">
+                        <div class="fs-14 fw-500 ">
                             <a href="{{ route('product', $wishlist->product->slug) }}" class="d-block text-reset">{{  $wishlist->product->getTranslation('name')  }}</a>
             
                         </div>
