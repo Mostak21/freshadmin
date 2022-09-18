@@ -1,7 +1,7 @@
 <div class="modal-body p-4 c-scrollbar-light">
     <div class="modal-header">
         <h2 class="mb-2 px-2 fs-20 fw-600 modal-title">
-            {{  $product->getTranslation('name')  }}
+            {{  $product->name  }}
         </h2>
     </div><br>
     <div class="row">
@@ -75,7 +75,7 @@
                     <span class="rating">
                                         {{ renderStarRating($product->rating) }}
                                     </span>
-                    <span class="ml-1 ">({{ $total }} {{ translate('reviews')}})</span>
+                    <span class="ml-1 ">({{ $total }} reviews)</span>
                 </div>
 
                 @if(home_price($product) != home_discounted_price($product))
@@ -85,7 +85,7 @@
                                     {{ home_discounted_price($product) }}
                                 </strong>
                                 @if($product->unit != null)
-                                <span class="opacity-90">/{{ $product->getTranslation('unit') }}</span>
+                                <span class="opacity-90">/{{ $product->unit }}</span>
                             @endif
 							</span>
 
@@ -93,7 +93,7 @@
                                 <del>
                                     {{ home_price($product) }}
                                     @if($product->unit != null)
-                                        <span>/{{ $product->getTranslation('unit') }}</span>
+                                        <span>/{{ $product->unit }}</span>
                                     @endif
                                 </del>
                             </span>
@@ -118,7 +118,7 @@
                 @if (addon_is_activated('club_point') && $product->earn_point > 0)
                     <div class="row no-gutters mt-4 pb-2">
                         <div class="col-2">
-                            <div class="opacity-50">{{  translate('Club Point') }}:</div>
+                            <div class="opacity-50">Club Point:</div>
                         </div>
                         <div class="col-10">
                             <div class="d-inline-block club-point bg-soft-primary px-3 py-1 border">
@@ -222,7 +222,7 @@
                         @if (count(json_decode($product->colors)) > 0)
                             <div class="row no-gutters">
                                 <div class="col-2">
-                                    <div class="opacity-50 mt-2">{{ translate('Color')}}:</div>
+                                    <div class="opacity-50 mt-2">Color:</div>
                                 </div>
                                 <div class="col-10">
                                     <div class="aiz-radio-inline">
@@ -281,7 +281,7 @@
 
                         <div class="row no-gutters">
                             <div class="col-2">
-                                <div class="opacity-50 mt-2">{{ translate('Quantity')}}:</div>
+                                <div class="opacity-50 mt-2">Quantity:</div>
                             </div>
                             <div class="col-10">
                                 <div class="product-quantity d-flex align-items-center">
@@ -296,9 +296,9 @@
                                     </div>
                                     <div class="avialable-amount opacity-60">
                                         @if($product->stock_visibility_state == 'quantity')
-                                            (<span id="available-quantity">{{ $qty }}</span> {{ translate('available')}})
+                                            (<span id="available-quantity">{{ $qty }}</span> available)
                                         @elseif($product->stock_visibility_state == 'text' && $qty >= 1)
-                                            (<span id="available-quantity">{{ translate('In Stock') }}</span>)
+                                            (<span id="available-quantity">In Stock</span>)
                                         @endif
                                     </div>
                                 </div>
@@ -310,7 +310,7 @@
 
                     <div class="row no-gutters pb-3 d-none mt-3" id="chosen_price_div">
                         <div class="col-2">
-                            <div class="opacity-50">{{ translate('Total Price')}}:</div>
+                            <div class="opacity-50">Total Price:</div>
                         </div>
                         <div class="col-10">
                             <div class="product-price">
@@ -326,23 +326,23 @@
                     @if ($product->digital == 1)
                         <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart" onclick="addToCart()">
                             <i class="la la-shopping-cart"></i>
-                            <span class="d-none d-md-inline-block"> {{ translate('Add to cart')}}</span>
+                            <span class="d-md-inline-block"> Add to cart</span>
                         </button>
                     @elseif($qty > 0)
                         @if ($product->external_link != null)
                             <a type="button" class="btn btn-soft-primary mr-2 add-to-cart fw-600" href="{{ $product->external_link }}">
                                 <i class="las la-shopping-bag"></i>
-                                <span class="d-none d-md-inline-block"> {{ translate('Add to cart')}}</span>
+                                <span class="d-md-inline-block"> Add to cart</span>
                             </a>
                         @else
                             <button type="button" class="btn btn-primary buy-now fw-600 add-to-cart" onclick="addToCart()">
                                 <i class="la la-shopping-cart"></i>
-                                <span class="d-none d-md-inline-block" id="addtocart"> {{ translate('Add to cart')}}</span>
+                                <span class="d-md-inline-block" id="addtocart"> Add to cart</span>
                             </button>
                         @endif
                     @endif
                     <button type="button" class="btn btn-secondary out-of-stock fw-600 d-none" disabled>
-                        <i class="la la-cart-arrow-down"></i> {{ translate('Out of Stock')}}
+                        <i class="la la-cart-arrow-down"></i> Out of Stock
                     </button>
                 </div>
 
@@ -373,7 +373,7 @@
                 items: [
                     {
                         item_id: "{{$product->id}}",
-                        item_name: "{{  $product->getTranslation('name')  }}",
+                        item_name: "{{ $product->name }}",
                         affiliation: "",
                         coupon: "",
                         currency: "BDT",

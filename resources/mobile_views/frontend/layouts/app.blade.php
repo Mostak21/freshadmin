@@ -520,8 +520,10 @@
                        $('.c-preloader').hide();
                        $('#modal-size').removeClass('modal-xl');
                        $('#addToCart-modal-body').html(data.modal_view);
+                       $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html())+1);
                        AIZ.extra.plusMinus();
                        updateNavCart(data.nav_cart_view,data.cart_count);
+
                     }
                 });
             }
@@ -641,15 +643,15 @@
         document.addEventListener("DOMContentLoaded", function(){
   window.addEventListener('scroll', function() {
       if (window.pageYOffset > 500) {
-        document.getElementById('navbar_top').classList.add('sticky-top1');
+        // document.getElementById('navbar_top').classList.add('sticky-top1');
         document.getElementById('dnav').classList.remove('d-lg-block');
         document.getElementById('ci-menu').classList.add('d-lg-block');
         document.getElementById('ci-menu').classList.remove('d-lg-none');
         // add padding top to show content behind navbar
-        navbar_height = document.querySelector('.mostak22').offsetHeight;
-        document.body.style.paddingTop = navbar_height + 'px';
+        // navbar_height = document.querySelector('.mostak22').offsetHeight;
+        // document.body.style.paddingTop = navbar_height + 'px';
       } else {
-        document.getElementById('navbar_top').classList.remove('sticky-top1');
+        // document.getElementById('navbar_top').classList.remove('sticky-top1');
         document.getElementById('dnav').classList.add('d-lg-block');
         document.getElementById('ci-menu').classList.remove('d-lg-block');
         document.getElementById('ci-menu').classList.add('d-lg-none');
