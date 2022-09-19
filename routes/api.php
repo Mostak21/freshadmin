@@ -6,6 +6,8 @@ Route::get('v2/testjson', function() {
 });
 
 
+Route::get('v2/deliveryagents','Api\V2\checkoutController@store_shipping_info');
+
 
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function() {
     Route::post('login', 'Api\V2\AuthController@login');
