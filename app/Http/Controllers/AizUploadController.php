@@ -231,7 +231,7 @@ class AizUploadController extends Controller
 
     public function get_preview_files(Request $request){
         $ids = explode(',', $request->ids);
-        $files = Upload::whereIn('id', $ids)->get();
+        $files = Upload::whereIn('id', $ids)->withTrashed()->get();
         return $files;
     }
 
