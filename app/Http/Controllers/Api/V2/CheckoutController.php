@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\Models\Address;
 use App\Models\DeliveryAgent;
 use App\Models\DeliveryCost;
+use App\Http\Resources\DeliveryCollection;
 
 class CheckoutController
 {
@@ -37,7 +38,7 @@ class CheckoutController
 
         $agents = $agents->values();
 
-        return response()->json($agents);
+        return new DeliveryCollection($agents);
         // dd($agents);
 
         // return view('frontend.delivery_info', compact('carts','agents'));
