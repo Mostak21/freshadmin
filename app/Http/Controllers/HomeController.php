@@ -363,8 +363,8 @@ class HomeController extends Controller
                 $section_data_c->link= $category->slug; //category slug
                 $section_data_c->banner_image_link= uploaded_asset( json_decode(get_setting('home_banner2_images'))[0]);
                 $section_data_c->banner_image_url= json_decode(get_setting('home_banner2_links'))[0];
-                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/wuLPPz51YsFtA0P2fGARcc5coLY0wzcZMZya3RMo.webp";
-                $section_data_c->poster_link= "https://brandhook.com.bd/product/haylou-rs4-plus-retina-amoled--smart-watch";
+                $section_data_c->poster_image_link= "https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/adARlYavC1W8elcF3v19GI70fObI2b10xmKxvYgJ.webp";
+                $section_data_c->poster_link= "https://brandhook.com.bd/product/huawei-watch-gt3-active";
 
                 $section_data_c->products = Product::whereIn('category_id', $category_ids)
                     ->where('published', 1)
