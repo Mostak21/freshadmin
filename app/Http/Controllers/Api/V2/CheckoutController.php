@@ -16,9 +16,9 @@ class CheckoutController
 {
     public function store_shipping_info(Request $request)
     {
-        
+        $cart=Cart::where('user_id',$request->user_id)->first();
 
-        $city = Address::where('id', $request->address_id)->first();
+        $city = Address::where('id', $cart->address_id)->first();
         $agents = DeliveryAgent::get();
         $agent_costs = DeliveryCost::where('city_id',$city->city_id)->get();
         foreach ($agents as $key => $agent){
