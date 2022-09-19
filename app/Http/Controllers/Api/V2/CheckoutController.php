@@ -8,9 +8,43 @@ use App\Models\Coupon;
 use App\Models\CouponUsage;
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Address;
+use App\Models\DeliveryAgent;
+use App\Models\DeliveryCost;
 
 class CheckoutController
 {
+    public function store_shipping_info(Request $request)
+    {
+        
+
+        $city = Address::where('id', $request->address_id)->first();
+        $agents = DeliveryAgent::get();
+        $agent_costs = DeliveryCost::where('city_id',$city->city_id)->get();
+        foreach ($agents as $key => $agent){
+            if ($agent_costs){
+                foreach ($agent_costs as $key2 => $cost){
+                    if ($agent->id == $cost->delivery_agent_id && $cost->status == 0 || $agent->status == 0 ){
+                        unset($agents[$key]);
+                    }
+                    elseif ($agent->id == $cost->delivery_agent_id && $cost->status == 1){
+                        $agents[$key]->cost = $cost->cost;
+                        $agents[$key]->time = $cost->time;
+                    }
+                }
+            }
+        }
+
+        $agents = $agents->values();
+
+        return response()->json($agents);
+        // dd($agents);
+
+        // return view('frontend.delivery_info', compact('carts','agents'));
+        // return view('frontend.payment_select', compact('total'));
+    }
+
+
     public function apply_coupon_code(Request $request)
     {
         $cart_items = Cart::where('user_id', $request->user_id)->get();

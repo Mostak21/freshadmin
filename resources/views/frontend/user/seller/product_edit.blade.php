@@ -4,8 +4,9 @@
 
 <div class="aiz-titlebar mt-2 mb-4">
     <div class="row align-items-center">
-        <div class="col-md-6">
-            <h1 class="h3">{{ translate('Update your product') }}</h1>
+        <div class="col-md-8">
+            <h5 class="mb-3 mt-3"><a href="{{getBaseURL()}}product/{{$product->slug}}" target="_blank"><u>{{$product->name}}<i class="las la-external-link-alt" title="Open in new tab"></i></u></a> </h5>
+            <h1 class="h3 mb-0">{{ translate('Update your product') }}</h1>
         </div>
     </div>
 </div>

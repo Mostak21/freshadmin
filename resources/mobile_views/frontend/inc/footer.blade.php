@@ -42,7 +42,7 @@
                     @php
                          $count = (isset($cart) && count($cart)) ? count($cart) : 0;
                      @endphp
-                 <img class="footer_icon_size mr-1" src="{{ static_asset('m_asset/cart.png') }}" alt=""><span class="rounded-circle bg-dark text-light fw-500" style=" padding-left: 6px; padding-right: 6px; margin-top: -5px; position: absolute; ">{{$count}}</span>
+                 <img class="footer_icon_size mr-1" src="{{ static_asset('m_asset/cart.png') }}" alt=""><span class="rounded-circle bg-dark text-light fw-500" id="cart_items_sidenav" style=" padding-left: 6px; padding-right: 6px; margin-top: -5px; position: absolute; ">{{$count}}</span>
              </a>
          </div>
          {{-- <div class="col">

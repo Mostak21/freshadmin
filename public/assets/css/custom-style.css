@@ -2289,3 +2289,12 @@ li{
     padding: 2px;
     text-align: center;
 }
+
+    .red-dot{
+        height: 5px;
+        width: 5px;
+        background-color: red;
+        border-radius: 50%;
+        display: inline-block;
+        margin:-20px 0px 13px -10px;
+    }

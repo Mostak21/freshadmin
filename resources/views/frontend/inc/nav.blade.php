@@ -1,3 +1,6 @@
+@if(Auth::user() !=null && Auth::user()->user_type == 'admin' || Auth::user() !=null && Auth::user()->user_type == 'staff')
+    @include('frontend.partials.adminControlPanel')
+@endif
 @if(get_setting('topbar_banner') != null)
 <div class="position-relative top-banner removable-session z-1035 d-none" data-key="top-banner" data-value="removed">
     <a href="{{ get_setting('topbar_banner_link') }}" class="d-block text-reset">
@@ -241,18 +244,19 @@
                 </div>
 
                    <div class="d-flex align-items-center ml-auto d-none">
-               {{-- <div class="d-none d-lg-block mr-0">
-                    <div class="" id="compare">
-                        @include('frontend.partials.compare')
-                    </div>
-                </div>--}}
+                       <div class="pl-lg-6"></div>
 
-                <div class="pl-lg-6"></div>
-                <div class="d-none d-lg-none  mr-3" id="ci-menu">
+                <div class="d-none d-lg-none  mr-4 opacity-80" id="ci-menu">
                     <div class="d-flex align-items-center" style="vertical-align: middle;">
                         <i class="ci-menu fs-22 " onclick="dclicknav()"></i>
                     </div>
                 </div>
+
+               <div class="d-none d-lg-block mr-3">
+                   <div class="" id="compare">
+                       @include('frontend.partials.compare')
+                   </div>
+               </div>
 
                 <div class="d-none  d-lg-block mr-2">
                     <span class="navbar-tool-tooltip">Wishlist</span>
@@ -263,7 +267,7 @@
 
                 <div class="d-none  d-lg-block mr-2">
                     <div class="d-flex align-items-center pr-2" style="vertical-align: middle;">
-                       <span class="pr-2"> <i class="fs-22  ci-user"></i></span><span>@auth
+                       <span class="pr-2"> <i class="fs-22  ci-user opacity-80"></i></span><span>@auth
 						@if(isAdmin())
 						<div class="">
 

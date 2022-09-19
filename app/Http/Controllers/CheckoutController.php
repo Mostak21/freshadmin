@@ -228,8 +228,24 @@ class CheckoutController extends Controller
         $city = Address::where('id', $request->address_id)->first();
         $agents = DeliveryAgent::get();
         $agent_costs = DeliveryCost::where('city_id',$city->city_id)->get();
+        foreach ($agents as $key => $agent){
+            if ($agent_costs){
+                foreach ($agent_costs as $key2 => $cost){
+                    if ($agent->id == $cost->delivery_agent_id && $cost->status == 0 || $agent->status == 0 ){
+                        unset($agents[$key]);
+                    }
+                    elseif ($agent->id == $cost->delivery_agent_id && $cost->status == 1){
+                        $agents[$key]->cost = $cost->cost;
+                        $agents[$key]->time = $cost->time;
+                    }
+                }
+            }
+        }
 
-        return view('frontend.delivery_info', compact('carts','city','agents','agent_costs'));
+        $agents = $agents->values();
+        // dd($agents);
+
+        return view('frontend.delivery_info', compact('carts','agents'));
         // return view('frontend.payment_select', compact('total'));
     }
 
@@ -350,7 +366,7 @@ class CheckoutController extends Controller
 
         if ($coupon != null) {
             if (strtotime(date('d-m-Y')) >= $coupon->start_date && strtotime(date('d-m-Y')) <= $coupon->end_date) {
-                if (CouponUsage::where('user_id', Auth::user()->id)->where('coupon_id', $coupon->id)->first() == null) {
+                if (CouponUsage::where('user_id', Auth::user()->id)->where('coupon_id', $coupon->id)->first() == null || $coupon->discount_use == 'multiple') {
                     $coupon_details = json_decode($coupon->details);
 
                     if ($coupon->type == 'cart_base') {
@@ -374,6 +390,9 @@ class CheckoutController extends Controller
                                 $coupon_discount = $coupon->discount;
                             }
 
+                        }
+                        else{
+                            $coupon_discount = 0;
                         }
                     } elseif ($coupon->type == 'product_base') {
                         $coupon_discount = 0;
@@ -419,10 +438,16 @@ class CheckoutController extends Controller
 //                    }
 //                    else{
 //                    }
-
-                    $response_message['response'] = 'success';
-                    $response_message['message'] = translate('Coupon has been applied');
+                    if ($coupon_discount == 0){
+                        $response_message['response'] = 'warning';
+                        $response_message['message'] = translate('Coupon can not be applied');
+                    }
+                    else{
+                        $response_message['response'] = 'success';
+                        $response_message['message'] = translate('Coupon has been applied');
 //                    flash(translate('Coupon has been applied'))->success();
+                    }
+
                 } else {
                     $response_message['response'] = 'warning';
                     $response_message['message'] = translate('You already used this coupon!');

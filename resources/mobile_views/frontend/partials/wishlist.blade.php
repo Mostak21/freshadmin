@@ -1,14 +1,15 @@
 <a href="{{ route('wishlists.index') }}" class="d-flex align-items-center text-reset">
 
-   <b><i class="navbar-tool la la-heart-o fs-22 px-2 la-2x"></i></b>
-  {{-- <span class="flex-grow-1 ml-1">
-        @if(Auth::check())
-            <span class="badge badge-primary badge-inline badge-pill">{{ count(Auth::user()->wishlists)}}</span>
-        @else
-            <span class="badge badge-primary badge-inline badge-pill">0</span>
+   <b><i class="navbar-tool ci-heart fs-22  la-2x"></i></b>
+ <span class="flex-grow-1 ml-1">
+        @if(Auth::check() && count(Auth::user()->wishlists) >0 )
+         <i class="red-dot opacity-80 " ></i>
+{{--            <span class="badge badge-primary badge-inline badge-pill">{{ count(Auth::user()->wishlists)}}</span>--}}
+{{--        @else--}}
+{{--            <span class="badge badge-primary badge-inline badge-pill">0</span>--}}
         @endif
-        <span class="nav-box-text d-none d-xl-block ">{{translate('Wishlist')}}</span>
-    </span>--}}
+{{--        <span class="nav-box-text d-none d-xl-block ">{{translate('Wishlist')}}</span>--}}
+    </span>
 </a>
 
 

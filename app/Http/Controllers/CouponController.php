@@ -172,6 +172,7 @@ class CouponController extends Controller
             $coupon->code = $request->coupon_code;
             $coupon->discount = $request->discount;
             $coupon->discount_type = $request->discount_type;
+            $coupon->discount_use = $request->discount_use??'single';
             $date_var                 = explode(" - ", $request->date_range);
             $coupon->start_date       = strtotime($date_var[0]);
             $coupon->end_date         = strtotime( $date_var[1]);
@@ -187,6 +188,7 @@ class CouponController extends Controller
             $coupon->code             = $request->coupon_code;
             $coupon->discount         = $request->discount;
             $coupon->discount_type    = $request->discount_type;
+            $coupon->discount_use = $request->discount_use??'single';
             $date_var                 = explode(" - ", $request->date_range);
             $coupon->start_date       = strtotime($date_var[0]);
             $coupon->end_date         = strtotime( $date_var[1]);

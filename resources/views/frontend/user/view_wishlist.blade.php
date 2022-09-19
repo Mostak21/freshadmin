@@ -42,6 +42,11 @@
                         </div>
                     </div>
                 </div>
+
+            @elseif($wishlist->product == null && $wishlist->product_id)
+                <a href="#" class="link link--style-3" data-toggle="tooltip" data-placement="top" title="Remove from wishlist" id="wishlist_{{ $wishlist->id }}" onclick="removeFromWishlist({{ $wishlist->id }})">
+                    <i class="la la-trash la-2x"></i>
+                </a>
             @endif
         @empty
             <div class="col">

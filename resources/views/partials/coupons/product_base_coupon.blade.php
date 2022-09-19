@@ -30,15 +30,21 @@
 </div>
 <div class="form-group row">
    <label class="col-lg-3 col-from-label">{{translate('Discount')}}</label>
-   <div class="col-lg-7">
-      <input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" required>
-   </div>
-   <div class="col-lg-2">
-       <select class="form-control aiz-selectpicker" name="discount_type">
-           <option value="amount">{{translate('Amount')}}</option>
-           <option value="percent">{{translate('Percent')}}</option>
-       </select>
-   </div>
+    <div class="col-lg-3">
+        <input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" value="{{ $coupon->discount }}" required>
+    </div>
+    <div class="col-lg-3">
+        <select class="form-control aiz-selectpicker" name="discount_type">
+            <option value="amount" @if ($coupon->discount_type == 'amount') selected  @endif >{{translate('Amount')}}</option>
+            <option value="percent" @if ($coupon->discount_type == 'percent') selected  @endif>{{translate('Percent')}}</option>
+        </select>
+    </div>
+    <div class="col-lg-3">
+        <select class="form-control aiz-selectpicker" name="discount_use">
+            <option value="single" @if ($coupon->discount_use == 'single') selected  @endif >{{translate('Single')}}</option>
+            <option value="multiple" @if ($coupon->discount_use == 'multiple') selected  @endif>{{translate('Multiple')}}</option>
+        </select>
+    </div>
 </div>
 
 

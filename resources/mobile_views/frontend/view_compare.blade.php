@@ -50,10 +50,11 @@
                                         {{ \App\Models\Product::find($item)->getTranslation('name') }}
                                     </a>
                                 </div>
-                                <div class="py-2">
+                                <div class="py-2 align-text-bottom" style="vertical-align:bottom;">
                                     <button type="button" class="btn btn-primary btn-sm fw-600"
                                         onclick="showAddToCartModal({{ $item }})">
-                                        {{ translate('Add to cart')}}
+{{--                                        {{ translate('Add to cart')}}--}}
+                                        <b><i class="navbar-tool ci-cart fs-22 px-2 opacity-80"></i></b>
                                     </button>
                                 </div>
                             </td>
@@ -153,7 +154,7 @@
                             <td class="text-center py-3">
                                 <button type="button" class="btn btn-primary fw-600 w100 w-100"
                                     onclick="showAddToCartModal({{ $item }})">
-                                    {{ translate('Add to cart')}}
+                                    <b><i class="navbar-tool ci-cart fs-22 px-2 opacity-80"></i></b>
                                 </button>
                             </td>
                             @endforeach
