@@ -114,6 +114,7 @@
                                         <div class="input-group-text bg-soft-secondary font-weight-medium">{{ translate('Browse')}}</div>
                                     </div>
                                     <div class="form-control file-amount">{{ translate('Choose File') }}</div>
+{{--                                    <span class="mx-2 my-auto text-info" onclick=""><i class="las la-sync-alt la-2x fw-bold"></i></span>--}}
                                     <input type="hidden" name="photos" value="{{ $product->photos }}" class="selected-files">
                                 </div>
                                 <div class="file-preview box sm">
@@ -772,6 +773,12 @@
             $(".flat_rate_shipping_div").show();
         }
     }
+
+    // function reset_gallary() {
+    //     $("#file-preview-gallary").empty();
+    //     $("#selected-files-gallary").val('');
+    //     $("#file-amount-gallary").html("Choose File");
+    // }
 
     function add_more_customer_choice_option(i, name){
         $.ajax({
