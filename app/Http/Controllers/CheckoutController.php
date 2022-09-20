@@ -243,6 +243,7 @@ class CheckoutController extends Controller
         }
 
         $agents = $agents->values();
+        // dd($agents);
 
         return view('frontend.delivery_info', compact('carts','agents'));
         // return view('frontend.payment_select', compact('total'));
