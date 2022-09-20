@@ -504,6 +504,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 var html =
                                     '<div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="' +
                                     data[i].id +
+                                    '" data-size="' +
+                                    data[i].file_size +
                                     '" title="' +
                                     data[i].file_original_name +
                                     "." +
@@ -787,6 +789,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     var html =
                                         '<div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="' +
                                         data[i].id +
+                                        '" data-size="' +
+                                        data[i].file_size +
                                         '" title="' +
                                         data[i].file_original_name +
                                         "." +

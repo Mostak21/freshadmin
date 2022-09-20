@@ -774,6 +774,9 @@
         }
     }
 
+    // console.log($(".file-preview-item").data("id"));
+    console.log($(".d-flex .justify-content-between .align-items-center .mt-2 .file-preview-item").data("id"));
+
     // function reset_gallary() {
     //     $("#file-preview-gallary").empty();
     //     $("#selected-files-gallary").val('');
