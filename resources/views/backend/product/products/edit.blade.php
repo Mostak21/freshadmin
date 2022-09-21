@@ -782,7 +782,6 @@
             const elements1 = Array.from(document.querySelectorAll('[data-size]'));
 
             for (let index = 0; index < elements1.length; index++) {
-                // console.log(elements1[index].getAttribute('data-size'));
                 var size = parseInt(elements1[index].getAttribute('data-size'));
                 if (size > 102400) {
                     AIZ.plugins.notify('danger', '{{ translate('Image size is over the limit') }}');
@@ -804,6 +803,10 @@
                             .prev('[data-toggle="aizuploader"]')
                     );
                     $(elements1[index]).closest(".file-preview-item").remove();
+                }
+
+                if (size > 20280) {
+                    $(elements1[index]).closest(".file-preview-item").addClass('bg-warning');
                 }
             }
         }
