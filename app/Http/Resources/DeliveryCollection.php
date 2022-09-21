@@ -13,7 +13,7 @@ class DeliveryCollection extends ResourceCollection
                 return [
                     "id"=> $data->id,
                     "name"=> $data->name,
-                    "cost"=> $data->cost,
+                    "cost"=> format_price($data->cost),
                     "time"=> $data->time,
                     "info"=> $data->info,
                     "status"=> $data->status,
