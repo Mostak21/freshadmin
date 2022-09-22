@@ -35,7 +35,7 @@ class AuthController extends Controller
             ]);
         } else {
             $user_phone = null;
-            if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone])){
+            if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone)){
                 $user_phone = $request->email_or_phone;
             }
             elseif (strlen($request->email_or_phone)==11 && strpos($request->email_or_phone,"01")==0  && is_numeric($request->email_or_phone)){
