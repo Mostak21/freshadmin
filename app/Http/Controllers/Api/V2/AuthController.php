@@ -34,9 +34,17 @@ class AuthController extends Controller
                 'verification_code' => rand(100000, 999999)
             ]);
         } else {
+            $user_phone = null;
+            if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone])){
+                $user_phone = $request->email_or_phone;
+            }
+            elseif (strlen($request->email_or_phone)==11 && strpos($request->email_or_phone,"01")==0  && is_numeric($request->email_or_phone)){
+                $user_phone = '+88'.$request->email_or_phone;
+            }
+
             $user = new User([
                 'name' => $request->name,
-                'phone' => $request->email_or_phone,
+                'phone' => $user_phone,
                 'password' => bcrypt($request->password),
                 'verification_code' => rand(100000, 999999)
             ]);
@@ -65,6 +73,8 @@ class AuthController extends Controller
             'user_id' => $user->id
         ], 201);
     }
+
+
 
     public function resendCode(Request $request)
     {
