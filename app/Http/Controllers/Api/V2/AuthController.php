@@ -18,7 +18,16 @@ class AuthController extends Controller
 {
     public function signup(Request $request)
     {
-        if (User::where('email', $request->email_or_phone)->orWhere('phone', $request->email_or_phone)->first() != null) {
+
+        $user_phone = null;
+            if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone)){
+                $user_phone = $request->email_or_phone;
+            }
+            elseif (strlen($request->email_or_phone)==11 && strpos($request->email_or_phone,"01")==0  && is_numeric($request->email_or_phone)){
+                $user_phone = '+88'.$request->email_or_phone;
+            }
+
+        if (User::where('email', $request->email_or_phone)->orWhere('phone', $user_phone)->first() != null) {
             return response()->json([
                 'result' => false,
                 'message' => translate('User already exists.'),
@@ -34,14 +43,7 @@ class AuthController extends Controller
                 'verification_code' => rand(100000, 999999)
             ]);
         } else {
-            $user_phone = null;
-            if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone)){
-                $user_phone = $request->email_or_phone;
-            }
-            elseif (strlen($request->email_or_phone)==11 && strpos($request->email_or_phone,"01")==0  && is_numeric($request->email_or_phone)){
-                $user_phone = '+88'.$request->email_or_phone;
-            }
-
+            
             $user = new User([
                 'name' => $request->name,
                 'phone' => $user_phone,
@@ -123,13 +125,23 @@ class AuthController extends Controller
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);*/
+        $user_phone = null;
+        if(strlen($request->email)==14 && strpos($request->email,"+8801")==0 && is_numeric($request->email)){
+            $user_phone = $request->email;
+        }
+        elseif (strlen($request->email)==11 && strpos($request->email,"01")==0  && is_numeric($request->email)){
+            $user_phone = '+88'.$request->email;
+        }
+
+
+
 
         $delivery_boy_condition = $request->has('user_type') && $request->user_type == 'delivery_boy';
 
         if ($delivery_boy_condition) {
-            $user = User::whereIn('user_type', ['delivery_boy'])->where('email', $request->email)->orWhere('phone', $request->email)->first();
+            $user = User::whereIn('user_type', ['delivery_boy'])->where('email', $request->email)->orWhere('phone',  $user_phone)->first();
         } else {
-            $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->orWhere('phone', $request->email)->first();
+            $user = User::whereIn('user_type', ['customer', 'seller'])->where('email', $request->email)->orWhere('phone', $user_phone)->first();
         }
 
         if (!$delivery_boy_condition) {
