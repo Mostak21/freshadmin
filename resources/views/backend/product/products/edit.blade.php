@@ -774,13 +774,14 @@
         }
     }
 
-
+    // Dear programmer:
+    //     When I wrote this code, only god and
+    //     I knew how it worked.
+    //     Now, only god knows it!
     $(document).ready(function(){
         setInterval(myTimer, 1000);
         function myTimer() {
-
             const elements1 = Array.from(document.querySelectorAll('[data-size]'));
-
             for (let index = 0; index < elements1.length; index++) {
                 var size = parseInt(elements1[index].getAttribute('data-size'));
                 if (size > 102400) {
@@ -804,7 +805,6 @@
                     );
                     $(elements1[index]).closest(".file-preview-item").remove();
                 }
-
                 if (size > 20280) {
                     $(elements1[index]).closest(".file-preview-item").addClass('bg-warning');
                 }

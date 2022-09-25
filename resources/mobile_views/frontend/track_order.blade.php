@@ -72,8 +72,8 @@
         <div class="card border-0 shadow-lg">
             <div class="card-body">
             <div class="d-flex flex-column-custom justify-content-lg-between">
-                  <div class="d-flex align-items-center @if($order->delivery_status=="pending") text-active @endif">
-                    <div class="media-tab-media "><i class="ci-bag @if($order->delivery_status=="pending") track-order-icon-box-active @else track-order-icon-box @endif"></i></div>
+                  <div class="d-flex align-items-center @if($order->delivery_status=="pending" || $order->delivery_status=="Pending") text-active @endif">
+                    <div class="media-tab-media "><i class="ci-bag @if($order->delivery_status=="pending" || $order->delivery_status=="Pending") track-order-icon-box-active @else track-order-icon-box @endif"></i></div>
                     <div class="pl-3">
                       <div class="media-tab-subtitle  fs-11 mb-1">First step</div>
                       <h6 class="media-tab-title text-nowrap mb-0">Order placed</h6>

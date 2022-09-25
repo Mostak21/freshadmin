@@ -9,18 +9,18 @@
                 <h5 class="mb-md-0 h6">{{ translate('All Orders') }}</h5>
             </div>
             
-            <div class="dropdown mb-2 mb-md-0">
-                <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
-                    {{translate('Bulk Action')}}
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="#" onclick="bulk_delete()"> {{translate('Delete selection')}}</a>
-<!--                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">
-                        <i class="las la-sync-alt"></i>
-                        {{translate('Change Order Status')}}
-                    </a>-->
-                </div>
-            </div>
+{{--            <div class="dropdown mb-2 mb-md-0">--}}
+{{--                <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">--}}
+{{--                    {{translate('Bulk Action')}}--}}
+{{--                </button>--}}
+{{--                <div class="dropdown-menu dropdown-menu-right">--}}
+{{--                    <a class="dropdown-item" href="#" onclick="bulk_delete()"> {{translate('Delete selection')}}</a>--}}
+{{--<!--                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">--}}
+{{--                        <i class="las la-sync-alt"></i>--}}
+{{--                        {{translate('Change Order Status')}}--}}
+{{--                    </a>-->--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!-- Change Status Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,7 +54,7 @@
 
             <div class="col-lg-2 ml-auto">
                 <select class="form-control aiz-selectpicker" name="seller" id="seller">
-                    <option value="">{{translate('Filter by Seller')}}</option>
+                    <option value="">{{translate('Seller')}}</option>
                     @php
                         $name=null;
                     @endphp
@@ -72,8 +72,9 @@
             </div>
             <div class="col-lg-2 ml-auto">
                 <select class="form-control aiz-selectpicker" name="delivery_status" id="delivery_status">
-                    <option value="">{{translate('Filter by Delivery Status')}}</option>
+                    <option value="">{{translate('Delivery')}}</option>
                     <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
+                    <option value="Pending" @if ($delivery_status == 'Pending') selected @endif>{{translate('Stock Confirm')}}</option>
                     <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
                     <option value="picked_up" @if ($delivery_status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
                     <option value="on_the_way" @if ($delivery_status == 'on_the_way') selected @endif>{{translate('On The Way')}}</option>
@@ -81,9 +82,20 @@
                     <option value="cancelled" @if ($delivery_status == 'cancelled') selected @endif>{{translate('Cancel')}}</option>
                 </select>
             </div>
+            <div class="col-lg-2 ml-auto">
+                <select class="form-control aiz-selectpicker" name="shipping_status" id="shipping_status">
+                    <option value="">{{translate('Shipping')}}</option>
+                    <option value="picked" @if ($delivery_status == 'picked') selected @endif>{{translate('picked')}}</option>
+                    <option value="at_hub" @if ($delivery_status == 'at_hub') selected @endif>{{translate('at_hub')}}</option>
+                    <option value="on_hold" @if ($delivery_status == 'on_hold') selected @endif>{{translate('on_hold')}}</option>
+                    <option value="delivered" @if ($delivery_status == 'delivered') selected @endif>{{translate('delivered')}}</option>
+                    <option value="paid" @if ($delivery_status == 'paid') selected @endif>{{translate('paid')}}</option>
+                    <option value="return" @if ($delivery_status == 'return') selected @endif>{{translate('return')}}</option>
+                </select>
+            </div>
             <div class="col-lg-1">
                 <div class="form-group mb-0">
-                    <input type="text" class="aiz-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Filter by date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
+                    <input type="text" class="aiz-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
                 </div>
             </div>
             <div class="col-lg-1">
@@ -93,9 +105,9 @@
             </div>
 			 <div class="col-lg-2 ml-auto">
                 <select class="form-control aiz-selectpicker" name="showall" id="show_all">
-                    <option value="">{{translate('Complete or not')}}</option>
-                    <option value="showall" >Show all</option>
                     <option value="hideall" >Hide Completed</option>
+                    <option value="showall" >Show all</option>
+{{--                    <option value="">{{translate('Complete or not')}}</option>--}}
                 </select>
             </div>
             <div class="col-auto">
@@ -110,25 +122,26 @@
                 <thead>
                     <tr>
                         <!--<th>#</th>-->
-                        <th>
-                            <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
-                                        <input type="checkbox" class="check-all">
-                                        <span class="aiz-square-check"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </th>
-                        <th>{{ translate('Order Code') }}</th>
-                        <th data-breakpoints="md">{{ translate('Num. of Products') }}</th>
+{{--                        <th>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="aiz-checkbox-inline">--}}
+{{--                                    <label class="aiz-checkbox">--}}
+{{--                                        <input type="checkbox" class="check-all">--}}
+{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </th>--}}
+                        <th width="175px">{{ translate('Order Code') }}</th>
+                        <th>{{ translate('Seller') }}</th>
                         <th data-breakpoints="md">{{ translate('Customer') }}</th>
                         <th data-breakpoints="md">{{ translate('Amount') }}</th>
                         <th data-breakpoints="md">{{ translate('Delivery Status') }}</th>
                         <th data-breakpoints="md">{{ translate('Payment Status') }}</th>
-                        @if (addon_is_activated('refund_request'))
-                        <th>{{ translate('Refund') }}</th>
-                        @endif
+{{--                        @if (addon_is_activated('refund_request'))--}}
+                        <th data-breakpoints="md">{{ translate('Shipping Agent') }}</th>
+                        <th>{{ translate('Assigned Staff') }}</th>
+{{--                        @endif--}}
                         <th class="text-right" width="15%">{{translate('options')}}</th>
                         <th></th>
                     </tr>
@@ -140,21 +153,23 @@
     <!--                    <td>
                             {{ ($key+1) + ($orders->currentPage() - 1)*$orders->perPage() }}
                         </td>-->
-                        <td>
-                            <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
-                                        <input type="checkbox" class="check-one" name="id[]" value="{{$order->id}}">
-                                        <span class="aiz-square-check"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </td>
+{{--                        <td>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <div class="aiz-checkbox-inline">--}}
+{{--                                    <label class="aiz-checkbox">--}}
+{{--                                        <input type="checkbox" class="check-one" name="id[]" value="{{$order->id}}">--}}
+{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </td>--}}
                         <td>
                             {{ $order->code }}
                         </td>
                         <td>
-                            {{ count($order->orderDetails) }}
+{{--                            {{ count($order->orderDetails) }}--}}
+                            {{ $order->seller->name??"" }}
+                            {{$order->brand??""}}
                         </td>
                         <td>
                             @if ($order->user != null)
@@ -171,6 +186,9 @@
                                 $status = $order->delivery_status;
                                 if($order->delivery_status == 'cancelled') {
                                     $status = '<span class="badge badge-inline badge-danger">'.translate('Cancel').'</span>';
+                                }
+                                if($order->delivery_status == 'Pending') {
+                                    $status = 'Stock Confirm';
                                 }
                             @endphp
                             {!! $status !!}
@@ -191,31 +209,33 @@
                             @else
                             <span class="badge badge-inline badge-secondary">{{translate('Unpaid')}}</span>
                             @endif
+                            <br>
+                            {{ $order->payment_type=="cash_on_delivery"?"COD":"SSL" }}
                         </td>
                         @if (addon_is_activated('refund_request'))
                         <td>
-                            @if (count($order->refund_requests) > 0)
-                            {{ count($order->refund_requests) }} {{ translate('Refund') }}
-                            @else
-                            {{ translate('No Refund') }}
-                            @endif
+                            @if($order->shipping_status)<b class="badge badge-inline badge-soft-danger">{{$order->shipping_status}}</b><br>@endif
+                            {{$order->orderDetails[0]->shipping_method??""}}
+                        </td>
+                        <td>
+                            {{$order->staff->name??""}}
                         </td>
                         @endif
                         <td class="text-right">
                             <a class="btn btn-soft-primary btn-icon btn-circle btn-sm" href="{{route('all_orders.show', encrypt($order->id))}}" title="{{ translate('View') }}">
                                 <i class="las la-eye"></i>
                             </a>
-                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">
-                                <i class="las la-download"></i>
-                            </a>
+{{--                            <a class="btn btn-soft-info btn-icon btn-circle btn-sm" href="{{ route('invoice.download', $order->id) }}" title="{{ translate('Download Invoice') }}">--}}
+{{--                                <i class="las la-download"></i>--}}
+{{--                            </a>--}}
                              @if(Auth::user()->user_type == 'admin')
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('orders.destroy', $order->id)}}" title="{{ translate('Delete') }}">
                                 <i class="las la-trash"></i>
                             </a>
                             @endif
-                            
+                            <span class="btn btn-soft-success btn-icon btn-circle btn-sm" onclick="notemodal({{$order->id}})"><i class=" las la-notes-medical"></i></span>
                         </td>
-                        <td> <span class="btn btn-soft-success btn-icon btn-circle btn-sm" onclick="notemodal({{$order->id}})"><i class=" las la-notes-medical"></i></span></td>
+{{--                        <td> </td>--}}
                     </tr>
                     
                     @endforeach
