@@ -19,7 +19,7 @@ class AuthController extends Controller
     public function signup(Request $request)
     {
 
-        $user_phone = null;
+        $user_phone =  $request->email_or_phone;
             if(strlen($request->email_or_phone)==14 && strpos($request->email_or_phone,"+8801")==0 && is_numeric($request->email_or_phone)){
                 $user_phone = $request->email_or_phone;
             }
@@ -125,7 +125,7 @@ class AuthController extends Controller
             'password' => 'required|string',
             'remember_me' => 'boolean'
         ]);*/
-        $user_phone = null;
+        $user_phone = $request->email;
         if(strlen($request->email)==14 && strpos($request->email,"+8801")==0 && is_numeric($request->email)){
             $user_phone = $request->email;
         }
