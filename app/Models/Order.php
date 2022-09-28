@@ -25,6 +25,10 @@ class Order extends Model
     {
         return $this->hasOne(Shop::class, 'user_id', 'seller_id');
     }
+    public function posuser()
+    {
+        return $this->hasOne(User::class, 'id', 'seller_id');
+    }
 
     public function pickup_point()
     {

@@ -46,11 +46,13 @@
                             <div class="flex-grow-1">
                                 <select name="user_id" class="form-control aiz-selectpicker pos-customer" data-live-search="true" onchange="getShippingAddress()">
                                     <option value="">{{translate('Walk In Customer')}}</option>
-                                    @foreach (\App\Models\Customer::all() as $key => $customer)
-                                        @if ($customer->user)
-                                            <option value="{{ $customer->user->id }}" data-contact="{{ $customer->user->email }}">{{ $customer->user->name }}</option>
-                                        @endif
-                                    @endforeach
+                                    @if(Auth::user()->user_type == 'admin')
+                                        @foreach (\App\Models\Customer::all() as $key => $customer)
+                                            @if ($customer->user)
+                                                <option value="{{ $customer->user->id }}" data-contact="{{ $customer->user->email }}">{{ $customer->user->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <button type="button" class="btn btn-icon btn-soft-dark ml-3 mr-0" data-target="#new-customer" data-toggle="modal">

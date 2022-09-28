@@ -168,8 +168,10 @@
                         </td>
                         <td>
 {{--                            {{ count($order->orderDetails) }}--}}
-                            {{ $order->seller->name??"" }}
+                            {{ $order->seller->name??$order->posuser->name??"" }}
                             {{$order->brand??""}}
+
+
                         </td>
                         <td>
                             @if ($order->user != null)
@@ -210,7 +212,7 @@
                             <span class="badge badge-inline badge-secondary">{{translate('Unpaid')}}</span>
                             @endif
                             <br>
-                            {{ $order->payment_type=="cash_on_delivery"?"COD":"SSL" }}
+                            {{ $order->payment_type=="cash_on_delivery"?"COD":($order->payment_type=="cash"?"CASH":"SSL") }}
                         </td>
                         @if (addon_is_activated('refund_request'))
                         <td>
