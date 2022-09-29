@@ -14,7 +14,9 @@
                                 @php
                                     $product = \App\Models\Product::find($cartItem['product_id']);
                                     $product_stock = $product->stocks->where('variant', $cartItem['variation'])->first();
-                                    $total = $total + ($cartItem['price'] * $cartItem['quantity']) + $cartItem['tax'];
+                                    if( isset($product_stock) && $product_stock->qty !=0){
+                                            $total = $total + ($cartItem['price'] + $cartItem['tax']) * $cartItem['quantity'];
+                                        }
                                     $product_name_with_choice = $product->getTranslation('name');
                                     if ($cartItem['variation'] != null) {
                                         $product_name_with_choice = $product->getTranslation('name').' - '.$cartItem['variation'];
@@ -47,7 +49,16 @@
                                                         </div>
                                                     @endif
                                                 </span>
-                                                    <input type="checkbox" checked="checked" name="selectedItem[]" id="cart{{$cartItem['id']}}" onchange="carts{{$cartItem['id']}}()" value="{{$cartItem['id']}}" @if( $product_stock->qty ==0) disabled @endif/>
+                                                    <input type="checkbox"
+                                                           @if( isset($product_stock) && $product_stock->qty !=0)
+                                                           checked="checked"
+                                                           @endif
+                                                           name="selectedItem[]"
+                                                           id="cart{{$cartItem['id']}}"
+                                                           onchange="carts{{$cartItem['id']}}()"
+                                                           value="{{$cartItem['id']}}"
+                                                           @if( isset($product_stock) && $product_stock->qty ==0 || $product_stock == null) disabled @endif
+                                                    />
                                                     <div class="control_indicator my-auto"></div>
                                                 </label>
                                             </div>
