@@ -7,6 +7,7 @@ Route::get('v2/testjson', function() {
 
 
 Route::get('v2/deliveryagents','Api\V2\CheckoutController@store_shipping_info');
+Route::get('v2/deliveryagentscost','Api\V2\ShippingController@deliveryagentcost');
 
 
 Route::group(['prefix' => 'v2/auth', 'middleware' => ['app_language']], function() {
