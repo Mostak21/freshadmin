@@ -122,6 +122,7 @@ class OrderController extends Controller
                 $order_detail->price = $cartItem['price'] * $cartItem['quantity'];
                 $order_detail->tax = $cartItem['tax'] * $cartItem['quantity'];
                 $order_detail->shipping_type = $cartItem['shipping_type'];
+                $order_detail->shipping_method = $cartItem['shipping_method'];
                 $order_detail->product_referral_code = $cartItem['product_referral_code'];
                 $order_detail->shipping_cost = $cartItem['shipping_cost'];
 
