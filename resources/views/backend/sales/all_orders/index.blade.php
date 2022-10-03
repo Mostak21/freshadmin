@@ -85,12 +85,12 @@
             <div class="col-lg-2 ml-auto">
                 <select class="form-control aiz-selectpicker" name="shipping_status" id="shipping_status">
                     <option value="">{{translate('Shipping')}}</option>
-                    <option value="picked" @if ($delivery_status == 'picked') selected @endif>{{translate('picked')}}</option>
-                    <option value="at_hub" @if ($delivery_status == 'at_hub') selected @endif>{{translate('at_hub')}}</option>
-                    <option value="on_hold" @if ($delivery_status == 'on_hold') selected @endif>{{translate('on_hold')}}</option>
-                    <option value="delivered" @if ($delivery_status == 'delivered') selected @endif>{{translate('delivered')}}</option>
-                    <option value="paid" @if ($delivery_status == 'paid') selected @endif>{{translate('paid')}}</option>
-                    <option value="return" @if ($delivery_status == 'return') selected @endif>{{translate('return')}}</option>
+                    <option value="picked" @if ($shipping_status == 'picked') selected @endif>{{translate('picked')}}</option>
+                    <option value="at_hub" @if ($shipping_status == 'at_hub') selected @endif>{{translate('at_hub')}}</option>
+                    <option value="on_hold" @if ($shipping_status == 'on_hold') selected @endif>{{translate('on_hold')}}</option>
+                    <option value="delivered" @if ($shipping_status == 'delivered') selected @endif>{{translate('delivered')}}</option>
+                    <option value="paid" @if ($shipping_status == 'paid') selected @endif>{{translate('paid')}}</option>
+                    <option value="return" @if ($shipping_status == 'return') selected @endif>{{translate('return')}}</option>
                 </select>
             </div>
             <div class="col-lg-1">
@@ -105,9 +105,10 @@
             </div>
 			 <div class="col-lg-2 ml-auto">
                 <select class="form-control aiz-selectpicker" name="showall" id="show_all">
+                    <option value="">{{translate('Complete or not')}}</option>
                     <option value="hideall" >Hide Completed</option>
                     <option value="showall" >Show all</option>
-{{--                    <option value="">{{translate('Complete or not')}}</option>--}}
+
                 </select>
             </div>
             <div class="col-auto">
