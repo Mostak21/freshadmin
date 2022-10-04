@@ -607,7 +607,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">
-                                {{translate('(RSP)')}}
+                                {{translate('(POS DP)')}}
                             </label>
                             <input type="text" name="retail_price" value="" class="form-control">
                         </div>

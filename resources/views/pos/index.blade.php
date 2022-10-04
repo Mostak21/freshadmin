@@ -286,7 +286,7 @@
                         <i class="las la-spinner la-spin la-3x"></i>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer ">
                     <button type="button" class="btn btn-styled btn-base-3" data-dismiss="modal">{{translate('Close')}}</button>
                     <button type="button" onclick="submitOrder('cash')" class="btn btn-styled btn-base-1 btn-primary">{{translate('Comfirm Order')}}</button>
                 </div>
@@ -380,12 +380,16 @@
                                 <img src="${data.data[i].thumbnail_image }" class="card-img-top img-fit h-120px h-xl-180px h-xxl-210px mw-100 mx-auto" >
                             </div>
                             <div class="card-body p-2 p-xl-3">
-                                <div class="text-truncate fw-600 fs-14 mb-2">${data.data[i].name}</div>
+                                <div class="text-wrap fw-600 fs-14 mb-2">${data.data[i].name}</div>
                                 <div class="">
                                     ${data.data[i].price != data.data[i].base_price
                                         ? `<del class="mr-2 ml-0">${data.data[i].base_price}</del><span>${data.data[i].price}</span>`
                                         : `<span>${data.data[i].base_price}</span>`
                                     }
+                                </div>
+                                <div class="text-primary">
+                                    DP: ৳${data.data[i].retail_price!=null?data.data[i].retail_price:0}
+
                                 </div>
                             </div>
                             <div class="add-plus absolute-full rounded overflow-hidden hov-box ${data.data[i].qty <= 0 ? 'c-not-allowed' : '' }" data-stock-id="${data.data[i].stock_id}">
