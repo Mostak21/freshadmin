@@ -14,6 +14,7 @@ class UserCollection extends ResourceCollection
                     'id' => (integer) $data->id,
                     'name' => $data->name,
                     'type' => $data->user_type,
+                    'gender'=> $data->gender,
                     'email' => $data->email,
                     'avatar' => $data->avatar,
                     'avatar_original' => api_asset($data->avatar_original),
