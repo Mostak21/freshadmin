@@ -41,6 +41,16 @@ class ProfileController extends Controller
         $user = User::find($request->id);
 
         $user->name = $request->name;
+        if( $request->email!=null){
+            $user->email = $request->email;
+        }
+        if( $request->phone!=null){
+            $user->phone = $request->phone;
+        }
+        if( $request->gender!=null){
+            $user->gender = $request->gender;
+        }
+        
 
         if ($request->password != "") {
             $user->password = Hash::make($request->password);
