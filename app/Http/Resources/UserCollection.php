@@ -13,6 +13,7 @@ class UserCollection extends ResourceCollection
                 return [
                     'id' => (integer) $data->id,
                     'name' => $data->name,
+                    'gender'=> $data->gender,
                     'type' => $data->user_type,
                     'email' => $data->email,
                     'avatar' => $data->avatar,
