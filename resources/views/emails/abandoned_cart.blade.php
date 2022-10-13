@@ -117,7 +117,7 @@
                                     <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                         <tr>
                                             <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                <div class="alignment" align="center" style="line-height:10px"><img class="big" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/rounded_corner_1.png" style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;" width="700" alt="Alternate text" title="Alternate text"></div>
+                                                <div class="alignment" align="center" style="line-height:10px"><img class="big" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/rounded_corner_1.png" style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;" width="700" ></div>
                                             </td>
                                         </tr>
                                     </table>
@@ -140,7 +140,7 @@
                                     <table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                         <tr>
                                             <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;padding-top:10px;padding-bottom:15px;">
-                                                <div class="alignment" align="center" style="line-height:10px"><a href="https://brandhook.com.bd/" target="_blank" style="outline:none" tabindex="-1"><img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/0WT96qPQl0bahhsR6pKHMm5skxQaPgnEQcxp5ou0.webp" style="display: block; height: auto; border: 0; width: 96px; max-width: 100%;" width="96" alt="Alternate text" title="Alternate text"></a></div>
+                                                <div class="alignment" align="center" style="line-height:10px"><a href="https://brandhook.com.bd/" target="_blank" style="outline:none" tabindex="-1"><img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/0WT96qPQl0bahhsR6pKHMm5skxQaPgnEQcxp5ou0.webp" style="display: block; height: auto; border: 0; width: 96px; max-width: 100%;" width="96"></a></div>
                                             </td>
                                         </tr>
                                     </table>
@@ -181,7 +181,7 @@
                                     <table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                         <tr>
                                             <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;padding-top:40px;">
-                                                <div class="alignment" align="center" style="line-height:10px"><a href="#" target="_blank" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/Cart.gif" style="display: block; height: auto; border: 0; width: 140px; max-width: 100%;" width="140" alt="I'm an image" title="I'm an image"></a></div>
+                                                <div class="alignment" align="center" style="line-height:10px"><a href="#" target="_blank" style="outline:none" tabindex="-1"><img src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/Cart.gif" style="display: block; height: auto; border: 0; width: 140px; max-width: 100%;" width="140"></a></div>
                                             </td>
                                         </tr>
                                     </table>
@@ -245,7 +245,7 @@
             </table>
 
 
-{{--            @foreach ($carts as $key => $cart)--}}
+            @foreach ($carts as $key => $cart)
 
                 <table class="row row-6" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                     <tbody>
@@ -258,7 +258,7 @@
                                         <table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                             <tr>
                                                 <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;padding-top:5px;padding-bottom:5px;">
-                                                    <div class="alignment" align="center" style="line-height:10px"><a href="#" target="_blank" style="outline:none" tabindex="-1"><img src="{{uploaded_asset($cart->product->thumbnail_img??"")}}" style="display: block; height: auto; border: 0; width: 175px; max-width: 100%;" width="175" alt="Alternate text" title="Alternate text"></a></div>
+                                                    <div class="alignment" align="center" style="line-height:10px"><a href="#" target="_blank" style="outline:none" tabindex="-1"><img src="{{uploaded_asset($cart->product->thumbnail_img??"")}}" style="display: block; height: auto; border: 0; width: 175px; max-width: 100%;" width="175" alt="{{$cart->product->name}}" title="{{$cart->product->name}}"></a></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -349,7 +349,7 @@
                     </tr>
                     </tbody>
                 </table>
-{{--            @endforeach--}}
+            @endforeach
 
 
             <table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
@@ -551,7 +551,7 @@
                                     <table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
                                         <tr>
                                             <td class="pad" style="width:100%;padding-right:0px;padding-left:0px;">
-                                                <div class="alignment" align="center" style="line-height:10px"><img class="big" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/Bottom_round.png" style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;" width="700" alt="Alternate text" title="Alternate text"></div>
+                                                <div class="alignment" align="center" style="line-height:10px"><img class="big" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/1336/Bottom_round.png" style="display: block; height: auto; border: 0; width: 700px; max-width: 100%;" width="700" ></div>
                                             </td>
                                         </tr>
                                     </table>

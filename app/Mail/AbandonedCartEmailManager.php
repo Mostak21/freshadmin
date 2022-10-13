@@ -32,7 +32,7 @@ class AbandonedCartEmailManager extends Mailable
                      ->from($this->array['from'], env('MAIL_FROM_NAME'))
                      ->subject($this->array['subject'])
                      ->with([
-                     'cart' => $this->array['carts']
+                     'carts' => $this->array['carts']
                  ]);
      }
 }
