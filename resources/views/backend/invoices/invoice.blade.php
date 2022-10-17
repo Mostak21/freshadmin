@@ -212,7 +212,7 @@
                               <th class="text-left strong"><b>{{ translate('Due') }}</b></th>
                               <td class="currency"><b>{{ single_price($order->grand_total - $order->grand_total) }}</b></td>
                           </tr>
-                        @elseif ($order->payment_status == 'partial' || $order->payment_status == 'delivery_paid')
+                        @elseif ($order->payment_status == 'partial' || $order->payment_status == 'delivery_paid' || $order->payment_status == 'partial_paid')
                           <tr class="border-bottom">
                               <th class="gry-color text-left ">{{ translate('Partial Paid') }}</th>
                               <td class="currency">{{ single_price($order->partial_pay) }}</td>
