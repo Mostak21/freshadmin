@@ -19,12 +19,13 @@ class abandonedCartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getCartList(){
+
+    public function carts(){
         $mytime = Carbon::yesterday();
         $carts = Cart::whereNotNull('user_id')
-            ->where('updated_at', '<', $mytime)
-            ->where('abandoned_cart', '!=', 0)
-            ->where('abandoned_cart', 1)
+//            ->where('updated_at', '<', $mytime)
+//            ->where('abandoned_cart', '!=', 0)
+//            ->where('abandoned_cart', 1)
             ->select('id','user_id','product_id','variation','quantity','price','abandoned_cart','updated_at')
             ->whereHas('user', function ($query) {
                 $query->select('id')
@@ -32,60 +33,58 @@ class abandonedCartController extends Controller
                     ->where('user_type','customer')
                     ->whereNotNull('email_verified_at');
             })->with('user:id,name,email,phone')
+            ->with('product:id,name,thumbnail_img')
+            ->with('product_stock')
+            ->orderBy('id', 'DESC');
+
+        return $carts;
+    }
+
+    public function getCartList(){
+        $carts = $this->carts();
+        $carts = $carts->where('abandoned_cart', '!=', 0)->where('abandoned_cart', 1)
             ->whereHas('product_stock', function ($query) {
                 $query->where('product_stocks.qty','>','0')
                     ->whereRaw('`carts`.`variation` = `product_stocks`.`variant`');
             })
-            ->with('product:id,name,thumbnail_img')
-            ->with('product_stock')
-            ->orderBy('id', 'DESC')
             ->get();
         return $carts;
     }
 
     public function restockCartList(){
-        $mytime = Carbon::yesterday();
-        $carts = Cart::whereNotNull('user_id')
-            ->where('updated_at', '<', $mytime)
-            ->where('abandoned_cart', '!=', 0)
-            ->where('abandoned_cart', 2)
-            ->select('id','user_id','product_id','variation','quantity','price','abandoned_cart','updated_at')
-            ->whereHas('user', function ($query) {
-                $query->select('id')
-                    ->whereNotNull('email')
-                    ->where('user_type','customer')
-                    ->whereNotNull('email_verified_at');
-            })->with('user:id,name,email,phone')
+        $carts = $this->carts();
+
+        $carts = $carts->where('abandoned_cart', '!=', 0)->where('abandoned_cart', 2)
             ->whereHas('product_stock', function ($query) {
                 $query->where('product_stocks.qty','>','0')
                     ->whereRaw('`carts`.`variation` = `product_stocks`.`variant`');
             })
-            ->with('product:id,name,thumbnail_img')
-            ->with('product_stock')
-            ->orderBy('id', 'DESC')
             ->get();
+
         return $carts;
     }
 
     public function StockOutCartList(){
+
         $mytime = Carbon::yesterday();
         $carts = Cart::whereNotNull('user_id')
             ->where('updated_at', '<', $mytime)
-            ->where('abandoned_cart', '!=', 0)
             ->where('abandoned_cart', '!=', 2)
             ->select('id','user_id','product_id','variation','quantity','price','abandoned_cart','updated_at')
             ->whereHas('user', function ($query) {
                 $query->select('id')
                     ->whereNotNull('email')
                     ->where('user_type','customer')
+                    ->where('subscribed',1)
                     ->whereNotNull('email_verified_at');
-            })->with('user:id,name,email,phone')
+            })
+//            ->with('user:id,name,email,phone')
             ->whereHas('product_stock', function ($query) {
                 $query->where('product_stocks.qty','=','0')
                     ->whereRaw('`carts`.`variation` = `product_stocks`.`variant`');
             })
-            ->with('product:id,name,thumbnail_img')
-            ->with('product_stock')
+//            ->with('product:id,name,thumbnail_img')
+//            ->with('product_stock')
             ->orderBy('id', 'DESC')
             ->get();
         return $carts;
@@ -95,6 +94,7 @@ class abandonedCartController extends Controller
     {
 
         if ($key == "execute_abc"){
+
 
             $stockOutCartlist = $this->StockOutCartList();
             foreach ($stockOutCartlist as $key=> $stockOutCart) {
@@ -107,8 +107,10 @@ class abandonedCartController extends Controller
             foreach ($cartlist as $key=> $c) {
                 $carts[$c->user_id][$key] = $c;
             }
+//            dd($carts);
+            $this->abandonedCartEmail(array_values($carts[1818]));
             foreach ($carts as $cart){
-                $this->abandonedCartEmail(array_values($cart));
+//                $this->abandonedCartEmail(array_values($cart));
             }
 
             $restockCartlist = $this->restockCartList();
@@ -116,9 +118,9 @@ class abandonedCartController extends Controller
             foreach ($restockCartlist as $key=> $c) {
                 $restockCarts[$c->user_id][$key] = $c;
             }
-//            foreach ($restockCarts as $cart){
+            foreach ($restockCarts as $cart){
 //                $this->restockCartEmail(array_values($cart));
-//            }
+            }
 
         }
 
@@ -138,11 +140,11 @@ class abandonedCartController extends Controller
             $array['from'] = env('MAIL_FROM_ADDRESS');
             $array['carts'] = $carts;
             try {
-                    Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
-//                    Mail::to("mostakbrandh@gmail.com")->queue(new AbandonedCartEmailManager($array));
+//                    Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
+                    Mail::to("xtniloy@gmail.com")->queue(new AbandonedCartEmailManager($array));
 
             } catch (\Exception $e) {
-//                return dd("email not sent",$e);
+                return dd("email not sent",$e);
             }
         }
         return 1;

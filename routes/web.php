@@ -173,6 +173,8 @@ Route::get('/compare', 'CompareController@index')->name('compare');
 Route::get('/compare/reset', 'CompareController@reset')->name('compare.reset');
 Route::post('/compare/addToCompare', 'CompareController@addToCompare')->name('compare.addToCompare');
 
+Route::get('/userUnsubscribe', 'HomeController@customerUnsubscribe')->name('userUnsubscribe');
+
 Route::resource('subscribers', 'SubscriberController');
 
 Route::get('/brands', 'HomeController@all_brands')->name('brands.all');

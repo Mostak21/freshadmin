@@ -415,7 +415,7 @@
                                             <td class="pad" style="padding-bottom:70px;padding-left:60px;padding-right:60px;padding-top:10px;">
                                                 <div style="font-family: sans-serif">
                                                     <div class style="font-size: 12px; mso-line-height-alt: 21.6px; color: #161616; line-height: 1.8; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;">
-                                                        <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 25.2px;"><strong><span style="font-size:16px;">Email: info@brandhook.com.bd</span></strong></p>
+                                                        <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 25.2px;"><strong><span style="font-size:16px; color: gray;">Email: info@brandhook.com.bd</span></strong></p>
                                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 25.2px;"><strong><span style="font-size:16px;">Phone: +88 01750100647&nbsp;</span></strong></p>
                                                     </div>
                                                 </div>
@@ -513,7 +513,9 @@
                                             <td class="pad">
                                                 <div style="font-family: sans-serif">
                                                     <div class style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #ffffff; line-height: 1.2; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;">
-                                                        <p style="margin: 0; font-size: 12px; text-align: center; mso-line-height-alt: 14.399999999999999px;">All Rights Reserved &nbsp;©BrandHook&nbsp;<br>If you don't want to receive our emails <u>unsubscribe</u> here&nbsp;</p>
+                                                        <p style="margin: 0; font-size: 12px; text-align: center; mso-line-height-alt: 14.399999999999999px;">All Rights Reserved &nbsp;©BrandHook&nbsp;<br>If you don't want to receive our emails
+                                                            <u><a href="{{getBaseURL()}}userUnsubscribe?e={{$carts[0]->user->email}}&i={{$carts[0]->user->id}}" style="color: gray;">unsubscribe</a>
+                                                            </u> here&nbsp;</p>
                                                     </div>
                                                 </div>
                                             </td>
