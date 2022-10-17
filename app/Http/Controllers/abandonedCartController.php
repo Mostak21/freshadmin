@@ -23,7 +23,7 @@ class abandonedCartController extends Controller
     public function carts(){
         $mytime = Carbon::yesterday();
         $carts = Cart::whereNotNull('user_id')
-//            ->where('updated_at', '<', $mytime)
+            ->where('updated_at', '<', $mytime)
 //            ->where('abandoned_cart', '!=', 0)
 //            ->where('abandoned_cart', 1)
             ->select('id','user_id','product_id','variation','quantity','price','abandoned_cart','updated_at')
