@@ -31,6 +31,7 @@ class abandonedCartController extends Controller
                 $query->select('id')
                     ->whereNotNull('email')
                     ->where('user_type','customer')
+                    ->where('subscribed',1)
                     ->whereNotNull('email_verified_at');
             })->with('user:id,name,email,phone')
             ->with('product:id,name,thumbnail_img')
@@ -107,10 +108,8 @@ class abandonedCartController extends Controller
             foreach ($cartlist as $key=> $c) {
                 $carts[$c->user_id][$key] = $c;
             }
-//            dd($carts);
-            $this->abandonedCartEmail(array_values($carts[1818]));
             foreach ($carts as $cart){
-//                $this->abandonedCartEmail(array_values($cart));
+                $this->abandonedCartEmail(array_values($cart));
             }
 
             $restockCartlist = $this->restockCartList();
@@ -119,7 +118,7 @@ class abandonedCartController extends Controller
                 $restockCarts[$c->user_id][$key] = $c;
             }
             foreach ($restockCarts as $cart){
-//                $this->restockCartEmail(array_values($cart));
+                $this->restockCartEmail(array_values($cart));
             }
 
         }
@@ -140,11 +139,10 @@ class abandonedCartController extends Controller
             $array['from'] = env('MAIL_FROM_ADDRESS');
             $array['carts'] = $carts;
             try {
-//                    Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
-                    Mail::to("xtniloy@gmail.com")->queue(new AbandonedCartEmailManager($array));
+                    Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
 
             } catch (\Exception $e) {
-                return dd("email not sent",$e);
+//                return dd("email not sent",$e);
             }
         }
         return 1;
@@ -159,14 +157,13 @@ class abandonedCartController extends Controller
         }
 
         if (env('MAIL_USERNAME') != null ) {
-            $array['view'] = 'emails.abandoned_cart';
-            $array['subject'] = 'We\'re holding the items in your cart for you';
+            $array['view'] = 'emails.backInStock_cart';
+            $array['subject'] = 'Look what’s FINALLY BACK!';
             $array['from'] = env('MAIL_FROM_ADDRESS');
             $array['carts'] = $carts;
             try {
                     Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
             } catch (\Exception $e) {
-//                return dd("email not sent",$e);
             }
         }
 
