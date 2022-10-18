@@ -67,9 +67,9 @@ class abandonedCartController extends Controller
 
     public function StockOutCartList(){
 
-        $mytime = Carbon::yesterday();
+//        $mytime = Carbon::yesterday();
         $carts = Cart::whereNotNull('user_id')
-            ->where('updated_at', '<', $mytime)
+//            ->where('updated_at', '<', $mytime)
             ->where('abandoned_cart', '!=', 2)
             ->select('id','user_id','product_id','variation','quantity','price','abandoned_cart','updated_at')
             ->whereHas('user', function ($query) {
@@ -120,10 +120,11 @@ class abandonedCartController extends Controller
             foreach ($restockCarts as $cart){
                 $this->restockCartEmail(array_values($cart));
             }
-
+            return 1;
         }
 
-        return 1;
+        return 0;
+
     }
 
     public function abandonedCartEmail($carts)
@@ -140,9 +141,10 @@ class abandonedCartController extends Controller
             $array['carts'] = $carts;
             try {
                     Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
+//                dd("email done", $carts);
 
             } catch (\Exception $e) {
-//                return dd("email not sent",$e);
+                return dd("email not sent",$e);
             }
         }
         return 1;
@@ -163,6 +165,7 @@ class abandonedCartController extends Controller
             $array['carts'] = $carts;
             try {
                     Mail::to($carts[0]->user->email)->queue(new AbandonedCartEmailManager($array));
+//                dd("email done 2");
             } catch (\Exception $e) {
             }
         }
