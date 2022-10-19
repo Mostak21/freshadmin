@@ -144,7 +144,7 @@ class abandonedCartController extends Controller
 //                dd("email done", $carts);
 
             } catch (\Exception $e) {
-                return dd("email not sent",$e);
+//                return dd("email not sent",$e);
             }
         }
         return 1;
