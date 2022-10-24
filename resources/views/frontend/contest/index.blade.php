@@ -1,1 +1,157 @@
-@extends('frontend.layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="p:domain_verify" content="5861a5107cb561900d2381c36d5c252b"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="app-url" content="{{ getBaseURL() }}">
+    <meta name="file-base-url" content="{{ getFileBaseURL() }}">
+
+    <title>@yield('meta_title', get_setting('website_name').' | '.get_setting('site_motto'))</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="@yield('meta_description', get_setting('meta_description') )" />
+    <meta name="keywords" content="@yield('meta_keywords', get_setting('meta_keywords') )">
+    <link rel="icon" href="{{ Cache::rememberForever('site_icon', function () { return uploaded_asset(get_setting('site_icon')); }) }}">
+    <script src="https://kit.fontawesome.com/103bf7be9c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
+
+    <style>
+        body{
+            font-size: 20px;
+        }
+        .GWbackground{
+            background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/iC4aMiHo6sdynyY1O9oCxzyUcpL5RMVc1nYtjZNw.svg");
+            background-size: cover;
+        }
+        .orange-btn{
+            background-color: #ea9040;
+            border: #ea9040;
+
+            /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%) !important;*/
+            /*border-top: 1px solid #f1f1f1!important;*/
+        }
+        .bg-primary{
+            background-color: #be1e2d !important;
+            border-color: #be1e2d;
+            color: var(--white);
+        }
+
+    </style>
+
+</head>
+<body>
+<sylye>
+
+</sylye>
+<section class="text-center mx-auto" style="max-width: 720px">
+    <div class="row">
+        <div class="col text-center fs-22 border-bottom">
+            <div class="row">
+                <div class="col text-left m-3">
+                    <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
+                </div>
+                <div class="col text-right m-3">
+                    <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col px-0">
+            <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/PA2d09lzEG9IGZqc9k4wrt0FEq3r1MJ1rHhnHSv7.png" style="max-width:100%; max-height:100%;">
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col">
+            <div class="h1">GUESS & WIN</div>
+        </div>
+    </div>
+    <div class="row GWbackground" >
+        <div class="col">
+            <div class="row my-3">
+                <div class="col-5 pl-3 text-right">
+                    <button type="button" class="btn btn-danger fs-22 text-white orange-btn shadow-md">Warning</button>
+                </div>
+                <div class="col-2 my-auto text-white"> vs</div>
+                <div class="col-5 pr-3 text-left">
+                    <button type="button" class="btn btn-danger fs-22 text-white orange-btn shadow-md">Warning</button>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-5 pl-3 text-right">
+                    <button type="button" class="btn btn-danger fs-22 text-white orange-btn shadow-md">Warning</button>
+                </div>
+                <div class="col-2 my-auto text-white"> vs</div>
+                <div class="col-5 pr-3 text-left">
+                    <button type="button" class="btn btn-danger fs-22 text-white orange-btn shadow-md">Warning</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="text-center mx-auto my-5" style="max-width: 720px">
+    <div class="fs-24 py-4"><span class="fw-800">LEADER BOARD </span><span class="fw-100">(TOP 10)</span></div>
+    <div class="row bg-primary rounded shadow-md">
+        <div class="col">Name</div>
+        <div class="col">Participate</div>
+        <div class="col">Win</div>
+        <div class="col">Lose</div>
+        <div class="col">Points</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+    <div class="row border-1 rounded shadow-md my-1 bg-white">
+        <div class="col">Ruhul amin</div>
+        <div class="col">10</div>
+        <div class="col">7</div>
+        <div class="col">3</div>
+        <div class="col">300</div>
+    </div>
+
+    <div class="my-3"><button type="button" class="btn btn-sm btn-danger bg-primary">VIEW MORE</button></div>
+</section>
+
+
+</body>
+
+
+</html>
