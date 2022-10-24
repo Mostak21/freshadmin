@@ -317,7 +317,17 @@
                                 
                             
                             <div class="row align-items-center pb-2">
-                                <div class="col-12">
+                                <div class="col-2 text-left">
+
+                                    @if ($detailedProduct->brand != null)
+
+                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug) }}">
+                                            <img src="{{ uploaded_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->getTranslation('name') }}" height="30" id="productBrand">
+                                        </a>
+
+                                    @endif
+                                </div>
+                                <div class="col-10">
                                     @php
                                         $total = 0;
                                         $total += $detailedProduct->reviews->count();
@@ -349,13 +359,13 @@
                                     @endif
                                 </div>
 
-                                @if ($detailedProduct->brand != null)
-                                    <div class="col-auto">
-                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug) }}">
-                                            <img src="{{ uploaded_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->getTranslation('name') }}" height="30" id="productBrand">
-                                        </a>
-                                    </div>
-                                @endif
+{{--                                @if ($detailedProduct->brand != null)--}}
+{{--                                    <div class="col-auto">--}}
+{{--                                        <a href="{{ route('products.brand',$detailedProduct->brand->slug) }}">--}}
+{{--                                            <img src="{{ uploaded_asset($detailedProduct->brand->logo) }}" alt="{{ $detailedProduct->brand->getTranslation('name') }}" height="30" id="productBrand">--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                @endif--}}
                             </div>
                                 </div>
                                 <div>
