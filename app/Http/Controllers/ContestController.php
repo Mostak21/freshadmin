@@ -10,4 +10,9 @@ class ContestController extends Controller
         return view("frontend.contest.index");
     }
 
+    public function dd(Request $request){
+        return dd($request);
+    }
+
+
 }

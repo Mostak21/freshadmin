@@ -24,10 +24,14 @@
     <style>
         body{
             font-size: 20px;
+            margin: auto;
         }
         .GWbackground{
-            background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/iC4aMiHo6sdynyY1O9oCxzyUcpL5RMVc1nYtjZNw.svg");
-            background-size: cover;
+            background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/He4rP8yAALQ8es2Y30kG8gCOfBUbkqXVDWlt4BNa.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #be1e2d;
+            background-position: 0% -0.22%;
         }
         .orange-btn{
             background-color: #ea9040;
@@ -90,18 +94,20 @@
     </style>
 
 </head>
-<body>
-<sylye>
 
-</sylye>
+<body>
 <section class="text-center mx-auto" style="max-width: 720px">
     <div class="row">
-        <div class="col text-center fs-22 border-bottom">
+        <div class="col text-center fs-22">
             <div class="row">
                 <div class="col text-left m-3">
-                    <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
+                    <a href="{{ route('home') }}">
+                        <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
+                    </a>
+
                 </div>
                 <div class="col text-right m-3">
+                    <i class="ci-user fs-22 "></i>
                     <span class="fs-16 px-3">RUHUL AMIN</span>
                     <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
                 </div>

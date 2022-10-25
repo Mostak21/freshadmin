@@ -24,11 +24,21 @@
     <style>
         body{
             font-size: 20px;
+            margin: auto;
         }
         .GWbackground{
-            background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/iC4aMiHo6sdynyY1O9oCxzyUcpL5RMVc1nYtjZNw.svg");
-            background-size: cover;
+            background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/He4rP8yAALQ8es2Y30kG8gCOfBUbkqXVDWlt4BNa.svg");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-color: #be1e2d;
+            background-position: 0% -0.22%;
         }
+        /*.eclips-shape{*/
+        /*    border-radius: 50% / 0 0 100% 100%;*/
+        /*    background-color: white;*/
+        /*    height: 2%;*/
+        /*    z-index: 0;*/
+        /*}*/
         .orange-btn{
             background-color: #ea9040;
             border: #ea9040;
@@ -91,23 +101,24 @@
 
 </head>
 <body>
-<sylye>
-
-</sylye>
 <section class="text-center mx-auto" style="max-width: 720px">
-    <div class="row">
-        <div class="col text-center fs-22 border-bottom">
+{{--    <div class="row">--}}
+        <div class="text-center fs-22">
             <div class="row">
-                <div class="col text-left m-3">
-                    <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
+                <div class="col-2 text-left p-2">
+                    <a href="{{ route('home') }}" class="ml-4">
+                        <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
+                    </a>
+
                 </div>
-                <div class="col text-right m-3">
-                    <span class="fs-16 px-3">RUHUL AMIN</span>
-                    <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
+                <div class="col-10 text-right p-2">
+                    <i class="ci-user fs-16 "></i>
+                    <span class="fs-14 px-2">RUHUL AMIN</span>
+                    <img class="mr-4" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
                 </div>
             </div>
         </div>
-    </div>
+{{--    </div>--}}
     <div class="row">
         <div class="col px-0">
             <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/PA2d09lzEG9IGZqc9k4wrt0FEq3r1MJ1rHhnHSv7.png" style="max-width:100%; max-height:100%;">
@@ -115,11 +126,13 @@
     </div>
     <div class="row ">
         <div class="col">
-            <div class="h1">GUESS & WIN</div>
+            <div class="h3">GUESS & WIN</div>
         </div>
     </div>
     <div class="row GWbackground" >
+
         <div class="col">
+{{--            <div class="eclips-shape"></div>--}}
             <div class="row my-3">
                 <div class="col-5 pl-3 text-right">
                     <button type="button" class="btn btn-secondary fs-22 text-white orange-btn shadow-md">Team 1</button>
@@ -147,15 +160,15 @@
     </div>
 </section>
 
-<section class="text-center mx-auto my-5 px-2 py-3" style="max-width: 720px">
+<section class="text-center mx-auto my-5 px-4 py-3" style="max-width: 720px">
 
     <div class="py-3"> Participate Challenge to Win Final Price</div>
-{{--    <div class="progress">--}}
-{{--        <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--    </div>--}}
+    {{--    <div class="progress">--}}
+    {{--        <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
+    {{--    </div>--}}
 
     <div class="progress mt-5" style="overflow: visible;">
-{{--        <sapn class="p-scale" style="left: 0%">|</sapn>--}}
+        {{--        <sapn class="p-scale" style="left: 0%">|</sapn>--}}
         <sapn class="p-scale" style="left: 24.6%">|</sapn>
         <sapn class="p-scale" style="left: 49.6%">|</sapn>
         <sapn class="p-scale" style="left: 74.6%">|</sapn>
@@ -172,64 +185,96 @@
         <div class="progress-bar bg-primary" role="progressbar" style="width: 25%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
         <div class="progress-bar bg-primary right-round" role="progressbar" style="width: 10%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-{{--    <div class="progress">--}}
-{{--        <sapn class="p-scale" style="left: 24.6%">1000</sapn>--}}
-{{--        <sapn class="p-scale" style="left: 49.6%">10k</sapn>--}}
-{{--        <sapn class="p-scale" style="left: 74.6%">100k</sapn>--}}
-{{--    </div>--}}
+    {{--    <div class="progress">--}}
+    {{--        <sapn class="p-scale" style="left: 24.6%">1000</sapn>--}}
+    {{--        <sapn class="p-scale" style="left: 49.6%">10k</sapn>--}}
+    {{--        <sapn class="p-scale" style="left: 74.6%">100k</sapn>--}}
+    {{--    </div>--}}
 </section>
 
-<section class="text-center mx-auto my-5" style="max-width: 720px">
-    <div class="fs-24 py-4"><span class="fw-800">WEEKLY LEADER BOARD </span><span class="fw-100">(TOP 10)</span></div>
-    <div class="row bg-primary rounded shadow-md">
-        <div class="col">Name</div>
-        <div class="col">Participate</div>
-        <div class="col">Win</div>
-        <div class="col">Lose</div>
-        <div class="col">Points</div>
+<section class="text-center mx-auto my-5 px-4" style="max-width: 720px">
+    <div class="fs-24 py-4"><span class="fw-800">WEEKLY LEADER BOARD </span><br><span class="fw-100">(TOP 10)</span></div>
+    <div class="fs-14">
+        <div class="row bg-primary rounded shadow-md">
+            <div class="col-4">Name</div>
+            <div class="col-2">Guess</div>
+            <div class="col-2">Win</div>
+            <div class="col-2">Lose</div>
+            <div class="col-2">Points</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col-4">Ruhul amin</div>
+            <div class="col-2">10</div>
+            <div class="col-2">7</div>
+            <div class="col-2">3</div>
+            <div class="col-2">300</div>
+        </div>
+
     </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
-    <div class="row border-1 rounded shadow-md my-1 bg-white">
-        <div class="col">Ruhul amin</div>
-        <div class="col">10</div>
-        <div class="col">7</div>
-        <div class="col">3</div>
-        <div class="col">300</div>
-    </div>
+
 
     <div class="my-3">
         <button type="button" class="btn btn-secondary primary-btn text-white shadow-md">VIEW GRAND LEADER BOARD</button>
