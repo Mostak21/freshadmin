@@ -107,8 +107,11 @@
 
                 </div>
                 <div class="col text-right m-3">
-                    <i class="ci-user fs-22 "></i>
-                    <span class="fs-16 px-3">RUHUL AMIN</span>
+                    <a href="{{ route('home') }}/dashboard">
+                        <i class="ci-user fs-22 "></i>
+                        <span class="fs-16 px-3">{{Auth::user()->name??""}}</span>
+                    </a>
+
                     <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
                 </div>
             </div>
@@ -126,27 +129,41 @@
     </div>
     <div class="row GWbackground" >
         <div class="col">
-            <div class="row my-3">
-                <div class="col-5 pl-3 text-right">
-                    <button type="button" class="btn btn-secondary fs-22 text-white orange-btn shadow-md">Team 1</button>
+
+            @foreach($contests as $key=>$contest)
+                <div class="row mt-4 p-2">
+                    <div class="col-5 pl-3 text-right">
+                        <button type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                            <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
+                            <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
+                        </button>
+                    </div>
+                    <div class="col-2 my-auto text-white"> vs</div>
+                    <div class="col-5 pr-3 text-left">
+                        <button type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                            <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
+                            <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-2 my-auto text-white"> vs</div>
-                <div class="col-5 pr-3 text-left">
-                    <button type="button" class="btn btn-secondary fs-22 text-white orange-btn shadow-md">Team 2</button>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-5 pl-3 text-right">
-                    <button type="button" class="btn btn-secondary fs-22 text-white orange-btn shadow-md">Team 3</button>
-                </div>
-                <div class="col-2 my-auto text-white"> vs</div>
-                <div class="col-5 pr-3 text-left">
-                    <button type="button" class="btn btn-secondary fs-22 text-white orange-btn shadow-md">Team 4</button>
-                </div>
-            </div>
+            @endforeach
+
             <div class="row-cols-auto mx-auto py-3">
                 <div class="text-center">
-                    <button type="button" class="btn btn-success fs-22 text-white orange-btn shadow-md">Submit</button>
+
+                    @if(Auth::check())
+                        {{-- <a href="{{ route('checkout.shipping_info') }}" class="btn btn-primary fw-600 btn-mright">
+                            {{ translate('Continue to Shipping')}}<i class="ci-arrow-right mt-sm-0 ms-1"></i>
+                        </a> --}}
+                        <button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button>
+
+                    @else
+                        <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
+                    @endif
+
+
+
+{{--                    <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md">Submit</button>--}}
                 </div>
             </div>
         </div>
@@ -241,6 +258,125 @@
         <button type="button" class="btn btn-secondary primary-btn text-white shadow-md">VIEW GRAND LEADER BOARD</button>
     </div>
 </section>
+
+
+
+
+{{--@section('modal')--}}
+    <div class="modal fade" id="login-modal">
+        <div class="modal-dialog modal-dialog-zoom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title fw-600">{{ translate('Login')}}</h6>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <section id="cart-login-guest">
+                        <div class="p-3">
+                            <form class="form-default" role="form" action="{{ route('cart.login.submit') }}" method="POST">
+                                @csrf
+                                <p>Enter phone number or email to continue</p>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{  translate('Email or phone') }}" name="email" id="email" autocomplete="off">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="mb-5">
+                                    {{--                                <input type="submit" class="btn btn-primary fw-600" value="{{  translate('Login') }}">--}}
+                                    <button type="button" id="guestbutton" class="btn btn-primary fw-600 btn-mright" onclick="guestLogin()" style="width: 100%!important;">{{ translate('Next')}} <i class="ci-arrow-right fw-600 pl-2"></i></button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </section>
+{{--                    <div class="text-center mb-3">--}}
+{{--                        <p class="text-muted mb-0">{{ translate('Dont have an account?')}}</p>--}}
+{{--                        <a href="{{ route('user.registration') }}">{{ translate('Register Now')}}</a>--}}
+{{--                    </div>--}}
+                    @if(get_setting('google_login') == 1 || get_setting('facebook_login') == 1 || get_setting('twitter_login') == 1)
+                        <div class="separator mb-3">
+                            <span class="bg-white px-3 opacity-60">{{ translate('Or Login With')}}</span>
+                        </div>
+                        <ul class="list-inline social colored text-center mb-3">
+                            @if (get_setting('facebook_login') == 1)
+                                <li class="list-inline-item">
+                                    <a href="{{ route('social.login', ['provider' => 'facebook']) }}" class="facebook">
+                                        <i class="lab la-facebook-f"></i>
+                                    </a>
+                                </li>
+                            @endif
+                            @if(get_setting('google_login') == 1)
+                                <li class="list-inline-item">
+                                    <a href="{{ route('social.login', ['provider' => 'google']) }}" class="google">
+                                        <i class="lab la-google"></i>
+                                    </a>
+                                </li>
+                            @endif
+                            @if (get_setting('twitter_login') == 1)
+                                <li class="list-inline-item">
+                                    <a href="{{ route('social.login', ['provider' => 'twitter']) }}" class="twitter">
+                                        <i class="lab la-twitter"></i>
+                                    </a>
+                                </li>
+                            @endif
+                        </ul>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+{{--@endsection--}}
+<script>
+    var AIZ = AIZ || {};
+    AIZ.local = {
+        nothing_selected: 'Nothing selected',
+        nothing_found: 'Nothing found',
+        choose_file: 'Choose file',
+        file_selected: 'File selected',
+        files_selected: 'Files selected',
+        add_more_files: 'Add more files',
+        adding_more_files: 'Adding more files',
+        drop_files_here_paste_or: 'Drop files here, paste or',
+        browse: 'Browse',
+        upload_complete: 'Upload complete',
+        upload_paused: 'Upload paused',
+        resume_upload: 'Resume upload',
+        pause_upload: 'Pause upload',
+        retry_upload: 'Retry upload',
+        cancel_upload: 'Cancel upload',
+        uploading: 'Uploading',
+        processing: 'Processing',
+        complete: 'Complete',
+        file: 'File',
+        files: 'Files',
+    }
+</script>
+<script src="{{ static_asset('assets/js/vendors.js') }}"></script>
+<script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
+<script>
+    function showCheckoutModal(){
+        $('#login-modal').modal();
+    }
+    function guestLogin(){
+        $.post('{{ route('cart.login.guest') }}', {
+            _token   :  AIZ.data.csrf,
+            // id       :  key,
+            email :  document.getElementById("email").value
+        }, function(data){
+
+            // updateNavCart(data.nav_cart_view,data.cart_count);
+            $('#cart-login-guest').html(data);
+            console.log(data);
+        });
+    }
+</script>
 
 
 </body>
