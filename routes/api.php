@@ -230,6 +230,7 @@ Route::group(['prefix' => 'v2', 'middleware' => ['app_language']], function() {
     Route::post('offline/payment/submit', 'Api\V2\OfflinePaymentController@submit')->name('api.offline.payment.submit');
 
     Route::post('order/store', 'Api\V2\OrderController@store')->middleware('auth:api');
+    Route::get('profile/{user_id}', 'Api\V2\ProfileController@profile_info');
     Route::get('profile/counters/{user_id}', 'Api\V2\ProfileController@counters')->middleware('auth:api');
     Route::post('profile/update', 'Api\V2\ProfileController@update')->middleware('auth:api');
     Route::post('profile/update-device-token', 'Api\V2\ProfileController@update_device_token')->middleware('auth:api');

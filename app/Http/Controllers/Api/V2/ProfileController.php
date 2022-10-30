@@ -8,6 +8,7 @@ use App\Http\Resources\V2\AddressCollection;
 use App\Models\Address;
 use App\Http\Resources\V2\CitiesCollection;
 use App\Http\Resources\V2\CountriesCollection;
+use App\Http\Resources\V2\UserCollection;
 use App\Models\Order;
 use App\Models\Upload;
 use App\Models\User;
@@ -20,6 +21,12 @@ use Storage;
 
 class ProfileController extends Controller
 {
+
+    public function profile_info($user_id)
+    {
+        return new UserCollection(User::where('id', $user_id)->get());
+    }
+
     public function counters($user_id)
     {
         return response()->json([
@@ -34,6 +41,16 @@ class ProfileController extends Controller
         $user = User::find($request->id);
 
         $user->name = $request->name;
+        if( $request->email!=null){
+            $user->email = $request->email;
+        }
+        if( $request->phone!=null){
+            $user->phone = $request->phone;
+        }
+        if( $request->gender!=null){
+            $user->gender = $request->gender;
+        }
+        
 
         if ($request->password != "") {
             $user->password = Hash::make($request->password);
