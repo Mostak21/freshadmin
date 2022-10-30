@@ -607,7 +607,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">
-                                {{translate('(RSP)')}}
+                                {{translate('(POS DP)')}}
                             </label>
                             <input type="text" name="retail_price" value="" class="form-control">
                         </div>
@@ -780,6 +780,43 @@
         });
 
         update_sku();
+    });
+
+    $(document).ready(function(){
+        setInterval(myTimer, 1000);
+        function myTimer() {
+
+            const elements1 = Array.from(document.querySelectorAll('[data-size]'));
+
+            for (let index = 0; index < elements1.length; index++) {
+                var size = parseInt(elements1[index].getAttribute('data-size'));
+                if (size > 102400) {
+                    AIZ.plugins.notify('danger', '{{ translate('Image size is over the limit') }}');
+
+                    var value = parseInt(elements1[index].getAttribute('data-id'));
+                    var selected = $(elements1[index])
+                        .closest(".file-preview")
+                        .prev('[data-toggle="aizuploader"]')
+                        .find(".selected-files")
+                        .val()
+                        .split(",")
+                        .map(Number);
+
+                    AIZ.uploader.removeInputValue(
+                        value,
+                        selected,
+                        $(elements1[index])
+                            .closest(".file-preview")
+                            .prev('[data-toggle="aizuploader"]')
+                    );
+                    $(elements1[index]).closest(".file-preview-item").remove();
+                }
+
+                if (size > 20280) {
+                    $(elements1[index]).closest(".file-preview-item").addClass('bg-warning');
+                }
+            }
+        }
     });
 
 </script>

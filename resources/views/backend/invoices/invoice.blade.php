@@ -101,15 +101,25 @@
 		</div>
 
 		<div style="padding: 1rem;padding-bottom: 0">
-            <table>
-				@php
-					$shipping_address = json_decode($order->shipping_address);
-				@endphp
-				<tr><td class="strong small gry-color">{{ translate('Bill to') }}:</td></tr>
-				<tr><td class="strong">{{ $shipping_address->name }}</td></tr>
-				<tr><td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}</td></tr>
-				<tr><td class="gry-color small">{{ translate('Email') }}: {{ $shipping_address->email }}</td></tr>
-				<tr><td class="gry-color small">{{ translate('Phone') }}: {{ $shipping_address->phone }}</td></tr>
+            <table><tr>
+                    <td>
+                        <table>
+                            @php
+                                $shipping_address = json_decode($order->shipping_address);
+                            @endphp
+                            <tr><td class="strong small gry-color">{{ translate('Bill to') }}:</td></tr>
+                            <tr><td class="strong">{{ $shipping_address->name }}</td></tr>
+                            <tr><td class="gry-color small">{{ $shipping_address->address }}, {{ $shipping_address->city }}, {{ $shipping_address->country }}</td></tr>
+                            <tr><td class="gry-color small">{{ translate('Email') }}: {{ $shipping_address->email }}</td></tr>
+                            <tr><td class="gry-color small">{{ translate('Phone') }}: {{ $shipping_address->phone }}</td></tr>
+                        </table>
+
+                    </td>
+                    <td>
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/B4yIqDKRaaMIdJ7NkoAZTY2b7UggEzAB2BBwPYRw.png" height="200px">
+                    </td>
+                </tr>
+
 			</table>
 		</div>
 
@@ -202,7 +212,7 @@
                               <th class="text-left strong"><b>{{ translate('Due') }}</b></th>
                               <td class="currency"><b>{{ single_price($order->grand_total - $order->grand_total) }}</b></td>
                           </tr>
-                        @elseif ($order->payment_status == 'partial' || $order->payment_status == 'delivery_paid')
+                        @elseif ($order->payment_status == 'partial' || $order->payment_status == 'delivery_paid' || $order->payment_status == 'partial_paid')
                           <tr class="border-bottom">
                               <th class="gry-color text-left ">{{ translate('Partial Paid') }}</th>
                               <td class="currency">{{ single_price($order->partial_pay) }}</td>

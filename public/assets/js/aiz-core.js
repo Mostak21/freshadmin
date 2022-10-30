@@ -906,7 +906,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                           ["color", ["color"]],
                           ["table", ["table"]],
                           ["insert", ["link", "picture", "video"]],
-                          ["view", ["fullscreen", "undo", "redo"]],
+                          ["view", ["fullscreen","codeview", "undo", "redo"]],
                       ]
                     : buttons;
                 placeholder = !placeholder ? "" : placeholder;

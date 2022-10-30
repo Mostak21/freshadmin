@@ -27,7 +27,7 @@
                 @if (addon_is_activated('pos_system'))
                     @if(Auth::user()->user_type == 'admin' || in_array('1', json_decode(Auth::user()->staff->role->permissions)))
                         <li class="aiz-side-nav-item">
-                            <a href="#" class="aiz-side-nav-link">
+                            <a href="{{route('poin-of-sales.index')}}" class="aiz-side-nav-link">
                                 <i class="las la-tasks aiz-side-nav-icon"></i>
                                 <span class="aiz-side-nav-text">{{translate('POS System')}}</span>
                                 @if (env("DEMO_MODE") == "On")
@@ -41,11 +41,13 @@
                                         <span class="aiz-side-nav-text">{{translate('POS Manager')}}</span>
                                     </a>
                                 </li>
+                                @if(Auth::user()->user_type == 'admin')
                                 <li class="aiz-side-nav-item">
                                     <a href="{{route('poin-of-sales.activation')}}" class="aiz-side-nav-link">
                                         <span class="aiz-side-nav-text">{{translate('POS Configuration')}}</span>
                                     </a>
                                 </li>
+                                 @endif
                             </ul>
                         </li>
                     @endif
@@ -202,6 +204,12 @@
                 @endif
 
                 <!-- Sale -->
+                @if(Auth::user()->user_type == 'admin'
+                || in_array('3', json_decode(Auth::user()->staff->role->permissions))
+                || in_array('4', json_decode(Auth::user()->staff->role->permissions))
+                || in_array('5', json_decode(Auth::user()->staff->role->permissions))
+                || in_array('6', json_decode(Auth::user()->staff->role->permissions))
+                )
                 <li class="aiz-side-nav-item">
                     <a href="#" class="aiz-side-nav-link">
                         <i class="las la-money-bill aiz-side-nav-icon"></i>
@@ -241,6 +249,7 @@
                         @endif
                     </ul>
                 </li>
+                @endif
 
                 <!-- Deliver Boy Addon-->
                 @if (addon_is_activated('delivery_boy'))
@@ -413,19 +422,28 @@
                 @endif
                 @if(Auth::user()->user_type == 'admin' || in_array('22', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">
-                        <a href="{{ route('uploaded-files.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['uploaded-files.create'])}}">
+                        <a href="#" class="aiz-side-nav-link">
                             <i class="las la-folder-open aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">{{ translate('Uploaded Files') }}</span>
+                            <span class="aiz-side-nav-text">{{ translate('Media and Files') }}</span>
+                            <span class="aiz-side-nav-arrow"></span>
                         </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            <li class="aiz-side-nav-item">
+                                <a href="{{ route('uploaded-files.index') }}" class="aiz-side-nav-link {{ areActiveRoutes(['uploaded-files.create'])}}">
+                                    <i class="las la-photo-video aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">{{ translate('Uploaded Files') }}</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{ route('uploaded-files.bulkdelete') }}" class="aiz-side-nav-link {{ areActiveRoutes(['uploaded-files.bulkdelete'])}}">
+                                    <i class="las la-trash aiz-side-nav-icon"></i>
+                                    <span class="aiz-side-nav-text">Bulk Delete</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 @endif
-				<li class="aiz-side-nav-item">
-                        <a href="{{ route('uploaded-files.bulkdelete') }}" class="aiz-side-nav-link {{ areActiveRoutes(['uploaded-files.create'])}}">
-                            <i class="las la-folder-open aiz-side-nav-icon"></i>
-                            <span class="aiz-side-nav-text">Bulk Delete</span>
-                        </a>
-                    </li>
-				
+
             <!-- Reports -->
                 @if(Auth::user()->user_type == 'admin' || in_array('10', json_decode(Auth::user()->staff->role->permissions)))
                     <li class="aiz-side-nav-item">

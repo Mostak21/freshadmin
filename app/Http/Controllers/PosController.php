@@ -25,6 +25,7 @@ use Mail;
 use App\Mail\InvoiceEmailManager;
 use App\Http\Resources\PosProductCollection;
 use App\Utility\CategoryUtility;
+use Illuminate\Support\Facades\Log;
 
 class PosController extends Controller
 {
@@ -48,7 +49,8 @@ class PosController extends Controller
     public function search(Request $request)
     {
         if(Auth::user()->user_type == 'admin' || Auth::user()->user_type == 'staff'){
-            $products = ProductStock::join('products','product_stocks.product_id', '=', 'products.id')->where('products.added_by', 'admin')->select('products.*','product_stocks.id as stock_id','product_stocks.variant','product_stocks.price as stock_price', 'product_stocks.qty as stock_qty', 'product_stocks.image as stock_image')->orderBy('products.created_at', 'desc');
+            $products = ProductStock::join('products','product_stocks.product_id', '=', 'products.id')->select('products.*','product_stocks.id as stock_id','product_stocks.variant','product_stocks.price as stock_price', 'product_stocks.qty as stock_qty', 'product_stocks.image as stock_image')->orderBy('products.created_at', 'desc');
+//            $products = ProductStock::join('products','product_stocks.product_id', '=', 'products.id')->where('products.added_by', 'admin')->select('products.*','product_stocks.id as stock_id','product_stocks.variant','product_stocks.price as stock_price', 'product_stocks.qty as stock_qty', 'product_stocks.image as stock_image')->orderBy('products.created_at', 'desc');
             // $products = Product::where('added_by', 'admin')->where('published', '1');
         }
         else {
@@ -229,8 +231,8 @@ class PosController extends Controller
             $data['name'] = $address->user->name;
             $data['email'] = $address->user->email;
             $data['address'] = $address->address;
-            $data['country'] = $address->country;
-            $data['city'] = $address->city;
+            $data['country'] = $address->country->name;
+            $data['city'] = $address->city->name;
             $data['postal_code'] = $address->postal_code;
             $data['phone'] = $address->phone;
         } else {
@@ -299,8 +301,8 @@ class PosController extends Controller
                 if($request->shipping_address != null){
                     $address_data   = Address::findOrFail($request->shipping_address);
                     $address        = $address_data->address;
-                    $country        = $address_data->country;
-                    $city           = $address_data->city;
+                    $country        = $address_data->country->name;
+                    $city           = $address_data->city->name;
                     $postal_code    = $address_data->postal_code;
                     $phone          = $address_data->phone;
                 }
@@ -370,6 +372,7 @@ class PosController extends Controller
                     $product->num_of_sale++;
                     $product->save();
                 }
+                $order->seller_id = Auth::user()->id;
 
                 $order->grand_total = $subtotal + $tax + Session::get('pos.shipping', 0);
 
@@ -427,7 +430,7 @@ class PosController extends Controller
                     }
                 }
 
-                commission_calculation($order);
+                calculateCommissionAffilationClubPoint($order);
 
                 $order->commission_calculated = 1;
                 $order->save();

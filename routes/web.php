@@ -23,6 +23,9 @@ use Illuminate\Support\Facades\URL;
 
 
 Route::get('/aws', 'AWSPersonalizeController@index')->name('AWSPersonalize');
+Route::get('/abc/{key}', 'abandonedCartController@index')->name('abc');
+Route::get('/contest', 'ContestController@index')->name('fifacontest');
+Route::get('/dd', 'ContestController@dd')->name('dd');
 
 //demo
 Route::get('/demo/cron_1', 'DemoController@cron_1');
@@ -171,6 +174,8 @@ Route::get('/stripe/cancel', 'StripePaymentController@cancel')->name('stripe.can
 Route::get('/compare', 'CompareController@index')->name('compare');
 Route::get('/compare/reset', 'CompareController@reset')->name('compare.reset');
 Route::post('/compare/addToCompare', 'CompareController@addToCompare')->name('compare.addToCompare');
+
+Route::get('/userUnsubscribe', 'HomeController@customerUnsubscribe')->name('userUnsubscribe');
 
 Route::resource('subscribers', 'SubscriberController');
 

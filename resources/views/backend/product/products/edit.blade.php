@@ -693,7 +693,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">
-                                {{translate('(RSP)')}}
+                                {{translate('(POS DP)')}}
                             </label>
                             <input type="text" name="retail_price" value="{{ $product->retail_price??"" }}" class="form-control">
                         </div>
@@ -774,8 +774,47 @@
         }
     }
 
-    // console.log($(".file-preview-item").data("id"));
-    // console.log($(".d-flex .justify-content-between .align-items-center .mt-2 .file-preview-item").data("id"));
+    // Dear programmer:
+    //     When I wrote this code, only god and
+    //     I knew how it worked.
+    //     Now, only god knows it!
+    $(document).ready(function(){
+        setInterval(myTimer, 1000);
+        function myTimer() {
+            const elements1 = Array.from(document.querySelectorAll('[data-size]'));
+            for (let index = 0; index < elements1.length; index++) {
+                var size = parseInt(elements1[index].getAttribute('data-size'));
+                if (size > 102400) {
+                    AIZ.plugins.notify('danger', '{{ translate('Image size is over the limit') }}');
+
+                    var value = parseInt(elements1[index].getAttribute('data-id'));
+                    var selected = $(elements1[index])
+                        .closest(".file-preview")
+                        .prev('[data-toggle="aizuploader"]')
+                        .find(".selected-files")
+                        .val()
+                        .split(",")
+                        .map(Number);
+
+                    AIZ.uploader.removeInputValue(
+                        value,
+                        selected,
+                        $(elements1[index])
+                            .closest(".file-preview")
+                            .prev('[data-toggle="aizuploader"]')
+                    );
+                    $(elements1[index]).closest(".file-preview-item").remove();
+                }
+                if (size > 20280) {
+                    $(elements1[index]).closest(".file-preview-item").addClass('bg-warning');
+                }
+            }
+        }
+    });
+
+
+    var comments = $(".d-flex.justify-content-between.align-items-center.mt-2.file-preview-item");
+
 
     // function reset_gallary() {
     //     $("#file-preview-gallary").empty();

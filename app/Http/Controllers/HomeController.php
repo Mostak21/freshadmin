@@ -1126,5 +1126,18 @@ class HomeController extends Controller
         // return [ $product2,$product3,];
     }
 
+    public function customerUnsubscribe(Request $request) {
+
+        $email = $request->e;
+        $id = $request->i;
+        $user = User::where('email', $email)->where('id', $id)->firstOrFail();
+        if ($user){
+            $user->subscribed = 0;
+            $user->save();
+            flash('You have unsubscribed successfully')->success();
+        }
+        return redirect()->route('home')->withInput();
+    }
+
 
 }

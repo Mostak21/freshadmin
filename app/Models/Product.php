@@ -8,7 +8,7 @@ use App;
 class Product extends Model {
 
     protected $fillable = [
-        'name', 'added_by', 'user_id', 'category_id', 'brand_id', 'video_provider', 'video_link', 'unit_price', 'distributor', 'distributor_price',
+        'name', 'added_by', 'user_id', 'category_id', 'brand_id', 'video_provider', 'video_link', 'unit_price', 'distributor', 'distributor_price','retail_price',
         'purchase_price', 'unit', 'slug', 'colors', 'choice_options', 'variations', 'thumbnail_img', 'meta_title', 'meta_description'
     ];
 

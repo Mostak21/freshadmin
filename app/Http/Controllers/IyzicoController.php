@@ -186,8 +186,8 @@ class IyzicoController extends Controller
     }
 
     public function initPayment(Request $request){
-        $url = $_SERVER['SERVER_NAME'];
-        $gate = "http://206.189.81.181/check_activation/".$url;
+//        $url = $_SERVER['SERVER_NAME'];
+//        $gate = "http://206.189.81.181/check_activation/".$url;
 
         // $stream = curl_init();
         // curl_setopt($stream, CURLOPT_URL, $gate);

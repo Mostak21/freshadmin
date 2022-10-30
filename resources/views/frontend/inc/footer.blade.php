@@ -161,6 +161,22 @@
 				   <span class="pr-2">
                              <a class="text-light fw-500" href="/helpcenter">Help Center</a>
                          </span>
+
+{{--                     @if ( get_setting('widget_one_labels',null,App::getLocale()) !=  null )--}}
+{{--                             @foreach (json_decode( get_setting('widget_one_labels',null,App::getLocale()), true) as $key => $value)--}}
+{{--                                 <span class="pr-2">--}}
+{{--                                     <a href="{{ json_decode( get_setting('widget_one_links'), true)[$key] }}" class="text-light fw-500">--}}
+{{--                                         {{ $value }}--}}
+{{--                                     </a>--}}
+{{--                                 </span>--}}
+{{--                             @endforeach--}}
+{{--                         @endif--}}
+                         <span class="pr-2">
+                             <a class="text-light fw-500" href="/about-us">About Us</a>
+                         </span>
+                         <span class="pr-2">
+                             <a class="text-light fw-500" href="/delivery-policy">Delivery Policy</a>
+                         </span>
                      @if (addon_is_activated('affiliate_system'))
                      <span class="pr-2">
                              <a class="text-light fw-500" href="{{ route('affiliate.apply') }}">
