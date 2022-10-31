@@ -124,7 +124,7 @@
     </div>
     <div class="row ">
         <div class="col">
-            <div class="h1">GUESS & WIN</div>
+            <div class="h1">Coming Soon</div>
         </div>
     </div>
     {{--    <div class="row GWbackground" >--}}
