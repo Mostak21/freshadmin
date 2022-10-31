@@ -133,14 +133,14 @@
             @foreach($contests as $key=>$contest)
                 <div class="row mt-4 p-2">
                     <div class="col-5 pl-3 text-right">
-                        <button type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
                         </button>
                     </div>
                     <div class="col-2 my-auto text-white"> vs</div>
                     <div class="col-5 pr-3 text-left">
-                        <button type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
                         </button>
@@ -375,6 +375,30 @@
             $('#cart-login-guest').html(data);
             console.log(data);
         });
+    }
+
+    function chooseteam(el) {
+
+        $.post('{{ route('select.team') }}', {
+            _token:'{{ csrf_token() }}',
+            contest:el.dataset.contest,
+            team:el.dataset.team,
+            }, function(data){
+
+            console.log(data);
+
+            {{--if(data == 1){--}}
+            {{--    AIZ.plugins.notify('success', '{{ translate('Shipping Agent status updated successfully') }}');--}}
+            {{--    el.value = data[1];--}}
+            {{--    console.log(data);--}}
+            {{--}--}}
+            {{--else{--}}
+            {{--    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
+            {{--    console.log(data);--}}
+            {{--}--}}
+
+        });
+
     }
 </script>
 

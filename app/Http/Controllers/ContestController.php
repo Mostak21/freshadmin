@@ -76,5 +76,9 @@ class ContestController extends Controller
         return redirect()->route('contest.list');
     }
 
+    public function selectTeam(Request $request){
+        return $request;
+    }
+
 
 }

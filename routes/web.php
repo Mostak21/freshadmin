@@ -24,7 +24,10 @@ use Illuminate\Support\Facades\URL;
 
 Route::get('/aws', 'AWSPersonalizeController@index')->name('AWSPersonalize');
 Route::get('/abc/{key}', 'abandonedCartController@index')->name('abc');
+
+//contest fifa
 Route::get('/contest', 'ContestController@index')->name('fifacontest');
+Route::post('/select-team', 'ContestController@selectTeam')->name('select.team');
 Route::get('/dd', 'ContestController@dd')->name('dd');
 
 //demo
