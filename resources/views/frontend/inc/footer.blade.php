@@ -269,8 +269,11 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start fw-200" style="-webkit-font-smoothing: antialiased;">
+                <div class="pb-0 fs-xs text-light opacity-50 text-center text-md-start fw-200" style="-webkit-font-smoothing: antialiased;">
                     {!! "©".now()->year." ".get_setting('frontend_copyright_text',null,App::getLocale())!!}
+                </div>
+                <div class="pb-4 fs-xs text-light opacity-50 text-center text-md-start fw-200" style="-webkit-font-smoothing: antialiased;">
+                    TIN : 312823771123
                 </div>
             </div>
 

@@ -76,5 +76,10 @@ class ContestController extends Controller
         return redirect()->route('contest.list');
     }
 
+    public function commingsoon()
+    {
+        return view("frontend.contest.footer");
+    }
+
 
 }
