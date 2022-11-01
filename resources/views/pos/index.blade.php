@@ -46,7 +46,7 @@
                             <div class="flex-grow-1">
                                 <select name="user_id" class="form-control aiz-selectpicker pos-customer" data-live-search="true" onchange="getShippingAddress()">
                                     <option value="">{{translate('Walk In Customer')}}</option>
-                                    @if(Auth::user()->user_type == 'admin')
+                                    @if(Auth::user()->user_type == 'admin' || in_array('8', json_decode(Auth::user()->staff->role->permissions)))
                                         @foreach (\App\Models\Customer::all() as $key => $customer)
                                             @if ($customer->user)
                                                 <option value="{{ $customer->user->id }}" data-contact="{{ $customer->user->email }}">{{ $customer->user->name }}</option>
