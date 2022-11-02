@@ -3,14 +3,36 @@
 
 namespace App\Http\Controllers;
 use App\Models\Contestlist;
+use App\Models\Contestparticipation;
 use App\Models\Contestteam;
 use Carbon\Carbon;
+use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class ContestController extends Controller
 {
     public function index(Request $request){
         $today = Carbon::now();
+        $leaderboards = Contestparticipation::distinct()
+//            ->select('id','user','contest','team')
+            ->with('participate')
+            ->with('participation')
+            ->get(['user'])
+            ->take(10);
+
+        foreach ($leaderboards as $key=> $leaderboard){
+            $wincount=0;
+            foreach ($leaderboard->participation as $key => $game){
+                $win = Contestlist::where('winner',$game->team)->first();
+                if ($win->id !=null)$wincount++;
+            }
+//            $leaderboard->win->
+            dd($leaderboard->participation);
+
+        }
+
+
 
         $contests =  Contestlist::where('time_start','<',$today)
             ->where('time_end','>',$today)
@@ -18,7 +40,7 @@ class ContestController extends Controller
 
 //        ddd($contests);
 
-        return view("frontend.contest.index",compact('contests'));
+        return view("frontend.contest.index",compact('contests','leaderboards'));
     }
 
     public function dd(Request $request){
@@ -26,7 +48,7 @@ class ContestController extends Controller
     }
 
     public function contestlist(){
-        $contests = Contestlist::orderBy("time_start","asc")->paginate(3);
+        $contests = Contestlist::orderBy("time_start","asc")->paginate(15);
 
 //        dd($contests[0]->teamOne);
 
@@ -69,6 +91,42 @@ class ContestController extends Controller
         return redirect()->route('contest.list');
     }
 
+    public function edit($id){
+        $contest = Contestlist::findOrFail($id);
+        $teams = Contestteam::orderBy('name','asc')->get();
+        return view('backend.contest.edit', compact('teams','contest'));
+    }
+
+    public function update( Request $request){
+        $contest = Contestlist::findOrFail($request->id);
+//        dd($contest);
+        $team1 = $request->team1;
+        $team2 = $request->team2;
+        $winner = $request->winner == "--" ? null : $request->winner;
+
+
+
+        if ($request->date_range != null) {
+            $date_var               = explode(" to ", $request->date_range);
+//            $start_time = strtotime($date_var[0]);
+//            $end_time   = strtotime( $date_var[1]);
+            $start_time = Carbon::parse($date_var[0]);
+            $end_time   =  Carbon::parse($date_var[1]);
+        }
+
+        $contest->team1 = $team1;
+        $contest->team2  = $team2;
+        $contest->winner = $winner ;
+        $contest->time_start = $start_time;
+        $contest->time_end = $end_time;
+
+//        dd($contest->time_end, $contest->time_start );
+
+        $contest->save();
+
+        return redirect()->route('contest.list');
+    }
+
     public function destroy($id)
     {
         Contestlist::find($id)->delete();
@@ -77,7 +135,49 @@ class ContestController extends Controller
     }
 
     public function selectTeam(Request $request){
-        return $request;
+
+        if (Session::get('contestParticipation')){
+            $Participate = Session::get('contestParticipation');
+            $Participate[$request->contest] =[
+                "contest" => $request->contest,
+                "team" => $request->team
+            ];
+            Session::put('contestParticipation', $Participate);
+            Session::save();
+        }
+        else{
+            $Participate = array();
+            $Participate[$request->contest] =[
+                "contest" => $request->contest,
+                "team" => $request->team
+            ];
+
+            Session::put('contestParticipation', $Participate);
+            Session::save();
+        }
+
+        return 1;
+    }
+
+    public function contestsubmit(Request $request){
+        $contests = Session::get('contestParticipation');
+        $user = Auth::user()->id;
+
+        if ($contests != null && $user != null){
+            foreach ($contests as $key=>$contest){
+                $participationscheck = Contestparticipation::where('user',$user)->where('contest',$contest['contest'])->first();
+                if ($participationscheck == null){
+                    $participation = new Contestparticipation();
+
+                    $participation->user = $user;
+                    $participation->contest = $contest['contest'];
+                    $participation->team = $contest['team'];
+                    $participation->save();
+                }
+            }
+        }
+
+        return dd($participationscheck);
     }
 
 

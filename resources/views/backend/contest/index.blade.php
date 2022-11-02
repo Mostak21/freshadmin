@@ -41,7 +41,7 @@
                         <th data-breakpoints="lg">Starts</th>
                         <th data-breakpoints="lg">Ends</th>
                         <th class="text-right">Winner</th>
-                        <th class="text-right">Delete</th>
+                        <th class="text-right">Option</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,9 +66,12 @@
                             {{ $contest->time_end }}
                         </td>
                         <td class="text-right">
-                            {{ $contest->winner }}
+                            {{$contest->teamWinner->image??""}}</span> {{$contest->teamWinner->name??""}}
                         </td>
                         <td class="text-right">
+                            <a href="{{route('contest.edit', $contest->id)}}" class="btn btn-soft-warning btn-icon btn-circle btn-sm" title="edit">
+                                <i class="las la-edit"></i>
+                            </a>
                             <a href="#" class="btn btn-soft-danger btn-icon btn-circle btn-sm confirm-delete" data-href="{{route('contest.destroy', $contest->id)}}" title="Delete}}">
                                 <i class="las la-trash"></i>
                             </a>
@@ -93,20 +96,20 @@
 @section('script')
 
     <script type="text/javascript">
-        function change_status(el){
-            var status = 0;
-            if(el.checked){
-                var status = 1;
-            }
-            $.post('{{ route('blog.change-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
-                if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Change blog status successfully') }}');
-                }
-                else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
-                }
-            });
-        }
+        {{--function change_status(el){--}}
+        {{--    var status = 0;--}}
+        {{--    if(el.checked){--}}
+        {{--        var status = 1;--}}
+        {{--    }--}}
+        {{--    $.post('{{ route('blog.change-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){--}}
+        {{--        if(data == 1){--}}
+        {{--            AIZ.plugins.notify('success', '{{ translate('Change blog status successfully') }}');--}}
+        {{--        }--}}
+        {{--        else{--}}
+        {{--            AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
+        {{--        }--}}
+        {{--    });--}}
+        {{--}--}}
     </script>
 
 @endsection

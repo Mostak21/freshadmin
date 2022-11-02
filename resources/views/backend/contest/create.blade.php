@@ -185,11 +185,11 @@
 @endsection
 
 @section('script')
-<script>
-    function makeSlug(val) {
-        let str = val;
-        let output = str.replace(/\s+/g, '-').toLowerCase();
-        $('#slug').val(output);
-    }
-</script>
+{{--<script>--}}
+{{--    function makeSlug(val) {--}}
+{{--        let str = val;--}}
+{{--        let output = str.replace(/\s+/g, '-').toLowerCase();--}}
+{{--        $('#slug').val(output);--}}
+{{--    }--}}
+{{--</script>--}}
 @endsection

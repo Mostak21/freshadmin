@@ -40,6 +40,13 @@
             /*border-top: 1px solid #f1f1f1!important;*/
         }
 
+        .green-btn{
+            background-color: #7bca39;
+            border: #ea9040;
+            /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%) !important;*/
+            /*border-top: 1px solid #f1f1f1!important;*/
+        }
+
         .primary-btn{
             background-color: #be1e2d;
             border: #be1e2d;
@@ -152,10 +159,7 @@
                 <div class="text-center">
 
                     @if(Auth::check())
-                        {{-- <a href="{{ route('checkout.shipping_info') }}" class="btn btn-primary fw-600 btn-mright">
-                            {{ translate('Continue to Shipping')}}<i class="ci-arrow-right mt-sm-0 ms-1"></i>
-                        </a> --}}
-                        <button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button>
+                        <a href="{{route('contest.submit')}}"><button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button></a>
 
                     @else
                         <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
@@ -211,6 +215,17 @@
         <div class="col">Lose</div>
         <div class="col">Points</div>
     </div>
+
+    @foreach($leaderboards as $key => $learderboard)
+        <div class="row border-1 rounded shadow-md my-1 bg-white">
+            <div class="col">{{$learderboard->participate->name??"null"}}</div>
+            <div class="col">{{$learderboard->participation->count()??"null"}}</div>
+            <div class="col">7</div>
+            <div class="col">3</div>
+            <div class="col">300</div>
+        </div>
+    @endforeach
+
     <div class="row border-1 rounded shadow-md my-1 bg-white">
         <div class="col">Ruhul amin</div>
         <div class="col">10</div>
@@ -378,8 +393,7 @@
     }
 
     function chooseteam(el) {
-
-        $.post('{{ route('select.team') }}', {
+        $.post('{{ route('contest.select.team') }}', {
             _token:'{{ csrf_token() }}',
             contest:el.dataset.contest,
             team:el.dataset.team,
@@ -387,19 +401,33 @@
 
             console.log(data);
 
-            {{--if(data == 1){--}}
-            {{--    AIZ.plugins.notify('success', '{{ translate('Shipping Agent status updated successfully') }}');--}}
-            {{--    el.value = data[1];--}}
-            {{--    console.log(data);--}}
-            {{--}--}}
+            if(data == 1){
+                AIZ.plugins.notify('success', '{{ translate('Team selected') }}');
+                // el.value = data[1];
+                $(el).addClass('green-btn');
+                $(el).removeClass('orange-btn');
+                // console.log(data);
+            }
             {{--else{--}}
             {{--    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
             {{--    console.log(data);--}}
             {{--}--}}
 
         });
-
     }
+
+    {{--function submit() {--}}
+    {{--    $.post('{{ route('contest.submit') }}', {--}}
+    {{--    }, function(data){--}}
+
+    {{--        if(data == 1){--}}
+    {{--            AIZ.plugins.notify('success', '{{ translate('You have submitted data') }}');--}}
+    {{--            console.log(data);--}}
+    {{--        }--}}
+    {{--    });--}}
+    {{--}--}}
+
+
 </script>
 
 

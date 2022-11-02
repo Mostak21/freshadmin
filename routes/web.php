@@ -27,7 +27,8 @@ Route::get('/abc/{key}', 'abandonedCartController@index')->name('abc');
 
 //contest fifa
 Route::get('/contest', 'ContestController@index')->name('fifacontest');
-Route::post('/select-team', 'ContestController@selectTeam')->name('select.team');
+Route::post('/select-team', 'ContestController@selectTeam')->name('contest.select.team');
+Route::get('/contest-submit', 'ContestController@contestsubmit')->name('contest.submit');
 Route::get('/dd', 'ContestController@dd')->name('dd');
 
 //demo
