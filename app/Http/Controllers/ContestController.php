@@ -25,22 +25,63 @@ class ContestController extends Controller
             $wincount=0;
             foreach ($leaderboard->participation as $key => $game){
                 $win = Contestlist::where('winner',$game->team)->first();
-                if ($win->id !=null)$wincount++;
+                if ($win !=null)$wincount++;
             }
-//            $leaderboard->win->
-            dd($leaderboard->participation);
-
+            $leaderboard->win = $wincount;
+            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
+            $leaderboard->points =$wincount*30;
         }
 
-
+        $goal = $this->prizegoal();
 
         $contests =  Contestlist::where('time_start','<',$today)
             ->where('time_end','>',$today)
             ->get();
 
-//        ddd($contests);
+        return view("frontend.contest.index",compact('contests','leaderboards','goal'));
+    }
 
-        return view("frontend.contest.index",compact('contests','leaderboards'));
+
+    public function prizegoal(){
+
+        $total_participate = Contestparticipation::distinct()->get(['user'])->count();
+
+//        $total_participate = 1000;
+        $target1 = 0;
+        $target2 = 0;
+        $target3 = 0;
+        $target4 = 0;
+
+        if ($total_participate){
+            if ($total_participate>=0 && $total_participate<=100){
+                $target1 = ($total_participate/100)*25;
+            }
+            elseif ($total_participate>=101 && $total_participate<=1000){
+                $target1 = 25;
+                $target2 = ($total_participate/1000)*25;
+            }
+            elseif ($total_participate>=1001 && $total_participate<=10000){
+                $target1 = 25;
+                $target2 = 25;
+                $target3 = ($total_participate/10000)*25;
+            }
+            elseif ($total_participate>=10001){
+                $target1 = 25;
+                $target2 = 25;
+                $target3 = 25;
+                $target4 = ($total_participate/100000)*25;
+            }
+        }
+
+        $goal = array(
+            'target1' => $target1,
+            'target2' => $target2,
+            'target3' => $target3,
+            'target4' => $target4,
+            'total' => $total_participate,
+        );
+//        dd($goal);
+        return $goal;
     }
 
     public function dd(Request $request){
