@@ -189,7 +189,7 @@
 
 <section class="text-center mx-auto my-5 px-2 py-3" style="max-width: 720px">
 
-    <div class="py-3"> Participate Challenge to Win Final Price</div>
+    <div class="py-3"> Participate Challenge to Win Final Prize</div>
 {{--    <div class="progress">--}}
 {{--        <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
 {{--    </div>--}}
