@@ -218,7 +218,7 @@ class ContestController extends Controller
             }
         }
 
-        return dd($participationscheck);
+        return redirect()->route('fifacontest');
     }
 
 
