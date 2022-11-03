@@ -232,7 +232,7 @@
 
     @foreach($leaderboards as $key => $leaderboard)
         <div class="row border-1 rounded shadow-md my-1 fs-16 bg-white">
-            <div class="col-4 text-truncate">{{$leaderboard->participate->name??"null"}}</div>
+            <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest"}}</div>
             <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
             <div class="col-2">{{$leaderboard->win}}</div>
             <div class="col-2">{{$leaderboard->loose}}</div>
