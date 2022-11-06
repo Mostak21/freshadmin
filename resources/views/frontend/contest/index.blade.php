@@ -6,7 +6,7 @@
     <meta name="app-url" content="{{ getBaseURL() }}">
     <meta name="file-base-url" content="{{ getFileBaseURL() }}">
 
-    <title>@yield('meta_title', get_setting('website_name').' | '.get_setting('site_motto'))</title>
+    <title>@yield('meta_title', get_setting('website_name').' | Contest')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
@@ -34,32 +34,20 @@
             background-color: #be1e2d;
             background-position: 0% -1.5%;
         }
-        .GWbackground2{
-            /*background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/He4rP8yAALQ8es2Y30kG8gCOfBUbkqXVDWlt4BNa.svg");*/
-            /*background-size: contain;*/
-            /*background-repeat: no-repeat;*/
-            /*!*background-color: #be1e2d;*!*/
-            /*background-position: center;*/
-        }
+
         .orange-btn{
             background-color: #ea9040;
             border: #ea9040;
-            /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%) !important;*/
-            /*border-top: 1px solid #f1f1f1!important;*/
         }
 
         .green-btn{
             background-color: #7bca39;
             border: #ea9040;
-            /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%) !important;*/
-            /*border-top: 1px solid #f1f1f1!important;*/
         }
 
         .primary-btn{
             background-color: #be1e2d;
             border: #be1e2d;
-            /*box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%) !important;*/
-            /*border-top: 1px solid #f1f1f1!important;*/
         }
 
         .bg-primary{
@@ -67,11 +55,7 @@
             border-color: #be1e2d;
             color: var(--white);
         }
-        /*.bg-primary:hover{*/
-        /*    background-color: #78181E !important;*/
-        /*    border-color: #78181e !important;*/
-        /*    color: var(--white);*/
-        /*}*/
+
         .p-scale{
             position: relative;
             z-index: 1;
@@ -142,20 +126,25 @@
             <div class="h1">GUESS & WIN</div>
         </div>
     </div>
-    <div class="row GWbackground GWbackground2" >
+    <div class="row GWbackground" >
         <div class="col">
 
             @foreach($contests as $key=>$contest)
+
                 <div class="row mt-4 p-2">
                     <div class="col-5 pl-3 text-right">
-                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
+                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
+                                style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
                         </button>
                     </div>
                     <div class="col-2 my-auto text-white"> vs</div>
                     <div class="col-5 pr-3 text-left">
-                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button" class="btn btn-secondary fs-24 text-white orange-btn shadow-md lh-1" style="width: 100px; height: 65px;">
+                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
+                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
+                                style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
                         </button>
@@ -211,7 +200,8 @@
         <div class="progress-bar bg-primary left-round" role="progressbar" style="width: {{$goal['target1']}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
         <div class="progress-bar bg-primary" role="progressbar" style="width: {{$goal['target2']}}%" aria-valuenow="30" aria-valuemin="101" aria-valuemax="1000"></div>
         <div class="progress-bar bg-primary" role="progressbar" style="width: {{$goal['target3']}}%" aria-valuenow="30" aria-valuemin="1001" aria-valuemax="10000"></div>
-        <div class="progress-bar bg-primary right-round" role="progressbar" style="width: {{$goal['target4']}}%" aria-valuenow="20" aria-valuemin="10001" aria-valuemax="100000"></div><span class="text-center my-auto">{{$goal['total']}}</span>
+        <div class="progress-bar bg-primary right-round" role="progressbar" style="width: {{$goal['target4']}}%" aria-valuenow="20" aria-valuemin="10001" aria-valuemax="100000"></div>
+        <span class="text-center my-auto">{{$goal['total']}}</span>
     </div>
 {{--    <div class="progress">--}}
 {{--        <sapn class="p-scale" style="left: 24.6%">1000</sapn>--}}
@@ -232,7 +222,7 @@
 
     @foreach($leaderboards as $key => $leaderboard)
         <div class="row border-1 rounded shadow-md my-1 fs-16 bg-white">
-            <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest"}}</div>
+            <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest(".$leaderboard->participate->id.")"}}</div>
             <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
             <div class="col-2">{{$leaderboard->win}}</div>
             <div class="col-2">{{$leaderboard->loose}}</div>

@@ -204,10 +204,13 @@ class ContestController extends Controller
         $contests = Session::get('contestParticipation');
         $user = Auth::user()->id;
 
-        if ($contests != null && $user != null){
+        $now = Carbon::now();
+
+        if ($contests != null && $user != null ){
             foreach ($contests as $key=>$contest){
                 $participationscheck = Contestparticipation::where('user',$user)->where('contest',$contest['contest'])->first();
-                if ($participationscheck == null){
+                $availavel =Contestlist::where('id',$contest['contest'])->where('time_end', '>', $now)->first();
+                if ($participationscheck == null && $availavel != null){
                     $participation = new Contestparticipation();
 
                     $participation->user = $user;
