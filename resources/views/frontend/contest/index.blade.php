@@ -106,9 +106,20 @@
 
                 </div>
                 <div class="col text-right m-3">
-                    <a href="{{ route('home') }}/dashboard">
-                        <i class="ci-user fs-22 "></i>
-                        <span class="fs-16 px-3">{{Auth::user()->name??""}}</span>
+                    <a href="{{ route('home') }}/dashboard" class="text-reset">
+
+                        <i class="ci-user fs-16 "></i>
+
+                        @if(Auth::user()->name==null)
+                            <i class="red-dot opacity-80"></i>
+                        @endif
+                        @if(Auth::user())
+                            <span class="fs-14 px-2">{{Auth::user()->name??"Guest(".Auth::user()->id.")"}}</span>
+                            <i class="ci-edit-alt fs-14"></i>
+                        @else
+                            <span class="fs-14 px-2">Login</span>
+                        @endif
+                    </a>
                     </a>
 
                     <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
@@ -134,7 +145,7 @@
                 <div class="row mt-4 p-2">
                     <div class="col-5 pl-3 text-right">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
+                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
@@ -143,7 +154,7 @@
                     <div class="col-2 my-auto text-white"> vs</div>
                     <div class="col-5 pr-3 text-left">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
+                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-24 text-white orange-btn shadow-md lh-1"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
@@ -221,6 +232,7 @@
     </div>
 
     @foreach($leaderboards as $key => $leaderboard)
+        @if($leaderboard->participate)
         <div class="row border-1 rounded shadow-md my-1 fs-16 bg-white">
             <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest(".$leaderboard->participate->id.")"}}</div>
             <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
@@ -228,6 +240,7 @@
             <div class="col-2">{{$leaderboard->loose}}</div>
             <div class="col-2">{{$leaderboard->points}}</div>
         </div>
+        @endif
     @endforeach
 
     <div class="my-3">
@@ -365,6 +378,7 @@
             if(data == 1){
                 AIZ.plugins.notify('success', '{{ translate('Team selected') }}');
                 // el.value = data[1];
+                $(el).parent().parent().children().children().removeClass('green-btn');
                 $(el).addClass('green-btn');
                 $(el).removeClass('orange-btn');
                 // console.log(data);

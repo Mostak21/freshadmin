@@ -95,46 +95,55 @@
 </head>
 
 <body>
-<section class="text-center mx-auto" style="max-width: 720px">
-    <div class="row">
+<section class="text-center mx-0" style="max-width: 720px">
+{{--    <div class="row">--}}
         <div class="text-center fs-22">
-            <div class="row">
+            <div class="row mx-0">
                 <div class="col-2 text-left p-2">
                     <a href="{{ route('home') }}" class="ml-4">
                         <img src="{{Cache::rememberForever('header_logo', function () { return uploaded_asset(get_setting('header_logo')); })}}" height="30px">
                     </a>
 
                 </div>
-                <div class="col-10 text-right p-2">
-                    <a href="{{ route('home') }}/dashboard">
+                <div class="col-10 text-right p-2 ">
+                    <a href="{{ route('home') }}/dashboard" class="text-reset">
                         <i class="ci-user fs-16 "></i>
-                        <span class="fs-14 px-2">{{Auth::user()->name??"Guest"}}</span>
+
+                        @if(Auth::user()->name==null)
+                        <i class="red-dot opacity-80"></i>
+                        @endif
+                        @if(Auth::user())
+                        <span class="fs-14 px-2">{{Auth::user()->name??"Guest(".Auth::user()->id.")"}}</span>
+                            <i class="ci-edit-alt fs-14"></i>
+                            @else
+                            <span class="fs-14 px-2">Login</span>
+                        @endif
                     </a>
 
                     <img class="mr-4" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/U2X4seURtT5QNyPOHoG7rWOfNtI3CM2m8zr8oHBM.webp" height="40px">
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col px-0">
+{{--    </div>--}}
+    <div class="row mx-0">
+        <div class="col px-1">
             <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/mDPM6mETwV2aa67NNfXDbBMgvgfKkFwQQjNvc6tj.webp" style="max-width:100%; max-height:100%;">
         </div>
     </div>
-    <div class="row ">
-        <div class="col">
+{{--    <div class="row ">--}}
+{{--        <div class="col">--}}
             <div class="h3">GUESS & WIN</div>
-        </div>
-    </div>
-    <div class="row GWbackground" >
-        <div class="col">
+{{--        </div>--}}
+{{--    </div>--}}
+    <div class="row GWbackground mx-1" >
+        <div class="col px-1">
 
             @foreach($contests as $key=>$contest)
 
                 <div class="row my-3">
                     <div class="col-5 pl-3 text-right">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
+                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
@@ -143,7 +152,7 @@
                     <div class="col-2 my-auto text-white"> vs</div>
                     <div class="col-5 pr-3 text-left">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
+                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
@@ -218,6 +227,7 @@
             <div class="col-2">Points</div>
         </div>
         @foreach($leaderboards as $key => $leaderboard)
+            @if($leaderboard->participate)
             <div class="row border-1 rounded shadow-md my-1 fs-16 bg-white">
                 <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest(".$leaderboard->participate->id.")"}}</div>
                 <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
@@ -225,6 +235,7 @@
                 <div class="col-2">{{$leaderboard->loose}}</div>
                 <div class="col-2">{{$leaderboard->points}}</div>
             </div>
+            @endif
         @endforeach
 
     </div>
@@ -363,6 +374,7 @@
             if(data == 1){
                 AIZ.plugins.notify('success', '{{ translate('Team selected') }}');
                 // el.value = data[1];
+                $(el).parent().parent().children().children().removeClass('green-btn');
                 $(el).addClass('green-btn');
                 $(el).removeClass('orange-btn');
                 // console.log(data);
