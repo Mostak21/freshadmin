@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class ContestController extends Controller
 {
     public function index(Request $request){
+        $timenow = Carbon::now();
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
         $week = $weekStart->week();
@@ -44,8 +45,8 @@ class ContestController extends Controller
 
         $goal = $this->prizegoal();
 
-        $contests =  Contestlist::where('time_start','<',$today)
-            ->where('time_end','>',$today)
+        $contests =  Contestlist::where('time_start','<',$timenow)
+            ->where('time_end','>',$timenow)
             ->get();
 
         return view("frontend.contest.index",compact('contests','leaderboards','goal','week'));
