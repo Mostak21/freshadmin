@@ -14,8 +14,11 @@ class ContestController extends Controller
 {
     public function index(Request $request){
         $today = Carbon::now();
+        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+        $week = $weekStart->week();
+//        DD($week);
         $leaderboards = Contestparticipation::distinct()
-//            ->select('id','user','contest','team')
+            ->where('updated_at', '>', $weekStart)
             ->with('participate')
             ->with('participation')
             ->get(['user'])
@@ -23,14 +26,21 @@ class ContestController extends Controller
 
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
+            $loosecount=0;
             foreach ($leaderboard->participation as $key => $game){
-                $win = Contestlist::where('winner',$game->team)->first();
+                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
+                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
                 if ($win !=null)$wincount++;
+                if ($loose !=null)$loosecount++;
             }
             $leaderboard->win = $wincount;
-            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
+            $leaderboard->loose =$loosecount;
+//            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
             $leaderboard->points =$wincount*30;
         }
+
+//        $leaderboards = collect($leaderboards) ;
+        $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
 
         $goal = $this->prizegoal();
 
@@ -38,7 +48,44 @@ class ContestController extends Controller
             ->where('time_end','>',$today)
             ->get();
 
-        return view("frontend.contest.index",compact('contests','leaderboards','goal'));
+        return view("frontend.contest.index",compact('contests','leaderboards','goal','week'));
+    }
+
+    public function leaderboard(){
+        $today = Carbon::now();
+        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+        $week = $weekStart->week();
+//        DD($week);
+        $leaderboards = Contestparticipation::distinct()
+
+            ->with('participate')
+            ->with('participation')
+            ->get(['user'])
+            ->take(50);
+
+        foreach ($leaderboards as $key=> $leaderboard){
+            $wincount=0;
+            $loosecount=0;
+            foreach ($leaderboard->participation as $key => $game){
+                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
+                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
+                if ($win !=null)$wincount++;
+                if ($loose !=null)$loosecount++;
+            }
+            $leaderboard->win = $wincount;
+            $leaderboard->loose =$loosecount;
+//            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
+            $leaderboard->points =$wincount*30;
+        }
+
+//        $leaderboards = collect($leaderboards) ;
+        $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
+
+        $goal = $this->prizegoal();
+
+
+        return view("frontend.contest.leaderboard",compact('leaderboards','goal'));
+
     }
 
 
@@ -219,9 +266,14 @@ class ContestController extends Controller
                     $participation->save();
                 }
             }
+            flash('You have submitted your answer!')->success();
+        }
+        else{
+//            dd('ok');
+            flash('Please select your team before submit!')->warning();
         }
 
-        return redirect()->route('fifacontest');
+        return redirect()->route('fifacontest')->withInput();
     }
 
 

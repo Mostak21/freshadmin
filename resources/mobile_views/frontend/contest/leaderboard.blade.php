@@ -124,62 +124,7 @@
                 </div>
             </div>
         </div>
-{{--    </div>--}}
-    <div class="row mx-0">
-        <div class="col px-1">
-            <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/mDPM6mETwV2aa67NNfXDbBMgvgfKkFwQQjNvc6tj.webp" style="max-width:100%; max-height:100%;">
-        </div>
-    </div>
-{{--    <div class="row ">--}}
-{{--        <div class="col">--}}
-            <div class="h3">GUESS & WIN</div>
-{{--        </div>--}}
-{{--    </div>--}}
-    <div class="row GWbackground mx-1" >
-        <div class="col px-1">
 
-            @foreach($contests as $key=>$contest)
-
-                <div class="row my-3">
-                    <div class="col-5 pl-3 text-right">
-                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
-                                style="width: 100px; height: 65px;">
-                            <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
-                            <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
-                        </button>
-                    </div>
-                    <div class="col-2 my-auto text-white"> vs</div>
-                    <div class="col-5 pr-3 text-left">
-                        <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
-                                style="width: 100px; height: 65px;">
-                            <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
-                            <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
-                        </button>
-                    </div>
-                </div>
-            @endforeach
-
-            <div class="row-cols-auto mx-auto py-3">
-                <div class="text-center">
-
-                    @if($contests->count())
-                        @if(Auth::check())
-                            <a href="{{route('contest.submit')}}"><button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button></a>
-
-                        @else
-                            <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
-                        @endif
-                    @else
-                        <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md">Comming Soon</button>
-                    @endif
-
-{{--                    <button type="button" class="btn btn-success fs-22 text-white orange-btn shadow-md">Submit</button>--}}
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section class="text-center mx-auto my-5 px-4 py-3" style="max-width: 720px">
@@ -217,7 +162,7 @@
 </section>
 
 <section class="text-center mx-auto my-5 px-4" style="max-width: 720px">
-    <div class="fs-24 py-4"><span class="fw-800">WEEKLY LEADER BOARD </span><br><span class="fw-100">(TOP 10 | Week-{{$week??""}})</span></div>
+    <div class="fs-24 py-4"><span class="fw-800">LEADER BOARD </span><br><span class="fw-100">(TOP 50)</span></div>
     <div class="fs-14">
         <div class="row bg-primary rounded shadow-md">
             <div class="col-4">Name</div>
@@ -227,24 +172,21 @@
             <div class="col-2">Points</div>
         </div>
         @foreach($leaderboards as $key => $leaderboard)
-            @if($leaderboard->participate)
+
             <div class="row border-1 rounded shadow-md my-1 fs-16 bg-white">
+                @if($leaderboard->participate)
                 <div class="col-4 text-truncate">{{$leaderboard->participate->name??"Guest(".$leaderboard->participate->id.")"}}</div>
+                @else
+                    <div class="col-4 text-truncate">Guest</div>
+                @endif
                 <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
                 <div class="col-2">{{$leaderboard->win}}</div>
                 <div class="col-2">{{$leaderboard->loose}}</div>
                 <div class="col-2">{{$leaderboard->points}}</div>
             </div>
-            @endif
+
         @endforeach
 
-    </div>
-
-
-    <div class="my-3">
-        <a href="{{route("leaderboard")}}">
-        <button type="button" class="btn btn-secondary primary-btn text-white shadow-md">VIEW GRAND LEADER BOARD</button>
-        </a>
     </div>
 </section>
 
