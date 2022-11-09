@@ -44,9 +44,9 @@
         </div>
     </div>
     <div class="p-md-3 p-2 text-center">
-
-        <span class="text-black fw-600">	 {{  $product->productData->brand??$product->brand->name??"" }}</span>
-
+        <a href="{{getBaseURL()}}brand/{{$product->productData->brand_slug??$product->brand->slug??""}}">
+            <span class="text-black fw-600">	 {{  $product->productData->brand??$product->brand->name??"" }}</span>
+        </a>
         <h3 class="fw-500 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
             <a href="{{ route('product', $product->slug) }}" class="d-block text-reset">{{  $product->name }}</a>
         </h3>

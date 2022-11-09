@@ -308,7 +308,7 @@ class HomeController extends Controller
         if (str_contains($request->getUri(), 'custom_section1')){
             $section_data = Cache::remember('home_custom_section1', $seconds, function () {
                 $section_data_c = (object) array();
-                $category_slug ="premium-fragrances-inpot";
+                $category_slug ="fragrance";
                 $category = Category::where('slug', $category_slug)->first();
                 $category_id = $category->id;
 //                $category_id =607;
@@ -334,10 +334,12 @@ class HomeController extends Controller
                     $Product_Stock=0;
                     if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                     $brand = $product->brand->name??"";
+                    $brand_slug = $product->brand->slug??"";
                     $Data = (object)array(
                         'thumbnail' => uploaded_asset($product->thumbnail_img),
                         'stock' => $Product_Stock,
                         'brand' => $brand,
+                        'brand_slug' => $brand_slug,
                     );
                     $product->productData=$Data;
                     $productsData[$key] = $product;
@@ -375,10 +377,12 @@ class HomeController extends Controller
                     $Product_Stock=0;
                     if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                     $brand = $product->brand->name??"";
+                    $brand_slug = $product->brand->slug??"";
                     $Data = (object)array(
                         'thumbnail' => uploaded_asset($product->thumbnail_img),
                         'stock' => $Product_Stock,
                         'brand' => $brand,
+                        'brand_slug' => $brand_slug,
                     );
                     $product->productData=$Data;
                     $productsData[$key] = $product;
@@ -415,10 +419,12 @@ class HomeController extends Controller
                     $Product_Stock=0;
                     if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                     $brand = $product->brand->name??"";
+                    $brand_slug = $product->brand->slug??"";
                     $Data = (object)array(
                         'thumbnail' => uploaded_asset($product->thumbnail_img),
                         'stock' => $Product_Stock,
                         'brand' => $brand,
+                        'brand_slug' => $brand_slug,
                     );
                     $product->productData=$Data;
                     $productsData[$key] = $product;
@@ -455,10 +461,12 @@ class HomeController extends Controller
                     $Product_Stock=0;
                     if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                     $brand = $product->brand->name??"";
+                    $brand_slug = $product->brand->slug??"";
                     $Data = (object)array(
                         'thumbnail' => uploaded_asset($product->thumbnail_img),
                         'stock' => $Product_Stock,
                         'brand' => $brand,
+                        'brand_slug' => $brand_slug,
                     );
                     $product->productData=$Data;
                     $productsData[$key] = $product;
@@ -493,10 +501,12 @@ class HomeController extends Controller
                 $Product_Stock=0;
                 if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                 $brand = $product->brand->name??"";
+                $brand_slug = $product->brand->slug??"";
                 $Data = (object)array(
                     'thumbnail' => uploaded_asset($product->thumbnail_img),
                     'stock' => $Product_Stock,
                     'brand' => $brand,
+                    'brand_slug' => $brand_slug,
                 );
                 $product->productData=$Data;
                 $productsData[$key] = $product;
@@ -541,10 +551,12 @@ class HomeController extends Controller
                     $Product_Stock=0;
                     if (!empty($product->stocks)) foreach ($product->stocks as $stock) if ($stock->qty>=1) $Product_Stock = 1;
                     $brand = $product->brand->name??"";
+                    $brand_slug = $product->brand->slug??"";
                     $Data = (object)array(
                         'thumbnail' => uploaded_asset($product->thumbnail_img),
                         'stock' => $Product_Stock,
                         'brand' => $brand,
+                        'brand_slug' => $brand_slug,
                     );
                     $product->productData=$Data;
 //                    $productsData[$key2] = $product;

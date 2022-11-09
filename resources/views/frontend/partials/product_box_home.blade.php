@@ -44,7 +44,7 @@
     </div>
     <div class="p-md-3 p-2 text-left">
 
-        <span class="text-reset ">	<a class="d-block text-reset" style="color: #8c8c8c !important; "><small class="fw-300"> {{  $product->productData->brand??$product->brand->name??"" }}</small></a></span>
+        <span class="text-reset ">	<a href="{{getBaseURL()}}brand/{{$product->productData->brand_slug??$product->brand->slug??""}}" class="d-block text-reset" style="color: #8c8c8c !important; "><small class="fw-300"> {{  $product->productData->brand??$product->brand->name??"" }}</small></a></span>
 
 
         <h3 class="fw-500 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px">
