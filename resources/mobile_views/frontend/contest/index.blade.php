@@ -89,6 +89,40 @@
             opacity: 0.4;
         }
 
+        /*fade*/
+        .animate {
+            opacity: 0;
+            transition: all 1s;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .animate.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        .slide-in-down {
+            transform: translateY(-100%) translateX(-50%);
+        }
+
+        /*notification*/
+        .notification-button {
+            position: fixed;
+            top: 40px;
+            left: 50%;
+            padding: 10px 20px;
+            background: #343a40;
+            color: #eeeeee;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 800;
+            box-shadow: 0 0 14px rgba(0, 0, 0, 0.05);
+        }
+
+
 
     </style>
 
@@ -209,11 +243,17 @@
         <div class="progress-bar bg-primary right-round" role="progressbar" style="width: {{$goal['target4']}}%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
         <span class="text-center my-auto">{{$goal['total']}}</span>
     </div>
-    {{--    <div class="progress">--}}
-    {{--        <sapn class="p-scale" style="left: 24.6%">1000</sapn>--}}
-    {{--        <sapn class="p-scale" style="left: 49.6%">10k</sapn>--}}
-    {{--        <sapn class="p-scale" style="left: 74.6%">100k</sapn>--}}
-    {{--    </div>--}}
+
+    <div class="mt-5">
+        <div class="animate slide-in-down notification-button">
+            <i class="fa fa-files-o"></i> Link Copied to Clipboard
+        </div>
+        {{--        <a href="">--}}
+        <input type="text"  value="{{ route('contest.refer') }}?u={{$refercode}}" class="fs-20" disabled style="width: 70%;">
+        <button type="button" id="copy-refer" class="btn btn-secondary primary-btn text-white shadow-md" title="share and get extra 5 points">SHARE</button>
+        {{--        </a>--}}
+    </div>
+
 </section>
 
 <section class="text-center mx-auto my-5 px-4" style="max-width: 720px">
@@ -381,24 +421,34 @@
                 $(el).removeClass('orange-btn');
                 // console.log(data);
             }
-            {{--else{--}}
-            {{--    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
-            {{--    console.log(data);--}}
-            {{--}--}}
-
         });
     }
+    const copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };
 
-    {{--function submit() {--}}
-    {{--    $.post('{{ route('contest.submit') }}', {--}}
-    {{--    }, function(data){--}}
+    const url ='{{ route('contest.refer') }}?u={{$refercode}}';
 
-    {{--        if(data == 1){--}}
-    {{--            AIZ.plugins.notify('success', '{{ translate('You have submitted data') }}');--}}
-    {{--            console.log(data);--}}
-    {{--        }--}}
-    {{--    });--}}
-    {{--}--}}
+    var $notificationButton = $('.notification-button');
+
+    document.getElementById('copy-refer').addEventListener('click', function(e){
+        let myUrl =  url;
+        copyToClipboard( myUrl );
+        // alert(myUrl + ' copied to clipboard!')
+        $notificationButton.toggleClass('active');
+        $notificationButton.on('transitionend', fadeOutNotification);
+    });
+
+    function fadeOutNotification(){
+        setTimeout(function(){
+            $notificationButton.removeClass('active');
+        }, 2000);
+    }
 
 
 </script>

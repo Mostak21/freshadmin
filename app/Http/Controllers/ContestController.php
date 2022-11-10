@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Auth;
 use Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ContestController extends Controller
 {
@@ -17,9 +18,9 @@ class ContestController extends Controller
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
         $week = $weekStart->week();
-//        DD($week);
+
         $leaderboards = Contestparticipation::distinct()
-            ->where('updated_at', '>', $weekStart)
+            ->where('created_at', '>', $weekStart)
             ->with('participate')
             ->with('participation')
             ->get(['user'])
@@ -28,35 +29,38 @@ class ContestController extends Controller
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
             $loosecount=0;
+            $referCount = Contestparticipation::where('user',$leaderboard->user)->whereNotNull('referral')->where('updated_at', '>', $weekStart)->get()->count();
             foreach ($leaderboard->participation as $key => $game){
-                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
-                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
+                if($game->created_at < $weekStart){
+                    unset($leaderboard->participation[$key]);
+                }
+                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->where('created_at', '>', $weekStart)->first();
+                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->where('created_at', '>', $weekStart)->first();
                 if ($win !=null)$wincount++;
                 if ($loose !=null)$loosecount++;
             }
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
-//            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
-            $leaderboard->points =$wincount*30;
+            $leaderboard->points =($wincount*30)+($referCount*5);
         }
 
-//        $leaderboards = collect($leaderboards) ;
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
 
         $goal = $this->prizegoal();
+        $refercode = $this->referCode();
 
         $contests =  Contestlist::where('time_start','<',$timenow)
             ->where('time_end','>',$timenow)
             ->get();
 
-        return view("frontend.contest.index",compact('contests','leaderboards','goal','week'));
+        return view("frontend.contest.index",compact('contests','leaderboards','goal','week','refercode'));
     }
 
     public function leaderboard(){
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
         $week = $weekStart->week();
-//        DD($week);
+
         $leaderboards = Contestparticipation::distinct()
 
             ->with('participate')
@@ -67,6 +71,7 @@ class ContestController extends Controller
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
             $loosecount=0;
+            $referCount = Contestparticipation::where('user',$leaderboard->user)->whereNotNull('referral')->get()->count();
             foreach ($leaderboard->participation as $key => $game){
                 $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
                 $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
@@ -75,11 +80,9 @@ class ContestController extends Controller
             }
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
-//            $leaderboard->loose =$leaderboard->participation->count()- $wincount;
-            $leaderboard->points =$wincount*30;
+            $leaderboard->points =($wincount*30)+($referCount*5);
         }
 
-//        $leaderboards = collect($leaderboards) ;
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
 
         $goal = $this->prizegoal();
@@ -128,7 +131,6 @@ class ContestController extends Controller
             'target4' => $target4,
             'total' => $total_participate,
         );
-//        dd($goal);
         return $goal;
     }
 
@@ -139,9 +141,6 @@ class ContestController extends Controller
     public function contestlist(){
         $contests = Contestlist::orderBy("time_start","asc")->paginate(15);
 
-//        dd($contests[0]->teamOne);
-
-//        dd($contests);
         return view('backend.contest.index',compact('contests'));
     }
 
@@ -157,12 +156,8 @@ class ContestController extends Controller
         $team2 = $request->team2;
         $winner = $request->winner == "--" ? null : $request->winner;
 
-
-
         if ($request->date_range != null) {
             $date_var               = explode(" to ", $request->date_range);
-//            $start_time = strtotime($date_var[0]);
-//            $end_time   = strtotime( $date_var[1]);
             $start_time = Carbon::parse($date_var[0]);
             $end_time   =  Carbon::parse($date_var[1]);
         }
@@ -173,7 +168,6 @@ class ContestController extends Controller
         $contest->time_start = $start_time;
         $contest->time_end = $end_time;
 
-//        dd($contest->time_end, $contest->time_start );
 
         $contest->save();
 
@@ -188,7 +182,6 @@ class ContestController extends Controller
 
     public function update( Request $request){
         $contest = Contestlist::findOrFail($request->id);
-//        dd($contest);
         $team1 = $request->team1;
         $team2 = $request->team2;
         $winner = $request->winner == "--" ? null : $request->winner;
@@ -196,9 +189,7 @@ class ContestController extends Controller
 
 
         if ($request->date_range != null) {
-            $date_var               = explode(" to ", $request->date_range);
-//            $start_time = strtotime($date_var[0]);
-//            $end_time   = strtotime( $date_var[1]);
+            $date_var = explode(" to ", $request->date_range);
             $start_time = Carbon::parse($date_var[0]);
             $end_time   =  Carbon::parse($date_var[1]);
         }
@@ -265,6 +256,18 @@ class ContestController extends Controller
                     $participation->contest = $contest['contest'];
                     $participation->team = $contest['team'];
                     $participation->save();
+
+                    if (Session::get('contestRefer')){
+                        $this->referverification();
+                        $refer = Contestparticipation::where('user',Session::get('contestRefer'))->first();
+                        if ($refer){
+                            $refer->referral = $user;
+                            $refer->save();
+                            Session::forget('contestRefer');
+                            Session::save();
+                        }
+                    }
+
                 }
             }
             flash('You have submitted your answer!')->success();
@@ -277,5 +280,43 @@ class ContestController extends Controller
         return redirect()->route('fifacontest')->withInput();
     }
 
+    public function contestRefer(Request $request)
+    {
+        $input = preg_replace('/\D/', '', $request->u);
+        $input = (int)$input;
+
+        Session::put('contestRefer', $input);
+        Session::save();
+
+//        return dd($auth,$input);
+        return redirect(route('fifacontest'));
+    }
+
+    public function referverification(){
+        $auth = Auth::user()->id;
+        $input = Session::get('contestRefer');
+
+        $participationscheck = Contestparticipation::where('referral',$auth)->first();
+
+        if ($auth == $input || $participationscheck != null){
+            Session::forget('contestRefer');
+            Session::save();
+        }
+    }
+
+    public function referCode(){
+        if (Auth::user()){
+            $auth = Auth::user()->id;
+            $random1 = preg_replace("/[^A-Za-z]/",'',Str::random(5));
+            $random2 = preg_replace("/[^A-Za-z]/",'',Str::random(5));
+
+            $refercode = $random1.$auth.$random2;
+
+            return $refercode;
+        }
+        else{
+            return null;
+        }
+    }
 
 }
