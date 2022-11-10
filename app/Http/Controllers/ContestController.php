@@ -35,8 +35,8 @@ class ContestController extends Controller
                     unset($leaderboard->participation[$key]);
                     $game = null;
                 }
-                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->where('created_at', '>', $weekStart)->first();
-                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->where('created_at', '>', $weekStart)->first();
+                $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
+                $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
                 if ($win !=null)$wincount++;
                 if ($loose !=null)$loosecount++;
             }
