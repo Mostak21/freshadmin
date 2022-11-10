@@ -33,6 +33,7 @@ class ContestController extends Controller
             foreach ($leaderboard->participation as $key => $game){
                 if($game->created_at < $weekStart){
                     unset($leaderboard->participation[$key]);
+                    $game = null;
                 }
                 $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->where('created_at', '>', $weekStart)->first();
                 $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->where('created_at', '>', $weekStart)->first();
