@@ -173,7 +173,9 @@
             <div class="col-2">{{$leaderboard->participation->count()??"null"}}</div>
             <div class="col-2">{{$leaderboard->win}}</div>
             <div class="col-2">{{$leaderboard->loose}}</div>
-            <div class="col-2">{{$leaderboard->points}}</div>
+            <div class="col-2">
+                {{($leaderboard->points - $leaderboard->sharePoints)}}@if($leaderboard->sharePoints >0)<span class="fs-11" style="color: #0f9000">+{{$leaderboard->sharePoints}}</span> @endif
+            </div>
         </div>
         @endif
     @endforeach

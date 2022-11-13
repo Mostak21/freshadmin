@@ -50,6 +50,7 @@ class ContestController extends Controller
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
             $leaderboard->points =($wincount*30)+($referCount*5);
+            $leaderboard->sharePoints =($referCount*5);
         }
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
@@ -90,6 +91,7 @@ class ContestController extends Controller
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
             $leaderboard->points =($wincount*30)+($referCount*5);
+            $leaderboard->sharePoints =($referCount*5);
         }
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
