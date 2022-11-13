@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contestlist;
 use App\Models\Contestparticipation;
 use App\Models\Contestteam;
+use App\Models\Contestreferral;
 use Carbon\Carbon;
 use Auth;
 use Session;
@@ -29,7 +30,10 @@ class ContestController extends Controller
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
             $loosecount=0;
-            $referCount = Contestparticipation::where('user',$leaderboard->user)->whereNotNull('referral')->where('updated_at', '>', $weekStart)->get()->count();
+            $referCount = Contestreferral::where('user',$leaderboard->user)
+//                ->whereNotNull('referral')
+                ->where('updated_at', '>', $weekStart)
+                ->get()->count();
             foreach ($leaderboard->participation as $key => $game){
                 if($game->created_at < $weekStart){
                     unset($leaderboard->participation[$key]);
@@ -75,7 +79,8 @@ class ContestController extends Controller
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
             $loosecount=0;
-            $referCount = Contestparticipation::where('user',$leaderboard->user)->whereNotNull('referral')->get()->count();
+            $referCount = Contestreferral::where('user',$leaderboard->user)->get()->count();
+//            $referCount = Contestparticipation::where('user',$leaderboard->user)->whereNotNull('referral')->get()->count();
             foreach ($leaderboard->participation as $key => $game){
                 $win = Contestlist::where('winner',$game->team)->where('id',$game->contest)->first();
                 $loose = Contestlist::where('id',$game->contest)->whereNotNull('winner')->where('winner','!=',$game->team)->first();
@@ -143,7 +148,7 @@ class ContestController extends Controller
     }
 
     public function contestlist(){
-        $contests = Contestlist::orderBy("time_start","asc")->paginate(15);
+        $contests = Contestlist::orderBy("time_start","desc")->paginate(15);
 
         return view('backend.contest.index',compact('contests'));
     }
@@ -263,10 +268,17 @@ class ContestController extends Controller
 
                     if (Session::get('contestRefer')){
                         $this->referverification();
-                        $refer = Contestparticipation::where('user',Session::get('contestRefer'))->first();
-                        if ($refer){
-                            $refer->referral = $user;
-                            $refer->save();
+                        $refer = Contestreferral::where('referred_user',$user)->first();
+//                        $refer = Contestreferral::where('user',Session::get('contestRefer'))->first();
+                        if ($refer == null){
+                            $referral = new Contestreferral();
+
+                            $referral->user = Session::get('contestRefer');
+                            $referral->referred_user = $user;
+                            $referral->reffercode = Session::get('contestRefer');
+                            $referral->save();
+//                            $refer->referral = $user;
+//                            $refer->save();
                             Session::forget('contestRefer');
                             Session::save();
                         }
@@ -300,9 +312,10 @@ class ContestController extends Controller
         $auth = Auth::user()->id;
         $input = Session::get('contestRefer');
 
-        $participationscheck = Contestparticipation::where('referral',$auth)->first();
+//        $participationscheck = Contestreferral::where('referral',$auth)->first();
 
-        if ($auth == $input || $participationscheck != null){
+//        if ($auth == $input || $participationscheck != null){
+        if ($auth == $input){
             Session::forget('contestRefer');
             Session::save();
         }

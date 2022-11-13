@@ -18,6 +18,10 @@ class Contestparticipation extends Model
         return $this->hasMany(Contestparticipation::class, 'user','user');
     }
 
+    public function referral(){
+        return $this->hasMany(Contestreferral::class, 'user','user');
+    }
+
     public function win(){
         return $this->hasMany();
     }
