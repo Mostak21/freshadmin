@@ -16,6 +16,25 @@ class ContestController extends Controller
 {
     public function index(Request $request){
         $timenow = Carbon::now();
+//        $today = Carbon::now();
+//        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+//        $week = $weekStart->week() - 46;
+
+//        $leaderboards = $this->WeeklyLeaderboard();
+        $leaderboards = $this->GrandLeaderboard();
+
+        $goal = $this->prizegoal();
+        $refercode = $this->referCode();
+
+        $contests =  Contestlist::where('time_start','<',$timenow)
+            ->where('time_end','>',$timenow)
+            ->get();
+
+        return view("frontend.contest.index",compact('contests','leaderboards','goal','refercode'));
+    }
+
+
+    public function WeeklyLeaderboard(){
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
         $week = $weekStart->week();
@@ -55,27 +74,15 @@ class ContestController extends Controller
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
 
-        $goal = $this->prizegoal();
-        $refercode = $this->referCode();
-
-        $contests =  Contestlist::where('time_start','<',$timenow)
-            ->where('time_end','>',$timenow)
-            ->get();
-
-        return view("frontend.contest.index",compact('contests','leaderboards','goal','week','refercode'));
+        return $leaderboards;
     }
-
-    public function leaderboard(){
-        $today = Carbon::now();
-        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
-        $week = $weekStart->week();
-
+    public function GrandLeaderboard(){
         $leaderboards = Contestparticipation::distinct()
 
             ->with('participate')
             ->with('participation')
             ->get(['user'])
-            ->take(50);
+            ->take(10);
 
         foreach ($leaderboards as $key=> $leaderboard){
             $wincount=0;
@@ -96,11 +103,18 @@ class ContestController extends Controller
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
 
-        $goal = $this->prizegoal();
+        return $leaderboards;
+    }
 
 
-        return view("frontend.contest.leaderboard",compact('leaderboards','goal'));
+    public function leaderboard(){
+        $today = Carbon::now();
+        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+        $week = $weekStart->week() - 46;
 
+        $leaderboards =  $this->WeeklyLeaderboard();
+//        $goal = $this->prizegoal();
+        return view("frontend.contest.leaderboard",compact('leaderboards','week'));
     }
 
 

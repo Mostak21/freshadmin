@@ -31,13 +31,13 @@
             background-image: url("https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/He4rP8yAALQ8es2Y30kG8gCOfBUbkqXVDWlt4BNa.svg");
             background-size: contain;
             background-repeat: no-repeat;
-            background-color: #be1e2d;
+            background-color: #550D66;
             background-position: 0% -1.5%;
         }
 
         .orange-btn{
-            background-color: #ea9040;
-            border: #ea9040;
+            background-color: #055694;
+            border: #055694;
         }
 
         .green-btn{
@@ -161,7 +161,9 @@
 {{--    </div>--}}
     <div class="row mx-0">
         <div class="col px-1">
-            <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/mDPM6mETwV2aa67NNfXDbBMgvgfKkFwQQjNvc6tj.webp" style="max-width:100%; max-height:100%;">
+            <img
+                src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Xi1O3eEomctiAAgK8antg5oiRHRTAjfDMfJf84Nq.webp"
+                style="max-width:100%; max-height:100%;">
         </div>
     </div>
 {{--    <div class="row ">--}}
@@ -177,7 +179,7 @@
                 <div class="row my-3">
                     <div class="col-5 pl-3 text-right">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
+                                class="btn  @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
@@ -186,7 +188,7 @@
                     <div class="col-2 my-auto text-white"> vs</div>
                     <div class="col-5 pr-3 text-left">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
-                                class="btn btn-secondary @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
+                                class="btn  @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
@@ -203,10 +205,10 @@
                             <a href="{{route('contest.submit')}}"><button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button></a>
 
                         @else
-                            <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
+                            <button type="button" class="btn btn-success fs-18 text-white submit-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
                         @endif
                     @else
-                        <button type="button" class="btn btn-success fs-18 text-white orange-btn shadow-md">Comming Soon</button>
+                        <button type="button" class="btn btn-success fs-18 text-white submit-btn shadow-md">Comming Soon</button>
                     @endif
 
 {{--                    <button type="button" class="btn btn-success fs-22 text-white orange-btn shadow-md">Submit</button>--}}
@@ -233,9 +235,14 @@
         <sapn class="p-scale p-number" style="left: 46%;">1,000</sapn>
         <sapn class="p-scale p-number" style="left: 70%;">10,000</sapn>
 
-        <sapn class="p-scale p-image" style="left: 22%; "><img @if($goal['target1'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>
-        <sapn class="p-scale p-image" style="left: 46%; "><img @if($goal['target2'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>
-        <sapn class="p-scale p-image" style="left: 72%; "><img @if($goal['target3'] != 25) class="fade-img" @endif class="fade-img" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>
+{{--        <sapn class="p-scale p-image" style="left: 22%; "><img @if($goal['target1'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
+{{--        <sapn class="p-scale p-image" style="left: 46%; "><img @if($goal['target2'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
+{{--        <sapn class="p-scale p-image" style="left: 72%; "><img @if($goal['target3'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
+
+        <sapn class="p-scale p-image" style="left: 22%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/fokvcP01qrabTJOw80CASLCr6zoUXt0c9ApnZG4s.webp" width="50px"></sapn>
+        <sapn class="p-scale p-image" style="left: 46%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/MmgI3X0WFqOGhYJoQaLFQT9wRGGZ2N83l88vKOho.webp" width="50px"></sapn>
+        <sapn class="p-scale p-image" style="left: 72%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/WxmjDGB9TAonO59lKbU0DaPrOOWJN6OLPUz4W2wn.webp" width="50px"></sapn>
+
 
         <div class="progress-bar bg-primary left-round" role="progressbar" style="width: {{$goal['target1']}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
         <div class="progress-bar bg-primary" role="progressbar" style="width: {{$goal['target2']}}%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
@@ -257,7 +264,7 @@
 </section>
 
 <section class="text-center mx-auto my-5 px-4" style="max-width: 720px">
-    <div class="fs-24 py-4"><span class="fw-800">WEEKLY LEADER BOARD </span><br><span class="fw-100">(TOP 10 | Week-{{$week??""}})</span></div>
+    <div class="fs-24 py-4"><span class="fw-800">GRAND PRIZE LEADERBOARD </span><br><span class="fw-100">(TOP 10)</span></div>
     <div class="fs-14">
         <div class="row bg-primary rounded shadow-md">
             <div class="col-4">Name</div>
@@ -284,11 +291,15 @@
 
 
     <div class="my-3">
-        <a href="{{route("leaderboard")}}">
-        <button type="button" class="btn btn-secondary primary-btn text-white shadow-md">VIEW GRAND LEADER BOARD</button>
-        </a>
+
+        <button type="button" id="btnleaderboard" onclick="leaderboard()" class="btn btn-secondary primary-btn text-white shadow-md">VIEW GRAND LEADER BOARD</button>
+
     </div>
 </section>
+
+<div id="leaderboard">
+
+</div>
 
 
 {{--@section('modal')--}}
@@ -420,7 +431,7 @@
                 // el.value = data[1];
                 $(el).parent().parent().children().children().removeClass('green-btn');
                 $(el).addClass('green-btn');
-                $(el).removeClass('orange-btn');
+                // $(el).removeClass('orange-btn');
                 // console.log(data);
             }
         });
@@ -458,6 +469,15 @@
     @foreach (session('flash_notification', collect())->toArray() as $message)
     AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
     @endforeach
+
+    function leaderboard() {
+        $.post('{{ route('load.leaderboard') }}', {_token:'{{ csrf_token() }}'}, function(data){
+            $('#leaderboard').html(data);
+            AIZ.plugins.slickCarousel();
+            window.location.hash = '#leaderboard';
+            $('#btnleaderboard').addClass('d-none');
+        });
+    }
 </script>
 
 
