@@ -206,7 +206,7 @@
 
                     @if($contests->count())
                         @if(Auth::check())
-                            <a href="{{route('contest.submit')}}"><button type="submit" class="btn btn-success fs-18 text-white orange-btn shadow-md">SUBMIT</button></a>
+                            <a href="{{route('contest.submit')}}"><button type="submit" class="btn btn-success fs-18 text-white submit-btn shadow-md">SUBMIT</button></a>
 
                         @else
                             <button type="button" class="btn btn-success fs-18 text-white submit-btn shadow-md" onclick="showCheckoutModal()">Submit</button>
@@ -225,30 +225,27 @@
     </div>
 </section>
 
+@if(Auth::user())
 <section class="text-center mx-auto my-5 px-2 py-3" style="max-width: 720px">
 
-    <div class="py-3"> Participate Challenge to Win Final Prize</div>
-{{--    <div class="progress">--}}
-{{--        <div class="progress-bar bg-primary" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--}}
-{{--    </div>--}}
+    <div class="py-3" title="1 to 10 = 3 points | 11 to 30 = 5 points | 31 to 50 = 7 points">Share and Win Extra Points</div>
 
     <div class="progress mt-5" style="overflow: visible;">
-{{--        <sapn class="p-scale" style="left: 0%">|</sapn>--}}
         <sapn class="p-scale" style="left: 24.6%">|</sapn>
         <sapn class="p-scale" style="left: 49.8%">|</sapn>
         <sapn class="p-scale" style="left: 74.8%">|</sapn>
 
-        <sapn class="p-scale p-number" style="left: 22%; ">100</sapn>
-        <sapn class="p-scale p-number" style="left: 46%;">1,000</sapn>
-        <sapn class="p-scale p-number" style="left: 70%;">10,000</sapn>
+        <sapn class="p-scale p-number" style="left: 22%; ">10</sapn>
+        <sapn class="p-scale p-number" style="left: 46%;">30</sapn>
+        <sapn class="p-scale p-number" style="left: 70%;">50</sapn>
 
 {{--        <sapn class="p-scale p-image" style="left: 22%; "><img @if($goal['target1'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
 {{--        <sapn class="p-scale p-image" style="left: 46%; "><img @if($goal['target2'] != 25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
 {{--        <sapn class="p-scale p-image" style="left: 72%; "><img @if($goal['target3']!=25) class="fade-img" @endif src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/j7QWKAFH567MceN2S1D0aJ7KKZ5BIUO1ogKLvrgR.webp" width="50px"></sapn>--}}
 
-        <sapn class="p-scale p-image" style="left: 22%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/fokvcP01qrabTJOw80CASLCr6zoUXt0c9ApnZG4s.webp" width="50px"></sapn>
-        <sapn class="p-scale p-image" style="left: 46%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/MmgI3X0WFqOGhYJoQaLFQT9wRGGZ2N83l88vKOho.webp" width="50px"></sapn>
-        <sapn class="p-scale p-image" style="left: 72%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/WxmjDGB9TAonO59lKbU0DaPrOOWJN6OLPUz4W2wn.webp" width="50px"></sapn>
+        <sapn class="p-scale p-image" style="left: 22%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/BqtUJZGgSJsWjNQv6KbvuD2bkvaPleYUSyMwnyWu.webp" width="50px"></sapn>
+        <sapn class="p-scale p-image" style="left: 47%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/bIgrKFdeBsYXZoB50uY94b1KhayKcf42XFvBR3b5.webp" width="50px"></sapn>
+        <sapn class="p-scale p-image" style="left: 72%; "><img  src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/b2peSB1TdPby7B2hhAjgy6HBzU5ZpdqYToygW0BX.webp" width="50px"></sapn>
 
         <div class="progress-bar bg-primary left-round" role="progressbar" style="width: {{$goal['target1']}}%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
         <div class="progress-bar bg-primary" role="progressbar" style="width: {{$goal['target2']}}%" aria-valuenow="30" aria-valuemin="101" aria-valuemax="1000"></div>
@@ -272,10 +269,7 @@
 {{--        </a>--}}
     </div>
 </section>
-
-
-
-
+@endif
 
 <section class="text-center mx-auto my-5" style="max-width: 720px">
     <div class="fs-24 py-4"><span class="fw-800">LEADER BOARD </span><span class="fw-100">(TOP 10)</span></div>
@@ -303,7 +297,7 @@
 
     <div class="my-3">
         {{--        <a href="{{route("leaderboard")}}">--}}
-        <button type="button" id="btnleaderboard" onclick="leaderboard()" class="btn primary-btn text-white shadow-md">VIEW WEEKLY LEADER BOARD</button>
+        <button type="button" id="btnleaderboard" onclick="leaderboard()" class="btn primary-btn text-white shadow-md">VIEW WEEKLY LEADERBOARD</button>
         {{--        </a>--}}
     </div>
 

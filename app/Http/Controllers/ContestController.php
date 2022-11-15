@@ -14,17 +14,18 @@ use Illuminate\Support\Str;
 
 class ContestController extends Controller
 {
-    public function index(Request $request){
+    public function index(Request $request)
+    {
         $timenow = Carbon::now();
-//        $today = Carbon::now();
-//        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
-//        $week = $weekStart->week() - 46;
-
-//        $leaderboards = $this->WeeklyLeaderboard();
         $leaderboards = $this->GrandLeaderboard();
+        $goal = 0;
+        $refercode=null;
 
-        $goal = $this->prizegoal();
-        $refercode = $this->referCode();
+        if (Auth::user()) {
+            $referCount = Contestreferral::where('user', Auth::user()->id)->get()->count();
+            $goal = $this->prizegoal($referCount);
+            $refercode = $this->referCode();
+        }
 
         $contests =  Contestlist::where('time_start','<',$timenow)
             ->where('time_end','>',$timenow)
@@ -33,10 +34,30 @@ class ContestController extends Controller
         return view("frontend.contest.index",compact('contests','leaderboards','goal','refercode'));
     }
 
+    public function pointsCalculation($count){
+        $points = 0;
+        if ($count!=null){
+            if ($count>=0&&$count<=10){
+                $points = $count*3;}
+            elseif ($count>=11&&$count<=30){
+                $count = $count-10;
+                $points = $count*5;
+                $points = $points+30;
+            }
+            elseif ($count>=31) {
+                $count = $count-30;
+                $points = $count*7;
+                $points = $points+100;
+            }
+        }
+        return $points;
+    }
+
 
     public function WeeklyLeaderboard(){
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+//        dd($weekStart);
         $week = $weekStart->week();
 
         $leaderboards = Contestparticipation::distinct()
@@ -51,8 +72,9 @@ class ContestController extends Controller
             $loosecount=0;
             $referCount = Contestreferral::where('user',$leaderboard->user)
 //                ->whereNotNull('referral')
-                ->where('updated_at', '>', $weekStart)
+                ->where('created_at', '>', $weekStart)
                 ->get()->count();
+
             foreach ($leaderboard->participation as $key => $game){
                 if($game->created_at < $weekStart){
                     unset($leaderboard->participation[$key]);
@@ -66,10 +88,11 @@ class ContestController extends Controller
                 }
 
             }
+            $points = $this->pointsCalculation($referCount);
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
-            $leaderboard->points =($wincount*30)+($referCount*5);
-            $leaderboard->sharePoints =($referCount*5);
+            $leaderboard->points =($wincount*30)+$points;
+            $leaderboard->sharePoints =$points;
         }
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
@@ -95,10 +118,11 @@ class ContestController extends Controller
                 if ($win !=null)$wincount++;
                 if ($loose !=null)$loosecount++;
             }
+            $points = $this->pointsCalculation($referCount);
             $leaderboard->win = $wincount;
             $leaderboard->loose =$loosecount;
-            $leaderboard->points =($wincount*30)+($referCount*5);
-            $leaderboard->sharePoints =($referCount*5);
+            $leaderboard->points =($wincount*30)+$points;
+            $leaderboard->sharePoints =$points;
         }
 
         $leaderboards = $leaderboards->sortBy('points',  SORT_REGULAR,  true);
@@ -118,7 +142,46 @@ class ContestController extends Controller
     }
 
 
-    public function prizegoal(){
+    public function prizegoal($count){
+        $target1 = 0;
+        $target2 = 0;
+        $target3 = 0;
+        $target4 = 0;
+
+        if ($count){
+            if ($count>=0 && $count<=10){
+                $target1 = ($count/10)*25;
+            }
+            elseif ($count>=11 && $count<=30){
+                $target1 = 25;
+                $count2 = $count-10;
+                $target2 = ($count2/20)*25;
+            }
+            elseif ($count>=31 && $count<=50){
+                $target1 = 25;
+                $target2 = 25;
+                $count2 = $count-30;
+                $target3 = ($count2/20)*25;
+            }
+            elseif ($count>=51){
+                $target1 = 25;
+                $target2 = 25;
+                $target3 = 25;
+                $target4 = ($count/1000)*25;
+            }
+        }
+
+        $goal = array(
+            'target1' => $target1,
+            'target2' => $target2,
+            'target3' => $target3,
+            'target4' => $target4,
+            'total' => $count,
+        );
+        return $goal;
+    }
+
+    public function prizegoal2(){
 
         $total_participate = Contestparticipation::distinct()->get(['user'])->count();
 
@@ -158,6 +221,8 @@ class ContestController extends Controller
         );
         return $goal;
     }
+
+
 
     public function dd(Request $request){
         return dd($request);
