@@ -18,9 +18,12 @@ Route::get('/update/step2', 'UpdateController@step2')->name('update.step2');
 Route::get('/admin', 'AdminController@admin_dashboard')->name('admin.dashboard')->middleware(['auth', 'admin']);
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
     //Update Routes
+
     Route::get('/contest/index', 'ContestController@contestlist')->name('contest.list');
     Route::get('/contest/create', 'ContestController@create')->name('contest.create');
+    Route::get('/contest/edit/{id}', 'ContestController@edit')->name('contest.edit');
     Route::post('/contest/store', 'ContestController@store')->name('contest.store');
+    Route::post('/contest/update', 'ContestController@update')->name('contest.update');
     Route::get('/contest/destroy/{id}', 'ContestController@destroy')->name('contest.destroy');
 
 

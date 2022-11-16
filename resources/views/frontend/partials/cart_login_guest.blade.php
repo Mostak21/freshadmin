@@ -154,7 +154,7 @@
             _token   :  AIZ.data.csrf
         },
         function () {
-            AIZ.plugins.notify('success', '{{ translate('OTO send successfully') }}');
+            AIZ.plugins.notify('success', '{{ translate('OTP send successfully') }}');
         });
     }
 </script>
