@@ -306,6 +306,8 @@ class ContestController extends Controller
 
     public function selectTeam(Request $request){
 
+        $return =1;
+
         if (Session::get('contestParticipation')){
             $Participate = Session::get('contestParticipation');
             $Participate[$request->contest] =[
@@ -326,7 +328,9 @@ class ContestController extends Controller
             Session::save();
         }
 
-        return 1;
+        if($request->team == "111") $return =2;
+
+        return $return;
     }
 
     public function contestsubmit(Request $request){

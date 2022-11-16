@@ -176,21 +176,42 @@
 
             @foreach($contests as $key=>$contest)
 
-                <div class="row my-3">
-                    <div class="col-5 pl-3 text-right">
+                <div class="row my-3 mx-2">
+                    <div class="col-4 pl-3 pr-0 text-right">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team1}}" type="button"
                                 class="btn  @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team1) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
+                            @if($contest->team1 == 8)
+                                <img height="28px" class="m-1" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/qFVqmRHw60RCnZF0ObERj7VdPEIzQ9XhrFVGRmeS.png">
+                            @else
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamOne->image}}</span>
+                            @endif
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamOne->name}}</span>
                         </button>
                     </div>
-                    <div class="col-2 my-auto text-white"> vs</div>
-                    <div class="col-5 pr-3 text-left">
+                    <div class="col-4 my-auto text-white">
+
+                        <div>
+                            <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="111" type="button"
+                                    class="btn {{--@if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif--}} fs-24 text-white orange-btn shadow-md lh-1"
+                                    style="width: 80px; height: 35px;">
+                                <span class="fs-16" style="position: relative;top: -7px;">Draw</span>
+                            </button>
+                        </div>
+                        <div>
+                            vs
+                        </div>
+
+                    </div>
+                    <div class="col-4 pr-3 pl-0 text-left">
                         <button onclick="chooseteam(this)" data-contest="{{$contest->id}}" data-team="{{$contest->team2}}" type="button"
                                 class="btn  @if(Session::get('contestParticipation') !=null && Session::get('contestParticipation')[$contest->id]['team'] == $contest->team2) green-btn @endif fs-22 text-white orange-btn shadow-md"
                                 style="width: 100px; height: 65px;">
+                            @if($contest->team2 == 8)
+                                <img height="28px" class="m-1" src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/qFVqmRHw60RCnZF0ObERj7VdPEIzQ9XhrFVGRmeS.png">
+                            @else
                             <span style="font-size: 40px !important; line-height: 80%;">{{$contest->teamTwo->image}}</span>
+                            @endif
                             <br><span class="fs-9" style="position: relative;top: -15px;">{{$contest->teamTwo->name}}</span>
                         </button>
                     </div>
@@ -421,11 +442,17 @@
 
             if(data == 1){
                 AIZ.plugins.notify('success', '{{ translate('Team selected') }}');
-                // el.value = data[1];
                 $(el).parent().parent().children().children().removeClass('green-btn');
+                $(el).parent().parent().children().children().children().removeClass('green-btn');
                 $(el).addClass('green-btn');
-                // $(el).removeClass('orange-btn');
                 // console.log(data);
+            }
+            if(data == 2){
+                AIZ.plugins.notify('success', '{{ translate('Team selected as draw') }}');
+                // el.value = data[1];
+                $(el).parent().parent().parent().children().children().removeClass('green-btn');
+                $(el).parent().parent().children().children().children().removeClass('green-btn');
+                $(el).addClass('green-btn');
             }
         });
     }

@@ -67,6 +67,7 @@
                         </td>
                         <td class="text-right">
                             {{$contest->teamWinner->image??""}}</span> {{$contest->teamWinner->name??""}}
+                            @if($contest->winner==111) DRAW @endif
                         </td>
                         <td class="text-right">
                             <a href="{{route('contest.edit', $contest->id)}}" class="btn btn-soft-warning btn-icon btn-circle btn-sm" title="edit">

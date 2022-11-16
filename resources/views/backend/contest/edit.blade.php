@@ -60,8 +60,9 @@
                             <div class="col-md-9">
                                 <select class="form-control aiz-selectpicker" name="winner" id="winner_id" data-live-search="true">
                                     <option>--</option>
+                                    <option value="111"@if($contest->winner == 111) selected @endif>DRAW</option>
                                     @foreach ($teams as $team)
-                                        <img src="{{$team->image}}" height="50px">
+{{--                                        <img src="{{$team->image}}" height="50px">--}}
                                         <option value="{{ $team->id }}"@if($team->id == $contest->winner) selected @endif>
                                             {{$team->image}}
                                             {{ $team->name }}
