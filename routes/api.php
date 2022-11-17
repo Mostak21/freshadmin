@@ -1,6 +1,10 @@
 <?php
 //test json
 
+
+
+Route::get('v2/contest_list','Api\V2\ContestController@contest');
+
 Route::get('v2/testjson', function() {
     return view('test')->render();
 });

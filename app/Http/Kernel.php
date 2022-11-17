@@ -61,7 +61,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'app_language' => AppLanguage::class,
-        'admin' => IsAdmin::class,
+        'admin' => IsAdmin::class, 
         'seller' => IsSeller::class,
         'user' => IsUser::class,
         'unbanned' => IsUnbanned::class,
