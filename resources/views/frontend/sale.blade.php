@@ -36,7 +36,7 @@
             <div class="">
                 <div class="mb-3 mb-lg-0">
                     <a href="" class="d-block text-reset mb-3 rounded" >
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/FJkCHkhIXpOpoiJZvrIb60RoXkILo594IuwIHqtG.png" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/COBE6s0VhPslrXsOOQkU7NvZmEXEDq1r9JTEDJLx.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
                     </a>
                 </div>
             </div>
@@ -79,7 +79,7 @@
             <div class="">
                 <div class="mb-3 mb-lg-0">
                     <a href="" class="d-block text-reset mb-3 rounded" >
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/FJkCHkhIXpOpoiJZvrIb60RoXkILo594IuwIHqtG.png" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/F2C1amz88qfjACY5nqZHsMX31tpm939Dq7SOs3Zz.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
                     </a>
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="">
                 <div class="mb-3 mb-lg-0">
                     <a href="" class="d-block text-reset mb-3 rounded" >
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/FJkCHkhIXpOpoiJZvrIb60RoXkILo594IuwIHqtG.png" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/YjfQsClu6wuYaBYYNOb9xYAIjuZnVbKveVUtoHb9.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
                     </a>
                 </div>
             </div>
@@ -162,7 +162,7 @@
             <div class="">
                 <div class="mb-3 mb-lg-0">
                     <a href="" class="d-block text-reset mb-3 rounded" >
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/FJkCHkhIXpOpoiJZvrIb60RoXkILo594IuwIHqtG.png" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/txsZaHltOfO7J6XiIUgHKO5mF6p64VCsuGjzCnqD.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
                     </a>
                 </div>
             </div>
@@ -206,7 +206,7 @@
             <div class="">
                 <div class="mb-3 mb-lg-0">
                     <a href="" class="d-block text-reset mb-3 rounded" >
-                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/FJkCHkhIXpOpoiJZvrIb60RoXkILo594IuwIHqtG.png" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/n0FnsGaumWeh4K32Eoj1dzS5Ijsxzu5KXdtT2U5I.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded img-fluid">
                     </a>
                 </div>
             </div>
