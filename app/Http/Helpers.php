@@ -5,6 +5,7 @@ use App\Http\Controllers\AffiliateController;
 use App\Models\Currency;
 use App\Models\BusinessSetting;
 use App\Models\ProductStock;
+use App\Models\Product;
 use App\Models\Address;
 use App\Models\CustomerPackage;
 use App\Models\Upload;
@@ -987,6 +988,24 @@ if (!function_exists('auto_cat_description')) {
 
     }
 }
+
+function getsaleproduct($category_id,$tag_key){
+    
+    //  $music=Product::where('category',1)->get();
+      
+      $category_ids = CategoryUtility::children_ids($category_id);
+      $category_ids[] = $category_id;
+
+      //dd($category_ids);
+
+      $products=Product::whereIn('category_id', $category_ids)
+      ->where('published', 1)->where('tags','like','%'.$tag_key.'%')->get();
+
+      return $products;
+
+}
+
+
 
 //Check update price of product compare to cart price and update cart price
 if (!function_exists('updateCurrentPrice')) {

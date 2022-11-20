@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\URL;
 // use App\Mail\SupportMailManager;
 
 
+//sale
 
+Route::get('/sale','BhsaleController@index')->name('sale');
 
 
 //sitemap
