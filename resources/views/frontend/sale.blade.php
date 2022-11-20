@@ -13,7 +13,7 @@
                     <a href="{{ json_decode(get_setting('home_slider_links'), true)[0]??"#" }}">
                         <img
                             class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
-                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/rLjrkFn0lPtFMTAwzUqnYJh8jfG74YAr8SYHInoj.png"
+                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/8OL88IcuCmsbRd0fTwswp4R8Fl3B1S0sDMhtB220.png"
                             data-src="{{ $slider_images[0]??"#"}}"
                             alt="{{ env('APP_NAME')}} promo"
                            
