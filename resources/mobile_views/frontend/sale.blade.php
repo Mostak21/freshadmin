@@ -230,6 +230,52 @@
     </div>
 </section>
 
+{{-- Gaming--}}
+
+
+<section class="mb-4">
+    <div class="container">
+        <div class="py-4 px-md-4 py-md-3 bg-white">
+            <div class="">
+                <div class="mb-3 mb-lg-0">
+                    <a href="" class="d-block text-reset mb-3 rounded" >
+                        <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Ho7l0UGM5685NIULFCvAOZ2psHmGYeTV4iIFbFyF.webp" alt="{{ env('APP_NAME') }} promo" class="w-100 rounded h-70px h-md-auto">
+                    </a>
+                </div>
+            </div>
+            
+                @foreach ($gamings as $key => $product)
+                @if($loop->iteration==1)
+                <div class="row row-cols-xxl-7 row-cols-xl-7 row-cols-lg-6 row-cols-md-4 row-cols-2 gutters-300 aaaa">
+                @endif
+                @if($loop->iteration<13)
+                <div class="col">
+                    @include('frontend.partials.product_box_home',['product' => $product])
+                </div>
+                @endif
+                @if($loop->iteration==12)
+                </div>
+                <div class="row row-cols-xxl-7 row-cols-xl-7 row-cols-lg-6 row-cols-md-4 row-cols-2 gutters-300  d-none"  id='gamings'>
+                @endif
+                 @if($loop->iteration>12)
+                    <div class="col">
+                        @include('frontend.partials.product_box_home',['product' => $product])
+                    </div>
+                    @endif
+                @endforeach
+        </div>
+        </div>
+        <div class="text-center" id="gamingsbutton">
+            <button class="btn btn-md btn-primary" onclick="hideshow('gamings','gamingsbutton')" >Load More</button>
+        </div>
+    
+           
+        </div>
+    </div>
+</section>
+
+
+
 
 
 {{-- fragrances --}}

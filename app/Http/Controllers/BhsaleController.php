@@ -15,9 +15,10 @@ class BhsaleController extends Controller{
         $powerbanks= getsaleproduct('377','powerbanks2023');
         $fragrances= getsaleproduct('61','Fragrance2023');
         $smartvs= getsaleproduct('627','smarttv2023');
+        $gamings= getsaleproduct('559','gaming2023');
         
         
-        return view('frontend.sale', compact('smartwatchs','musics','sounds','powerbanks','fragrances','smartvs'));
+        return view('frontend.sale', compact('smartwatchs','musics','sounds','powerbanks','fragrances','smartvs','gamings'));
     }
 
 }
