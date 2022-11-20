@@ -10,7 +10,7 @@
             @endphp
 {{--                                @if($slider_images)--}}
                 <div class="carousel-box">
-                    <a href="{{ json_decode(get_setting('home_slider_links'), true)[0]??"#" }}">
+                   
                         <img
                             class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
                             src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/8OL88IcuCmsbRd0fTwswp4R8Fl3B1S0sDMhtB220.png"
@@ -21,7 +21,7 @@
                            
                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
                         >
-                    </a>
+                   
                 </div>
 {{--                                    @endif--}}
         </div>
