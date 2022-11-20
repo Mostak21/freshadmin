@@ -13,11 +13,11 @@
                     <a href="{{ json_decode(get_setting('home_slider_links'), true)[0]??"#" }}">
                         <img
                             class="d-block mw-100 img-fit rounded shadow-sm overflow-hidden"
-                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/Ze8VHvxpB2pH3NSDcVRO6TTQLqoDzkgLAKPMRoV2.webp"
+                            src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/rLjrkFn0lPtFMTAwzUqnYJh8jfG74YAr8SYHInoj.png"
                             data-src="{{ $slider_images[0]??"#"}}"
                             alt="{{ env('APP_NAME')}} promo"
                            
-                            height="450px"
+                            height="auto"
                            
                             onerror="this.onerror=null;this.src='{{ static_asset('assets/img/placeholder-rect.jpg') }}';"
                         >
