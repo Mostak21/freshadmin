@@ -134,9 +134,8 @@ class ContestController extends Controller
     public function leaderboard(){
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
-        $week = $weekStart->week() - 46;
-
         $leaderboards =  $this->WeeklyLeaderboard();
+        $week = $weekStart->week() - 46;
 //        $goal = $this->prizegoal();
         return view("frontend.contest.leaderboard",compact('leaderboards','week'));
     }
@@ -420,6 +419,11 @@ class ContestController extends Controller
         else{
             return null;
         }
+    }
+
+    public function adminleaderboards(){
+        $leaderboards = $this->GrandLeaderboard();
+        return view('backend.contest.leaderboard',compact('leaderboards'));
     }
 
 

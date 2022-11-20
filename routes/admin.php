@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::post('/contest/store', 'ContestController@store')->name('contest.store');
     Route::post('/contest/update', 'ContestController@update')->name('contest.update');
     Route::get('/contest/destroy/{id}', 'ContestController@destroy')->name('contest.destroy');
+    Route::get('/contest/leaderboards/', 'ContestController@adminleaderboards')->name('contest.leaderboards');
 
 
     Route::get('/sitemapbh', 'AdminController@sitemap')->name('sitemapbh');

@@ -447,11 +447,23 @@
 {{--                contest menu--}}
                 @if(Auth::user()->user_type == 'admin')
                     <li class="aiz-side-nav-item">
-                        <a href="{{route('contest.list')}}" class="aiz-side-nav-link">
+                        <a href="#" class="aiz-side-nav-link">
                             <i class="las la-trophy aiz-side-nav-icon" style="color: green"></i>
-                            <span class="aiz-side-nav-text">{{ translate('Fifa Contest') }}</span>
-{{--                            <span class="aiz-side-nav-arrow"></span>--}}
+                            <span class="aiz-side-nav-text">{{ translate('FIFA Contest Campaign') }}</span>
+                            <span class="aiz-side-nav-arrow"></span>
                         </a>
+                        <ul class="aiz-side-nav-list level-2">
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('contest.list')}}" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text">{{ translate('Contest List') }}</span>
+                                </a>
+                            </li>
+                            <li class="aiz-side-nav-item">
+                                <a href="{{route('contest.leaderboards')}}" class="aiz-side-nav-link">
+                                    <span class="aiz-side-nav-text">{{ translate('Contest Lraderboards') }}</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     @endif
 
