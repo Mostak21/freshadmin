@@ -17,7 +17,7 @@
         <div class="card-body">
 
             <section class="text-center mx-auto my-5" style="max-width: 720px">
-                <div class="fs-24 py-4"><span class="fw-800">WEEKLY LEADER BOARD </span><span class="fw-100">(TOP 10 | Week-{{$week??""}})</span></div>
+                <div class="fs-24 py-4"><span class="fw-800">PAST WEEK LEADERBOARD </span><span class="fw-100">(TOP 10 | Week-{{$week??""}})</span></div>
                 <div class="row bg-primary rounded shadow-md">
                     <div class="col-4">Name</div>
                     <div class="col-2">Participate</div>
