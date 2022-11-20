@@ -54,14 +54,15 @@ class ContestController extends Controller
     }
 
 
-    public function WeeklyLeaderboard(){
-        $today = Carbon::now();
-        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
-//        dd($weekStart);
-        $week = $weekStart->week();
+    public function WeeklyLeaderboard($week){
+        $week=$week+1;
+//        $week=45;
+        $today_weekstart = Carbon::now()->set('week',$week)->startOfWeek(Carbon::SATURDAY);
+        $today_weekend = Carbon::now()->set('week',$week)->endOfWeek(Carbon::FRIDAY);
 
         $leaderboards = Contestparticipation::distinct()
-            ->where('created_at', '>', $weekStart)
+            ->where('created_at', '>', $today_weekstart)
+            ->where('created_at', '<', $today_weekend)
             ->with('participate')
             ->with('participation')
             ->get(['user'])
@@ -71,12 +72,12 @@ class ContestController extends Controller
             $wincount=0;
             $loosecount=0;
             $referCount = Contestreferral::where('user',$leaderboard->user)
-//                ->whereNotNull('referral')
-                ->where('created_at', '>', $weekStart)
+                ->where('created_at', '>', $today_weekstart)
+                ->where('created_at', '<', $today_weekend)
                 ->get()->count();
 
             foreach ($leaderboard->participation as $key => $game){
-                if($game->created_at < $weekStart){
+                if($game->created_at <= $today_weekstart && $game->created_at >= $today_weekend  ){
                     unset($leaderboard->participation[$key]);
                     $game = null;
                 }
@@ -134,7 +135,9 @@ class ContestController extends Controller
     public function leaderboard(){
         $today = Carbon::now();
         $weekStart = $today->startOfWeek(Carbon::SATURDAY);
-        $leaderboards =  $this->WeeklyLeaderboard();
+        $week = $weekStart->week();
+
+        $leaderboards =  $this->WeeklyLeaderboard($week);
         $week = $weekStart->week() - 46;
 //        $goal = $this->prizegoal();
         return view("frontend.contest.leaderboard",compact('leaderboards','week'));
@@ -422,8 +425,18 @@ class ContestController extends Controller
     }
 
     public function adminleaderboards(){
-        $leaderboards = $this->GrandLeaderboard();
-        return view('backend.contest.leaderboard',compact('leaderboards'));
+
+        $today = Carbon::now();
+        $weekStart = $today->startOfWeek(Carbon::SATURDAY);
+        $week = $weekStart->week();
+        $week = $week - 1;
+
+        $leaderboards =  $this->WeeklyLeaderboard($week);
+        $week = $weekStart->week() - 47;
+        return view('backend.contest.leaderboard',compact('leaderboards','week'));
+
+//        $leaderboards = $this->GrandLeaderboard();
+//        return view('backend.contest.leaderboard',compact('leaderboards'));
     }
 
 
