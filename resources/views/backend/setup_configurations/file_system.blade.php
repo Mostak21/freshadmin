@@ -72,7 +72,7 @@
                     <h3 class="fs-18 mb-0 text-center">{{translate('S3 File System Activation')}}</h3>
                 </div>
                 <div class="card-body">
-                    <label class="aiz-switch mb-0">
+                    <label class="rit-switch mb-0">
                         <input type="checkbox" onchange="updateSettings(this, 'FILESYSTEM_DRIVER')" <?php if(env('FILESYSTEM_DRIVER') == 's3') echo "checked";?>>
                         <span></span>
                     </label>
@@ -97,7 +97,7 @@
                                 <label class="control-label">{{translate('CACHE_DRIVER')}}</label>
                             </div>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker mb-2 mb-md-0" name="CACHE_DRIVER">
+                                <select class="form-control rit-selectpicker mb-2 mb-md-0" name="CACHE_DRIVER">
                                     <option value="file" @if (env('CACHE_DRIVER') == "file") selected @endif>{{ translate('file') }}</option>
                                     <option value="redis" @if (env('CACHE_DRIVER') == "redis") selected @endif>{{ translate('redis') }}</option>
                                 </select>
@@ -109,7 +109,7 @@
                                 <label class="control-label">{{translate('SESSION_DRIVER')}}</label>
                             </div>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker mb-2 mb-md-0" name="SESSION_DRIVER">
+                                <select class="form-control rit-selectpicker mb-2 mb-md-0" name="SESSION_DRIVER">
                                     <option value="file" @if (env('SESSION_DRIVER') == "file") selected @endif>{{ translate('file') }}</option>
                                     <option value="redis" @if (env('SESSION_DRIVER') == "redis") selected @endif>{{ translate('redis') }}</option>
                                 </select>
@@ -184,10 +184,10 @@
             }
             $.post('{{ route('business_settings.update.activation') }}', {_token:'{{ csrf_token() }}', type:type, value:value}, function(data){
                 if(data == '1'){
-                    AIZ.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

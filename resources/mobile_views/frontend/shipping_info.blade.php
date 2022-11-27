@@ -111,12 +111,12 @@ dataLayer.push({
                             <div class="row gutters-5">
                                 @foreach (Auth::user()->addresses as $key => $address)
                                     <div class="col-md-12 mb-3 ">
-                                        <label class="aiz-megabox d-block card-mobile mb-0">
+                                        <label class="rit-megabox d-block card-mobile mb-0">
                                             <input type="radio" name="address_id" value="{{ $address->id }}" @if ($address->set_default)
                                                 checked
                                             @endif required>
-                                            <span class="d-flex p-3 aiz-megabox-elem shadow-sm hov-shadow-md ">
-                                                <span class="aiz-rounded-check flex-shrink-0 mt-1 "></span>
+                                            <span class="d-flex p-3 rit-megabox-elem shadow-sm hov-shadow-md ">
+                                                <span class="rit-rounded-check flex-shrink-0 mt-1 "></span>
                                            
                                                 <div class="row px-2">
                                                     <div class="col-4">

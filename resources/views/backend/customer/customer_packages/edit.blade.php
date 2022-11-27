@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="align-items-center">
 			<h1 class="h3">{{translate('Update Package Information')}}</h1>
 	</div>

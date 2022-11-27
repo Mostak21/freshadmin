@@ -1,4 +1,4 @@
-<div class="aiz-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
+<div class="rit-card-box border border-light rounded hov-shadow-md mt-1 mb-2 has-transition bg-white">
     <div class="position-relative">
 			@php
 			$soldout=1;
@@ -37,7 +37,7 @@
                 {{ translate('Wholesale') }}
             </span>
         @endif
-        <div class="absolute-top-right aiz-p-hov-icon">
+        <div class="absolute-top-right rit-p-hov-icon">
             <a href="javascript:void(0)" onclick="addToWishList({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to wishlist') }}" data-placement="left">
                 <i class="la la-heart-o"></i>
             </a>
@@ -55,7 +55,7 @@
                 <del class="fw-600 opacity-50 mr-1">{{ home_base_price($product) }}</del>
             @endif
             <span class="fw-700 text-primary"> <a href="{{ route('product', $product->slug) }}">{{ home_discounted_base_price($product) }}</a></span>
-            <span class="aiz-p-hov-icon" style="float:right;border-radius: 100px;">
+            <span class="rit-p-hov-icon" style="float:right;border-radius: 100px;">
                     <a href="javascript:void(0)" onclick="showAddToCartModal({{ $product->id }})" data-toggle="tooltip" data-title="{{ translate('Add to cart') }}" data-placement="left" style="font-size: x-large;  transform: none !important;">
                         <i class="las la-shopping-cart"></i>
                     </a>

@@ -35,7 +35,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <select class="form-control aiz-selectpicker" onchange="change_status()" data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                            <select class="form-control rit-selectpicker" onchange="change_status()" data-minimum-results-for-search="Infinity" id="update_delivery_status">
                                 <option value="pending">{{translate('Pending')}}</option>
                                 <option value="confirmed">{{translate('Confirmed')}}</option>
                                 <option value="picked_up">{{translate('Picked Up')}}</option>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="col-lg-2 ml-auto">
-                <select class="form-control aiz-selectpicker" name="seller" id="seller">
+                <select class="form-control rit-selectpicker" name="seller" id="seller">
                     <option value="">{{translate('Seller')}}</option>
                     @php
                         $name=null;
@@ -71,7 +71,7 @@
                 </select>
             </div>
             <div class="col-lg-2 ml-auto">
-                <select class="form-control aiz-selectpicker" name="delivery_status" id="delivery_status">
+                <select class="form-control rit-selectpicker" name="delivery_status" id="delivery_status">
                     <option value="">{{translate('Delivery')}}</option>
                     <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
                     <option value="Pending" @if ($delivery_status == 'Pending') selected @endif>{{translate('Stock Confirm')}}</option>
@@ -83,7 +83,7 @@
                 </select>
             </div>
             <div class="col-lg-2 ml-auto">
-                <select class="form-control aiz-selectpicker" name="shipping_status" id="shipping_status">
+                <select class="form-control rit-selectpicker" name="shipping_status" id="shipping_status">
                     <option value="">{{translate('Shipping')}}</option>
                     <option value="picked" @if ($shipping_status == 'picked') selected @endif>{{translate('picked')}}</option>
                     <option value="at_hub" @if ($shipping_status == 'at_hub') selected @endif>{{translate('at_hub')}}</option>
@@ -95,7 +95,7 @@
             </div>
             <div class="col-lg-1">
                 <div class="form-group mb-0">
-                    <input type="text" class="aiz-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
+                    <input type="text" class="rit-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
                 </div>
             </div>
             <div class="col-lg-1">
@@ -104,7 +104,7 @@
                 </div>
             </div>
 			 <div class="col-lg-2 ml-auto">
-                <select class="form-control aiz-selectpicker" name="showall" id="show_all">
+                <select class="form-control rit-selectpicker" name="showall" id="show_all">
                     <option value="">{{translate('Complete or not')}}</option>
                     <option value="hideall" >Hide Completed</option>
                     <option value="showall" >Show all</option>
@@ -119,16 +119,16 @@
         </div>
 
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                     <tr>
                         <!--<th>#</th>-->
 {{--                        <th>--}}
 {{--                            <div class="form-group">--}}
-{{--                                <div class="aiz-checkbox-inline">--}}
-{{--                                    <label class="aiz-checkbox">--}}
+{{--                                <div class="rit-checkbox-inline">--}}
+{{--                                    <label class="rit-checkbox">--}}
 {{--                                        <input type="checkbox" class="check-all">--}}
-{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                        <span class="rit-square-check"></span>--}}
 {{--                                    </label>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
@@ -156,10 +156,10 @@
                         </td>-->
 {{--                        <td>--}}
 {{--                            <div class="form-group">--}}
-{{--                                <div class="aiz-checkbox-inline">--}}
-{{--                                    <label class="aiz-checkbox">--}}
+{{--                                <div class="rit-checkbox-inline">--}}
+{{--                                    <label class="rit-checkbox">--}}
 {{--                                        <input type="checkbox" class="check-one" name="id[]" value="{{$order->id}}">--}}
-{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                        <span class="rit-square-check"></span>--}}
 {{--                                    </label>--}}
 {{--                                </div>--}}
 {{--                            </div>--}}
@@ -245,7 +245,7 @@
                 </tbody>
             </table>
 
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $orders->appends(request()->input())->links() }}
             </div>
 
@@ -299,7 +299,7 @@
             $('#note-modal-body').html(null);
             $('#notemodal').modal();
             $('.c-preloader').show();
-            $.get('{{ route('addnote') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+            $.get('{{ route('addnote') }}', {_token: RIT.data.csrf, id:id}, function(data){
                 $('.c-preloader').hide();
                 $('#note-modal-body').html(data);
               

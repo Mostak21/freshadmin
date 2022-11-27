@@ -9,7 +9,7 @@
         <h5 class="mb-0 h6">{{translate('Refund Request All')}}</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table">
+        <table class="table rit-table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -141,10 +141,10 @@
         function update_refund_approval(el){
             $.post('{{ route('vendor_refund_approval') }}',{_token:'{{ @csrf_token() }}', el:el}, function(data){
                 if (data == 1) {
-                    AIZ.plugins.notify('success', '{{ translate('Approval has been done successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Approval has been done successfully') }}');
                 }
                 else {
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }
@@ -153,10 +153,10 @@
             $.post('{{ route('refund_request_money_by_admin') }}',{_token:'{{ @csrf_token() }}', el:el}, function(data){
                 if (data == 1) {
                     location.reload();
-                    AIZ.plugins.notify('success', '{{ translate('Refund has been sent successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Refund has been sent successfully') }}');
                 }
                 else {
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

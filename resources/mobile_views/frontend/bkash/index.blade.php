@@ -42,7 +42,7 @@
                 paymentID = data.paymentID;
                 bKash.create().onSuccess(data); //pass the whole response data in bKash.create().onSucess() method as a parameter
             } else {
-                AIZ.plugins.notify('warning', result.errorMessage);
+                RIT.plugins.notify('warning', result.errorMessage);
                 bKash.create().onError();
             }
           },
@@ -65,7 +65,7 @@
             if (result && result.paymentID != null) {
                 window.location.href = "{{ route('bkash.success') }}?payment_details="+data; //Merchant’s success page
             } else {
-                AIZ.plugins.notify('warning', result.errorMessage);
+                RIT.plugins.notify('warning', result.errorMessage);
                 bKash.execute().onError();
             }
           },

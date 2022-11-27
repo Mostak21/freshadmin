@@ -70,15 +70,15 @@
                 <div class="row" style="">
                     <div class="col-lg-4 pr-5">
                         <div class="pr-4 ">
-                        <div class=" bg-white shadow-lg rounded-md aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035 ">
-                            <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
+                        <div class=" bg-white shadow-lg rounded-md rit-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035 ">
+                            <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".rit-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
                             <div class="collapse-sidebar c-scrollbar-light text-left">
                                 <div class="d-flex d-xl-none justify-content-between align-items-center pl-3 border-bottom">
                                     <h3 class="h6 mb-0 fw-600">
 {{--                                        {{ translate('Filters') }}--}}
                                         Filters
                                     </h3>
-                                    <button type="button" class="btn btn-sm p-2 filter-sidebar-thumb" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" >
+                                    <button type="button" class="btn btn-sm p-2 filter-sidebar-thumb" data-toggle="class-toggle" data-target=".rit-filter-sidebar" >
                                         <i class="las la-times la-2x"></i>
                                     </button>
                                 </div>
@@ -144,7 +144,7 @@
                                         Price range
                                     </div>
                                     <div class="p-3">
-                                        <div class="aiz-range-slider">
+                                        <div class="rit-range-slider">
                                             <div
                                                 id="input-slider-range"
                                                 data-range-value-min="@if(\App\Models\Product::count() < 1) 0 @else {{ $low }} @endif"
@@ -197,7 +197,7 @@
 
                                             </div>
                                             <div class="p-3">
-                                                <div class="aiz-checkbox-list">
+                                                <div class="rit-checkbox-list">
                                                     @if(array_key_exists('values', $attribute))
                                                         @foreach ($attribute['values'] as $key => $value)
                                                             @php
@@ -213,14 +213,14 @@
                                                                     }
                                                                 }
                                                             @endphp
-                                                            <label class="aiz-checkbox">
+                                                            <label class="rit-checkbox">
                                                                 <input
                                                                     type="checkbox"
                                                                     name="attribute_{{ $attribute['id'] }}[]"
                                                                     value="{{ $value }}" @if ($flag) checked @endif
                                                                     onchange="filter()"
                                                                 >
-                                                                <span class="aiz-square-check"></span>
+                                                                <span class="rit-square-check"></span>
                                                                 <span>{{ $value }}</span>
                                                             </label>
                                                         @endforeach
@@ -240,10 +240,10 @@
 {{--                                            {{ translate('Filter by color')}}--}}
                                         </div>
                                          <div class="p-3">
-                                            <div class="aiz-radio-inline">
+                                            <div class="rit-radio-inline">
 
                                                 @foreach($colors as $key => $color)
-                                                <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ $color->name }}">
+                                                <label class="rit-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ $color->name }}">
                                                     <input
                                                     type="radio"
                                                     name="color"
@@ -251,7 +251,7 @@
                                                     onchange="filter()"
                                                     @if(isset($selected_color) && $selected_color == $color->code) checked @endif
                                                 >
-                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                     <span class="size-30px d-inline-block rounded" style="background: {{ $color->code }};"></span>
                                                 </span>
                                                   </label>
@@ -281,7 +281,7 @@
                                         Sort by
 {{--                                        {{ translate('Sort by')}}--}}
                                     </label>
-                                    <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
+                                    <select class="form-control form-control-sm rit-selectpicker" name="sort_by" onchange="filter()">
                                         <option value="newest" @isset($sort_by) @if ($sort_by == 'newest') selected @endif @endisset>Newest {{--{{ translate('Newest')}}--}}</option>
                                         <option value="oldest" @isset($sort_by) @if ($sort_by == 'oldest') selected @endif @endisset>Oldest {{--{{ translate('Oldest')}}--}}</option>
                                         <option value="price-asc" @isset($sort_by) @if ($sort_by == 'price-asc') selected @endif @endisset> Price low to high {{--{{ translate('Price low to high')}}--}}</option>
@@ -294,7 +294,7 @@
                                         @if(isset($category_id))
 											@if($products->count()>0)
                                             <label class="mb-0 opacity-50">Sorts By Brand {{--{{ translate('Brands by Category')}}--}}</label>
-                                            <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
+                                            <select class="form-control form-control-sm rit-selectpicker" data-live-search="true" name="brand" onchange="filter()">
                                                 <option value="">All Brands {{--{{ translate('All Brands')}}--}}</option>
                                                 @php
                                                     if(isset($products)){
@@ -312,7 +312,7 @@
 									@endif
                                         @else
                                         <label class="mb-0 opacity-50">Brands {{--{{translate('Brands')}}--}}</label>
-                                        <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
+                                        <select class="form-control form-control-sm rit-selectpicker" data-live-search="true" name="brand" onchange="filter()">
                                             <option value="">All Brands {{--{{ translate('All Brands')}}--}}</option>
                                             @foreach (\App\Models\Brand::all() as $brand)
                                                 <option value="{{ $brand->slug }}" @isset($brand_id) @if ($brand_id == $brand->id) selected @endif @endisset>
@@ -325,7 +325,7 @@
                                     @endif
                                 </div>
                                 <div class="d-xl-none ml-auto ml-xl-3 mr-0 form-group align-self-end">
-                                    <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
+                                    <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".rit-filter-sidebar">
                                         <img src="{{ static_asset('m_asset/filter.png') }}" height="32px" alt="">
                                     </button>
                                 </div>
@@ -342,7 +342,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <div class="aiz-pagination aiz-pagination-center container-custom my-4">
+                        <div class="rit-pagination rit-pagination-center container-custom my-4">
                            {{-- $products->appends(request()->input())->links() --}}
 							{{ $products->appends(request()->input())->onEachSide(4)->links('vendor.cartzilla') }}
                         </div>

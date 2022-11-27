@@ -28,7 +28,7 @@
     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
     <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
-	<link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+	<link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
 
     <style>
         body {
@@ -36,8 +36,8 @@
         }
     </style>
 	<script>
-    	var AIZ = AIZ || {};
-        AIZ.local = {
+    	var RIT = RIT || {};
+        RIT.local = {
             nothing_selected: '{{ translate('Nothing selected') }}',
             nothing_found: '{{ translate('Nothing found') }}',
             choose_file: '{{ translate('Choose file') }}',
@@ -64,32 +64,32 @@
 </head>
 <body class="">
 
-	<div class="aiz-main-wrapper">
+	<div class="rit-main-wrapper">
         @include('backend.inc.admin_sidenav')
-		<div class="aiz-content-wrapper">
+		<div class="rit-content-wrapper">
             @include('backend.inc.admin_nav')
-			<div class="aiz-main-content">
+			<div class="rit-main-content">
 				<div class="px-15px px-lg-25px">
                     @yield('content')
 				</div>
 				<div class="bg-white text-center py-3 px-15px px-lg-25px mt-auto">
 					<p class="mb-0">&copy; {{ get_setting('site_name') }} v{{ get_setting('current_version') }}</p>
 				</div>
-			</div><!-- .aiz-main-content -->
-		</div><!-- .aiz-content-wrapper -->
-	</div><!-- .aiz-main-wrapper -->
+			</div><!-- .rit-main-content -->
+		</div><!-- .rit-content-wrapper -->
+	</div><!-- .rit-main-wrapper -->
 
     @yield('modal')
 
 
 	<script src="{{ static_asset('assets/js/vendors.js') }}" ></script>
-	<script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script>
+	<script src="{{ static_asset('assets/js/rit-core.js') }}" ></script>
 
     @yield('script')
 
     <script type="text/javascript">
 	    @foreach (session('flash_notification', collect())->toArray() as $message)
-	        AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
+	        RIT.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
 	    @endforeach
 
 
@@ -111,7 +111,7 @@
 			filter = $("#menu-search").val().toUpperCase();
 			items = $("#main-menu").find("a");
 			items = items.filter(function(i,item){
-				if($(item).find(".aiz-side-nav-text")[0].innerText.toUpperCase().indexOf(filter) > -1 && $(item).attr('href') !== '#'){
+				if($(item).find(".rit-side-nav-text")[0].innerText.toUpperCase().indexOf(filter) > -1 && $(item).attr('href') !== '#'){
 					return item;
 				}
 			});
@@ -121,12 +121,12 @@
 				$("#search-menu").html('')
 				if(items.length > 0){
 					for (i = 0; i < items.length; i++) {
-						const text = $(items[i]).find(".aiz-side-nav-text")[0].innerText;
+						const text = $(items[i]).find(".rit-side-nav-text")[0].innerText;
 						const link = $(items[i]).attr('href');
-						 $("#search-menu").append(`<li class="aiz-side-nav-item"><a href="${link}" class="aiz-side-nav-link"><i class="las la-ellipsis-h aiz-side-nav-icon"></i><span>${text}</span></a></li`);
+						 $("#search-menu").append(`<li class="rit-side-nav-item"><a href="${link}" class="rit-side-nav-link"><i class="las la-ellipsis-h rit-side-nav-icon"></i><span>${text}</span></a></li`);
 					}
 				}else{
-					$("#search-menu").html(`<li class="aiz-side-nav-item"><span	class="text-center text-muted d-block">{{ translate('Nothing Found') }}</span></li>`);
+					$("#search-menu").html(`<li class="rit-side-nav-item"><span	class="text-center text-muted d-block">{{ translate('Nothing Found') }}</span></li>`);
 				}
 			}else{
 				$("#main-menu").removeClass('d-none');

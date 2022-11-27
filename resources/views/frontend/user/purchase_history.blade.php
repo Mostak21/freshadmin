@@ -7,7 +7,7 @@
         </div>
         @if (count($orders) > 0)
             <div class="card-body">
-                <table class="table aiz-table mb-0">
+                <table class="table rit-table mb-0">
                     <thead>
                         <tr>
                             <th>{{ translate('Code')}}</th>
@@ -74,7 +74,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination">
+                <div class="rit-pagination">
                     	{{ $orders->links() }}
               	</div>
             </div>

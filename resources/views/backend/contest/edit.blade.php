@@ -18,7 +18,7 @@
                             </label>
 
                             <div class="col-md-9">
-                                <select class="form-control aiz-selectpicker" name="team1" id="team1_id" data-live-search="true" required>
+                                <select class="form-control rit-selectpicker" name="team1" id="team1_id" data-live-search="true" required>
                                     <option>--</option>
                                     @foreach ($teams as $team)
                                         <img src="{{$team->image}}" height="50px">
@@ -38,7 +38,7 @@
                             </label>
                             {{--                        {{dd($teams[0])}}--}}
                             <div class="col-md-9">
-                                <select class="form-control aiz-selectpicker" name="team2" id="team2_id" data-live-search="true" required>
+                                <select class="form-control rit-selectpicker" name="team2" id="team2_id" data-live-search="true" required>
                                     <option>--</option>
                                     @foreach ($teams as $team)
                                         <img src="{{$team->image}}" height="50px">
@@ -58,7 +58,7 @@
                             </label>
                             {{--                        {{dd($teams[0])}}--}}
                             <div class="col-md-9">
-                                <select class="form-control aiz-selectpicker" name="winner" id="winner_id" data-live-search="true">
+                                <select class="form-control rit-selectpicker" name="winner" id="winner_id" data-live-search="true">
                                     <option>--</option>
                                     <option value="111"@if($contest->winner == 111) selected @endif>DRAW</option>
                                     @foreach ($teams as $team)
@@ -81,7 +81,7 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control aiz-date-range" name="date_range"
+                                <input type="text" class="form-control rit-date-range" name="date_range"
                                        placeholder="{{translate('Select Date')}}"
                                        @if($contest->time_start && $contest->time_end) value="{{ $start_date.' to '.$end_date }}" @endif
                                        data-time-picker="true"

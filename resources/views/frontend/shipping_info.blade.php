@@ -116,7 +116,7 @@ dataLayer.push({
     <div class="container">
         <div class="row">
             <div class="col-xl-8 mx-auto">
-                <div class="row aiz-steps arrow-divider">
+                <div class="row rit-steps arrow-divider">
                     <div class="col done">
                         <div class="text-center text-success">
                             <i class="la-3x mb-2 las la-shopping-cart"></i>
@@ -164,12 +164,12 @@ dataLayer.push({
                             <div class="row gutters-5">
                                 @foreach (Auth::user()->addresses as $key => $address)
                                     <div class="col-md-12 mb-3 ">
-                                        <label class="aiz-megabox d-block bg-white mb-0">
+                                        <label class="rit-megabox d-block bg-white mb-0">
                                             <input type="radio" name="address_id" value="{{ $address->id }}" @if ($address->set_default)
                                                 checked
                                             @endif required>
-                                            <span class="d-flex p-3 aiz-megabox-elem shadow-sm hov-shadow-md ">
-                                                <span class="aiz-rounded-check flex-shrink-0 mt-1 "></span>
+                                            <span class="d-flex p-3 rit-megabox-elem shadow-sm hov-shadow-md ">
+                                                <span class="rit-rounded-check flex-shrink-0 mt-1 "></span>
                                             {{--    <span class="flex-grow-1 pl-3 text-left">
                                                     <div>
                                                         <span class="opacity-90 pr-2">{{ translate('Address') }}:</span>

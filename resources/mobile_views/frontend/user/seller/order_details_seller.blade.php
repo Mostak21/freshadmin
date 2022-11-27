@@ -12,7 +12,7 @@
 
 <div class="modal-body gry-bg px-3 pt-0">
     {{-- <div class="py-4">
-        <div class="row gutters-5 text-center aiz-steps">
+        <div class="row gutters-5 text-center rit-steps">
             <div class="col @if($status == 'pending') active @else done @endif">
                 <div class="icon">
                     <i class="las la-file-invoice"></i>
@@ -44,7 +44,7 @@
         @if($order->payment_type == 'cash_on_delivery')
             <div class="offset-lg-2 col-lg-4 col-sm-6">
                 <div class="form-group">
-                    <select class="form-control aiz-selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_payment_status">
+                    <select class="form-control rit-selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                         <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>{{ translate('Unpaid')}}</option>
                         <option value="paid" @if ($payment_status == 'paid') selected @endif>{{ translate('Paid')}}</option>
                     </select>
@@ -54,7 +54,7 @@
         @endif
         <div class="col-lg-4 col-sm-6">
             <div class="form-group">
-                <select class="form-control aiz-selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                <select class="form-control rit-selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
                     <option value="pending"     @if ($status == 'pending') selected @endif>{{translate('Pending')}}</option>
                     <option value="confirmed"   @if ($status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
                     <option value="picked_up"   @if ($status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
@@ -259,7 +259,7 @@
         var status = $('#update_delivery_status').val();
         $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
             $('#order_details').modal('hide');
-            AIZ.plugins.notify('success', '{{ translate('Order status has been updated') }}');
+            RIT.plugins.notify('success', '{{ translate('Order status has been updated') }}');
             location.reload().setTimeOut(500);
         });
     });
@@ -270,7 +270,7 @@
         $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
             $('#order_details').modal('hide');
             //console.log(data);
-            AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
+            RIT.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             location.reload().setTimeOut(500);
         });
     });

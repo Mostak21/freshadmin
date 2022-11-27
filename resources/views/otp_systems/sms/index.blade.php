@@ -22,7 +22,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2 control-label" for="name">{{translate('Mobile Users')}}</label>
                         <div class="col-sm-10">
-                            <select class="form-control aiz-selectpicker" data-live-search="true" name="user_phones[]" multiple>
+                            <select class="form-control rit-selectpicker" data-live-search="true" name="user_phones[]" multiple>
                                 <option id="result" value="" selected hidden></option>
                                 @foreach($users as $user)
                                     @if ($user->phone != null)

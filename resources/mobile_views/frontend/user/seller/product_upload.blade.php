@@ -2,7 +2,7 @@
 @if(Auth::user()->seller->verification_status == 1)
 @section('panel_content')
 
-<div class="aiz-titlebar mt-2 mb-4">
+<div class="rit-titlebar mt-2 mb-4">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{ translate('Add Your Product') }}</h1>
@@ -30,7 +30,7 @@
                     <div class="form-group row" id="category">
                         <label class="col-md-3 col-from-label">{{translate('Category')}}</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="category_id" id="category_id"
+                            <select class="form-control rit-selectpicker" name="category_id" id="category_id"
                                 data-live-search="true" required>
                                 @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
@@ -44,7 +44,7 @@
                     <div class="form-group row" id="brand">
                         <label class="col-md-3 col-from-label">{{translate('Brand')}}</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id"
+                            <select class="form-control rit-selectpicker" name="brand_id" id="brand_id"
                                 data-live-search="true">
                                 <option value="">{{ translate('Select Brand') }}</option>
                                 @foreach (\App\Models\Brand::all() as $brand)
@@ -70,7 +70,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Tags')}}</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control aiz-tag-input" name="tags[]"
+                            <input type="text" class="form-control rit-tag-input" name="tags[]"
                                 placeholder="{{ translate('Type and hit enter to add a tag') }}">
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Refundable')}}</label>
                         <div class="col-md-8">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="checkbox" name="refundable">
                                 <span></span>
                             </label>
@@ -143,7 +143,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Video Provider')}}</label>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" name="video_provider" id="video_provider">
+                            <select class="form-control rit-selectpicker" name="video_provider" id="video_provider">
                                 <option value="youtube">{{translate('Youtube')}}</option>
                                 <option value="dailymotion">{{translate('Dailymotion')}}</option>
                                 <option value="vimeo">{{translate('Vimeo')}}</option>
@@ -169,7 +169,7 @@
                             <input type="text" class="form-control" value="{{translate('Colors')}}" disabled>
                         </div>
                         <div class="col-md-8">
-                            <select class="form-control aiz-selectpicker" data-live-search="true" name="colors[]"
+                            <select class="form-control rit-selectpicker" data-live-search="true" name="colors[]"
                                 data-selected-text-format="count" id="colors" multiple disabled>
                                 @foreach (\App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
                                 <option value="{{ $color->code }}"
@@ -179,7 +179,7 @@
                             </select>
                         </div>
                         <div class="col-md-1">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input value="1" type="checkbox" name="colors_active">
                                 <span></span>
                             </label>
@@ -192,7 +192,7 @@
                         </div>
                         <div class="col-md-8">
                             <select name="choice_attributes[]" id="choice_attributes"
-                                class="form-control aiz-selectpicker" data-live-search="true"
+                                class="form-control rit-selectpicker" data-live-search="true"
                                 data-selected-text-format="count" multiple
                                 data-placeholder="{{ translate('Choose Attributes') }}">
                                 @foreach (\App\Models\Attribute::all() as $key => $attribute)
@@ -229,7 +229,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 control-label" for="start_date">{{translate('Discount Date Range')}}</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+                          <input type="text" class="form-control rit-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
                         </div>
                     </div>
 
@@ -240,7 +240,7 @@
                                 placeholder="{{ translate('Discount') }}" name="discount" class="form-control" required>
                         </div>
                         <div class="col-md-3">
-                            <select class="form-control aiz-selectpicker" name="discount_type">
+                            <select class="form-control rit-selectpicker" name="discount_type">
                                 <option value="amount">{{translate('Flat')}}</option>
                                 <option value="percent">{{translate('Percent')}}</option>
                             </select>
@@ -288,7 +288,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Description')}}</label>
                         <div class="col-md-8">
-                            <textarea class="aiz-text-editor" name="description"></textarea>
+                            <textarea class="rit-text-editor" name="description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -367,7 +367,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Free Shipping')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="radio" name="shipping_type" value="free" checked>
                                 <span></span>
                             </label>
@@ -377,7 +377,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Flat Rate')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="radio" name="shipping_type" value="flat_rate">
                                 <span></span>
                             </label>
@@ -429,7 +429,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Show Stock Quantity')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="radio" name="stock_visibility_state" value="quantity">
                                 <span></span>
                             </label>
@@ -439,7 +439,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Show Stock With Text Only')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="radio" name="stock_visibility_state" value="text">
                                 <span></span>
                             </label>
@@ -449,7 +449,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Hide Stock')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="radio" name="stock_visibility_state" value="hide"  checked>
                                 <span></span>
                             </label>
@@ -468,7 +468,7 @@
                     <div class="form-group row">
                         <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
                         <div class="col-md-6">
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="checkbox" name="cash_on_delivery" value="1" checked="">
                                 <span></span>
                             </label>
@@ -545,7 +545,7 @@
                                 placeholder="{{ translate('Tax') }}" name="tax[]" class="form-control" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <select class="form-control aiz-selectpicker" name="tax_type[]">
+                            <select class="form-control rit-selectpicker" name="tax_type[]">
                                 <option value="amount">{{translate('Flat')}}</option>
                                 <option value="percent">{{translate('Percent')}}</option>
                             </select>
@@ -601,12 +601,12 @@
                             <input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="{{ translate('Choice Title') }}" readonly>\
                         </div>\
                         <div class="col-md-8">\
-                            <select class="form-control aiz-selectpicker attribute_choice" data-live-search="true" name="choice_options_'+ i +'[]" multiple>\
+                            <select class="form-control rit-selectpicker attribute_choice" data-live-search="true" name="choice_options_'+ i +'[]" multiple>\
                                 '+obj+'\
                             </select>\
                         </div>\
                     </div>');
-                    AIZ.plugins.bootstrapSelect('refresh');
+                    RIT.plugins.bootstrapSelect('refresh');
             }
         });
 
@@ -616,11 +616,11 @@
         $('input[name="colors_active"]').on('change', function() {
             if(!$('input[name="colors_active"]').is(':checked')){
                 $('#colors').prop('disabled', true);
-                AIZ.plugins.bootstrapSelect('refresh');
+                RIT.plugins.bootstrapSelect('refresh');
             }
             else{
                 $('#colors').prop('disabled', false);
-                AIZ.plugins.bootstrapSelect('refresh');
+                RIT.plugins.bootstrapSelect('refresh');
             }
             update_sku();
         });
@@ -657,7 +657,7 @@
                data:$('#choice_form').serialize(),
                success: function(data){
                    $('#sku_combination').html(data);
-                    AIZ.plugins.fooTable();
+                    RIT.plugins.fooTable();
                    if (data.length > 1) {
                        $('#show-hide-div').hide();
                    }

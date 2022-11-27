@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="align-items-center">
 		<h1 class="h3">{{translate('All Attributes')}}</h1>
 	</div>
@@ -15,7 +15,7 @@
 				<h5 class="mb-0 h6">{{ translate('Attributes')}}</h5>
 			</div>
 			<div class="card-body">
-				<table class="table aiz-table mb-0">
+				<table class="table rit-table mb-0">
 					<thead>
 						<tr>
 							<th>#</th>

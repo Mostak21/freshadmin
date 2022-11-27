@@ -285,7 +285,7 @@
 </footer>
 
 
-<div class="aiz-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
+<div class="rit-mobile-bottom-nav d-xl-none fixed-bottom bg-white shadow-lg border-top rounded-top" style="box-shadow: 0px -1px 10px rgb(0 0 0 / 15%)!important; ">
     <div class="row align-items-center gutters-5">
         <div class="col">
             <a href="{{ route('home') }}" class="text-reset d-block text-center pb-2 pt-3">
@@ -372,8 +372,8 @@
     </div>
 </div>
 @if (Auth::check() && !isAdmin())
-    <div class="aiz-mobile-side-nav collapxe-sidebar-wrap sidebar-xl d-xl-none z-1035">
-        <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-backdrop="static" data-target=".aiz-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>
+    <div class="rit-mobile-side-nav collapxe-sidebar-wrap sidebar-xl d-xl-none z-1035">
+        <div class="overlay dark c-pointer overlay-fixed" data-toggle="class-toggle" data-backdrop="static" data-target=".rit-mobile-side-nav" data-same=".mobile-side-nav-thumb"></div>
         <div class="collapxe-sidebar bg-white">
             @include('frontend.inc.user_side_nav')
         </div>

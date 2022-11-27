@@ -14,7 +14,7 @@
                          <span class=" px-2 py-2 ">{{ translate('Best Selling') }}</span>
                     </h3>
                 </div>
-                <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="5" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
+                <div class="rit-carousel gutters-10 half-outside-arrow" data-items="5" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
                     @foreach ($best_selling_products as $key => $product)
                         <div class="carousel-box pb-lg-7">
                             @include('frontend.partials.product_box_home',['product' => $product])

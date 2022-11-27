@@ -7,7 +7,7 @@
         <h5 class="mb-0 h6">{{translate('Approved Request')}}</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table">
+        <table class="table rit-table">
             <thead>
                 <tr>
                     <th>#</th>

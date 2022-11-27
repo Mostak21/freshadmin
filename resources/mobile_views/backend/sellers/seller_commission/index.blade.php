@@ -9,7 +9,7 @@
                     <h3 class="mb-0 h6 text-center">{{translate('Seller Commission Activatation')}}</h3>
                 </div>
                 <div class="card-body text-center">
-                    <label class="aiz-switch aiz-switch-success mb-0">
+                    <label class="rit-switch rit-switch-success mb-0">
                         <input type="checkbox" onchange="updateSettings(this, 'vendor_commission_activation')" <?php if(get_setting('vendor_commission_activation') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -23,7 +23,7 @@
                     <h3 class="mb-0 h6 text-center">{{translate('Category Based Commission')}}</h3>
                 </div>
                 <div class="card-body text-center">
-                    <label class="aiz-switch aiz-switch-success mb-0">
+                    <label class="rit-switch rit-switch-success mb-0">
                         <input type="checkbox" onchange="updateSettings(this, 'category_wise_commission')" <?php if(get_setting('category_wise_commission') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -92,10 +92,10 @@
             
             $.post('{{ route('business_settings.update.activation') }}', {_token:'{{ csrf_token() }}', type:type, value:value}, function(data){
                 if(data == '1'){
-                    AIZ.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', 'Something went wrong');
+                    RIT.plugins.notify('danger', 'Something went wrong');
                 }
             });
         }

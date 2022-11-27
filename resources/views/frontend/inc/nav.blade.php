@@ -452,11 +452,11 @@
                 $('#modal-size').addClass('modal-lg');
             }
 
-            $.post('{{ route('orders.details') }}', { _token : AIZ.data.csrf, order_id : order_id}, function(data){
+            $.post('{{ route('orders.details') }}', { _token : RIT.data.csrf, order_id : order_id}, function(data){
                 $('#order-details-modal-body').html(data);
                 $('#order_details').modal();
                 $('.c-preloader').hide();
-                AIZ.plugins.bootstrapSelect('refresh');
+                RIT.plugins.bootstrapSelect('refresh');
             });
         }
     </script>

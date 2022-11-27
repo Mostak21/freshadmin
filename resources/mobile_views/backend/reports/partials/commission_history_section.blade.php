@@ -5,7 +5,7 @@
         </div>
         @if(Auth::user()->user_type != 'seller')
         <div class="col-md-3 ml-auto">
-            <select id="demo-ease" class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" name="seller_id">
+            <select id="demo-ease" class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" name="seller_id">
                 <option value="">{{ translate('Choose Seller') }}</option>
                 @foreach (\App\Models\Seller::all() as $key => $seller)
                     @if(isset($seller->user->id))
@@ -19,7 +19,7 @@
         @endif
         <div class="col-md-3">
             <div class="form-group mb-0">
-                <input type="text" class="form-control form-control-sm aiz-date-range" id="search" name="date_range"@isset($date_range) value="{{ $date_range }}" @endisset placeholder="{{ translate('Daterange') }}">
+                <input type="text" class="form-control form-control-sm rit-date-range" id="search" name="date_range"@isset($date_range) value="{{ $date_range }}" @endisset placeholder="{{ translate('Daterange') }}">
             </div>
         </div>
         <div class="col-md-2">
@@ -31,7 +31,7 @@
 </form>
 <div class="card-body">
 
-    <table class="table aiz-table mb-0">
+    <table class="table rit-table mb-0">
         <thead>
             <tr>
                 <th>#</th>
@@ -61,7 +61,7 @@
             @endforeach
         </tbody>
     </table>
-    <div class="aiz-pagination mt-4">
+    <div class="rit-pagination mt-4">
         {{ $commission_history->links() }}
     </div>
 </div>

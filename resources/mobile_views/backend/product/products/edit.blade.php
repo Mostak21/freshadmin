@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <h1 class="mb-0 h6">{{ translate('Edit Product') }}</h5>
 </div>
 <div class="">
@@ -33,7 +33,7 @@
                         <div class="form-group row" id="category">
                             <label class="col-lg-3 col-from-label">{{translate('Category')}}</label>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" name="category_id" id="category_id" data-selected="{{ $product->category_id }}" data-live-search="true" required>
+                                <select class="form-control rit-selectpicker" name="category_id" id="category_id" data-selected="{{ $product->category_id }}" data-live-search="true" required>
                                     @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                     @foreach ($category->childrenCategories as $childCategory)
@@ -46,7 +46,7 @@
                         <div class="form-group row" id="brand">
                             <label class="col-lg-3 col-from-label">{{translate('Brand')}}</label>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" name="brand_id" id="brand_id" data-live-search="true">
+                                <select class="form-control rit-selectpicker" name="brand_id" id="brand_id" data-live-search="true">
                                     <option value="">{{ translate('Select Brand') }}</option>
                                     @foreach (\App\Models\Brand::all() as $brand)
                                     <option value="{{ $brand->id }}" @if($product->brand_id == $brand->id) selected @endif>{{ $brand->getTranslation('name') }}</option>
@@ -69,7 +69,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{translate('Tags')}}</label>
                             <div class="col-lg-8">
-                                <input type="text" class="form-control aiz-tag-input" name="tags[]" id="tags" value="{{ $product->tags }}" placeholder="{{ translate('Type to add a tag') }}" data-role="tagsinput">
+                                <input type="text" class="form-control rit-tag-input" name="tags[]" id="tags" value="{{ $product->tags }}" placeholder="{{ translate('Type to add a tag') }}" data-role="tagsinput">
                             </div>
                         </div>
                         @php
@@ -91,7 +91,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{translate('Refundable')}}</label>
                             <div class="col-lg-8">
-                                <label class="aiz-switch aiz-switch-success mb-0" style="margin-top:5px;">
+                                <label class="rit-switch rit-switch-success mb-0" style="margin-top:5px;">
                                     <input type="checkbox" name="refundable" @if ($product->refundable == 1) checked @endif>
                                     <span class="slider round"></span></label>
                                 </label>
@@ -178,7 +178,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{translate('Video Provider')}}</label>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" name="video_provider" id="video_provider">
+                                <select class="form-control rit-selectpicker" name="video_provider" id="video_provider">
                                     <option value="youtube" <?php if ($product->video_provider == 'youtube') echo "selected"; ?> >{{translate('Youtube')}}</option>
                                     <option value="dailymotion" <?php if ($product->video_provider == 'dailymotion') echo "selected"; ?> >{{translate('Dailymotion')}}</option>
                                     <option value="vimeo" <?php if ($product->video_provider == 'vimeo') echo "selected"; ?> >{{translate('Vimeo')}}</option>
@@ -203,7 +203,7 @@
                                 <input type="text" class="form-control" value="{{translate('Colors')}}" disabled>
                             </div>
                             <div class="col-lg-8">
-                                <select class="form-control aiz-selectpicker" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple>
+                                <select class="form-control rit-selectpicker" data-live-search="true" data-selected-text-format="count" name="colors[]" id="colors" multiple>
                                     @foreach (\App\Models\Color::orderBy('name', 'asc')->get() as $key => $color)
                                     <option
                                         value="{{ $color->code }}"
@@ -214,7 +214,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-1">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" type="checkbox" name="colors_active" <?php if (count(json_decode($product->colors)) > 0) echo "checked"; ?> >
                                     <span></span>
                                 </label>
@@ -226,7 +226,7 @@
                                 <input type="text" class="form-control" value="{{translate('Attributes')}}" disabled>
                             </div>
                             <div class="col-lg-8">
-                                <select name="choice_attributes[]" id="choice_attributes" data-selected-text-format="count" data-live-search="true" class="form-control aiz-selectpicker" multiple data-placeholder="{{ translate('Choose Attributes') }}">
+                                <select name="choice_attributes[]" id="choice_attributes" data-selected-text-format="count" data-live-search="true" class="form-control rit-selectpicker" multiple data-placeholder="{{ translate('Choose Attributes') }}">
                                     @foreach (\App\Models\Attribute::all() as $key => $attribute)
                                     <option value="{{ $attribute->id }}" @if($product->attributes != null && in_array($attribute->id, json_decode($product->attributes, true))) selected @endif>{{ $attribute->getTranslation('name') }}</option>
                                     @endforeach
@@ -247,14 +247,14 @@
                                     <input type="text" class="form-control" name="choice[]" value="{{ optional(\App\Models\Attribute::find($choice_option->attribute_id))->getTranslation('name') }}" placeholder="{{ translate('Choice Title') }}" disabled>
                                 </div>
                                 <div class="col-lg-8">
-                                    <select class="form-control aiz-selectpicker attribute_choice" data-live-search="true" name="choice_options_{{ $choice_option->attribute_id }}[]" multiple>
+                                    <select class="form-control rit-selectpicker attribute_choice" data-live-search="true" name="choice_options_{{ $choice_option->attribute_id }}[]" multiple>
                                         @foreach (\App\Models\AttributeValue::where('attribute_id', $choice_option->attribute_id)->get() as $row)
                                         <option value="{{ $row->value }}" @if( in_array($row->value, $choice_option->values)) selected @endif>
                                             {{ $row->value }}
                                         </option>
                                         @endforeach
                                     </select>
-                                    {{-- <input type="text" class="form-control aiz-tag-input" name="choice_options_{{ $choice_option->attribute_id }}[]" placeholder="{{ translate('Enter choice values') }}" value="{{ implode(',', $choice_option->values) }}" data-on-change="update_sku"> --}}
+                                    {{-- <input type="text" class="form-control rit-tag-input" name="choice_options_{{ $choice_option->attribute_id }}[]" placeholder="{{ translate('Enter choice values') }}" value="{{ implode(',', $choice_option->values) }}" data-on-change="update_sku"> --}}
                                 </div>
                             </div>
                             @endforeach
@@ -281,7 +281,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="start_date">{{translate('Discount Date Range')}}</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control aiz-date-range" @if($product->discount_start_date && $product->discount_end_date) value="{{ $start_date.' to '.$end_date }}" @endif name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+                              <input type="text" class="form-control rit-date-range" @if($product->discount_start_date && $product->discount_end_date) value="{{ $start_date.' to '.$end_date }}" @endif name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
                             </div>
                         </div>
 
@@ -291,7 +291,7 @@
                                 <input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" value="{{ $product->discount }}" required>
                             </div>
                             <div class="col-lg-3">
-                                <select class="form-control aiz-selectpicker" name="discount_type" required>
+                                <select class="form-control rit-selectpicker" name="discount_type" required>
                                     <option value="amount" <?php if ($product->discount_type == 'amount') echo "selected"; ?> >{{translate('Flat')}}</option>
                                     <option value="percent" <?php if ($product->discount_type == 'percent') echo "selected"; ?> >{{translate('Percent')}}</option>
                                 </select>
@@ -349,7 +349,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label">{{translate('Description')}} <i class="las la-language text-danger" title="{{translate('Translatable')}}"></i></label>
                             <div class="col-lg-9">
-                                <textarea class="aiz-text-editor" name="description">{{ $product->getTranslation('description', $lang) }}</textarea>
+                                <textarea class="rit-text-editor" name="description">{{ $product->getTranslation('description', $lang) }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -439,7 +439,7 @@
                         <div class="form-group row">
                             <label class="col-lg-6 col-from-label">{{translate('Free Shipping')}}</label>
                             <div class="col-lg-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="radio" name="shipping_type" value="free" @if($product->shipping_type == 'free') checked @endif>
                                     <span></span>
                                 </label>
@@ -449,7 +449,7 @@
                         <div class="form-group row">
                             <label class="col-lg-6 col-from-label">{{translate('Flat Rate')}}</label>
                             <div class="col-lg-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="radio" name="shipping_type" value="flat_rate" @if($product->shipping_type == 'flat_rate') checked @endif>
                                     <span></span>
                                 </label>
@@ -468,7 +468,7 @@
                         <div class="form-group row">
                             <label class="col-md-6 col-from-label">{{translate('Is Product Quantity Mulitiply')}}</label>
                             <div class="col-md-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="is_quantity_multiplied" value="1" @if($product->is_quantity_multiplied == 1) checked @endif>
                                     <span></span>
                                 </label>
@@ -477,8 +477,8 @@
                         @else
                         <p>
                             {{ translate('Product wise shipping cost is disable. Shipping cost is configured from here') }}
-                            <a href="{{route('shipping_configuration.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
-                                <span class="aiz-side-nav-text">{{translate('Shipping Configuration')}}</span>
+                            <a href="{{route('shipping_configuration.index')}}" class="rit-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
+                                <span class="rit-side-nav-text">{{translate('Shipping Configuration')}}</span>
                             </a>
                         </p>
                         @endif
@@ -511,7 +511,7 @@
                         <div class="form-group row">
                             <label class="col-md-6 col-from-label">{{translate('Show Stock Quantity')}}</label>
                             <div class="col-md-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="radio" name="stock_visibility_state" value="quantity" @if($product->stock_visibility_state == 'quantity') checked @endif>
                                     <span></span>
                                 </label>
@@ -521,7 +521,7 @@
                         <div class="form-group row">
                             <label class="col-md-6 col-from-label">{{translate('Show Stock With Text Only')}}</label>
                             <div class="col-md-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="radio" name="stock_visibility_state" value="text" @if($product->stock_visibility_state == 'text') checked @endif>
                                     <span></span>
                                 </label>
@@ -531,7 +531,7 @@
                         <div class="form-group row">
                             <label class="col-md-6 col-from-label">{{translate('Hide Stock')}}</label>
                             <div class="col-md-6">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="radio" name="stock_visibility_state" value="hide" @if($product->stock_visibility_state == 'hide') checked @endif>
                                     <span></span>
                                 </label>
@@ -552,7 +552,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
                                     <div class="col-md-6">
-                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                        <label class="rit-switch rit-switch-success mb-0">
                                             <input type="checkbox" name="cash_on_delivery" value="1" @if($product->cash_on_delivery == 1) checked @endif>
                                             <span></span>
                                         </label>
@@ -563,8 +563,8 @@
                         @else
                             <p>
                                 {{ translate('Cash On Delivery option is disabled. Activate this feature from here') }}
-                                <a href="{{route('activation.index')}}" class="aiz-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
-                                    <span class="aiz-side-nav-text">{{translate('Cash Payment Activation')}}</span>
+                                <a href="{{route('activation.index')}}" class="rit-side-nav-link {{ areActiveRoutes(['shipping_configuration.index','shipping_configuration.edit','shipping_configuration.update'])}}">
+                                    <span class="rit-side-nav-text">{{translate('Cash Payment Activation')}}</span>
                                 </a>
                             </p>
                         @endif
@@ -580,7 +580,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
                                     <div class="col-md-6">
-                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                        <label class="rit-switch rit-switch-success mb-0">
                                             <input type="checkbox" name="featured" value="1" @if($product->featured == 1) checked @endif>
                                             <span></span>
                                         </label>
@@ -601,7 +601,7 @@
                                 <div class="form-group row">
                                     <label class="col-md-6 col-from-label">{{translate('Status')}}</label>
                                     <div class="col-md-6">
-                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                        <label class="rit-switch rit-switch-success mb-0">
                                             <input type="checkbox" name="todays_deal" value="1" @if($product->todays_deal == 1) checked @endif>
                                             <span></span>
                                         </label>
@@ -621,7 +621,7 @@
                             <label for="name">
                                 {{translate('Add To Flash')}}
                             </label>
-                            <select class="form-control aiz-selectpicker" name="flash_deal_id" id="video_provider">
+                            <select class="form-control rit-selectpicker" name="flash_deal_id" id="video_provider">
                                 <option value="">Choose Flash Title</option>
                                 @foreach(\App\Models\FlashDeal::where("status", 1)->get() as $flash_deal)
                                     <option value="{{ $flash_deal->id}}" @if($product->flash_deal_product && $product->flash_deal_product->flash_deal_id == $flash_deal->id) selected @endif>
@@ -641,7 +641,7 @@
                             <label for="name">
                                 {{translate('Discount Type')}}
                             </label>
-                            <select class="form-control aiz-selectpicker" name="flash_discount_type" id="">
+                            <select class="form-control rit-selectpicker" name="flash_discount_type" id="">
                                 <option value="">Choose Discount Type</option>
                                 <option value="amount" @if($product->flash_deal_product && $product->flash_deal_product->discount_type == 'amount') selected @endif>
                                     {{translate('Flat')}}
@@ -726,7 +726,7 @@
                                 <input type="number" lang="en" min="0" value="{{ $tax_amount }}" step="0.01" placeholder="{{ translate('Tax') }}" name="tax[]" class="form-control" required>
                             </div>
                             <div class="form-group col-md-6">
-                                <select class="form-control aiz-selectpicker" name="tax_type[]">
+                                <select class="form-control rit-selectpicker" name="tax_type[]">
                                     <option value="amount" @if($tax_type == 'amount') selected @endif>
                                         {{translate('Flat')}}
                                     </option>
@@ -792,12 +792,12 @@
                         <input type="text" class="form-control" name="choice[]" value="'+name+'" placeholder="{{ translate('Choice Title') }}" readonly>\
                     </div>\
                     <div class="col-md-8">\
-                        <select class="form-control aiz-selectpicker attribute_choice" data-live-search="true" name="choice_options_'+ i +'[]" multiple>\
+                        <select class="form-control rit-selectpicker attribute_choice" data-live-search="true" name="choice_options_'+ i +'[]" multiple>\
                             '+obj+'\
                         </select>\
                     </div>\
                 </div>');
-                AIZ.plugins.bootstrapSelect('refresh');
+                RIT.plugins.bootstrapSelect('refresh');
            }
        });
 
@@ -807,11 +807,11 @@
     $('input[name="colors_active"]').on('change', function() {
         if(!$('input[name="colors_active"]').is(':checked')){
             $('#colors').prop('disabled', true);
-            AIZ.plugins.bootstrapSelect('refresh');
+            RIT.plugins.bootstrapSelect('refresh');
         }
         else{
             $('#colors').prop('disabled', false);
-            AIZ.plugins.bootstrapSelect('refresh');
+            RIT.plugins.bootstrapSelect('refresh');
         }
         update_sku();
     });
@@ -840,8 +840,8 @@
            data:$('#choice_form').serialize(),
            success: function(data){
                 $('#sku_combination').html(data);
-                AIZ.uploader.previewGenerate();
-                AIZ.plugins.fooTable();
+                RIT.uploader.previewGenerate();
+                RIT.plugins.fooTable();
                 if (data.length > 1) {
                     $('#show-hide-div').hide();
                 }
@@ -852,7 +852,7 @@
         });
     }
 
-    AIZ.plugins.tagify();
+    RIT.plugins.tagify();
 
     $(document).ready(function(){
         update_sku();

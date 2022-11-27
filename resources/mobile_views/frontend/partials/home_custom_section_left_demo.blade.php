@@ -16,7 +16,7 @@
             <div class="col-12">
 
 
-                <div class="aiz-carousel dots-inside-bottom slick-initialized slick-slider" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="false"><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 345px; transform: translate3d(0px, 0px, 0px);"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 345px;"><div><div class="carousel-box  px-1" style="width: 100%; display: inline-block;">
+                <div class="rit-carousel dots-inside-bottom slick-initialized slick-slider" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="false"><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 345px; transform: translate3d(0px, 0px, 0px);"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 345px;"><div><div class="carousel-box  px-1" style="width: 100%; display: inline-block;">
                                         <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
                                             <div class="col px-1 py-1">
                                                 <div class="mcard product-card ">
@@ -31,7 +31,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -89,7 +89,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -147,7 +147,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -205,7 +205,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -263,7 +263,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -321,7 +321,7 @@
 
 
 
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left" tabindex="0">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>

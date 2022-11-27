@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
       <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{ translate('Manage Profile') }}</h1>
@@ -130,7 +130,7 @@
             <div class="row">
                 <label class="col-md-3 col-form-label">{{ translate('Cash Payment') }}</label>
                 <div class="col-md-9">
-                    <label class="aiz-switch aiz-switch-success mb-3">
+                    <label class="rit-switch rit-switch-success mb-3">
                         <input value="1" name="cash_on_delivery_status" type="checkbox" @if (Auth::user()->seller->cash_on_delivery_status == 1) checked @endif>
                         <span class="slider round"></span>
                     </label>
@@ -139,7 +139,7 @@
             <div class="row">
                 <label class="col-md-3 col-form-label">{{ translate('Bank Payment') }}</label>
                 <div class="col-md-9">
-                    <label class="aiz-switch aiz-switch-success mb-3">
+                    <label class="rit-switch rit-switch-success mb-3">
                         <input value="1" name="bank_payment_status" type="checkbox" @if (Auth::user()->seller->bank_payment_status == 1) checked @endif>
                         <span class="slider round"></span>
                     </label>
@@ -240,7 +240,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="mb-3">
-                                    <select class="form-control aiz-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country')}}" name="country" required>
+                                    <select class="form-control rit-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country')}}" name="country" required>
                                         <option value="">Select Country</option>
                                         @foreach (\App\Country::where('status', 1)->get() as $key => $country)
                                             <option value="{{ $country->name }}">{{ $country->name }}</option>
@@ -255,7 +255,7 @@
                                 <label>{{ translate('City')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker" data-live-search="true" name="city" required>
+                                <select class="form-control mb-3 rit-selectpicker" data-live-search="true" name="city" required>
 
                                 </select>
                             </div>
@@ -322,11 +322,11 @@
                 $('.default').removeClass('d-none');
                 $('.loading').addClass('d-none');
                 if(data.status == 2)
-                    AIZ.plugins.notify('warning', data.message);
+                    RIT.plugins.notify('warning', data.message);
                 else if(data.status == 1)
-                    AIZ.plugins.notify('success', data.message);
+                    RIT.plugins.notify('success', data.message);
                 else
-                    AIZ.plugins.notify('danger', data.message);
+                    RIT.plugins.notify('danger', data.message);
             });
         });
         
@@ -343,7 +343,7 @@
                 success: function (response) {
                     $('#edit_modal_body').html(response);
                     $('#edit-address-modal').modal('show');
-                    AIZ.plugins.bootstrapSelect('refresh');
+                    RIT.plugins.bootstrapSelect('refresh');
                     var country = $("#edit_country").val();
                     get_city(country);
                 }
@@ -370,7 +370,7 @@
                     var obj = JSON.parse(response);
                     if(obj != '') {
                         $('[name="city"]').html(obj);
-                        AIZ.plugins.bootstrapSelect('refresh');
+                        RIT.plugins.bootstrapSelect('refresh');
                     }
                 }
             });

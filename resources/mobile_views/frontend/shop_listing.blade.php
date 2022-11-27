@@ -63,7 +63,7 @@
                     @endif
                 @endforeach
             </div>
-            <div class="aiz-pagination aiz-pagination-center mt-4 mb-5">
+            <div class="rit-pagination rit-pagination-center mt-4 mb-5">
                 {{ $shops->links('vendor.cartzilla') }}
             </div>
         </div>

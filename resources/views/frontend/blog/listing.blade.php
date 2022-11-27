@@ -34,7 +34,7 @@
             @foreach($blogs as $blog)
             
             @if($loop->iteration<4)
-            @if($loop->first) <div class="aiz-carousel dots-inside-bottom border-bottom" style="overflow: hidden;" data-items="2" data-xl-items="2" data-lg-items="2"  data-md-items="1" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false" data-autoplay="true">
+            @if($loop->first) <div class="rit-carousel dots-inside-bottom border-bottom" style="overflow: hidden;" data-items="2" data-xl-items="2" data-lg-items="2"  data-md-items="1" data-sm-items="1" data-xs-items="1" data-arrows="true" data-dots="false" data-autoplay="true">
                 @endif
                 
 
@@ -167,7 +167,7 @@
         </div>
     </div>
     </div>
-        <div class="aiz-pagination aiz-pagination-center mt-4">
+        <div class="rit-pagination rit-pagination-center mt-4">
             {{ $blogs->links() }}
         </div>
     </div>

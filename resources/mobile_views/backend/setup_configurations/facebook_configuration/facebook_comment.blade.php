@@ -15,7 +15,7 @@
                                 <label class="col-from-label">{{translate('Facebook Comment')}}</label>
                             </div>
                             <div class="col-md-7">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     @php
                                         $facebook_comment_data = \App\Models\BusinessSetting::where('type', 'facebook_comment')->first();
                                     @endphp

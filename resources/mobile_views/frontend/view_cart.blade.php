@@ -212,7 +212,7 @@
                                                 </span>
                                                 </div>
                                                 <div>
-                                                    <div class="row no-gutters price-range-bg align-items-center aiz-plus-minus px-2 ml-0 " style="max-width: 100px">
+                                                    <div class="row no-gutters price-range-bg align-items-center rit-plus-minus px-2 ml-0 " style="max-width: 100px">
                                                     @if(isset($product_stock) && $product_stock->qty !=0 && $product_stock->qty != null)
                                                     <button class="btn col-auto " type="button" data-type="minus" data-field="quantity[{{ $cartItem['id'] }}]">
                                                         <i class="las la-minus"></i>
@@ -391,10 +391,10 @@
 
 {{--                            <div class="row mb-2">--}}
 {{--                                <div class="col-6">--}}
-{{--                                    <label class="aiz-checkbox">--}}
+{{--                                    <label class="rit-checkbox">--}}
 {{--                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>--}}
 {{--                                        <span class=opacity-60>{{  translate('Remember Me') }}</span>--}}
-{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                        <span class="rit-square-check"></span>--}}
 {{--                                    </label>--}}
 {{--                                </div>--}}
 {{--                                <div class="col-6 text-right">--}}
@@ -471,7 +471,7 @@
 
         function guestLogin(){
             $.post('{{ route('cart.login.guest') }}', {
-                _token   :  AIZ.data.csrf,
+                _token   :  RIT.data.csrf,
                 // id       :  key,
                 email :  document.getElementById("email").value
             }, function(data){
@@ -521,7 +521,7 @@
 
         function updateQuantity(key, element){
             $.post('{{ route('cart.updateQuantity') }}', {
-                _token   :  AIZ.data.csrf,
+                _token   :  RIT.data.csrf,
                 id       :  key,
                 quantity :  element.value
             }, function(data){

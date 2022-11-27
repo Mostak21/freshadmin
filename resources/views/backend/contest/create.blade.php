@@ -18,7 +18,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-9">
-                            <select class="form-control aiz-selectpicker" name="team1" id="team1_id" data-live-search="true" required>
+                            <select class="form-control rit-selectpicker" name="team1" id="team1_id" data-live-search="true" required>
                                 <option>--</option>
                                 @foreach ($teams as $team)
                                     <img src="{{$team->image}}" height="50px">
@@ -38,7 +38,7 @@
                         </label>
                         {{--                        {{dd($teams[0])}}--}}
                         <div class="col-md-9">
-                            <select class="form-control aiz-selectpicker" name="team2" id="team2_id" data-live-search="true" required>
+                            <select class="form-control rit-selectpicker" name="team2" id="team2_id" data-live-search="true" required>
                                 <option>--</option>
                                 @foreach ($teams as $team)
                                     <img src="{{$team->image}}" height="50px">
@@ -58,7 +58,7 @@
                         </label>
                         {{--                        {{dd($teams[0])}}--}}
                         <div class="col-md-9">
-                            <select class="form-control aiz-selectpicker" name="winner" id="winner_id" data-live-search="true">
+                            <select class="form-control rit-selectpicker" name="winner" id="winner_id" data-live-search="true">
                                 <option>--</option>
                                 <option value="111">DRAW</option>
                                 @foreach ($teams as $team)
@@ -78,7 +78,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off" required>
+                            <input type="text" class="form-control rit-date-range" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off" required>
                         </div>
                     </div>
                     
@@ -126,7 +126,7 @@
 {{--                            {{translate('Description')}}--}}
 {{--                        </label>--}}
 {{--                        <div class="col-md-9">--}}
-{{--                            <textarea class="aiz-text-editor" name="description"></textarea>--}}
+{{--                            <textarea class="rit-text-editor" name="description"></textarea>--}}
 {{--                        </div>--}}
 {{--                    </div>--}}
 {{--                    --}}

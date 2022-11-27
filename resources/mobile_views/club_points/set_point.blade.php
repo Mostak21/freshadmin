@@ -6,7 +6,7 @@
     <div class="col-lg-8">
         <div class="card">
             <div class="card-body px-3">
-                <table class="table aiz-table mb-0">
+                <table class="table rit-table mb-0">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -49,7 +49,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination">
+                <div class="rit-pagination">
                     {{ $products->appends(request()->input())->links() }}
                 </div>
             </div>

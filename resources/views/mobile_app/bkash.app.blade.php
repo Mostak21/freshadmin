@@ -3,7 +3,7 @@
 <head>
     <title></title>
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
     <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
 </head>
 <body>
@@ -15,7 +15,7 @@
 
 <!-- SCRIPTS -->
 <script src="{{ static_asset('assets/js/vendors.js') }}"></script>
-<script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
+<script src="{{ static_asset('assets/js/rit-core.js') }}"></script>
 
 <script src="https://scripts.pay.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout.js"></script>
 

@@ -21,10 +21,10 @@
 
                 <div class="row mb-2">
                     <div class="col-6">
-                        <label class="aiz-checkbox">
+                        <label class="rit-checkbox">
                             <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                             <span class=opacity-60>{{  translate('Remember Me') }}</span>
-                            <span class="aiz-square-check"></span>
+                            <span class="rit-square-check"></span>
                         </label>
                     </div>
                     <div class="col-6 text-right">
@@ -151,10 +151,10 @@
 <script>
     function OTPresend(){
         $.get('{{ route('verification.phone.resend') }}', {
-            _token   :  AIZ.data.csrf
+            _token   :  RIT.data.csrf
         },
         function () {
-            AIZ.plugins.notify('success', '{{ translate('OTO send successfully') }}');
+            RIT.plugins.notify('success', '{{ translate('OTO send successfully') }}');
         });
     }
 </script>

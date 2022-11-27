@@ -120,7 +120,7 @@
         </div>
     </div>
     </div>
-        <div class="aiz-pagination aiz-pagination-center mt-4">
+        <div class="rit-pagination rit-pagination-center mt-4">
             {{ $blogs->links() }}
         </div>
     </div>

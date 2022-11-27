@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-auto">
             <h1 class="h3">{{translate('All products')}}</h1>
@@ -36,7 +36,7 @@
             
             @if($type == 'Seller')
             <div class="col-md-2 ml-auto">
-                <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
+                <select class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
                     <option value="">{{ translate('All Sellers') }}</option>
                     @foreach (App\Models\Seller::all() as $key => $seller)
                         @if ($seller->user != null && $seller->user->shop != null)
@@ -48,7 +48,7 @@
             @endif
             @if($type == 'All')
             <div class="col-md-2 ml-auto">
-                <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
+                <select class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" id="user_id" name="user_id" onchange="sort_products()">
                     <option value="">{{ translate('All Sellers') }}</option>
                         @foreach (App\Models\User::where('user_type', '=', 'admin')->orWhere('user_type', '=', 'seller')->get() as $key => $seller)
                             <option value="{{ $seller->id }}" @if ($seller->id == $seller_id) selected @endif>{{ $seller->name }}</option>
@@ -58,7 +58,7 @@
             @endif
              @if($type == 'All')
                 <div class="col-md-2 ml-auto">
-                    <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="category" name="category" onchange="sort_products()">
+                    <select class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" id="category" name="category" onchange="sort_products()">
                         <option value="">{{ translate('All category') }}</option>
                         @foreach (App\Models\Category::select('name','id')->get() as $key => $category)
                             <option value="{{ $category->id }}"> {{ $category->name }}</option>
@@ -68,7 +68,7 @@
             @endif
                
             <div class="col-md-2 ml-auto">
-                <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" name="type" id="type" onchange="sort_products()">
+                <select class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" name="type" id="type" onchange="sort_products()">
                     <option value="">{{ translate('Sort By') }}</option>
                     <option value="rating,desc" @isset($col_name , $query) @if($col_name == 'rating' && $query == 'desc') selected @endif @endisset>{{translate('Rating (High > Low)')}}</option>
                     <option value="rating,asc" @isset($col_name , $query) @if($col_name == 'rating' && $query == 'asc') selected @endif @endisset>{{translate('Rating (Low > High)')}}</option>
@@ -86,15 +86,15 @@
         </div>
     
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                     <tr>
                         <th>
                             <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
+                                <div class="rit-checkbox-inline">
+                                    <label class="rit-checkbox">
                                         <input type="checkbox" class="check-all">
-                                        <span class="aiz-square-check"></span>
+                                        <span class="rit-square-check"></span>
                                     </label>
                                 </div>
                             </div>
@@ -121,9 +121,9 @@
                         <!--<td>{{ ($key+1) + ($products->currentPage() - 1)*$products->perPage() }}</td>-->
                         <td>
                             <div class="form-group d-inline-block">
-                                <label class="aiz-checkbox">
+                                <label class="rit-checkbox">
                                     <input type="checkbox" class="check-one" name="id[]" value="{{$product->id}}">
-                                    <span class="aiz-square-check"></span>
+                                    <span class="rit-square-check"></span>
                                 </label>
                             </div>
                         </td>
@@ -165,27 +165,27 @@
                             @endif
                         </td>
                         <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_todays_deal(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->todays_deal == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
                         </td>
                         <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->published == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
                         </td>
                         @if(get_setting('product_approve_by_admin') == 1 && $type == 'Seller')
                             <td>
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input onchange="update_approved(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->approved == 1) echo "checked"; ?> >
                                     <span class="slider round"></span>
                                 </label>
                             </td>
                         @endif
                         <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_featured(this)" value="{{ $product->id }}" type="checkbox" <?php if ($product->featured == 1) echo "checked"; ?> >
                                 <span class="slider round"></span>
                             </label>
@@ -214,7 +214,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $products->appends(request()->input())->links() }}
             </div>
         </div>
@@ -258,10 +258,10 @@
             }
             $.post('{{ route('products.todays_deal') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Todays Deal updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Todays Deal updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }
@@ -275,10 +275,10 @@
             }
             $.post('{{ route('products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }
@@ -296,10 +296,10 @@
                 approved    :   approved
             }, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Product approval update successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Product approval update successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }
@@ -313,10 +313,10 @@
             }
             $.post('{{ route('products.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Featured products updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

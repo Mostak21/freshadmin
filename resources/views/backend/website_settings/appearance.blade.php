@@ -122,13 +122,13 @@
     						<label class="col-md-3 col-from-label">{{ translate('Cookies Agreement Text') }}</label>
                             <div class="col-md-8">
         						<input type="hidden" name="types[]" value="cookies_agreement_text">
-        						<textarea name="cookies_agreement_text" rows="4" class="aiz-text-editor form-control" data-buttons='[["font", ["bold"]],["insert", ["link"]]]'>{{ get_setting('cookies_agreement_text') }}</textarea>
+        						<textarea name="cookies_agreement_text" rows="4" class="rit-text-editor form-control" data-buttons='[["font", ["bold"]],["insert", ["link"]]]'>{{ get_setting('cookies_agreement_text') }}</textarea>
                             </div>
     					</div>
                         <div class="form-group row">
     						<label class="col-md-3 col-from-label">{{translate('Show Cookies Agreement?')}}</label>
     						<div class="col-md-8">
-    							<label class="aiz-switch aiz-switch-success mb-0">
+    							<label class="rit-switch rit-switch-success mb-0">
     								<input type="hidden" name="types[]" value="show_cookies_agreement">
     								<input type="checkbox" name="show_cookies_agreement" @if( get_setting('show_cookies_agreement') == 'on') checked @endif>
     								<span></span>
@@ -151,7 +151,7 @@
     					<div class="form-group row">
                             <label class="col-md-3 col-from-label">{{translate('Show website popup?')}}</label>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="hidden" name="types[]" value="show_website_popup">
                                     <input type="checkbox" name="show_website_popup" @if( get_setting('show_website_popup') == 'on') checked @endif>
                                     <span></span>
@@ -162,13 +162,13 @@
                             <label class="col-md-3 col-from-label">{{ translate('Popup content') }}</label>
                             <div class="col-md-8">
                                 <input type="hidden" name="types[]" value="website_popup_content">
-                                <textarea name="website_popup_content" rows="4" class="aiz-text-editor form-control" >{{ get_setting('website_popup_content') }}</textarea>
+                                <textarea name="website_popup_content" rows="4" class="rit-text-editor form-control" >{{ get_setting('website_popup_content') }}</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-from-label">{{translate('Show Subscriber form?')}}</label>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="hidden" name="types[]" value="show_subscribe_form">
                                     <input type="checkbox" name="show_subscribe_form" @if( get_setting('show_subscribe_form') == 'on') checked @endif>
                                     <span></span>

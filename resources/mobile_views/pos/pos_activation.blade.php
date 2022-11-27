@@ -10,7 +10,7 @@
                 <h5 class="mb-0 h6">{{translate('POS Activation for Seller')}}</h5>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'pos_activation_for_seller')" @if($pos_activation != null && $pos_activation->value == 1) checked @endif>
                     <span class="slider round"></span>
                 </label>
@@ -32,10 +32,10 @@
             }
             $.post('{{ route('business_settings.update.activation') }}', {_token:'{{ csrf_token() }}', type:type, value:value}, function(data){
                 if(data == '1'){
-                    AIZ.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-	<div class="aiz-titlebar text-left mt-2 mb-3">
+	<div class="rit-titlebar text-left mt-2 mb-3">
 	    <h5 class="mb-0 h5">{{translate('Add New Digital Product')}}</h5>
 	</div>
 	<div class="row">
@@ -24,7 +24,7 @@
 						<div class="form-group row" id="category">
 							<label class="col-lg-2 col-from-label">{{translate('Category')}}</label>
 							<div class="col-lg-8">
-								<select class="form-control aiz-selectpicker" name="category_id" id="category_id" data-live-search="true" required>
+								<select class="form-control rit-selectpicker" name="category_id" id="category_id" data-live-search="true" required>
 		                            @foreach ($categories as $category)
 		                                <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
 		                                @foreach ($category->childrenCategories as $childCategory)
@@ -51,7 +51,7 @@
 						<div class="form-group row">
 							<label class="col-lg-2 col-from-label">{{translate('Tags')}}</label>
 							<div class="col-lg-8">
-								<input type="text" class="form-control aiz-tag-input" name="tags[]" placeholder="{{ translate('Type to add a tag') }}">
+								<input type="text" class="form-control rit-tag-input" name="tags[]" placeholder="{{ translate('Type to add a tag') }}">
 							</div>
 						</div>
 					</div>
@@ -149,7 +149,7 @@
 								<input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{translate('Tax')}}" name="tax" class="form-control" required>
 							</div>
 							<div class="col-md-2">
-								<select class="form-control aiz-selectpicker" name="tax_type">
+								<select class="form-control rit-selectpicker" name="tax_type">
 									<option value="amount">{{translate('Flat')}}</option>
 									<option value="percent">{{translate('Percent')}}</option>
 								</select>
@@ -158,7 +158,7 @@
 						<div class="form-group row">
 	                        <label class="col-sm-3 control-label" for="start_date">{{translate('Discount Date Range')}}</label>
 	                        <div class="col-sm-9">
-	                          <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+	                          <input type="text" class="form-control rit-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
 	                        </div>
 	                    </div>
 						<div class="form-group row">
@@ -167,7 +167,7 @@
 								<input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" required>
 							</div>
 							<div class="col-md-2">
-								<select class="form-control aiz-selectpicker" name="discount_type">
+								<select class="form-control rit-selectpicker" name="discount_type">
 									<option value="amount">{{translate('Flat')}}</option>
 									<option value="percent">{{translate('Percent')}}</option>
 								</select>
@@ -183,7 +183,7 @@
 						<div class="form-group row">
 							<label class="col-lg-2 col-from-label">{{translate('Description')}}</label>
 							<div class="col-lg-9">
-								<textarea class="aiz-text-editor" name="description"></textarea>
+								<textarea class="rit-text-editor" name="description"></textarea>
 							</div>
 						</div>
 					</div>

@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{translate('All Categories')}}</h1>
@@ -25,7 +25,7 @@
         </form>
     </div>
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -74,7 +74,7 @@
                             @endif
                         </td>
                         <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input type="checkbox" onchange="update_featured(this)" value="{{ $category->id }}" <?php if($category->featured == 1) echo "checked";?>>
                                 <span></span>
                             </label>
@@ -92,7 +92,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $categories->appends(request()->input())->links() }}
         </div>
     </div>
@@ -116,10 +116,10 @@
             }
             $.post('{{ route('categories.featured') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Featured categories updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Featured categories updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

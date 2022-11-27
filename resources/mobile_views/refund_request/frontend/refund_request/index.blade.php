@@ -5,13 +5,13 @@
     <div class="container">
         <div class="d-flex align-items-start">
             @include('frontend.inc.user_side_nav')
-            <div class="aiz-user-panel">
+            <div class="rit-user-panel">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="mb-0 h6">{{ translate('Applied Refund Request') }}</h5>
                     </div>
                     <div class="card-body">
-                        <table class="table aiz-table mb-0">
+                        <table class="table rit-table mb-0">
                             <thead>
                                 <tr>
                                   <th>#</th>

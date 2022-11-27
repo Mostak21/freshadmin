@@ -30,7 +30,7 @@
                                                         <label class="col-from-label">{{translate('Activation')}}</label>
                                                     </div>
                                                     <div class="col-md-10">
-                                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                                        <label class="rit-switch rit-switch-success mb-0">
                                                             <input value="1" name="status" type="checkbox" @if ($sms_template->status == 1)
                                                                 checked
                                                             @endif>

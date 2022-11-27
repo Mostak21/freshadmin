@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <h5 class="mb-0 h6">{{translate('Role Information')}}</h5>
 </div>
 
@@ -45,7 +45,7 @@
                                   <label class="col-from-label">{{ translate('POS System') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="1" @php if(in_array(1, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -57,7 +57,7 @@
                                 <label class="col-from-label">{{ translate('Products') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="2" @php if(in_array(2, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -68,7 +68,7 @@
                                 <label class="col-from-label">{{ translate('All Orders') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="3" @php if(in_array(3, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -79,7 +79,7 @@
                                 <label class="col-from-label">{{ translate('Inhouse orders') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="4" @php if(in_array(4, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -90,7 +90,7 @@
                                 <label class="col-from-label">{{ translate('Seller Orders') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="5" @php if(in_array(5, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -101,7 +101,7 @@
                                 <label class="col-from-label">{{ translate('Pick-up Point Order') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="6" @php if(in_array(6, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -113,7 +113,7 @@
                                   <label class="col-from-label">{{ translate('Refunds') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="7" @php if(in_array(7, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -125,7 +125,7 @@
                                 <label class="col-from-label">{{ translate('Customers') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="8" @php if(in_array(8, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -136,7 +136,7 @@
                                 <label class="col-from-label">{{ translate('Sellers') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="9" @php if(in_array(9, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -147,7 +147,7 @@
                                 <label class="col-from-label">{{ translate('Reports') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="10" @php if(in_array(10, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -158,7 +158,7 @@
                                 <label class="col-from-label">{{ translate('Marketing') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="11" @php if(in_array(11, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -169,7 +169,7 @@
                                 <label class="col-from-label">{{ translate('Support') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="12" @php if(in_array(12, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -180,7 +180,7 @@
                                 <label class="col-from-label">{{ translate('Website Setup') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="13" @php if(in_array(13, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -191,7 +191,7 @@
                                 <label class="col-from-label">{{ translate('Setup & Configurations') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="14" @php if(in_array(14, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -203,7 +203,7 @@
                                   <label class="col-from-label">{{ translate('Affiliate System') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="15" @php if(in_array(15, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -216,7 +216,7 @@
                                   <label class="col-from-label">{{ translate('Offline Payment System') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="16" @php if(in_array(16, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -229,7 +229,7 @@
                                   <label class="col-from-label">{{ translate('Paytm Payment Gateway') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="17" @php if(in_array(17, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -242,7 +242,7 @@
                                   <label class="col-from-label">{{ translate('Club Point System') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="18" @php if(in_array(18, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -255,7 +255,7 @@
                                   <label class="col-from-label">{{ translate('OTP System') }}</label>
                               </div>
                               <div class="col-md-2">
-                                  <label class="aiz-switch aiz-switch-success mb-0">
+                                  <label class="rit-switch rit-switch-success mb-0">
                                       <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="19" @php if(in_array(19, $permissions)) echo "checked"; @endphp>
                                       <span class="slider round"></span>
                                   </label>
@@ -267,7 +267,7 @@
                                 <label class="col-from-label">{{ translate('Staffs') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="20" @php if(in_array(20, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -278,7 +278,7 @@
                                 <label class="col-from-label">{{ translate('Addon Manager') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="21" @php if(in_array(21, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -290,7 +290,7 @@
                                 <label class="col-from-label">{{ translate('Uploaded Files') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="22" @php if(in_array(22, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -301,7 +301,7 @@
                                 <label class="col-from-label">{{ translate('Blog System') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="23" @php if(in_array(23, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>
@@ -312,7 +312,7 @@
                                 <label class="col-from-label">{{ translate('System') }}</label>
                             </div>
                             <div class="col-md-2">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input type="checkbox" name="permissions[]" class="form-control demo-sw" value="24" @php if(in_array(21, $permissions)) echo "checked"; @endphp>
                                     <span class="slider round"></span>
                                 </label>

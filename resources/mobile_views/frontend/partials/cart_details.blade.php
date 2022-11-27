@@ -89,7 +89,7 @@
                                             </span>
                                             </div>
                                             <div>
-                                                <div class="row no-gutters price-range-bg align-items-center aiz-plus-minus px-2 ml-0 " style="max-width: 100px">
+                                                <div class="row no-gutters price-range-bg align-items-center rit-plus-minus px-2 ml-0 " style="max-width: 100px">
                                                 @if(isset($product_stock) && $product_stock->qty !=0 && $product_stock->qty != null)
                                                 <button class="btn col-auto " type="button" data-type="minus" data-field="quantity[{{ $cartItem['id'] }}]">
                                                     <i class="las la-minus"></i>
@@ -201,7 +201,7 @@
 </div>
 
 <script type="text/javascript">
-    AIZ.extra.plusMinus();
+    RIT.extra.plusMinus();
 
         @if( $carts && count($carts) > 0 )
     var productPriceSubtotal = 0;

@@ -6,7 +6,7 @@
             <h5 class="mb-0 h6">{{ translate('Download Your Product') }}</h5>
         </div>
         <div class="card-body">
-          <table class="table aiz-table mb-0">
+          <table class="table rit-table mb-0">
               <thead>
                   <tr>
                       <th>{{ translate('Product')}}</th>

@@ -10,11 +10,11 @@
         </div>
         <div class="col-lg-2">
             <div class="form-group mb-0">
-                <input type="text" class="aiz-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Filter by date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
+                <input type="text" class="rit-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Filter by date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
             </div>
         </div>
           <div class="col-lg-2 ml-auto">
-            <select class="form-control aiz-selectpicker" name="payment_type" id="payment_type" onchange="sort_orders()">
+            <select class="form-control rit-selectpicker" name="payment_type" id="payment_type" onchange="sort_orders()">
                 <option value="">{{translate('Payment Status')}}</option>
                 <option value="paid"  @isset($payment_status) @if($payment_status == 'paid') selected @endif @endisset>{{translate('Paid')}}</option>
                 <option value="partial_paid"  @isset($payment_status) @if($payment_status == 'partial_paid') selected @endif @endisset>{{translate('Partial-Paid')}}</option>
@@ -25,7 +25,7 @@
           </div>
 
           <div class="col-lg-2 ml-auto">
-            <select class="form-control aiz-selectpicker" name="delivery_status" id="delivery_status" onchange="sort_orders()">
+            <select class="form-control rit-selectpicker" name="delivery_status" id="delivery_status" onchange="sort_orders()">
                 <option value="">{{translate('Filter by Delivery Status')}}</option>
                 <option value="pending" @isset($delivery_status) @if($delivery_status == 'pending') selected @endif @endisset>{{translate('Pending')}}</option>
                 <option value="confirmed"   @isset($delivery_status) @if($delivery_status == 'confirmed') selected @endif @endisset>{{translate('Confirmed')}}</option>
@@ -47,7 +47,7 @@
     </from>
 
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th>#</th>
@@ -140,7 +140,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $orders->appends(request()->input())->links() }}
         </div>
     </div>

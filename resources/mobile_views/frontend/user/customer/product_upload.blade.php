@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
       <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{ translate('Add Your Product') }}</h1>
@@ -26,7 +26,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{translate('Product Category')}} <span class="text-danger">*</span></label>
                     <div class="col-md-10">
-                        <select class="form-control aiz-selectpicker" data-placeholder="{{ translate('Select a Category')}}" id="categories" name="category_id" data-live-search="true" required>
+                        <select class="form-control rit-selectpicker" data-placeholder="{{ translate('Select a Category')}}" id="categories" name="category_id" data-live-search="true" required>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                 @foreach ($category->childrenCategories as $childCategory)
@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{translate('Product Brand')}} <span class="text-danger">*</span></label>
                     <div class="col-md-10">
-                        <select class="form-control aiz-selectpicker" data-placeholder="{{ translate('Select a brand')}}" data-live-search="true"  id="brands" name="brand_id">
+                        <select class="form-control rit-selectpicker" data-placeholder="{{ translate('Select a brand')}}" data-live-search="true"  id="brands" name="brand_id">
                             <option value=""></option>
                             @foreach (\App\Models\Brand::all() as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->getTranslation('name') }}</option>
@@ -71,7 +71,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{ translate('Product Tag')}} <span class="text-danger">*</span></label>
                     <div class="col-md-10">
-                        <input type="text" class="form-control aiz-tag-input" name="tags[]" placeholder="{{ translate('Type & hit enter')}}">
+                        <input type="text" class="form-control rit-tag-input" name="tags[]" placeholder="{{ translate('Type & hit enter')}}">
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                 <div class="form-group row">
                     <label class="col-md-2 col-from-label">{{translate('Video From')}}</label>
                     <div class="col-md-10">
-                        <select class="form-control aiz-selectpicker" data-minimum-results-for-search="Infinity" name="video_provider">
+                        <select class="form-control rit-selectpicker" data-minimum-results-for-search="Infinity" name="video_provider">
                             <option value="youtube">{{ translate('Youtube')}}</option>
                             <option value="dailymotion">{{ translate('Dailymotion')}}</option>
                             <option value="vimeo">{{ translate('Vimeo')}}</option>
@@ -189,7 +189,7 @@
                     <label class="col-md-2 col-from-label">{{ translate('Description')}}</label>
                     <div class="col-md-10">
                         <div class="mb-3">
-                            <textarea class="aiz-text-editor" name="description" required></textarea>
+                            <textarea class="rit-text-editor" name="description" required></textarea>
                         </div>
                     </div>
                 </div>

@@ -2,7 +2,7 @@
 @if(Auth::user()->seller->verification_status == 1)
 @section('panel_content')
 
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1 class="h3">{{ translate('Products') }}</h1>
@@ -28,7 +28,7 @@
                 <div class="form-group row" id="category">
                     <label class="col-lg-3 col-from-label">{{translate('Category')}} <span class="text-danger">*</span></label>
                     <div class="col-lg-9">
-                        <select class="form-control aiz-selectpicker" name="category_id" id="category_id" required>
+                        <select class="form-control rit-selectpicker" name="category_id" id="category_id" required>
                             @foreach(\App\Models\Category::where('parent_id', 0)->where('digital', 1)->with('childrenCategories')->get(); as $category)
                                 <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                 @foreach ($category->childrenCategories as $childCategory)
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-from-label">{{translate('Tags')}} <span class="text-danger">*</span></label>
                     <div class="col-lg-9">
-                        <input type="text" class="form-control aiz-tag-input" name="tags[]" placeholder="{{ translate('Type and hit enter') }}">
+                        <input type="text" class="form-control rit-tag-input" name="tags[]" placeholder="{{ translate('Type and hit enter') }}">
                         <small class="text-muted">{{translate('This is used for search. Input those words by which cutomer can find this product.')}}</small>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                         <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{translate('Tax')}}" name="tax" class="form-control" required>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control aiz-selectpicker" name="tax_type">
+                        <select class="form-control rit-selectpicker" name="tax_type">
                             <option value="amount">{{translate('Flat')}}</option>
                             <option value="percent">{{translate('Percent')}}</option>
                         </select>
@@ -168,7 +168,7 @@
                         <input type="number" lang="en" min="0" value="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" required>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control aiz-selectpicker" name="discount_type">
+                        <select class="form-control rit-selectpicker" name="discount_type">
                             <option value="amount">{{translate('Flat')}}</option>
                             <option value="percent">{{translate('Percent')}}</option>
                         </select>
@@ -184,7 +184,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-from-label">{{translate('Description')}}</label>
                     <div class="col-lg-9">
-                        <textarea class="aiz-text-editor" name="description"></textarea>
+                        <textarea class="rit-text-editor" name="description"></textarea>
                     </div>
                 </div>
             </div>

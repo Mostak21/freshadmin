@@ -38,10 +38,10 @@
                             <div class="row mb-2">
                                 <div class="col-sm-6">
                                     <div class="text-left">
-                                        <label class="aiz-checkbox">
+                                        <label class="rit-checkbox">
                                             <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <span>{{ translate('Remember Me') }}</span>
-                                            <span class="aiz-square-check"></span>
+                                            <span class="rit-square-check"></span>
                                         </label>
                                     </div>
                                 </div>

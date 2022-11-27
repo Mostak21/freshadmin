@@ -119,10 +119,10 @@
                                         @endif
 
                                         <div class="mb-3">
-                                            <label class="aiz-checkbox">
+                                            <label class="rit-checkbox">
                                                 <input type="checkbox" name="checkbox_example_1" required>
                                                 <span class=opacity-60>{{ translate('By signing up you agree to our terms and conditions.')}}</span>
-                                                <span class="aiz-square-check"></span>
+                                                <span class="rit-square-check"></span>
                                             </label>
                                         </div>
 

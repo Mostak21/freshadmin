@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{translate('All Sellers')}}</h1>
@@ -27,7 +27,7 @@
             </div>
             
             <div class="col-md-3 ml-auto">
-                <select class="form-control aiz-selectpicker" name="approved_status" id="approved_status" onchange="sort_sellers()">
+                <select class="form-control rit-selectpicker" name="approved_status" id="approved_status" onchange="sort_sellers()">
                     <option value="">{{translate('Filter by Approval')}}</option>
                     <option value="1"  @isset($approved) @if($approved == 'paid') selected @endif @endisset>{{translate('Approved')}}</option>
                     <option value="0"  @isset($approved) @if($approved == 'unpaid') selected @endif @endisset>{{translate('Non-Approved')}}</option>
@@ -41,16 +41,16 @@
         </div>
     
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                 <tr>
                     <!--<th data-breakpoints="lg">#</th>-->
                     <th>
                         <div class="form-group">
-                            <div class="aiz-checkbox-inline">
-                                <label class="aiz-checkbox">
+                            <div class="rit-checkbox-inline">
+                                <label class="rit-checkbox">
                                     <input type="checkbox" class="check-all">
-                                    <span class="aiz-square-check"></span>
+                                    <span class="rit-square-check"></span>
                                 </label>
                             </div>
                         </div>
@@ -72,10 +72,10 @@
                             <!--<td>{{ ($key+1) + ($sellers->currentPage() - 1)*$sellers->perPage() }}</td>-->
                             <td>
                                 <div class="form-group">
-                                    <div class="aiz-checkbox-inline">
-                                        <label class="aiz-checkbox">
+                                    <div class="rit-checkbox-inline">
+                                        <label class="rit-checkbox">
                                             <input type="checkbox" class="check-one" name="id[]" value="{{$seller->id}}">
-                                            <span class="aiz-square-check"></span>
+                                            <span class="rit-square-check"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                 @endif
                             </td>
                             <td>
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input onchange="update_approved(this)" value="{{ $seller->id }}" type="checkbox" <?php if($seller->verification_status == 1) echo "checked";?> >
                                     <span class="slider round"></span>
                                 </label>
@@ -147,7 +147,7 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
               {{ $sellers->appends(request()->input())->links() }}
             </div>
         </div>
@@ -259,10 +259,10 @@
             }
             $.post('{{ route('sellers.approved') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Approved sellers updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

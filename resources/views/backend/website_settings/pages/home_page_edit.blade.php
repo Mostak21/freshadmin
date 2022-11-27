@@ -485,7 +485,7 @@
                                     <div class="row gutters-5">
                                         <div class="col">
                                             <div class="form-group">
-                                                <select class="form-control aiz-selectpicker" name="home_categories[]" data-live-search="true" data-selected={{ $value }} required>
+                                                <select class="form-control rit-selectpicker" name="home_categories[]" data-live-search="true" data-selected={{ $value }} required>
                                                     @foreach (\App\Models\Category::where('parent_id', 0)->with('childrenCategories')->get() as $category)
                                                         <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
                                                         @foreach ($category->childrenCategories as $childCategory)
@@ -511,7 +511,7 @@
                             data-content='<div class="row gutters-5">
 								<div class="col">
 									<div class="form-group">
-										<select class="form-control aiz-selectpicker" name="home_categories[]" data-live-search="true" required>
+										<select class="form-control rit-selectpicker" name="home_categories[]" data-live-search="true" required>
 											@foreach (\App\Models\Category::all() as $key => $category)
                                 <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
 											@endforeach
@@ -547,7 +547,7 @@
 						<label class="col-md-2 col-from-label">{{translate('Top Categories (Max 10)')}}</label>
 						<div class="col-md-10">
 							<input type="hidden" name="types[]" value="top10_categories">
-							<select name="top10_categories[]" class="form-control aiz-selectpicker" multiple data-max-options="10" data-live-search="true" data-selected="{{ get_setting('top10_categories') }}">
+							<select name="top10_categories[]" class="form-control rit-selectpicker" multiple data-max-options="10" data-live-search="true" data-selected="{{ get_setting('top10_categories') }}">
 								@foreach (\App\Models\Category::where('parent_id', 0)->with('childrenCategories')->get() as $category)
 									<option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
 									@foreach ($category->childrenCategories as $childCategory)
@@ -561,7 +561,7 @@
 						<label class="col-md-2 col-from-label">{{translate('Top Brands (Max 10)')}}</label>
 						<div class="col-md-10">
 							<input type="hidden" name="types[]" value="top10_brands">
-							<select name="top10_brands[]" class="form-control aiz-selectpicker" multiple data-max-options="12" data-live-search="true" data-selected="{{ get_setting('top10_brands') }}">
+							<select name="top10_brands[]" class="form-control rit-selectpicker" multiple data-max-options="12" data-live-search="true" data-selected="{{ get_setting('top10_brands') }}">
 								@foreach (\App\Models\Brand::all() as $key => $brand)
 									<option value="{{ $brand->id }}">{{ $brand->getTranslation('name') }}</option>
 								@endforeach
@@ -582,7 +582,7 @@
 @section('script')
     <script type="text/javascript">
 		$(document).ready(function(){
-		    AIZ.plugins.bootstrapSelect('refresh');
+		    RIT.plugins.bootstrapSelect('refresh');
 		});
     </script>
 @endsection

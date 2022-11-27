@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="col-md-3 col-6">
-                        <select name="poscategory" class="form-control form-control-lg aiz-selectpicker" data-live-search="true" onchange="filterProducts()">
+                        <select name="poscategory" class="form-control form-control-lg rit-selectpicker" data-live-search="true" onchange="filterProducts()">
                             <option value="">All Categories</option>
                             @foreach (\App\Models\Category::all() as $key => $category)
                                 <option value="category-{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
@@ -22,7 +22,7 @@
                         </select>
                     </div>
                     <div class="col-md-3 col-6">
-                        <select name="brand"  class="form-control form-control-lg aiz-selectpicker" data-live-search="true" onchange="filterProducts()">
+                        <select name="brand"  class="form-control form-control-lg rit-selectpicker" data-live-search="true" onchange="filterProducts()">
                             <option value="">All Brands</option>
                             @foreach (\App\Models\Brand::all() as $key => $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->getTranslation('name') }}</option>
@@ -30,7 +30,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="aiz-pos-product-list c-scrollbar-light">
+                <div class="rit-pos-product-list c-scrollbar-light">
                     <div class="d-flex flex-wrap justify-content-center" id="product-list">
 
                     </div>
@@ -44,7 +44,7 @@
                     <div class="card-body">
                         <div class="d-flex border-bottom pb-3">
                             <div class="flex-grow-1">
-                                <select name="user_id" class="form-control aiz-selectpicker pos-customer" data-live-search="true" onchange="getShippingAddress()">
+                                <select name="user_id" class="form-control rit-selectpicker pos-customer" data-live-search="true" onchange="getShippingAddress()">
                                     <option value="">{{translate('Walk In Customer')}}</option>
                                     @foreach (\App\Models\Customer::all() as $key => $customer)
                                         @if ($customer->user)
@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="" id="cart-details">
-                            <div class="aiz-pos-cart-list mb-4 mt-3 c-scrollbar-light">
+                            <div class="rit-pos-cart-list mb-4 mt-3 c-scrollbar-light">
                                 @php
                                     $subtotal = 0;
                                     $tax = 0;
@@ -75,7 +75,7 @@
                                         <li class="list-group-item py-0 pl-2">
                                             <div class="row gutters-5 align-items-center">
                                                 <div class="col-auto w-60px">
-                                                    <div class="row no-gutters align-items-center flex-column aiz-plus-minus">
+                                                    <div class="row no-gutters align-items-center flex-column rit-plus-minus">
                                                         <button class="btn col-auto btn-icon btn-sm fs-15" type="button" data-type="plus" data-field="qty-{{ $key }}">
                                                             <i class="las la-plus"></i>
                                                         </button>
@@ -230,7 +230,7 @@
                             <div class=" row">
                                 <label class="col-sm-2 control-label" for="email">{{translate('Country')}}</label>
                                 <div class="col-sm-10">
-                                    <select name="country" id="country" class="form-control aiz-selectpicker" required data-placeholder="{{translate('Select country')}}">
+                                    <select name="country" id="country" class="form-control rit-selectpicker" required data-placeholder="{{translate('Select country')}}">
                                         @foreach (\App\Models\Country::where('status',1)->get() as $key => $country)
                                             <option value="{{ $country->name }}">{{ $country->name }}</option>
                                         @endforeach
@@ -303,11 +303,11 @@
             $('body').addClass('side-menu-closed');
             $('#product-list').on('click','.add-plus:not(.c-not-allowed)',function(){
                 var stock_id = $(this).data('stock-id');
-                $.post('{{ route('pos.addToCart') }}',{_token:AIZ.data.csrf, stock_id:stock_id}, function(data){
+                $.post('{{ route('pos.addToCart') }}',{_token:RIT.data.csrf, stock_id:stock_id}, function(data){
                     if(data.success == 1){
                         updateCart(data.view);
                     }else{
-                        AIZ.plugins.notify('danger', data.message);
+                        RIT.plugins.notify('danger', data.message);
                     }
 
                 });
@@ -321,7 +321,7 @@
 
             $.ajax({
                 headers: {
-                    'X-CSRF-TOKEN': AIZ.data.csrf
+                    'X-CSRF-TOKEN': RIT.data.csrf
                 },
                 method: "POST",
                 url: "{{route('pos.set-shipping-address')}}",
@@ -336,7 +336,7 @@
 
         function updateCart(data){
             $('#cart-details').html(data);
-            AIZ.extra.plusMinus();
+            RIT.extra.plusMinus();
         }
 
         function filterProducts(){
@@ -404,44 +404,44 @@
         }
 
         function removeFromCart(key){
-            $.post('{{ route('pos.removeFromCart') }}', {_token:AIZ.data.csrf, key:key}, function(data){
+            $.post('{{ route('pos.removeFromCart') }}', {_token:RIT.data.csrf, key:key}, function(data){
                 updateCart(data);
             });
         }
 
         function addToCart(product_id, variant, quantity){
-            $.post('{{ route('pos.addToCart') }}',{_token:AIZ.data.csrf, product_id:product_id, variant:variant, quantity, quantity}, function(data){
+            $.post('{{ route('pos.addToCart') }}',{_token:RIT.data.csrf, product_id:product_id, variant:variant, quantity, quantity}, function(data){
                 $('#cart-details').html(data);
                 $('#product-variation').modal('hide');
             });
         }
 
         function updateQuantity(key){
-            $.post('{{ route('pos.updateQuantity') }}',{_token:AIZ.data.csrf, key:key, quantity: $('#qty-'+key).val()}, function(data){
+            $.post('{{ route('pos.updateQuantity') }}',{_token:RIT.data.csrf, key:key, quantity: $('#qty-'+key).val()}, function(data){
                 if(data.success == 1){
                     updateCart(data.view);
                 }else{
-                    AIZ.plugins.notify('danger', data.message);
+                    RIT.plugins.notify('danger', data.message);
                 }
             });
         }
 
         function setDiscount(){
             var discount = $('input[name=discount]').val();
-            $.post('{{ route('pos.setDiscount') }}',{_token:AIZ.data.csrf, discount:discount}, function(data){
+            $.post('{{ route('pos.setDiscount') }}',{_token:RIT.data.csrf, discount:discount}, function(data){
                 updateCart(data);
             });
         }
 
         function setShipping(){
             var shipping = $('input[name=shipping]').val();
-            $.post('{{ route('pos.setShipping') }}',{_token:AIZ.data.csrf, shipping:shipping}, function(data){
+            $.post('{{ route('pos.setShipping') }}',{_token:RIT.data.csrf, shipping:shipping}, function(data){
                 updateCart(data);
             });
         }
 
         function getShippingAddress(){
-            $.post('{{ route('pos.getShippingAddress') }}',{_token:AIZ.data.csrf, id:$('select[name=user_id]').val()}, function(data){
+            $.post('{{ route('pos.getShippingAddress') }}',{_token:RIT.data.csrf, id:$('select[name=user_id]').val()}, function(data){
                 $('#shipping_address').html(data);
             });
         }
@@ -456,7 +456,7 @@
         function orderConfirmation(){
             $('#order-confirmation').html(`<div class="p-4 text-center"><i class="las la-spinner la-spin la-3x"></i></div>`);
             $('#order-confirm').modal('show');
-            $.post('{{ route('pos.getOrderSummary') }}',{_token:AIZ.data.csrf}, function(data){
+            $.post('{{ route('pos.getOrderSummary') }}',{_token:RIT.data.csrf}, function(data){
                 $('#order-confirmation').html(data);
             });
         }
@@ -474,7 +474,7 @@
             var shipping_address = $('input[name=address_id]:checked').val();
 
             $.post('{{ route('pos.order_place') }}',{
-                _token              :   AIZ.data.csrf,
+                _token              :   RIT.data.csrf,
                 user_id             :   user_id,
                 name                :   name,
                 email               :   email,
@@ -489,11 +489,11 @@
                 discount            :   discount
             }, function(data){
                 if(data.success == 1){
-                    AIZ.plugins.notify('success', data.message );
+                    RIT.plugins.notify('success', data.message );
                     location.reload();
                 }
                 else{
-                    AIZ.plugins.notify('danger', data.message );
+                    RIT.plugins.notify('danger', data.message );
                 }
             });
         }

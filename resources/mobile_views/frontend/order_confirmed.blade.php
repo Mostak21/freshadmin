@@ -101,7 +101,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-8 mx-auto">
-                    <div class="row aiz-steps arrow-divider">
+                    <div class="row rit-steps arrow-divider">
                         <div class="col done">
                             <div class="text-center text-success">
                                 <i class="la-3x mb-2 las la-shopping-cart"></i>

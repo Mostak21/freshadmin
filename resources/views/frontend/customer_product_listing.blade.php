@@ -42,12 +42,12 @@
             <form class="" id="search-form" action="" method="GET">
                 <div class="row">
                     <div class="col-xl-3 side-filter d-xl-block">
-                        <div class="aiz-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035">
-                            <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
+                        <div class="rit-filter-sidebar collapse-sidebar-wrap sidebar-xl sidebar-right z-1035">
+                            <div class="overlay overlay-fixed dark c-pointer" data-toggle="class-toggle" data-target=".rit-filter-sidebar" data-same=".filter-sidebar-thumb"></div>
                             <div class="collapse-sidebar c-scrollbar-light text-left">
                                 <div class="d-flex d-xl-none justify-content-between align-items-center pl-3 border-bottom">
                                     <h3 class="h6 mb-0 fw-600">{{ translate('Filters') }}</h3>
-                                    <button type="button" class="btn btn-sm p-2 filter-sidebar-thumb" data-toggle="class-toggle" data-target=".aiz-filter-sidebar" type="button">
+                                    <button type="button" class="btn btn-sm p-2 filter-sidebar-thumb" data-toggle="class-toggle" data-target=".rit-filter-sidebar" type="button">
                                         <i class="las la-times la-2x"></i>
                                     </button>
                                 </div>
@@ -125,7 +125,7 @@
                             <div class="d-flex">
                                 <div class="form-group w-200px">
                                     <label class="mb-0 opacity-50">{{ translate('Sort by')}}</label>
-                                    <select class="form-control form-control-sm aiz-selectpicker" name="sort_by" onchange="filter()">
+                                    <select class="form-control form-control-sm rit-selectpicker" name="sort_by" onchange="filter()">
                                         <option value="1" @isset($sort_by) @if ($sort_by == '1') selected @endif @endisset>{{ translate('Newest')}}</option>
                                         <option value="2" @isset($sort_by) @if ($sort_by == '2') selected @endif @endisset>{{ translate('Oldest')}}</option>
                                         <option value="3" @isset($sort_by) @if ($sort_by == '3') selected @endif @endisset>{{ translate('Price low to high')}}</option>
@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="form-group ml-auto mr-0 w-200px d-none d-md-block">
                                     <label class="mb-0 opacity-50">{{ translate('Condition')}}</label>
-                                    <select class="form-control form-control-sm aiz-selectpicker" name="condition" onchange="filter()">
+                                    <select class="form-control form-control-sm rit-selectpicker" name="condition" onchange="filter()">
                                         <option value="">{{ translate('All Type')}}</option>
                                         <option value="new" @isset($condition) @if ($condition == 'new') selected @endif @endisset>{{ translate('New')}}</option>
                                         <option value="used" @isset($condition) @if ($condition == 'used') selected @endif @endisset>{{ translate('Used')}}</option>
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="form-group ml-2 mr-0 w-200px d-none d-md-block">
                                     <label class="mb-0 opacity-50">{{ translate('Brands')}}</label>
-                                    <select class="form-control form-control-sm aiz-selectpicker" data-live-search="true" name="brand" onchange="filter()">
+                                    <select class="form-control form-control-sm rit-selectpicker" data-live-search="true" name="brand" onchange="filter()">
                                         <option value="">{{ translate('All Brands')}}</option>
                                         @foreach (\App\Models\Brand::all() as $brand)
                                             <option value="{{ $brand->slug }}" @isset($brand_id) @if ($brand_id == $brand->id) selected @endif @endisset>{{ $brand->getTranslation('name') }}</option>
@@ -150,7 +150,7 @@
                                     </select>
                                 </div>
                                 <div class="d-xl-none ml-auto ml-md-3 mr-0 form-group align-self-end">
-                                    <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".aiz-filter-sidebar">
+                                    <button type="button" class="btn btn-icon p-0" data-toggle="class-toggle" data-target=".rit-filter-sidebar">
                                         <i class="la la-filter la-2x"></i>
                                     </button>
                                 </div>
@@ -159,7 +159,7 @@
                         <div class="row gutters-5 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-4 row-cols-md-3 row-cols-2">
                             @foreach ($customer_products as $key => $product)
                                 <div class="col mb-2">
-                                    <div class="aiz-card-box border border-light rounded shadow-sm hov-shadow-md h-100 has-transition bg-white">
+                                    <div class="rit-card-box border border-light rounded shadow-sm hov-shadow-md h-100 has-transition bg-white">
                                         <div class="position-relative">
                                             <a href="{{ route('customer.product', $product->slug) }}" class="d-block">
                                                 <img
@@ -191,7 +191,7 @@
                             @endforeach
                         </div>
 
-                        <div class="aiz-pagination aiz-pagination-center mt-4">
+                        <div class="rit-pagination rit-pagination-center mt-4">
                             {{ $customer_products->links() }}
                         </div>
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="align-items-center">
 			<h1 class="h3">{{translate('Product Reviews')}}</h1>
 	</div>
@@ -18,7 +18,7 @@
             <div class="col-md-6 col-xl-4 ml-auto mr-0">
                 <form class="" id="sort_by_rating" action="{{ route('reviews.index') }}" method="GET">
                     <div class="" style="min-width: 200px;">
-                        <select class="form-control aiz-selectpicker" name="rating" id="rating" onchange="filter_by_rating()">
+                        <select class="form-control rit-selectpicker" name="rating" id="rating" onchange="filter_by_rating()">
                             <option value="">{{translate('Filter by Rating')}}</option>
                             <option value="rating,desc">{{translate('Rating (High > Low)')}}</option>
                             <option value="rating,asc">{{translate('Rating (Low > High)')}}</option>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -53,7 +53,7 @@
                             <td>{{ $review->user->name }} ({{ $review->user->email }})</td>
                             <td>{{ $review->rating }}</td>
                             <td>{{ $review->comment }}</td>
-                            <td><label class="aiz-switch aiz-switch-success mb-0">
+                            <td><label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_published(this)" value="{{ $review->id }}" type="checkbox" <?php if($review->status == 1) echo "checked";?> >
                                 <span class="slider round"></span></label>
                             </td>
@@ -62,7 +62,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $reviews->appends(request()->input())->links() }}
         </div>
     </div>
@@ -81,10 +81,10 @@
             }
             $.post('{{ route('reviews.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Published reviews updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Published reviews updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

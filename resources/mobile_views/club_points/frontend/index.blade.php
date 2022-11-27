@@ -9,8 +9,8 @@
             <div class="d-flex align-items-start">
                 @include('frontend.inc.user_side_nav')
 
-                <div class="aiz-user-panel">
-                    <div class="aiz-titlebar mt-2 mb-4">
+                <div class="rit-user-panel">
+                    <div class="rit-titlebar mt-2 mb-4">
                         <div class="row align-items-center">
                             <div class="col-md-6">
                                 <h1 class="h3">{{ translate('My Points') }}</h1>
@@ -34,7 +34,7 @@
                             <h5 class="mb-0 h6">{{ translate('Point Earning history')}}</h5>
                         </div>
                           <div class="card-body">
-                              <table class="table aiz-table mb-0">
+                              <table class="table rit-table mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -78,7 +78,7 @@
                                     @endforeach
                                 </tbody>
                               </table>
-                              <div class="aiz-pagination">
+                              <div class="rit-pagination">
                                   {{ $club_points->links() }}
                               </div>
                           </div>
@@ -96,10 +96,10 @@
             $.post('{{ route('convert_point_into_wallet') }}',{_token:'{{ csrf_token() }}', el:el}, function(data){
                 if (data == 1) {
                     location.reload();
-                    AIZ.plugins.notify('success', '{{ translate('Convert has been done successfully Check your Wallets') }}');
+                    RIT.plugins.notify('success', '{{ translate('Convert has been done successfully Check your Wallets') }}');
                 }
                 else {
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
     		});
         }

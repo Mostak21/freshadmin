@@ -12,7 +12,7 @@
                     </div>
                 @endforeach
             </div>
-            <div class="aiz-pagination aiz-pagination-center mt-4">
+            <div class="rit-pagination rit-pagination-center mt-4">
                 {{ $products->appends(request()->input())->links() }}
             </div>
         </div>

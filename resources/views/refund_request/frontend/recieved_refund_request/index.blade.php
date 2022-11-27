@@ -7,13 +7,13 @@
             <div class="d-flex align-items-start">
                 @include('frontend.inc.user_side_nav')
 
-                <div class="aiz-user-panel">
+                <div class="rit-user-panel">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="mb-0 h6">{{ translate('Refund Request') }}</h5>
                         </div>
                         <div class="card-body">
-                            <table class="table aiz-table mb-0">
+                            <table class="table rit-table mb-0">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -62,12 +62,12 @@
                                             <td>
                                               @if($refund->refund_status != 2 && $refund->seller_approval != 2)
                                                 @if ($refund->seller_approval == 1)
-                                                    <label class="aiz-switch aiz-switch-success mb-0 ">
+                                                    <label class="rit-switch rit-switch-success mb-0 ">
                                                         <input type="checkbox" @if ($refund->seller_approval == 1) checked  @endif>
                                                         <span class="slider round"></span>
                                                     </label>
                                                 @else
-                                                    <label class="aiz-switch aiz-switch-success mb-0">
+                                                    <label class="rit-switch rit-switch-success mb-0">
                                                         <input onchange="update_refund_approval('{{ $refund->id }}')" type="checkbox" @if ($refund->seller_approval == 1) checked @endif>
                                                         <span class="slider round"></span>
                                                     </label>
@@ -89,7 +89,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="aiz-pagination">
+                            <div class="rit-pagination">
                                 {{ $refunds->links() }}
                           	</div>
                         </div>
@@ -150,10 +150,10 @@
         function update_refund_approval(el){
             $.post('{{ route('vendor_refund_approval') }}',{_token:'{{ @csrf_token() }}', el:el}, function(data){
                 if (data == 1) {
-                    AIZ.plugins.notify('success', '{{ translate('Approval has been done successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Approval has been done successfully') }}');
                 }
                 else {
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

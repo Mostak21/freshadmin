@@ -15,7 +15,7 @@
 
                 <div class="@if($num_todays_deal > 0) col-lg-12 @else col-lg-12 @endif">
                     @if (get_setting('home_slider_images') != null)
-                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
+                        <div class="rit-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
                             @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp
                             @foreach ($slider_images as $key => $value)
                                 <div class="carousel-box">
@@ -152,7 +152,7 @@
     <div class="col-md-7" >
 
 
-        <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
+        <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
             @foreach ($womensproducts->chunk(6) as $key => $chunk)
             <div class="carousel-box  px-1">
             <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-5">
@@ -179,7 +179,7 @@
     <div class="col-md-7 order-2 order-lg-1" >
 
 
-        <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
+        <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
             @foreach ($mensproducts->chunk(6) as $key => $chunk)
             <div class="carousel-box  px-1">
             <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-5">
@@ -228,7 +228,7 @@
     <div class="col-md-7" >
 
 
-        <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
+        <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="true" data-autoplay="true">
             @foreach ($kidsproducts->chunk(6) as $key => $chunk)
             <div class="carousel-box  px-1">
             <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-5">
@@ -271,11 +271,11 @@
                     <h3 class="h5 fw-700 mb-0">
                         <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">{{ translate('Flash Sale') }}</span>
                     </h3>
-                    <div class="aiz-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+                    <div class="rit-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
                     <a href="{{ route('flash-deal-details', $flash_deal->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md w-100 w-md-auto">{{ translate('View More') }}</a>
                 </div>
 
-                <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
+                <div class="rit-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
                     @foreach ($flash_deal->flash_deal_products->take(20) as $key => $flash_deal_product)
                         @php
                             $product = \App\Models\Product::find($flash_deal_product->product_id);
@@ -346,10 +346,10 @@
                                 </h3>
                                 <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">{{ translate('View More') }}</a>
                             </div>
-                           <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
+                           <div class="rit-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
                                @foreach ($classified_products as $key => $classified_product)
                                    <div class="carousel-box">
-                                        <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
+                                        <div class="rit-card-box border border-light rounded hov-shadow-md my-2 has-transition">
                                             <div class="position-relative">
                                                 <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block">
                                                     <img
@@ -510,23 +510,23 @@
         $(document).ready(function(){
             $.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_featured').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
             $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_selling').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
             $.post('{{ route('home.section.auction_products') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#auction_products').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
             $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
         });
     </script>

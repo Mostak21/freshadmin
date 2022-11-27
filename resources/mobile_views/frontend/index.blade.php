@@ -21,7 +21,7 @@
                 <div class="@if($num_todays_deal > 0) col-lg-12 @else col-lg-12 @endif">
                     <div id="sliderimages">
                     @if (get_setting('home_slider_images') != null)
-                        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height rounded-slider" data-dots="true" data-autoplay="true">
+                        <div class="rit-carousel dots-inside-bottom mobile-img-auto-height rounded-slider" data-dots="true" data-autoplay="true">
 
 {{--                            @php $slider_images = json_decode(get_setting('home_slider_images'), true);  @endphp--}}
                             @php
@@ -133,11 +133,11 @@
                     <h3 class="h5 fw-700 mb-0">
                         <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Brand Of The Week</span>
                     </h3>
-                    <div class="aiz-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+                    <div class="rit-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
                     <a href="{{ route('flash-deal-details', $flash_deal->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md w-100 w-md-auto">View More</a>
                 </div>
 
-                <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
+                <div class="rit-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
                     @foreach ($flash_deal->flash_deal_products->take(20) as $key => $flash_deal_product)
                         @php
                             $product = \App\Models\Product::find($flash_deal_product->product_id);
@@ -187,11 +187,11 @@
                     <h3 class="h5 fw-700 mb-0">
                         <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">{{ translate('Flash Sale') }}</span>
                     </h3>
-                    <div class="aiz-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
+                    <div class="rit-count-down ml-auto ml-lg-3 align-items-center" data-date="{{ date('Y/m/d H:i:s', $flash_deal->end_date) }}"></div>
                     <a href="{{ route('flash-deal-details', $flash_deal->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md w-100 w-md-auto">{{ translate('View More') }}</a>
                 </div>
 
-                <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
+                <div class="rit-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>
                     @foreach ($flash_deal->flash_deal_products->take(20) as $key => $flash_deal_product)
                         @php
                             $product = \App\Models\Product::find($flash_deal_product->product_id);
@@ -241,10 +241,10 @@
 {{--                                </h3>--}}
 {{--                                <a href="{{ route('customer.products') }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">View More</a>--}}
 {{--                            </div>--}}
-{{--                           <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>--}}
+{{--                           <div class="rit-carousel gutters-10 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true'>--}}
 {{--                               @foreach ($classified_products as $key => $classified_product)--}}
 {{--                                   <div class="carousel-box">--}}
-{{--                                        <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">--}}
+{{--                                        <div class="rit-card-box border border-light rounded hov-shadow-md my-2 has-transition">--}}
 {{--                                            <div class="position-relative">--}}
 {{--                                                <a href="{{ route('customer.product', $classified_product->slug) }}" class="d-block">--}}
 {{--                                                    <img--}}
@@ -546,60 +546,60 @@
 
             $.post('{{ route('home.section.sliderimages') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#sliderimages').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.featured') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_featured').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.custom_section_1') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section1').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.custom_section_2') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section2').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.custom_section_3') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section3').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.custom_section_4') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#custom_section4').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
 
 
             {{--$.post('{{ route('home.section.auction_products') }}', {_token:'{{ csrf_token() }}'}, function(data){--}}
             {{--    $('#auction_products').html(data);--}}
-            {{--    AIZ.plugins.slickCarousel();--}}
+            {{--    RIT.plugins.slickCarousel();--}}
             {{--});--}}
 
             $.post('{{ route('home.section.home_categories') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_home_categories').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.best_selling') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_selling').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
 
             $.post('{{ route('home.section.top10_brands') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_top10_brands').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
 
             $.post('{{ route('home.section.best_sellers') }}', {_token:'{{ csrf_token() }}'}, function(data){
                 $('#section_best_sellers').html(data);
-                AIZ.plugins.slickCarousel();
+                RIT.plugins.slickCarousel();
             });
         });
     </script>

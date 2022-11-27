@@ -61,7 +61,7 @@
     </div>
 </div>
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="align-items-center">
 		<div class="text-md-right">
 			<a href="{{ route('languages.create') }}" class="btn btn-circle btn-info">
@@ -76,7 +76,7 @@
         <h5 class="mb-0 h6">{{translate('Language')}}</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -97,7 +97,7 @@
                         <td>{{ $language->name }}</td>
                         <td>{{ $language->code }}</td>
                         <td>{{ $language->app_lang_code }}</td>
-                        <td><label class="aiz-switch aiz-switch-success mb-0">
+                        <td><label class="rit-switch rit-switch-success mb-0">
                             <input onchange="update_rtl_status(this)" value="{{ $language->id }}" type="checkbox" <?php if($language->rtl == 1) echo "checked";?> >
                             <span class="slider round"></span></label>
                         </td>
@@ -127,7 +127,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $languages->appends(request()->input())->links() }}
         </div>
     </div>
@@ -154,7 +154,7 @@
                     location.reload();
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

@@ -229,7 +229,7 @@
                                 $photos = explode(',', $detailedProduct->photos);
                             @endphp
                             <div class="col order-1 order-md-2">
-                                <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
+                                <div class="rit-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
                                     @foreach ($photos as $key => $photo)
                                         <div class="carousel-box img-zoom rounded">
                                             <img
@@ -256,7 +256,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-md-auto w-md-100px order-2 order-md-1 mt-3 mt-md-0">
-                                <div class="aiz-carousel product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-vertical-sm='false' data-focus-select='true' data-arrows='true'>
+                                <div class="rit-carousel product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-vertical-sm='false' data-focus-select='true' data-arrows='true'>
                                     @foreach ($photos as $key => $photo)
                                         <div class="carousel-box c-pointer border p-1 rounded">
                                             <img
@@ -349,7 +349,7 @@
 
 
                             @if ($detailedProduct->wholesale_product)
-                                <table class="aiz-table mb-0">
+                                <table class="rit-table mb-0">
                                     <thead>
                                     <tr>
                                         <th>{{ translate('Min Qty') }}</th>
@@ -419,7 +419,7 @@
                                                 @endif
                                             </div>
                                             <div class="col-sm-9">
-                                                <div class="aiz-radio-inline fs-custom">
+                                                <div class="rit-radio-inline fs-custom">
                                                     @php
                                                         $attributecheck =  0;
                                                         $key2 = null;
@@ -452,26 +452,26 @@
 
 
                                                         @if($attributecheck)
-                                                            <label class="aiz-megabox pl-0 mr-2">
+                                                            <label class="rit-megabox pl-0 mr-2">
                                                                 <input
                                                                     type="radio"
                                                                     name="attribute_id_{{ $choice->attribute_id }}"
                                                                     value="{{ $value }}"
                                                                     @if($valuex === $value ) checked @endif
                                                                 >
-                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
+                                                                <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
                                                         {{ $value }}
                                                     </span>
                                                             </label>
                                                         @elseif(!isset($Product_Stock))
-                                                            <label class="aiz-megabox pl-0 mr-2">
+                                                            <label class="rit-megabox pl-0 mr-2">
                                                                 <input
                                                                     type="radio"
                                                                     name="attribute_id_{{ $choice->attribute_id }}"
                                                                     value="{{ $value }}"
                                                                     @if($keys == 0) checked @endif
                                                                 >
-                                                                <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
+                                                                <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
                                                         {{ $value }}
                                                         </span>
                                                             </label>
@@ -491,7 +491,7 @@
                                             <div class="fs-15 fw-500 py-2">Color Family:</div>
                                         </div>
                                         <div class="col-sm-9">
-                                            <div class="aiz-radio-inline">
+                                            <div class="rit-radio-inline">
                                                 @php
                                                     $colorcheck2 =  0;
                                                     $colorcheck =  0;
@@ -507,7 +507,7 @@
                                                         }
                                                     @endphp
                                                     @if($colorcheck)
-                                                        <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
+                                                        <label class="rit-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
                                                             <input
                                                                 type="radio"
                                                                 name="color"
@@ -517,13 +517,13 @@
                                                                 checked
                                                                 @endif
                                                             >
-                                                            <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                            <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                         <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
                                                     </span>
                                                         </label>
 
                                                     @elseif(!isset($Product_Stock))
-                                                        <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
+                                                        <label class="rit-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
 
                                                             <input
                                                                 type="radio"
@@ -531,7 +531,7 @@
                                                                 value="{{ \App\Models\Color::where('code', $color)->first()->name }}"
                                                                 @if($keys == 0) checked @endif
                                                             >
-                                                            <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                            <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                         <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
                                                     </span>
                                                         </label>
@@ -548,7 +548,7 @@
                                     </div>
                                     <div class="col-sm-9">
                                         <div class="product-quantity d-flex align-items-center">
-                                            <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
+                                            <div class="row no-gutters align-items-center rit-plus-minus mr-3" style="width: 130px;">
                                                 <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity" disabled="">
                                                     <i class="las la-minus"></i>
                                                 </button>
@@ -720,7 +720,7 @@
                                     <div class="opacity-50 my-2">{{ translate('Share')}}:</div>
                                 </div>
                                 <div class="col-sm-10">
-                                    <div class="aiz-share"></div>
+                                    <div class="rit-share"></div>
                                 </div>
                             </div>
                         </div>
@@ -849,7 +849,7 @@
                 <div class="col-xl-12 order-0 order-xl-1 ">
                     <div class="px-lg-0">
                         <div class="bg-white mb-3 ">
-                            <div class="nav aiz-nav-tabs">
+                            <div class="nav rit-nav-tabs">
                                 {{--    <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>--}}
                                 @if($detailedProduct->video_link != null)
                                     <a href="#tab_default_2" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Video')}}</a>
@@ -863,7 +863,7 @@
                             <div class="tab-content pt-0">
                                 <div class="tab-pane fade active show" id="tab_default_1">
                                     <div class="p-0">
-                                        <div class="mw-100 overflow-hidden text-left aiz-editor-data">
+                                        <div class="mw-100 overflow-hidden text-left rit-editor-data">
                                             <?php echo $detailedProduct->getTranslation('description'); ?>
                                         </div>
                                     </div>
@@ -1169,10 +1169,10 @@
                             </h3>
                         </div>
                         <div class="p-3">
-                            <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
+                            <div class="rit-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
                                 @foreach (filter_products(\App\Models\Product::where('category_id', $detailedProduct->category_id)->where('id', '!=', $detailedProduct->id))->limit(10)->get() as $key => $related_product)
                                     <div class="carousel-box">
-                                        <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
+                                        <div class="rit-card-box border border-light rounded hov-shadow-md my-2 has-transition">
                                             <div class="">
                                                 <a href="{{ route('product', $related_product->slug) }}" class="d-block">
                                                     <img
@@ -1289,10 +1289,10 @@
 
                             <div class="row mb-2">
                                 <div class="col-6">
-                                    <label class="aiz-checkbox">
+                                    <label class="rit-checkbox">
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <span class=opacity-60>{{  translate('Remember Me') }}</span>
-                                        <span class="aiz-square-check"></span>
+                                        <span class="rit-square-check"></span>
                                     </label>
                                 </div>
                                 <div class="col-6 text-right">
@@ -1359,9 +1359,9 @@
             $temp.val(url).select();
             try {
                 document.execCommand("copy");
-                AIZ.plugins.notify('success', '{{ translate('Link copied to clipboard') }}');
+                RIT.plugins.notify('success', '{{ translate('Link copied to clipboard') }}');
             } catch (err) {
-                AIZ.plugins.notify('danger', '{{ translate('Oops, unable to copy') }}');
+                RIT.plugins.notify('danger', '{{ translate('Oops, unable to copy') }}');
             }
             $temp.remove();
             // if (document.selection) {
@@ -1379,7 +1379,7 @@
             //     document.getElementById(containerid).style.display = "none";
 
             // }
-            // AIZ.plugins.notify('success', 'Copied');
+            // RIT.plugins.notify('success', 'Copied');
         }
         function show_chat_modal(){
             @if (Auth::check())

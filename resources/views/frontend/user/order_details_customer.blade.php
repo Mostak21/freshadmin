@@ -9,7 +9,7 @@
 
 <div class="modal-body gry-bg px-3 pt-3">
     {{-- <div class="py-4">
-        <div class="row gutters-5 text-center aiz-steps">
+        <div class="row gutters-5 text-center rit-steps">
             <div class="col @if($status == 'pending') active @else done @endif">
                 <div class="icon">
                     <i class="las la-file-invoice"></i>

@@ -20,7 +20,7 @@
                 <div class="col-md-3 ml-auto">
                     <label for="assign_deliver_boy">{{translate('Assign Deliver Boy')}}</label>
                     @if($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up')
-                    <select class="form-control aiz-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_deliver_boy">
+                    <select class="form-control rit-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_deliver_boy">
                         <option value="">{{translate('Select Delivery Boy')}}</option>
                         @foreach($delivery_boys as $delivery_boy)
                         <option value="{{ $delivery_boy->id }}" @if($order->assign_delivery_boy == $delivery_boy->id) selected @endif>
@@ -36,7 +36,7 @@
 
             <div class="col-md-3 ml-auto">
                 <label for=update_payment_status"">{{translate('Payment Status')}}</label>
-                <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
+                <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                     <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>{{translate('Unpaid')}}</option>
                     <option value="paid" @if ($payment_status == 'paid') selected @endif>{{translate('Paid')}}</option>
                 </select>
@@ -45,7 +45,7 @@
             <div class="col-md-3 ml-auto">
                 <label for=update_delivery_status"">{{translate('Delivery Status')}}</label>
                 @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
-                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                    <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
                         <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
                         <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
                         <option value="picked_up" @if ($delivery_status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
@@ -75,7 +75,7 @@
                 @endif
             </div>
             <div class="col-md-4 ml-auto">
-                <table class="invoice-details table table-bordered aiz-table">
+                <table class="invoice-details table table-bordered rit-table">
                     <tbody>
                         <tr>
                             <td class="text-main text-bold">
@@ -125,7 +125,7 @@
             </div>
         </div>
         <div class="">
-            <table class="table table-bordered aiz-table invoice-summary">
+            <table class="table table-bordered rit-table invoice-summary">
                 <thead>
                     <tr class="bg-trans-dark">
                         <th data-breakpoints="lg" class="min-col">#</th>
@@ -248,7 +248,7 @@
                 order_id        :order_id,
                 delivery_boy    :delivery_boy
             }, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Delivery boy has been assigned') }}');
+                RIT.plugins.notify('success', '{{ translate('Delivery boy has been assigned') }}');
             });
         });
 
@@ -256,7 +256,7 @@
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
             $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}', order_id:order_id, status:status}, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
             });
         });
 
@@ -264,7 +264,7 @@
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
             $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}', order_id:order_id, status:status}, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             });
         });
     </script>

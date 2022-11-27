@@ -42,7 +42,7 @@
              <div class="col-12" >
 
 
-                 <div class="aiz-carousel dots-inside-bottom " style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="false">
+                 <div class="rit-carousel dots-inside-bottom " style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="false">
                      @if($section_data)
 {{--                     @foreach ($section_data->productsData->chunk(6)??$section_data->products->chunk(6) as $key => $chunk)--}}
                      @foreach ($section_data->products->chunk(6) as $key => $chunk)

@@ -94,6 +94,6 @@ $(document).ready(function(){
       }
     });
     $("#txn_div").hide();
-    AIZ.plugins.bootstrapSelect('refresh');
+    RIT.plugins.bootstrapSelect('refresh');
 });
 </script>

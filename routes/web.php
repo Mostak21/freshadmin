@@ -58,11 +58,11 @@ Route::get('/refresh-csrf', function() {
     return csrf_token();
 });
 
-Route::post('/aiz-uploader', 'AizUploadController@show_uploader');
-Route::post('/aiz-uploader/upload', 'AizUploadController@upload');
-Route::get('/aiz-uploader/get_uploaded_files', 'AizUploadController@get_uploaded_files');
-Route::post('/aiz-uploader/get_file_by_ids', 'AizUploadController@get_preview_files');
-Route::get('/aiz-uploader/download/{id}', 'AizUploadController@attachment_download')->name('download_attachment');
+Route::post('/rit-uploader', 'AizUploadController@show_uploader');
+Route::post('/rit-uploader/upload', 'AizUploadController@upload');
+Route::get('/rit-uploader/get_uploaded_files', 'AizUploadController@get_uploaded_files');
+Route::post('/rit-uploader/get_file_by_ids', 'AizUploadController@get_preview_files');
+Route::get('/rit-uploader/download/{id}', 'AizUploadController@attachment_download')->name('download_attachment');
 
 
 Auth::routes(['verify' => true]);

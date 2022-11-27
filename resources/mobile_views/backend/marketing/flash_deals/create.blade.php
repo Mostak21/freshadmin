@@ -26,7 +26,7 @@
                     <div class="form-group row">
                         <label class="col-lg-3 control-label" for="name">{{translate('Text Color')}}</label>
                         <div class="col-lg-9">
-                            <select name="text_color" id="text_color" class="form-control aiz-selectpicker" required>
+                            <select name="text_color" id="text_color" class="form-control rit-selectpicker" required>
                                 <option value="">{{translate('Select One')}}</option>
                                 <option value="white">{{translate('White')}}</option>
                                 <option value="dark">{{translate('Dark')}}</option>
@@ -51,14 +51,14 @@
                     <div class="form-group row">
                         <label class="col-sm-3 control-label" for="start_date">{{translate('Date')}}</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control aiz-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off" required>
+                          <input type="text" class="form-control rit-date-range" name="date_range" placeholder="Select Date" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off" required>
                         </div>
                     </div>
 
                     <div class="form-group row mb-3">
                         <label class="col-sm-3 control-label" for="products">{{translate('Products')}}</label>
                         <div class="col-sm-9">
-                            <select name="products[]" id="products" class="form-control aiz-selectpicker" multiple required data-placeholder="{{ translate('Choose Products') }}" data-live-search="true" data-selected-text-format="count">
+                            <select name="products[]" id="products" class="form-control rit-selectpicker" multiple required data-placeholder="{{ translate('Choose Products') }}" data-live-search="true" data-selected-text-format="count">
                                 @foreach(\App\Models\Product::orderBy('created_at', 'desc')->get() as $product)
                                     <option value="{{$product->id}}">{{ $product->getTranslation('name') }}</option>
                                 @endforeach
@@ -94,7 +94,7 @@
                 if(product_ids.length > 0){
                     $.post('{{ route('flash_deals.product_discount') }}', {_token:'{{ csrf_token() }}', product_ids:product_ids}, function(data){
                         $('#discount_table').html(data);
-                        AIZ.plugins.fooTable();
+                        RIT.plugins.fooTable();
                     });
                 }
                 else{

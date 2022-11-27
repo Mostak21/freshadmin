@@ -71,12 +71,12 @@
 {{--    @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
 {{--    <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">--}}
 {{--    @endif--}}
-    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
 
     <!-- Vendor Styles including: Font Icons, Plugins, etc.-->
 
 {{--     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)--}}
-{{--     <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">--}}
+{{--     <link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">--}}
 {{--     @endif--}}
  <!-- Main Theme Styles + Bootstrap-->
 
@@ -85,8 +85,8 @@
     <link rel="stylesheet" href="{{ static_asset('assets/css/mobile_view.css') }}">
 
     <script>
-        var AIZ = AIZ || {};
-        AIZ.local = {
+        var RIT = RIT || {};
+        RIT.local = {
             nothing_selected: 'Nothing selected',
             nothing_found: 'Nothing found',
             choose_file: 'Choose file',
@@ -184,8 +184,8 @@
                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
      <!-- End Google Tag Manager (noscript) -->
 
-    <!-- aiz-main-wrapper -->
-    <div class="aiz-main-wrapper d-flex flex-column">
+    <!-- rit-main-wrapper -->
+    <div class="rit-main-wrapper d-flex flex-column">
 
         <!-- Header -->
         @include('frontend.inc.nav')
@@ -197,14 +197,14 @@
     </div>
 
     @if (get_setting('show_cookies_agreement') == 'on')
-        <div class="aiz-cookie-alert shadow-xl">
+        <div class="rit-cookie-alert shadow-xl">
             <div class="p-3 bg-dark rounded">
                 <div class="text-white mb-3">
                     @php
                         echo get_setting('cookies_agreement_text');
                     @endphp
                 </div>
-                <button class="btn btn-primary aiz-cookie-accept">
+                <button class="btn btn-primary rit-cookie-accept">
                     {{ translate('Ok. I Understood') }}
                 </button>
             </div>
@@ -216,7 +216,7 @@
             <div class="absolute-full bg-black opacity-60"></div>
             <div class="modal-dialog modal-dialog-centered modal-dialog-zoom modal-md">
                 <div class="modal-content position-relative border-0 rounded-0">
-                    <div class="aiz-editor-data">
+                    <div class="rit-editor-data">
                         {!! get_setting('website_popup_content') !!}
                     </div>
                     @if (get_setting('show_subscribe_form') == 'on')
@@ -262,7 +262,7 @@
 
     <!-- SCRIPTS -->
     <script src="{{ static_asset('assets/js/vendors.js') }}"></script>
-    <script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
+    <script src="{{ static_asset('assets/js/rit-core.js') }}"></script>
 
       <!-- Vendor scrits: js libraries and plugins-->
 
@@ -299,7 +299,7 @@
 
     <script>
         @foreach (session('flash_notification', collect())->toArray() as $message)
-            AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
+            RIT.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
         @endforeach
     </script>
 
@@ -309,7 +309,7 @@
           $('.category-nav-element').each(function(i, el) {
               $(el).on('mouseover', function(){
                   if(!$(el).find('.sub-cat-menu').hasClass('loaded')){
-                      $.post('{{ route('category.elements') }}', {_token: AIZ.data.csrf, id:$(el).data('id')}, function(data){
+                      $.post('{{ route('category.elements') }}', {_token: RIT.data.csrf, id:$(el).data('id')}, function(data){
                           $(el).find('.sub-cat-menu').addClass('loaded').html(data);
                       });
                   }
@@ -321,7 +321,7 @@
             {{--            e.preventDefault();--}}
             {{--            var $this = $(this);--}}
             {{--            var locale = $this.data('flag');--}}
-            {{--            $.post('{{ route('language.change') }}',{_token: AIZ.data.csrf, locale:locale}, function(data){--}}
+            {{--            $.post('{{ route('language.change') }}',{_token: RIT.data.csrf, locale:locale}, function(data){--}}
             {{--                location.reload();--}}
             {{--            });--}}
 
@@ -335,7 +335,7 @@
                         e.preventDefault();
                         var $this = $(this);
                         var currency_code = $this.data('currency');
-                        $.post('{{ route('currency.change') }}',{_token: AIZ.data.csrf, currency_code:currency_code}, function(data){
+                        $.post('{{ route('currency.change') }}',{_token: RIT.data.csrf, currency_code:currency_code}, function(data){
                             location.reload();
                         });
 
@@ -372,7 +372,7 @@
                 $('.typed-search-box').removeClass('d-none');
                 $('.search-preloader').removeClass('d-none');
 				setTimeout(function(){
-                $.post('{{ route('search.ajax') }}', { _token: AIZ.data.csrf, search:searchKey}, function(data){
+                $.post('{{ route('search.ajax') }}', { _token: RIT.data.csrf, search:searchKey}, function(data){
                     if(data == '0'){
                         // $('.typed-search-box').addClass('d-none');
                         $('#search-content').html(null);
@@ -401,37 +401,37 @@
 
         function removeFromCart(key){
             $.post('{{ route('cart.removeFromCart') }}', {
-                _token  : AIZ.data.csrf,
+                _token  : RIT.data.csrf,
                 id      :  key
             }, function(data){
                 updateNavCart(data.nav_cart_view,data.cart_count);
                 $('#cart-summary').html(data.cart_view);
-                AIZ.plugins.notify('success', "{{ translate('Item has been removed from cart') }}");
+                RIT.plugins.notify('success', "{{ translate('Item has been removed from cart') }}");
                 $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html())-1);
             });
         }
 
         function addToCompare(id){
-            $.post('{{ route('compare.addToCompare') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+            $.post('{{ route('compare.addToCompare') }}', {_token: RIT.data.csrf, id:id}, function(data){
                 $('#compare').html(data);
-                AIZ.plugins.notify('success', "{{ translate('Item has been added to compare list') }}");
+                RIT.plugins.notify('success', "{{ translate('Item has been added to compare list') }}");
                 $('#compare_items_sidenav').html(parseInt($('#compare_items_sidenav').html())+1);
             });
         }
 
         function addToWishList(id){
             @if (Auth::check() && (Auth::user()->user_type == 'customer' || Auth::user()->user_type == 'seller'))
-                $.post('{{ route('wishlists.store') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+                $.post('{{ route('wishlists.store') }}', {_token: RIT.data.csrf, id:id}, function(data){
                     if(data != 0){
                         $('#wishlist').html(data);
-                        AIZ.plugins.notify('success', "{{ translate('Item has been added to wishlist') }}");
+                        RIT.plugins.notify('success', "{{ translate('Item has been added to wishlist') }}");
                     }
                     else{
-                        AIZ.plugins.notify('warning', "{{ translate('Please login first') }}");
+                        RIT.plugins.notify('warning', "{{ translate('Please login first') }}");
                     }
                 });
             @else
-                AIZ.plugins.notify('warning', "{{ translate('Please login first') }}");
+                RIT.plugins.notify('warning', "{{ translate('Please login first') }}");
             @endif
         }
 
@@ -442,12 +442,12 @@
             $('#addToCart-modal-body').html(null);
             $('#addToCart').modal();
             $('.c-preloader').show();
-            $.post('{{ route('cart.showCartModal') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+            $.post('{{ route('cart.showCartModal') }}', {_token: RIT.data.csrf, id:id}, function(data){
                 $('.c-preloader').hide();
                 $('#addToCart-modal-body').html(data);
-                AIZ.plugins.slickCarousel();
-                AIZ.plugins.zoom();
-                AIZ.extra.plusMinus();
+                RIT.plugins.slickCarousel();
+                RIT.plugins.zoom();
+                RIT.extra.plusMinus();
                 getVariantPrice();
             });
         }
@@ -521,14 +521,14 @@
                        $('#modal-size').removeClass('modal-xl');
                        $('#addToCart-modal-body').html(data.modal_view);
                        $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html())+1);
-                       AIZ.extra.plusMinus();
+                       RIT.extra.plusMinus();
                        updateNavCart(data.nav_cart_view,data.cart_count);
 
                     }
                 });
             }
             else{
-                AIZ.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
+                RIT.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
             }
         }
 
@@ -559,7 +559,7 @@
                });
             }
             else{
-                AIZ.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
+                RIT.plugins.notify('warning', "{{ translate('Please choose all the options') }}");
             }
         }
 
@@ -571,7 +571,7 @@
                 $('#modal-size').addClass('modal-lg');
             }
 
-            $.post('{{ route('purchase_history.details') }}', { _token : AIZ.data.csrf, order_id : order_id}, function(data){
+            $.post('{{ route('purchase_history.details') }}', { _token : RIT.data.csrf, order_id : order_id}, function(data){
                 $('#order-details-modal-body').html(data);
                 $('#order_details').modal();
                 $('.c-preloader').hide();

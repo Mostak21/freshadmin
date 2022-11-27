@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="row align-items-center">
 		<div class="col-md-6">
 			<h1 class="h3">{{translate('All Role')}}</h1>
@@ -20,7 +20,7 @@
         <h5 class="mb-0 h6">{{translate('Roles')}}</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table">
+        <table class="table rit-table">
             <thead>
                 <tr>
                     <th width="10%">#</th>
@@ -45,7 +45,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $roles->appends(request()->input())->links() }}
         </div>
     </div>

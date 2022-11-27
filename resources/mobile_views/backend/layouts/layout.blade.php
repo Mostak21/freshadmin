@@ -25,7 +25,7 @@
     @if(\App\Models\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
     <link rel="stylesheet" href="{{ static_asset('assets/css/bootstrap-rtl.min.css') }}">
     @endif
-	<link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+	<link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
 
     <style>
         body {
@@ -34,7 +34,7 @@
     </style>
 	<script>
     	var AIZ = AIZ || {};
-        AIZ.local = {
+        RIT.local = {
             nothing_selected: '{{ translate('Nothing selected') }}',
             nothing_found: '{{ translate('Nothing found') }}',
             choose_file: '{{ translate('Choose file') }}',
@@ -61,23 +61,23 @@
 </head>
 <body class="">
 
-	<div class="aiz-main-wrapper d-flex">
+	<div class="rit-main-wrapper d-flex">
         <div class="flex-grow-1">
             @yield('content')
         </div>
-    </div><!-- .aiz-main-wrapper -->
+    </div><!-- .rit-main-wrapper -->
 
     @yield('modal')
 
 
     <script src="{{ static_asset('assets/js/vendors.js') }}" ></script>
-    <script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script>
+    <script src="{{ static_asset('assets/js/rit-core.js') }}" ></script>
 
     @yield('script')
 
     <script type="text/javascript">
         @foreach (session('flash_notification', collect())->toArray() as $message)
-            AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
+            RIT.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
         @endforeach
     </script>
 

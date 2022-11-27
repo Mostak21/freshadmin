@@ -16,7 +16,7 @@
 {{--                {{ translate('Wholesale') }}--}}
 {{--            </span>--}}
 {{--        @endif--}}
-        <div class="absolute-top-right aiz-p-hov-icon">
+        <div class="absolute-top-right rit-p-hov-icon">
             <a href="javascript:void(0)" onclick="" data-toggle="tooltip" data-title="{{ translate('Add to wishlist') }}" data-placement="left">
                 <i class="la la-heart-o"></i>
             </a>

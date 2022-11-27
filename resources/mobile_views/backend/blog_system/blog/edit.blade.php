@@ -28,7 +28,7 @@
                         </label>
                         <div class="col-md-9">
                             <select
-                                class="form-control aiz-selectpicker"
+                                class="form-control rit-selectpicker"
                                 name="category_id"
                                 id="category_id"
                                 data-live-search="true"
@@ -90,7 +90,7 @@
                             {{translate('Description')}}
                         </label>
                         <div class="col-md-9">
-                            <textarea class="aiz-text-editor" name="description">{{ $blog->description }}</textarea>
+                            <textarea class="rit-text-editor" name="description">{{ $blog->description }}</textarea>
                         </div>
                     </div>
                     

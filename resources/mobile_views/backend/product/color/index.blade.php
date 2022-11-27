@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="aiz-titlebar text-left mt-2 mb-3">
+    <div class="rit-titlebar text-left mt-2 mb-3">
         <div class="align-items-center">
             <h1 class="h3">{{ translate('All Colors') }}</h1>
         </div>
@@ -25,7 +25,7 @@
                 </form>
                 
                 <div class="card-body">
-                    <table class="table aiz-table mb-0">
+                    <table class="table rit-table mb-0">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -54,7 +54,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="aiz-pagination">
+                    <div class="rit-pagination">
                         {{ $colors->appends(request()->input())->links() }}
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                     <h3 class="mb-0 h6">{{translate('Color filter activation')}}</h3>
                 </div>
                 <div class="card-body text-center">
-                    <label class="aiz-switch aiz-switch-success mb-0">
+                    <label class="rit-switch rit-switch-success mb-0">
                         <input type="checkbox" onchange="updateSettings(this, 'color_filter_activation')" <?php if(get_setting('color_filter_activation') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -126,10 +126,10 @@
             
             $.post('{{ route('business_settings.update.activation') }}', {_token:'{{ csrf_token() }}', type:type, value:value}, function(data){
                 if(data == '1'){
-                    AIZ.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', 'Something went wrong');
+                    RIT.plugins.notify('danger', 'Something went wrong');
                 }
             });
         }

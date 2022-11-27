@@ -41,7 +41,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination">
+                <div class="rit-pagination">
                    {{ $lang_keys->appends(request()->input())->links() }}
                 </div>
 

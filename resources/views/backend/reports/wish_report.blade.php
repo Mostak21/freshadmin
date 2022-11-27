@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class=" align-items-center">
        <h1 class="h3">{{translate('Product Wish Report')}}</h1>
 	</div>
@@ -16,7 +16,7 @@
                     <div class="form-group row offset-lg-2">
                         <label class="col-md-3 col-form-label">{{ translate('Sort by Category') }}:</label>
                         <div class="col-md-5">
-                            <select id="demo-ease" class="from-control aiz-selectpicker" name="category_id" required>
+                            <select id="demo-ease" class="from-control rit-selectpicker" name="category_id" required>
                                 @foreach (\App\Models\Category::all() as $key => $category)
                                     <option value="{{ $category->id }}" @if($category->id == $sort_by) selected @endif>{{ $category->getTranslation('name') }}</option>
                                 @endforeach
@@ -28,7 +28,7 @@
                     </div>
                 </form>
 
-                <table class="table table-bordered aiz-table mb-0">
+                <table class="table table-bordered rit-table mb-0">
                     <thead>
                         <tr>
                             <th>{{ translate('Product Name') }}</th>
@@ -46,7 +46,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination mt-4">
+                <div class="rit-pagination mt-4">
                     {{ $products->links() }}
                 </div>
             </div>

@@ -10,12 +10,12 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
     // USE STRICT
     "use strict";
 
-    AIZ.data = {
+    RIT.data = {
         csrf: $('meta[name="csrf-token"]').attr("content"),
         appUrl: $('meta[name="app-url"]').attr("content"),
         fileBaseUrl: $('meta[name="file-base-url"]').attr("content"),
     };
-    AIZ.uploader = {
+    RIT.uploader = {
         data: {
             selectedFiles: [],
             selectedFilesObject: [],
@@ -33,9 +33,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             if (selected.length > 0) {
                 $(elem)
                     .find(".file-amount")
-                    .html(AIZ.uploader.updateFileHtml(selected));
+                    .html(RIT.uploader.updateFileHtml(selected));
             } else {
-                elem.find(".file-amount").html(AIZ.local.choose_file);
+                elem.find(".file-amount").html(RIT.local.choose_file);
             }
             $(elem).find(".selected-files").val(selected);
         },
@@ -52,7 +52,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     .split(",")
                     .map(Number);
 
-                AIZ.uploader.removeInputValue(
+                RIT.uploader.removeInputValue(
                     value,
                     selected,
                     $(this)
@@ -63,61 +63,61 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         deleteUploaderFile: function () {
-            $(".aiz-uploader-delete").each(function () {
+            $(".rit-uploader-delete").each(function () {
                 $(this).on("click", function (e) {
                     e.preventDefault();
                     var id = $(this).data("id");
-                    AIZ.uploader.data.clickedForDelete = id;
+                    RIT.uploader.data.clickedForDelete = id;
                     $("#aizUploaderDelete").modal("show");
 
-                    $(".aiz-uploader-confirmed-delete").on("click", function (
+                    $(".rit-uploader-confirmed-delete").on("click", function (
                         e
                     ) {
                         e.preventDefault();
                         if (e.detail === 1) {
                             var clickedForDeleteObject =
-                                AIZ.uploader.data.allFiles[
-                                    AIZ.uploader.data.allFiles.findIndex(
+                                RIT.uploader.data.allFiles[
+                                    RIT.uploader.data.allFiles.findIndex(
                                         (x) =>
                                             x.id ===
-                                            AIZ.uploader.data.clickedForDelete
+                                            RIT.uploader.data.clickedForDelete
                                     )
                                 ];
                             $.ajax({
                                 url:
-                                    AIZ.data.appUrl +
-                                    "/aiz-uploader/destroy/" +
-                                    AIZ.uploader.data.clickedForDelete,
+                                    RIT.data.appUrl +
+                                    "/rit-uploader/destroy/" +
+                                    RIT.uploader.data.clickedForDelete,
                                 type: "DELETE",
                                 dataType: "JSON",
                                 data: {
-                                    id: AIZ.uploader.data.clickedForDelete,
+                                    id: RIT.uploader.data.clickedForDelete,
                                     _method: "DELETE",
-                                    _token: AIZ.data.csrf,
+                                    _token: RIT.data.csrf,
                                 },
                                 success: function () {
-                                    AIZ.uploader.data.selectedFiles = AIZ.uploader.data.selectedFiles.filter(
+                                    RIT.uploader.data.selectedFiles = RIT.uploader.data.selectedFiles.filter(
                                         function (item) {
                                             return (
                                                 item !==
-                                                AIZ.uploader.data
+                                                RIT.uploader.data
                                                     .clickedForDelete
                                             );
                                         }
                                     );
-                                    AIZ.uploader.data.selectedFilesObject = AIZ.uploader.data.selectedFilesObject.filter(
+                                    RIT.uploader.data.selectedFilesObject = RIT.uploader.data.selectedFilesObject.filter(
                                         function (item) {
                                             return (
                                                 item !== clickedForDeleteObject
                                             );
                                         }
                                     );
-                                    AIZ.uploader.updateUploaderSelected();
-                                    AIZ.uploader.getAllUploads(
-                                        AIZ.data.appUrl +
-                                            "/aiz-uploader/get_uploaded_files"
+                                    RIT.uploader.updateUploaderSelected();
+                                    RIT.uploader.getAllUploads(
+                                        RIT.data.appUrl +
+                                            "/rit-uploader/get_uploaded_files"
                                     );
-                                    AIZ.uploader.data.clickedForDelete = null;
+                                    RIT.uploader.data.clickedForDelete = null;
                                     $("#aizUploaderDelete").modal("hide");
                                 },
                             });
@@ -127,86 +127,86 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         uploadSelect: function () {
-            $(".aiz-uploader-select").each(function () {
+            $(".rit-uploader-select").each(function () {
                 var elem = $(this);
                 elem.on("click", function (e) {
                     var value = $(this).data("value");
                     var valueObject =
-                        AIZ.uploader.data.allFiles[
-                            AIZ.uploader.data.allFiles.findIndex(
+                        RIT.uploader.data.allFiles[
+                            RIT.uploader.data.allFiles.findIndex(
                                 (x) => x.id === value
                             )
                         ];
                     // console.log(valueObject);
 
-                    elem.closest(".aiz-file-box-wrap").toggleAttr(
+                    elem.closest(".rit-file-box-wrap").toggleAttr(
                         "data-selected",
                         "true",
                         "false"
                     );
-                    if (!AIZ.uploader.data.multiple) {
-                        elem.closest(".aiz-file-box-wrap")
+                    if (!RIT.uploader.data.multiple) {
+                        elem.closest(".rit-file-box-wrap")
                             .siblings()
                             .attr("data-selected", "false");
                     }
-                    if (!AIZ.uploader.data.selectedFiles.includes(value)) {
-                        if (!AIZ.uploader.data.multiple) {
-                            AIZ.uploader.data.selectedFiles = [];
-                            AIZ.uploader.data.selectedFilesObject = [];
+                    if (!RIT.uploader.data.selectedFiles.includes(value)) {
+                        if (!RIT.uploader.data.multiple) {
+                            RIT.uploader.data.selectedFiles = [];
+                            RIT.uploader.data.selectedFilesObject = [];
                         }
-                        AIZ.uploader.data.selectedFiles.push(value);
-                        AIZ.uploader.data.selectedFilesObject.push(valueObject);
+                        RIT.uploader.data.selectedFiles.push(value);
+                        RIT.uploader.data.selectedFilesObject.push(valueObject);
                     } else {
-                        AIZ.uploader.data.selectedFiles = AIZ.uploader.data.selectedFiles.filter(
+                        RIT.uploader.data.selectedFiles = RIT.uploader.data.selectedFiles.filter(
                             function (item) {
                                 return item !== value;
                             }
                         );
-                        AIZ.uploader.data.selectedFilesObject = AIZ.uploader.data.selectedFilesObject.filter(
+                        RIT.uploader.data.selectedFilesObject = RIT.uploader.data.selectedFilesObject.filter(
                             function (item) {
                                 return item !== valueObject;
                             }
                         );
                     }
-                    AIZ.uploader.addSelectedValue();
-                    AIZ.uploader.updateUploaderSelected();
+                    RIT.uploader.addSelectedValue();
+                    RIT.uploader.updateUploaderSelected();
                 });
             });
         },
         updateFileHtml: function (array) {
             var fileText = "";
             if (array.length > 1) {
-                var fileText = AIZ.local.files_selected;
+                var fileText = RIT.local.files_selected;
             } else {
-                var fileText = AIZ.local.file_selected;
+                var fileText = RIT.local.file_selected;
             }
             return array.length + " " + fileText;
         },
         updateUploaderSelected: function () {
-            $(".aiz-uploader-selected").html(
-                AIZ.uploader.updateFileHtml(AIZ.uploader.data.selectedFiles)
+            $(".rit-uploader-selected").html(
+                RIT.uploader.updateFileHtml(RIT.uploader.data.selectedFiles)
             );
         },
         clearUploaderSelected: function () {
-            $(".aiz-uploader-selected-clear").on("click", function () {
-                AIZ.uploader.data.selectedFiles = [];
-                AIZ.uploader.addSelectedValue();
-                AIZ.uploader.addHiddenValue();
-                AIZ.uploader.resetFilter();
-                AIZ.uploader.updateUploaderSelected();
-                AIZ.uploader.updateUploaderFiles();
+            $(".rit-uploader-selected-clear").on("click", function () {
+                RIT.uploader.data.selectedFiles = [];
+                RIT.uploader.addSelectedValue();
+                RIT.uploader.addHiddenValue();
+                RIT.uploader.resetFilter();
+                RIT.uploader.updateUploaderSelected();
+                RIT.uploader.updateUploaderFiles();
             });
         },
         resetFilter: function () {
-            $('[name="aiz-uploader-search"]').val("");
-            $('[name="aiz-show-selected"]').prop("checked", false);
-            $('[name="aiz-uploader-sort"] option[value=newest]').prop(
+            $('[name="rit-uploader-search"]').val("");
+            $('[name="rit-show-selected"]').prop("checked", false);
+            $('[name="rit-uploader-sort"] option[value=newest]').prop(
                 "selected",
                 true
             );
         },
         getAllUploads: function (url, search_key = null, sort_key = null) {
-            $(".aiz-uploader-all").html(
+            $(".rit-uploader-all").html(
                 '<div class="align-items-center d-flex h-100 justify-content-center w-100"><div class="spinner-border" role="status"></div></div>'
             );
             var params = {};
@@ -224,20 +224,20 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 if(typeof data == 'string'){
                     data = JSON.parse(data);
                 }
-                AIZ.uploader.data.allFiles = data.data;
-                AIZ.uploader.allowedFileType();
-                AIZ.uploader.addSelectedValue();
-                AIZ.uploader.addHiddenValue();
-                //AIZ.uploader.resetFilter();
-                AIZ.uploader.updateUploaderFiles();
+                RIT.uploader.data.allFiles = data.data;
+                RIT.uploader.allowedFileType();
+                RIT.uploader.addSelectedValue();
+                RIT.uploader.addHiddenValue();
+                //RIT.uploader.resetFilter();
+                RIT.uploader.updateUploaderFiles();
                 if (data.next_page_url != null) {
-                    AIZ.uploader.data.next_page_url = data.next_page_url;
+                    RIT.uploader.data.next_page_url = data.next_page_url;
                     $("#uploader_next_btn").removeAttr("disabled");
                 } else {
                     $("#uploader_next_btn").attr("disabled", true);
                 }
                 if (data.prev_page_url != null) {
-                    AIZ.uploader.data.prev_page_url = data.prev_page_url;
+                    RIT.uploader.data.prev_page_url = data.prev_page_url;
                     $("#uploader_prev_btn").removeAttr("disabled");
                 } else {
                     $("#uploader_prev_btn").attr("disabled", true);
@@ -245,87 +245,87 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         showSelectedFiles: function () {
-            $('[name="aiz-show-selected"]').on("change", function () {
+            $('[name="rit-show-selected"]').on("change", function () {
                 if ($(this).is(":checked")) {
                     // for (
                     //     var i = 0;
-                    //     i < AIZ.uploader.data.allFiles.length;
+                    //     i < RIT.uploader.data.allFiles.length;
                     //     i++
                     // ) {
-                    //     if (AIZ.uploader.data.allFiles[i].selected) {
-                    //         AIZ.uploader.data.allFiles[
+                    //     if (RIT.uploader.data.allFiles[i].selected) {
+                    //         RIT.uploader.data.allFiles[
                     //             i
                     //         ].aria_hidden = false;
                     //     } else {
-                    //         AIZ.uploader.data.allFiles[
+                    //         RIT.uploader.data.allFiles[
                     //             i
                     //         ].aria_hidden = true;
                     //     }
                     // }
-                    AIZ.uploader.data.allFiles =
-                        AIZ.uploader.data.selectedFilesObject;
+                    RIT.uploader.data.allFiles =
+                        RIT.uploader.data.selectedFilesObject;
                 } else {
                     // for (
                     //     var i = 0;
-                    //     i < AIZ.uploader.data.allFiles.length;
+                    //     i < RIT.uploader.data.allFiles.length;
                     //     i++
                     // ) {
-                    //     AIZ.uploader.data.allFiles[
+                    //     RIT.uploader.data.allFiles[
                     //         i
                     //     ].aria_hidden = false;
                     // }
-                    AIZ.uploader.getAllUploads(
-                        AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files"
+                    RIT.uploader.getAllUploads(
+                        RIT.data.appUrl + "/rit-uploader/get_uploaded_files"
                     );
                 }
-                AIZ.uploader.updateUploaderFiles();
+                RIT.uploader.updateUploaderFiles();
             });
         },
         searchUploaderFiles: function () {
-            $('[name="aiz-uploader-search"]').on("keyup", function () {
+            $('[name="rit-uploader-search"]').on("keyup", function () {
                 var value = $(this).val();
-                AIZ.uploader.getAllUploads(
-                    AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files",
+                RIT.uploader.getAllUploads(
+                    RIT.data.appUrl + "/rit-uploader/get_uploaded_files",
                     value,
-                    $('[name="aiz-uploader-sort"]').val()
+                    $('[name="rit-uploader-sort"]').val()
                 );
-                // if (AIZ.uploader.data.allFiles.length > 0) {
+                // if (RIT.uploader.data.allFiles.length > 0) {
                 //     for (
                 //         var i = 0;
-                //         i < AIZ.uploader.data.allFiles.length;
+                //         i < RIT.uploader.data.allFiles.length;
                 //         i++
                 //     ) {
                 //         if (
-                //             AIZ.uploader.data.allFiles[
+                //             RIT.uploader.data.allFiles[
                 //                 i
                 //             ].file_original_name
                 //                 .toUpperCase()
                 //                 .indexOf(value) > -1
                 //         ) {
-                //             AIZ.uploader.data.allFiles[
+                //             RIT.uploader.data.allFiles[
                 //                 i
                 //             ].aria_hidden = false;
                 //         } else {
-                //             AIZ.uploader.data.allFiles[
+                //             RIT.uploader.data.allFiles[
                 //                 i
                 //             ].aria_hidden = true;
                 //         }
                 //     }
                 // }
-                //AIZ.uploader.updateUploaderFiles();
+                //RIT.uploader.updateUploaderFiles();
             });
         },
         sortUploaderFiles: function () {
-            $('[name="aiz-uploader-sort"]').on("change", function () {
+            $('[name="rit-uploader-sort"]').on("change", function () {
                 var value = $(this).val();
-                AIZ.uploader.getAllUploads(
-                    AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files",
-                    $('[name="aiz-uploader-search"]').val(),
+                RIT.uploader.getAllUploads(
+                    RIT.data.appUrl + "/rit-uploader/get_uploaded_files",
+                    $('[name="rit-uploader-search"]').val(),
                     value
                 );
 
                 // if (value === "oldest") {
-                //     AIZ.uploader.data.allFiles = AIZ.uploader.data.allFiles.sort(
+                //     RIT.uploader.data.allFiles = RIT.uploader.data.allFiles.sort(
                 //         function(a, b) {
                 //             return (
                 //                 new Date(a.created_at) - new Date(b.created_at)
@@ -333,19 +333,19 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 //         }
                 //     );
                 // } else if (value === "smallest") {
-                //     AIZ.uploader.data.allFiles = AIZ.uploader.data.allFiles.sort(
+                //     RIT.uploader.data.allFiles = RIT.uploader.data.allFiles.sort(
                 //         function(a, b) {
                 //             return a.file_size - b.file_size;
                 //         }
                 //     );
                 // } else if (value === "largest") {
-                //     AIZ.uploader.data.allFiles = AIZ.uploader.data.allFiles.sort(
+                //     RIT.uploader.data.allFiles = RIT.uploader.data.allFiles.sort(
                 //         function(a, b) {
                 //             return b.file_size - a.file_size;
                 //         }
                 //     );
                 // } else {
-                //     AIZ.uploader.data.allFiles = AIZ.uploader.data.allFiles.sort(
+                //     RIT.uploader.data.allFiles = RIT.uploader.data.allFiles.sort(
                 //         function(a, b) {
                 //             a = new Date(a.created_at);
                 //             b = new Date(b.created_at);
@@ -353,45 +353,45 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 //         }
                 //     );
                 // }
-                //AIZ.uploader.updateUploaderFiles();
+                //RIT.uploader.updateUploaderFiles();
             });
         },
         addSelectedValue: function () {
-            for (var i = 0; i < AIZ.uploader.data.allFiles.length; i++) {
+            for (var i = 0; i < RIT.uploader.data.allFiles.length; i++) {
                 if (
-                    !AIZ.uploader.data.selectedFiles.includes(
-                        AIZ.uploader.data.allFiles[i].id
+                    !RIT.uploader.data.selectedFiles.includes(
+                        RIT.uploader.data.allFiles[i].id
                     )
                 ) {
-                    AIZ.uploader.data.allFiles[i].selected = false;
+                    RIT.uploader.data.allFiles[i].selected = false;
                 } else {
-                    AIZ.uploader.data.allFiles[i].selected = true;
+                    RIT.uploader.data.allFiles[i].selected = true;
                 }
             }
         },
         addHiddenValue: function () {
-            for (var i = 0; i < AIZ.uploader.data.allFiles.length; i++) {
-                AIZ.uploader.data.allFiles[i].aria_hidden = false;
+            for (var i = 0; i < RIT.uploader.data.allFiles.length; i++) {
+                RIT.uploader.data.allFiles[i].aria_hidden = false;
             }
         },
         allowedFileType: function () {
-            if (AIZ.uploader.data.type !== "all") {
-                AIZ.uploader.data.allFiles = AIZ.uploader.data.allFiles.filter(
+            if (RIT.uploader.data.type !== "all") {
+                RIT.uploader.data.allFiles = RIT.uploader.data.allFiles.filter(
                     function (item) {
-                        return item.type === AIZ.uploader.data.type;
+                        return item.type === RIT.uploader.data.type;
                     }
                 );
             }
         },
         updateUploaderFiles: function () {
-            $(".aiz-uploader-all").html(
+            $(".rit-uploader-all").html(
                 '<div class="align-items-center d-flex h-100 justify-content-center w-100"><div class="spinner-border" role="status"></div></div>'
             );
 
-            var data = AIZ.uploader.data.allFiles;
+            var data = RIT.uploader.data.allFiles;
 
             setTimeout(function () {
-                $(".aiz-uploader-all").html(null);
+                $(".rit-uploader-all").html(null);
 
                 if (data.length > 0) {
                     for (var i = 0; i < data.length; i++) {
@@ -400,38 +400,38 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         if (data[i].type === "image") {
                             thumb =
                                 '<img src="' +
-                                AIZ.data.fileBaseUrl +
+                                RIT.data.fileBaseUrl +
                                 data[i].file_name +
                                 '" class="img-fit">';
                         } else {
                             thumb = '<i class="la la-file-text"></i>';
                         }
                         var html =
-                            '<div class="aiz-file-box-wrap" aria-hidden="' +
+                            '<div class="rit-file-box-wrap" aria-hidden="' +
                             data[i].aria_hidden +
                             '" data-selected="' +
                             data[i].selected +
                             '">' +
-                            '<div class="aiz-file-box">' +
+                            '<div class="rit-file-box">' +
                             // '<div class="dropdown-file">' +
                             // '<a class="dropdown-link" data-toggle="dropdown">' +
                             // '<i class="la la-ellipsis-v"></i>' +
                             // "</a>" +
                             // '<div class="dropdown-menu dropdown-menu-right">' +
                             // '<a href="' +
-                            // AIZ.data.fileBaseUrl +
+                            // RIT.data.fileBaseUrl +
                             // data[i].file_name +
                             // '" target="_blank" download="' +
                             // data[i].file_original_name +
                             // "." +
                             // data[i].extension +
                             // '" class="dropdown-item"><i class="la la-download mr-2"></i>Download</a>' +
-                            // '<a href="#" class="dropdown-item aiz-uploader-delete" data-id="' +
+                            // '<a href="#" class="dropdown-item rit-uploader-delete" data-id="' +
                             // data[i].id +
                             // '"><i class="la la-trash mr-2"></i>Delete</a>' +
                             // "</div>" +
                             // "</div>" +
-                            '<div class="card card-file aiz-uploader-select" title="' +
+                            '<div class="card card-file rit-uploader-select" title="' +
                             data[i].file_original_name +
                             "." +
                             data[i].extension +
@@ -451,40 +451,40 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                             "</span>" +
                             "</h6>" +
                             "<p>" +
-                            AIZ.extra.bytesToSize(data[i].file_size) +
+                            RIT.extra.bytesToSize(data[i].file_size) +
                             "</p>" +
                             "</div>" +
                             "</div>" +
                             "</div>" +
                             "</div>";
 
-                        $(".aiz-uploader-all").append(html);
+                        $(".rit-uploader-all").append(html);
                     }
                 } else {
-                    $(".aiz-uploader-all").html(
+                    $(".rit-uploader-all").html(
                         '<div class="align-items-center d-flex h-100 justify-content-center w-100 nav-tabs"><div class="text-center"><h3>No files found</h3></div></div>'
                     );
                 }
-                AIZ.uploader.uploadSelect();
-                AIZ.uploader.deleteUploaderFile();
+                RIT.uploader.uploadSelect();
+                RIT.uploader.deleteUploaderFile();
             }, 300);
         },
         inputSelectPreviewGenerate: function (elem) {
-            elem.find(".selected-files").val(AIZ.uploader.data.selectedFiles);
+            elem.find(".selected-files").val(RIT.uploader.data.selectedFiles);
             elem.next(".file-preview").html(null);
 
-            if (AIZ.uploader.data.selectedFiles.length > 0) {
+            if (RIT.uploader.data.selectedFiles.length > 0) {
 
                 $.post(
-                    AIZ.data.appUrl + "/aiz-uploader/get_file_by_ids",
-                    { _token: AIZ.data.csrf, ids: AIZ.uploader.data.selectedFiles.toString() },
+                    RIT.data.appUrl + "/rit-uploader/get_file_by_ids",
+                    { _token: RIT.data.csrf, ids: RIT.uploader.data.selectedFiles.toString() },
                     function (data) {
 
                         elem.next(".file-preview").html(null);
 
                         if (data.length > 0) {
                             elem.find(".file-amount").html(
-                                AIZ.uploader.updateFileHtml(data)
+                                RIT.uploader.updateFileHtml(data)
                             );
                             for (
                                 var i = 0;
@@ -495,7 +495,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 if (data[i].type === "image") {
                                     thumb =
                                         '<img src="' +
-                                        AIZ.data.fileBaseUrl +
+                                        RIT.data.fileBaseUrl +
                                         data[i].file_name +
                                         '" class="img-fit">';
                                 } else {
@@ -524,7 +524,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     "</span>" +
                                     "</h6>" +
                                     "<p>" +
-                                    AIZ.extra.bytesToSize(
+                                    RIT.extra.bytesToSize(
                                         data[i].file_size
                                     ) +
                                     "</p>" +
@@ -539,43 +539,43 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                 elem.next(".file-preview").append(html);
                             }
                         } else {
-                            elem.find(".file-amount").html(AIZ.local.choose_file);
+                            elem.find(".file-amount").html(RIT.local.choose_file);
                         }
                 });
             } else {
-                elem.find(".file-amount").html(AIZ.local.choose_file);
+                elem.find(".file-amount").html(RIT.local.choose_file);
             }
 
-            // if (AIZ.uploader.data.selectedFiles.length > 0) {
+            // if (RIT.uploader.data.selectedFiles.length > 0) {
             //     elem.find(".file-amount").html(
-            //         AIZ.uploader.updateFileHtml(AIZ.uploader.data.selectedFiles)
+            //         RIT.uploader.updateFileHtml(RIT.uploader.data.selectedFiles)
             //     );
             //     for (
             //         var i = 0;
-            //         i < AIZ.uploader.data.selectedFiles.length;
+            //         i < RIT.uploader.data.selectedFiles.length;
             //         i++
             //     ) {
-            //         var index = AIZ.uploader.data.allFiles.findIndex(
-            //             (x) => x.id === AIZ.uploader.data.selectedFiles[i]
+            //         var index = RIT.uploader.data.allFiles.findIndex(
+            //             (x) => x.id === RIT.uploader.data.selectedFiles[i]
             //         );
             //         var thumb = "";
-            //         if (AIZ.uploader.data.allFiles[index].type == "image") {
+            //         if (RIT.uploader.data.allFiles[index].type == "image") {
             //             thumb =
             //                 '<img src="' +
-            //                 AIZ.data.appUrl +
+            //                 RIT.data.appUrl +
             //                 "/public/" +
-            //                 AIZ.uploader.data.allFiles[index].file_name +
+            //                 RIT.uploader.data.allFiles[index].file_name +
             //                 '" class="img-fit">';
             //         } else {
             //             thumb = '<i class="la la-file-text"></i>';
             //         }
             //         var html =
             //             '<div class="d-flex justify-content-between align-items-center mt-2 file-preview-item" data-id="' +
-            //             AIZ.uploader.data.allFiles[index].id +
+            //             RIT.uploader.data.allFiles[index].id +
             //             '" title="' +
-            //             AIZ.uploader.data.allFiles[index].file_original_name +
+            //             RIT.uploader.data.allFiles[index].file_original_name +
             //             "." +
-            //             AIZ.uploader.data.allFiles[index].extension +
+            //             RIT.uploader.data.allFiles[index].extension +
             //             '">' +
             //             '<div class="align-items-center align-self-stretch d-flex justify-content-center thumb">' +
             //             thumb +
@@ -583,15 +583,15 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             //             '<div class="col body">' +
             //             '<h6 class="d-flex">' +
             //             '<span class="text-truncate title">' +
-            //             AIZ.uploader.data.allFiles[index].file_original_name +
+            //             RIT.uploader.data.allFiles[index].file_original_name +
             //             "</span>" +
             //             '<span class="ext">.' +
-            //             AIZ.uploader.data.allFiles[index].extension +
+            //             RIT.uploader.data.allFiles[index].extension +
             //             "</span>" +
             //             "</h6>" +
             //             "<p>" +
-            //             AIZ.extra.bytesToSize(
-            //                 AIZ.uploader.data.allFiles[index].file_size
+            //             RIT.extra.bytesToSize(
+            //                 RIT.uploader.data.allFiles[index].file_size
             //             ) +
             //             "</p>" +
             //             "</div>" +
@@ -609,21 +609,21 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             // }
         },
         editorImageGenerate: function (elem) {
-            if (AIZ.uploader.data.selectedFiles.length > 0) {
+            if (RIT.uploader.data.selectedFiles.length > 0) {
                 for (
                     var i = 0;
-                    i < AIZ.uploader.data.selectedFiles.length;
+                    i < RIT.uploader.data.selectedFiles.length;
                     i++
                 ) {
-                    var index = AIZ.uploader.data.allFiles.findIndex(
-                        (x) => x.id === AIZ.uploader.data.selectedFiles[i]
+                    var index = RIT.uploader.data.allFiles.findIndex(
+                        (x) => x.id === RIT.uploader.data.selectedFiles[i]
                     );
                     var thumb = "";
-                    if (AIZ.uploader.data.allFiles[index].type === "image") {
+                    if (RIT.uploader.data.allFiles[index].type === "image") {
                         thumb =
                             '<img src="' +
-                            AIZ.data.fileBaseUrl +
-                            AIZ.uploader.data.allFiles[index].file_name +
+                            RIT.data.fileBaseUrl +
+                            RIT.uploader.data.allFiles[index].file_name +
                             '">';
                         elem[0].insertHTML(thumb);
                         // console.log(elem);
@@ -633,7 +633,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
         },
         dismissUploader: function () {
             $("#aizUploaderModal").on("hidden.bs.modal", function () {
-                $(".aiz-uploader-backdrop").remove();
+                $(".rit-uploader-backdrop").remove();
                 $("#aizUploaderModal").remove();
             });
         },
@@ -645,74 +645,74 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             multiple = false,
             callback = null
         ) {
-            // $("body").append('<div class="aiz-uploader-backdrop"></div>');
+            // $("body").append('<div class="rit-uploader-backdrop"></div>');
 
             var elem = $(elem);
             var multiple = multiple;
             var type = type;
             var oldSelectedFiles = selectd;
             if (oldSelectedFiles !== "") {
-                AIZ.uploader.data.selectedFiles = oldSelectedFiles
+                RIT.uploader.data.selectedFiles = oldSelectedFiles
                     .split(",")
                     .map(Number);
             } else {
-                AIZ.uploader.data.selectedFiles = [];
+                RIT.uploader.data.selectedFiles = [];
             }
             if ("undefined" !== typeof type && type.length > 0) {
-                AIZ.uploader.data.type = type;
+                RIT.uploader.data.type = type;
             }
 
             if (multiple) {
-                AIZ.uploader.data.multiple = true;
+                RIT.uploader.data.multiple = true;
             }else{
-                AIZ.uploader.data.multiple = false;
+                RIT.uploader.data.multiple = false;
             }
 
             // setTimeout(function() {
             $.post(
-                AIZ.data.appUrl + "/aiz-uploader",
-                { _token: AIZ.data.csrf },
+                RIT.data.appUrl + "/rit-uploader",
+                { _token: RIT.data.csrf },
                 function (data) {
                     $("body").append(data);
                     $("#aizUploaderModal").modal("show");
-                    AIZ.plugins.aizUppy();
-                    AIZ.uploader.getAllUploads(
-                        AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files",
+                    RIT.plugins.aizUppy();
+                    RIT.uploader.getAllUploads(
+                        RIT.data.appUrl + "/rit-uploader/get_uploaded_files",
                         null,
-                        $('[name="aiz-uploader-sort"]').val()
+                        $('[name="rit-uploader-sort"]').val()
                     );
-                    AIZ.uploader.updateUploaderSelected();
-                    AIZ.uploader.clearUploaderSelected();
-                    AIZ.uploader.sortUploaderFiles();
-                    AIZ.uploader.searchUploaderFiles();
-                    AIZ.uploader.showSelectedFiles();
-                    AIZ.uploader.dismissUploader();
+                    RIT.uploader.updateUploaderSelected();
+                    RIT.uploader.clearUploaderSelected();
+                    RIT.uploader.sortUploaderFiles();
+                    RIT.uploader.searchUploaderFiles();
+                    RIT.uploader.showSelectedFiles();
+                    RIT.uploader.dismissUploader();
 
                     $("#uploader_next_btn").on("click", function () {
-                        if (AIZ.uploader.data.next_page_url != null) {
-                            $('[name="aiz-show-selected"]').prop(
+                        if (RIT.uploader.data.next_page_url != null) {
+                            $('[name="rit-show-selected"]').prop(
                                 "checked",
                                 false
                             );
-                            AIZ.uploader.getAllUploads(
-                                AIZ.uploader.data.next_page_url
+                            RIT.uploader.getAllUploads(
+                                RIT.uploader.data.next_page_url
                             );
                         }
                     });
 
                     $("#uploader_prev_btn").on("click", function () {
-                        if (AIZ.uploader.data.prev_page_url != null) {
-                            $('[name="aiz-show-selected"]').prop(
+                        if (RIT.uploader.data.prev_page_url != null) {
+                            $('[name="rit-show-selected"]').prop(
                                 "checked",
                                 false
                             );
-                            AIZ.uploader.getAllUploads(
-                                AIZ.uploader.data.prev_page_url
+                            RIT.uploader.getAllUploads(
+                                RIT.uploader.data.prev_page_url
                             );
                         }
                     });
 
-                    $(".aiz-uploader-search i").on("click", function () {
+                    $(".rit-uploader-search i").on("click", function () {
                         $(this).parent().toggleClass("open");
                     });
 
@@ -720,9 +720,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         "click",
                         function () {
                             if (from === "input") {
-                                AIZ.uploader.inputSelectPreviewGenerate(elem);
+                                RIT.uploader.inputSelectPreviewGenerate(elem);
                             } else if (from === "direct") {
-                                callback(AIZ.uploader.data.selectedFiles);
+                                callback(RIT.uploader.data.selectedFiles);
                             }
                             $("#aizUploaderModal").modal("hide");
                         }
@@ -745,7 +745,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                         ? ""
                         : oldSelectedFiles;
 
-                    AIZ.uploader.trigger(
+                    RIT.uploader.trigger(
                         this,
                         "input",
                         type,
@@ -761,15 +761,15 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 var files = $this.find(".selected-files").val();
                 if(files != ""){
                     $.post(
-                        AIZ.data.appUrl + "/aiz-uploader/get_file_by_ids",
-                        { _token: AIZ.data.csrf, ids: files },
+                        RIT.data.appUrl + "/rit-uploader/get_file_by_ids",
+                        { _token: RIT.data.csrf, ids: files },
                         function (data) {
 
                             $this.next(".file-preview").html(null);
 
                             if (data.length > 0) {
                                 $this.find(".file-amount").html(
-                                    AIZ.uploader.updateFileHtml(data)
+                                    RIT.uploader.updateFileHtml(data)
                                 );
                                 for (
                                     var i = 0;
@@ -780,7 +780,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     if (data[i].type === "image") {
                                         thumb =
                                             '<img src="' +
-                                            AIZ.data.fileBaseUrl +
+                                            RIT.data.fileBaseUrl +
                                             data[i].file_name +
                                             '" class="img-fit">';
                                     } else {
@@ -809,7 +809,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                         "</span>" +
                                         "</h6>" +
                                         "<p>" +
-                                        AIZ.extra.bytesToSize(
+                                        RIT.extra.bytesToSize(
                                             data[i].file_size
                                         ) +
                                         "</p>" +
@@ -824,19 +824,19 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                                     $this.next(".file-preview").append(html);
                                 }
                             } else {
-                                $this.find(".file-amount").html(AIZ.local.choose_file);
+                                $this.find(".file-amount").html(RIT.local.choose_file);
                             }
                     });
                 }
             });
         }
     };
-    AIZ.plugins = {
+    RIT.plugins = {
         metismenu: function () {
-            $('[data-toggle="aiz-side-menu"]').metisMenu();
+            $('[data-toggle="rit-side-menu"]').metisMenu();
         },
         bootstrapSelect: function (refresh = "") {
-            $(".aiz-selectpicker").each(function (el) {
+            $(".rit-selectpicker").each(function (el) {
                 var $this = $(this);
                 if(!$this.parent().hasClass('bootstrap-select')){
                     var selected = $this.data('selected');
@@ -845,7 +845,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     }
                     $this.selectpicker({
                         size: 5,
-                        noneSelectedText: AIZ.local.nothing_selected,                     
+                        noneSelectedText: RIT.local.nothing_selected,                     
                         virtualScroll: false
                     });
                 }
@@ -858,7 +858,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         tagify: function () {
-            $(".aiz-tag-input").not(".tagify").each(function () {
+            $(".rit-tag-input").not(".tagify").each(function () {
                 var $this = $(this);
 
                 var maxTags = $this.data("max-tags");
@@ -891,7 +891,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         textEditor: function () {
-            $(".aiz-text-editor").each(function (el) {
+            $(".rit-text-editor").each(function (el) {
                 var $this = $(this);
                 var buttons = $this.data("buttons");
                 var minHeight = $this.data("min-height");
@@ -943,7 +943,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         dateRange: function () {
-            $(".aiz-date-range").each(function () {
+            $(".rit-date-range").each(function () {
                 var $this = $(this);
                 var today = moment().startOf("day");
                 var value = $this.val();
@@ -1024,7 +1024,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         timePicker: function () {
-            $(".aiz-time-picker").each(function () {
+            $(".rit-time-picker").each(function () {
                 var $this = $(this);
 
                 var minuteStep = $this.data("minute-step");
@@ -1046,11 +1046,11 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         fooTable: function () {
-            $(".aiz-table").each(function () {
+            $(".rit-table").each(function () {
                 var $this = $(this);
 
                 var empty = $this.data("empty");
-                empty = !empty ? AIZ.local.nothing_found : empty;
+                empty = !empty ? RIT.local.nothing_found : empty;
 
                 $this.footable({
                     breakpoints: {
@@ -1063,8 +1063,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     cascade: true,
                     on: {
                         "ready.ft.table": function (e, ft) {
-                            AIZ.extra.deleteConfirm();
-                            AIZ.plugins.bootstrapSelect("refresh");
+                            RIT.extra.deleteConfirm();
+                            RIT.plugins.bootstrapSelect("refresh");
                         },
                     },
                     empty: empty,
@@ -1092,7 +1092,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     },
                     type: type,
                     template:
-                        '<div data-notify="container" class="aiz-notify alert alert-{0}" role="alert">' +
+                        '<div data-notify="container" class="rit-notify alert alert-{0}" role="alert">' +
                         '<button type="button" aria-hidden="true" data-notify="dismiss" class="close"><i class="las la-times"></i></button>' +
                         '<span data-notify="message">{2}</span>' +
                         '<div class="progress" data-notify="progressbar">' +
@@ -1103,12 +1103,12 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             );
         },
         aizUppy: function () {
-            if ($("#aiz-upload-files").length > 0) {
+            if ($("#rit-upload-files").length > 0) {
                 var uppy = Uppy.Core({
                     autoProceed: true,
                 });
                 uppy.use(Uppy.Dashboard, {
-                    target: "#aiz-upload-files",
+                    target: "#rit-upload-files",
                     inline: true,
                     showLinkToFileUploadResult: false,
                     showProgressDetails: true,
@@ -1118,44 +1118,44 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     proudlyDisplayPoweredByUppy: false,
                     locale: {
                         strings: {
-                            addMoreFiles: AIZ.local.add_more_files,
-                            addingMoreFiles: AIZ.local.adding_more_files,
-                            dropPaste: AIZ.local.drop_files_here_paste_or+' %{browse}',
-                            browse: AIZ.local.browse,
-                            uploadComplete: AIZ.local.upload_complete,
-                            uploadPaused: AIZ.local.upload_paused,
-                            resumeUpload: AIZ.local.resume_upload,
-                            pauseUpload: AIZ.local.pause_upload,
-                            retryUpload: AIZ.local.retry_upload,
-                            cancelUpload: AIZ.local.cancel_upload,
+                            addMoreFiles: RIT.local.add_more_files,
+                            addingMoreFiles: RIT.local.adding_more_files,
+                            dropPaste: RIT.local.drop_files_here_paste_or+' %{browse}',
+                            browse: RIT.local.browse,
+                            uploadComplete: RIT.local.upload_complete,
+                            uploadPaused: RIT.local.upload_paused,
+                            resumeUpload: RIT.local.resume_upload,
+                            pauseUpload: RIT.local.pause_upload,
+                            retryUpload: RIT.local.retry_upload,
+                            cancelUpload: RIT.local.cancel_upload,
                             xFilesSelected: {
-                                0: '%{smart_count} '+AIZ.local.file_selected,
-                                1: '%{smart_count} '+AIZ.local.files_selected
+                                0: '%{smart_count} '+RIT.local.file_selected,
+                                1: '%{smart_count} '+RIT.local.files_selected
                             },
                             uploadingXFiles: {
-                                0: AIZ.local.uploading+' %{smart_count} '+AIZ.local.file,
-                                1: AIZ.local.uploading+' %{smart_count} '+AIZ.local.files
+                                0: RIT.local.uploading+' %{smart_count} '+RIT.local.file,
+                                1: RIT.local.uploading+' %{smart_count} '+RIT.local.files
                             },
                             processingXFiles: {
-                                0: AIZ.local.processing+' %{smart_count} '+AIZ.local.file,
-                                1: AIZ.local.processing+' %{smart_count} '+AIZ.local.files
+                                0: RIT.local.processing+' %{smart_count} '+RIT.local.file,
+                                1: RIT.local.processing+' %{smart_count} '+RIT.local.files
                             },
-                            uploading: AIZ.local.uploading,
-                            complete: AIZ.local.complete,
+                            uploading: RIT.local.uploading,
+                            complete: RIT.local.complete,
                         }
                     }
                 });
                 uppy.use(Uppy.XHRUpload, {
-                    endpoint: AIZ.data.appUrl + "/aiz-uploader/upload",
+                    endpoint: RIT.data.appUrl + "/rit-uploader/upload",
                     fieldName: "aiz_file",
                     formData: true,
                     headers: {
-                        'X-CSRF-TOKEN': AIZ.data.csrf,
+                        'X-CSRF-TOKEN': RIT.data.csrf,
                     },
                 });
                 uppy.on("upload-success", function () {
-                    AIZ.uploader.getAllUploads(
-                        AIZ.data.appUrl + "/aiz-uploader/get_uploaded_files"
+                    RIT.uploader.getAllUploads(
+                        RIT.data.appUrl + "/rit-uploader/get_uploaded_files"
                     );
                 });
             }
@@ -1166,8 +1166,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         countDown: function () {
-            if ($(".aiz-count-down").length > 0) {
-                $(".aiz-count-down").each(function () {
+            if ($(".rit-count-down").length > 0) {
+                $(".rit-count-down").each(function () {
 
                     var $this = $(this);
                     var date = $this.data("date");
@@ -1189,7 +1189,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             }
         },
         slickCarousel: function () {
-            $(".aiz-carousel").not(".slick-initialized").each(function () {
+            $(".rit-carousel").not(".slick-initialized").each(function () {
                 var $this = $(this);
 
 
@@ -1329,8 +1329,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         noUiSlider: function(){
-            if ($(".aiz-range-slider")[0]) {
-                $(".aiz-range-slider").each(function () {
+            if ($(".rit-range-slider")[0]) {
+                $(".rit-range-slider").each(function () {
                     var c = document.getElementById("input-slider-range"),
                     d = document.getElementById("input-slider-range-value-low"),
                     e = document.getElementById("input-slider-range-value-high"),
@@ -1368,8 +1368,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             }
         },
         jsSocials: function(){
-            if($('.aiz-share')[0]){
-                $('.aiz-share').jsSocials({
+            if($('.rit-share')[0]){
+                $('.rit-share').jsSocials({
                     showLabel: true,
                     showCount: false,
                     shares: [
@@ -1398,18 +1398,18 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             }
         }
     };
-    AIZ.extra = {
+    RIT.extra = {
         refreshToken: function (){
-            $.get(AIZ.data.appUrl+'/refresh-csrf').done(function(data){
-                AIZ.data.csrf = data;
+            $.get(RIT.data.appUrl+'/refresh-csrf').done(function(data){
+                RIT.data.csrf = data;
             });
-            // console.log(AIZ.data.csrf);
+            // console.log(RIT.data.csrf);
         },
         mobileNavToggle: function () {
             if(window.matchMedia('(max-width: 1200px)').matches){
                 $('body').addClass('side-menu-closed')
             }
-            $('[data-toggle="aiz-mobile-nav"]').on("click", function () {
+            $('[data-toggle="rit-mobile-nav"]').on("click", function () {
                 if ($("body").hasClass("side-menu-open")) {
                     $("body").addClass("side-menu-closed").removeClass("side-menu-open");
                 } else if($("body").hasClass("side-menu-closed")) {
@@ -1418,16 +1418,16 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     $("body").removeClass("side-menu-open").addClass("side-menu-closed");
                 }
             });
-            $(".aiz-sidebar-overlay").on("click", function () {
+            $(".rit-sidebar-overlay").on("click", function () {
                 $("body").removeClass("side-menu-open").addClass('side-menu-closed');
             });
         },
         initActiveMenu: function () {
-            $('[data-toggle="aiz-side-menu"] a').each(function () {
+            $('[data-toggle="rit-side-menu"] a').each(function () {
                 var pageUrl = window.location.href.split(/[?#]/)[0];
                 if (this.href == pageUrl || $(this).hasClass("active")) {
                     $(this).addClass("active");
-                    $(this).closest(".aiz-side-nav-item").addClass("mm-active");
+                    $(this).closest(".rit-side-nav-item").addClass("mm-active");
                     $(this)
                         .closest(".level-2")
                         .siblings("a")
@@ -1504,9 +1504,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 } else if (files.length > 1) {
                     $(this)
                         .next(".custom-file-name")
-                        .html(files.length + " " + AIZ.local.files_selected);
+                        .html(files.length + " " + RIT.local.files_selected);
                 } else {
-                    $(this).next(".custom-file-name").html(AIZ.local.choose_file);
+                    $(this).next(".custom-file-name").html(RIT.local.choose_file);
                 }
             });
         },
@@ -1612,8 +1612,8 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         autoScroll: function () {
-            if ($(".aiz-auto-scroll").length > 0) {
-                $(".aiz-auto-scroll").each(function () {
+            if ($(".rit-auto-scroll").length > 0) {
+                $(".rit-auto-scroll").each(function () {
                     var options = $(this).data("options");
 
                     options = !options
@@ -1663,7 +1663,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 $this.on("click", function (e) {
                     e.preventDefault();
                     $(target).append(content);
-                    AIZ.plugins.bootstrapSelect();
+                    RIT.plugins.bootstrapSelect();
                 });
             });
         },
@@ -1695,7 +1695,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             });
         },
         plusMinus: function(){
-            $('.aiz-plus-minus input').each(function() {
+            $('.rit-plus-minus input').each(function() {
                 var $this = $(this);
                 var min = parseInt($(this).attr("min"));
                 var max = parseInt($(this).attr("max"));
@@ -1707,7 +1707,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     $this.siblings('[data-type="plus"]').attr('disabled',true)
                 }
             });
-            $('.aiz-plus-minus button').on('click', function(e) {
+            $('.rit-plus-minus button').on('click', function(e) {
                 e.preventDefault();
 
                 var fieldName = $(this).attr("data-field");
@@ -1735,7 +1735,7 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                     input.val(0);
                 }
             });
-            $('.aiz-plus-minus input').on('change', function () {
+            $('.rit-plus-minus input').on('change', function () {
                 var minValue = parseInt($(this).attr("min"));
                 var maxValue = parseInt($(this).attr("max"));
                 var valueCurrent = parseInt($(this).val());
@@ -1765,9 +1765,9 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
                 });
         },
         trimAppUrl: function(){
-            if(AIZ.data.appUrl.slice(-1) == '/'){
-                AIZ.data.appUrl = AIZ.data.appUrl.slice(0, AIZ.data.appUrl.length -1);
-                // console.log(AIZ.data.appUrl);
+            if(RIT.data.appUrl.slice(-1) == '/'){
+                RIT.data.appUrl = RIT.data.appUrl.slice(0, RIT.data.appUrl.length -1);
+                // console.log(RIT.data.appUrl);
             }
         },
         setCookie: function(cname, cvalue, exdays) {
@@ -1792,12 +1792,12 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
             return "";
         },
         acceptCookie: function(){
-            if (!AIZ.extra.getCookie("acceptCookies")) {
-                $(".aiz-cookie-alert").addClass("show");
+            if (!RIT.extra.getCookie("acceptCookies")) {
+                $(".rit-cookie-alert").addClass("show");
             }
-            $(".aiz-cookie-accept").on("click", function() {
-                AIZ.extra.setCookie("acceptCookies", true, 60);
-                $(".aiz-cookie-alert").removeClass("show");
+            $(".rit-cookie-accept").on("click", function() {
+                RIT.extra.setCookie("acceptCookies", true, 60);
+                $(".rit-cookie-alert").removeClass("show");
             });
         },
         setSession: function(){
@@ -1836,53 +1836,53 @@ $.fn.toggleAttr = function (attr, attr1, attr2) {
     };
 
     setInterval(function(){
-        AIZ.extra.refreshToken();
+        RIT.extra.refreshToken();
     }, 3600000);
 
     // init aiz plugins, extra options
-    AIZ.extra.initActiveMenu();
-    AIZ.extra.mobileNavToggle();
-    AIZ.extra.deleteConfirm();
-    AIZ.extra.multiModal();
-    AIZ.extra.inputRating();
-    AIZ.extra.bsCustomFile();
-    AIZ.extra.stopPropagation();
-    AIZ.extra.outsideClickHide();
-    AIZ.extra.scrollToBottom();
-    AIZ.extra.classToggle();
-    AIZ.extra.collapseSidebar();
-    AIZ.extra.autoScroll();
-    AIZ.extra.addMore();
-    AIZ.extra.removeParent();
-    AIZ.extra.selectHideShow();
-    AIZ.extra.plusMinus();
-    AIZ.extra.hovCategoryMenu();
-    AIZ.extra.trimAppUrl();
-    AIZ.extra.acceptCookie();
-    AIZ.extra.setSession();
-    AIZ.extra.showSessionPopup()
+    RIT.extra.initActiveMenu();
+    RIT.extra.mobileNavToggle();
+    RIT.extra.deleteConfirm();
+    RIT.extra.multiModal();
+    RIT.extra.inputRating();
+    RIT.extra.bsCustomFile();
+    RIT.extra.stopPropagation();
+    RIT.extra.outsideClickHide();
+    RIT.extra.scrollToBottom();
+    RIT.extra.classToggle();
+    RIT.extra.collapseSidebar();
+    RIT.extra.autoScroll();
+    RIT.extra.addMore();
+    RIT.extra.removeParent();
+    RIT.extra.selectHideShow();
+    RIT.extra.plusMinus();
+    RIT.extra.hovCategoryMenu();
+    RIT.extra.trimAppUrl();
+    RIT.extra.acceptCookie();
+    RIT.extra.setSession();
+    RIT.extra.showSessionPopup()
 
-    AIZ.plugins.metismenu();
-    AIZ.plugins.bootstrapSelect();
-    AIZ.plugins.tagify();
-    AIZ.plugins.textEditor();
-    AIZ.plugins.tooltip();
-    AIZ.plugins.countDown();
-    AIZ.plugins.dateRange();
-    AIZ.plugins.timePicker();
-    AIZ.plugins.fooTable();
-    AIZ.plugins.slickCarousel();
-    AIZ.plugins.noUiSlider();
-    AIZ.plugins.zoom();
-    AIZ.plugins.jsSocials();
+    RIT.plugins.metismenu();
+    RIT.plugins.bootstrapSelect();
+    RIT.plugins.tagify();
+    RIT.plugins.textEditor();
+    RIT.plugins.tooltip();
+    RIT.plugins.countDown();
+    RIT.plugins.dateRange();
+    RIT.plugins.timePicker();
+    RIT.plugins.fooTable();
+    RIT.plugins.slickCarousel();
+    RIT.plugins.noUiSlider();
+    RIT.plugins.zoom();
+    RIT.plugins.jsSocials();
 
     // initialization of aiz uploader
-    AIZ.uploader.initForInput();
-    AIZ.uploader.removeAttachment();
-    AIZ.uploader.previewGenerate();
+    RIT.uploader.initForInput();
+    RIT.uploader.removeAttachment();
+    RIT.uploader.previewGenerate();
 
     // $(document).ajaxComplete(function(){
-    //     AIZ.plugins.bootstrapSelect('refresh');
+    //     RIT.plugins.bootstrapSelect('refresh');
     // });
 
 })(jQuery);

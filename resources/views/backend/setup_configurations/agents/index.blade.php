@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-    <div class="aiz-titlebar text-left mt-2 mb-3">
+    <div class="rit-titlebar text-left mt-2 mb-3">
     	<div class="row align-items-center">
     		<div class="col-md-12">
     			<h1 class="h3">{{translate('All Agents')}}</h1>
@@ -20,7 +20,7 @@
 {{--                            <input type="text" class="form-control" id="sort_city" name="sort_city" @isset($sort_city) value="{{ $sort_city }}" @endisset placeholder="{{ translate('Type city name & Enter') }}">--}}
 {{--                        </div>--}}
 {{--                        <div class="col-md-4">--}}
-{{--                            <select class="form-control aiz-selectpicker" data-live-search="true" id="sort_state" name="sort_state">--}}
+{{--                            <select class="form-control rit-selectpicker" data-live-search="true" id="sort_state" name="sort_state">--}}
 {{--                                <option value="">{{ translate('Select State') }}</option>--}}
 {{--                                @foreach ($states as $state)--}}
 {{--                                    <option value="{{ $state->id }}" @if ($sort_state == $state->id) selected @endif {{$sort_state}}>--}}
@@ -35,7 +35,7 @@
 {{--                    </div>--}}
 {{--                </form>--}}
                 <div class="card-body">
-                    <table class="table aiz-table mb-0">
+                    <table class="table rit-table mb-0">
                         <thead>
                             <tr>
                                 <th data-breakpoints="lg">#</th>
@@ -54,7 +54,7 @@
                                     <td>{{ $agent->cost }}</td>
                                     <td>{{ $agent->time }}</td>
                                     <td>
-                                        <label class="aiz-switch aiz-switch-success mb-0">
+                                        <label class="rit-switch rit-switch-success mb-0">
                                           <input onchange="update_status(this)" value="{{ $agent->id }}" type="checkbox" <?php if($agent->status == 1) echo "checked";?> >
                                           <span class="slider round"></span>
                                         </label>
@@ -71,7 +71,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="aiz-pagination">
+                    <div class="rit-pagination">
                         {{ $agents->appends(request()->input())->links() }}
                     </div>
                 </div>
@@ -133,10 +133,10 @@
             }
             $.post('{{ route('agents.status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Agent status updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Agent status updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

@@ -95,7 +95,7 @@
                                         <div class="col-md-6">
                                             <div class="row gutters-5">
                                                 <div class="col-6">
-                                                    <label class="aiz-megabox d-block bg-white mb-0">
+                                                    <label class="rit-megabox d-block bg-white mb-0">
                                                         <input
                                                             type="radio"
                                                             name="shipping_type_{{ \App\Models\User::where('user_type', 'admin')->first()->id }}"
@@ -104,8 +104,8 @@
                                                             data-target=".pickup_point_id_admin"
                                                             checked
                                                         >
-                                                        <span class="d-flex p-3 aiz-megabox-elem">
-                                                    <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                        <span class="d-flex p-3 rit-megabox-elem">
+                                                    <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                     <span class="flex-grow-1 pl-3 fw-600">{{  translate('Home Delivery') }}</span>
                                                 </span>
                                                     </label>
@@ -113,7 +113,7 @@
 
                                                 @if (\App\Models\BusinessSetting::where('type', 'pickup_point')->first()->value == 1)
                                                     <div class="col-6">
-                                                        <label class="aiz-megabox d-block bg-white mb-0">
+                                                        <label class="rit-megabox d-block bg-white mb-0">
                                                             <input
                                                                 type="radio"
                                                                 name="shipping_type_{{ \App\Models\User::where('user_type', 'admin')->first()->id }}"
@@ -121,8 +121,8 @@
                                                                 onchange="show_pickup_point(this)"
                                                                 data-target=".pickup_point_id_admin"
                                                             >
-                                                            <span class="d-flex p-3 aiz-megabox-elem">
-                                                    <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                            <span class="d-flex p-3 rit-megabox-elem">
+                                                    <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                     <span class="flex-grow-1 pl-3 fw-600">{{  translate('Local Pickup') }}</span>
                                                 </span>
                                                         </label>
@@ -131,7 +131,7 @@
                                             </div>
                                             <div class="mt-4 pickup_point_id_admin d-none">
                                                 <select
-                                                    class="form-control aiz-selectpicker"
+                                                    class="form-control rit-selectpicker"
                                                     name="pickup_point_id_{{ \App\Models\User::where('user_type', 'admin')->first()->id }}"
                                                     data-live-search="true"
                                                 >
@@ -177,7 +177,7 @@
                                                 <tr class="card-mobile rounded-custom">
                                                     <td>
                                                         <div class="form-check mb-4 ">
-                                                            <input class="form-check-input aiz-rounded-check" type="radio"
+                                                            <input class="form-check-input rit-rounded-check" type="radio"
                                                                    id="{{$agent->id}}"
                                                                    value="{{$agent->id}}"
                                                                    name="shipping_method"

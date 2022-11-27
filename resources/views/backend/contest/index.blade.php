@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class="row align-items-center">
         <div class="col-auto">
             <h1 class="h3">{{translate('All Contest')}}</h1>
@@ -32,7 +32,7 @@
 {{--    </form>--}}
 
         <div class="card-body">
-            <table class="table mb-0 aiz-table">
+            <table class="table mb-0 rit-table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -81,7 +81,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $contests->links() }}
             </div>
         </div>
@@ -104,10 +104,10 @@
         {{--    }--}}
         {{--    $.post('{{ route('blog.change-status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){--}}
         {{--        if(data == 1){--}}
-        {{--            AIZ.plugins.notify('success', '{{ translate('Change blog status successfully') }}');--}}
+        {{--            RIT.plugins.notify('success', '{{ translate('Change blog status successfully') }}');--}}
         {{--        }--}}
         {{--        else{--}}
-        {{--            AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
+        {{--            RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');--}}
         {{--        }--}}
         {{--    });--}}
         {{--}--}}

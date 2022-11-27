@@ -10,7 +10,7 @@
             	<h5 class="mb-0 h6 text-center">{{translate('HTTPS Activation')}}</h5>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'FORCE_HTTPS')" <?php if(env('FORCE_HTTPS') == 'On') echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -23,7 +23,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Maintenance Mode Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'maintenance_mode')" <?php if(get_setting('maintenance_mode') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -36,7 +36,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Disable image encoding?')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'disable_image_optimization')" <?php if(get_setting('disable_image_optimization') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -54,7 +54,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Vendor System Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'vendor_system_activation')" <?php if(get_setting('vendor_system_activation') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -67,7 +67,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Classified Product')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'classified_product')" <?php if(get_setting('classified_product') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -80,7 +80,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Wallet System Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'wallet_system')" <?php if(get_setting('wallet_system') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -93,7 +93,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Coupon System Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'coupon_system')" <?php if(get_setting('coupon_system') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -106,7 +106,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Pickup Point Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'pickup_point')" <?php if(get_setting('pickup_point') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -119,7 +119,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Conversation Activation')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'conversation_system')" <?php if(get_setting('conversation_system') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -132,7 +132,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Seller Product Manage By Admin')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'product_manage_by_admin')"
                         <?php if(\App\Models\BusinessSetting::where('type', 'product_manage_by_admin')->first() &&
                                 get_setting('product_manage_by_admin') == 1) echo "checked";?>>
@@ -150,7 +150,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Admin Approval On Seller Product')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'product_approve_by_admin')"
                         <?php if(\App\Models\BusinessSetting::where('type', 'product_approve_by_admin')->first() &&
                                 get_setting('product_approve_by_admin') == 1) echo "checked";?>>
@@ -168,7 +168,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Email Verification')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'email_verification')" <?php if(get_setting('email_verification') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -190,7 +190,7 @@
             <div class="card-body">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/paypal.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'paypal_payment')" <?php if(get_setting('paypal_payment') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -209,7 +209,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img   class="float-left" src="{{ static_asset('assets/img/cards/stripe.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'stripe_payment')" <?php if(get_setting('stripe_payment') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -228,7 +228,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/sslcommerz.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'sslcommerz_payment')" <?php if(get_setting('sslcommerz_payment') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -249,7 +249,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/instamojo.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'instamojo_payment')" <?php if(get_setting('instamojo_payment') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -268,7 +268,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/rozarpay.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'razorpay')" <?php if(get_setting('razorpay') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -288,7 +288,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/paystack.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'paystack')" <?php if(get_setting('paystack') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -309,7 +309,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/vogue.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'voguepay')" <?php if(get_setting('voguepay') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -328,7 +328,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/payhere.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'payhere')" <?php if(get_setting('payhere') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -348,7 +348,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/ngenius.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'ngenius')" <?php if(get_setting('ngenius') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -368,7 +368,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/iyzico.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'iyzico')" <?php if(get_setting('iyzico') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -388,7 +388,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/bkash.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'bkash')" <?php if(get_setting('bkash') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -408,7 +408,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/nagad.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'nagad')" <?php if(get_setting('nagad') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -428,7 +428,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/proxypay.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'proxypay')" <?php if(get_setting('proxypay') == '1') echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -448,7 +448,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/aamarpay.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'aamarpay')" @if(get_setting('aamarpay') == '1') checked @endif>
                         <span class="slider round"></span>
                     </label>
@@ -468,7 +468,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/authorizenet.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'authorizenet')" <?php if(get_setting('authorizenet') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -488,7 +488,7 @@
             <div class="card-body text-center">
                 <div class="clearfix">
                     <img class="float-left" src="{{ static_asset('assets/img/cards/cod.png') }}" height="30">
-                    <label class="aiz-switch aiz-switch-success mb-0 float-right">
+                    <label class="rit-switch rit-switch-success mb-0 float-right">
                         <input type="checkbox" onchange="updateSettings(this, 'cash_payment')" <?php if(get_setting('cash_payment') == 1) echo "checked";?>>
                         <span class="slider round"></span>
                     </label>
@@ -507,7 +507,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Facebook login')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'facebook_login')" <?php if(get_setting('facebook_login') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -523,7 +523,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Google login')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'google_login')" <?php if(get_setting('google_login') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -539,7 +539,7 @@
                 <h3 class="mb-0 h6 text-center">{{translate('Twitter login')}}</h3>
             </div>
             <div class="card-body text-center">
-                <label class="aiz-switch aiz-switch-success mb-0">
+                <label class="rit-switch rit-switch-success mb-0">
                     <input type="checkbox" onchange="updateSettings(this, 'twitter_login')" <?php if(get_setting('twitter_login') == 1) echo "checked";?>>
                     <span class="slider round"></span>
                 </label>
@@ -565,10 +565,10 @@
             
             $.post('{{ route('business_settings.update.activation') }}', {_token:'{{ csrf_token() }}', type:type, value:value}, function(data){
                 if(data == '1'){
-                    AIZ.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Settings updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', 'Something went wrong');
+                    RIT.plugins.notify('danger', 'Something went wrong');
                 }
             });
         }

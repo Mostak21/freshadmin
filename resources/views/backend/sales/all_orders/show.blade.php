@@ -21,7 +21,7 @@
                 <div class="col-md-3 ml-auto">
                     <label for="assign_deliver_boy">{{translate('Assign Deliver Boy')}}</label>
                     @if($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up')
-                    <select class="form-control aiz-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_deliver_boy">
+                    <select class="form-control rit-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_deliver_boy">
                         <option value="">{{translate('Select Delivery Boy')}}</option>
                         @foreach($delivery_boys as $delivery_boy)
                         <option value="{{ $delivery_boy->id }}" @if($order->assign_delivery_boy == $delivery_boy->id) selected @endif>
@@ -39,7 +39,7 @@
                 <label for="assign_deliver_boy">{{translate('Assign Staff')}}</label>
 {{--                @if($delivery_status == 'pending' || $delivery_status == 'confirmed' || $delivery_status == 'picked_up')--}}
                 @if($order->assign_staff == null)
-                    <select class="form-control aiz-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_staff">
+                    <select class="form-control rit-selectpicker" data-live-search="true" data-minimum-results-for-search="Infinity" id="assign_staff">
                         <option value="">{{translate('Select Staff Name')}}</option>
 
                         @foreach($staffs as $staff)
@@ -61,7 +61,7 @@
 
                 <div class="pb-2">
                     <label for="update_payment_status">{{translate('Payment Status')}}</label>
-                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
+                    <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                         <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>Unpaid</option>
                         <option value="paid" @if ($payment_status == 'paid') selected @endif>Paid</option>
                         <option value="refund" @if ($payment_status == 'refund') selected @endif>Refund</option>
@@ -78,7 +78,7 @@
                 <div class="pb-2">
                     <label for="update_delivery_status">{{translate('Delivery Status')}}</label>
                     @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
-                        <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                        <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
                             <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
                             <option value="Pending" @if ($delivery_status == 'Pending') selected @endif>{{translate('Stock Confirm')}}</option>
                             <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
@@ -96,7 +96,7 @@
                 <div class="pb-4">
                     <label for="update_shipping_status">{{translate('Shipping Status')}}</label>
                     {{--                    @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')--}}
-                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_shipping_status">
+                    <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_shipping_status">
                         <option value="" @if ($shipping_status == '') selected @endif>{{translate('Pending')}}</option>
                         <option value="picked" @if ($shipping_status == 'picked') selected @endif>{{translate('Picked')}}</option>
                         <option value="at_hub" @if ($shipping_status == 'at_hub') selected @endif>{{translate('At Hub')}}</option>
@@ -130,7 +130,7 @@
                 @endif
             </div>
             <div class="col-md-4 ml-auto">
-                <table class="table table-bordered aiz-table">
+                <table class="table table-bordered rit-table">
                     <tbody>
                         <tr>
                             <td class="text-main text-bold">{{translate('Order #')}}</td>
@@ -169,7 +169,7 @@
         <hr class="new-section-sm bord-no">
         <div class="row">
             <div class="col-lg-12 table-responsive">
-                <table class="table table-bordered aiz-table invoice-summary">
+                <table class="table table-bordered rit-table invoice-summary">
                     <thead>
                         <tr class="bg-trans-dark">
                             <th data-breakpoints="lg" class="min-col">#</th>
@@ -317,7 +317,7 @@
                 order_id        :order_id,
                 delivery_boy    :delivery_boy
             }, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Delivery boy has been assigned') }}');
+                RIT.plugins.notify('success', '{{ translate('Delivery boy has been assigned') }}');
             });
         });
 
@@ -329,7 +329,7 @@
                 order_id    :order_id,
                 staff       :staff
             }, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Staff has been assigned') }}');
+                RIT.plugins.notify('success', '{{ translate('Staff has been assigned') }}');
             });
         });
 
@@ -341,7 +341,7 @@
                 order_id:order_id,
                 status:status
             }, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
             });
         });
 
@@ -350,7 +350,7 @@
             var status = $('#update_payment_status').val();
             $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
                 console.log(data);
-                AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             });
         });
 
@@ -360,7 +360,7 @@
             var status = $('#update_shipping_status').val();
             $.post('{{ route('orders.update_shipping_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
                 console.log(data);
-                AIZ.plugins.notify('success', '{{ translate('Shipping status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Shipping status has been updated') }}');
             });
         });
 

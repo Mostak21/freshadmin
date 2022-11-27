@@ -6,12 +6,12 @@
     <div class="row gutters-5">
         @foreach ($stocks as $key => $stock)
             <div class="col-lg-3 col-sm-6">
-                <label class="aiz-megabox d-block">
+                <label class="rit-megabox d-block">
                     <input type="radio" name="variant" value="{{ $stock->variant }}" @if ($stock->qty <= 0)
                         disabled
                     @endif>
-                    <span class="d-flex p-2 pad-all aiz-megabox-elem">
-                        <span class="aiz-rounded-check flex-shrink-0 @if ($stock->qty > 0)
+                    <span class="d-flex p-2 pad-all rit-megabox-elem">
+                        <span class="rit-rounded-check flex-shrink-0 @if ($stock->qty > 0)
                             mt-1
                         @endif"></span>
                         <span class="flex-grow-1 pad-lft pl-2">

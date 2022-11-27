@@ -31,7 +31,7 @@
                 Wholesale
             </span>
         @endif
-        <div class="absolute-top-right aiz-p-hov-icon">
+        <div class="absolute-top-right rit-p-hov-icon">
             <a href="javascript:void(0)" onclick="addToWishList({{ $product->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                 <i class="la la-heart-o"></i>
             </a>

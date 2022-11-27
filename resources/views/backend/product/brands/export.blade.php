@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="aiz-titlebar text-left mt-2 mb-3">
+    <div class="rit-titlebar text-left mt-2 mb-3">
         <div class="align-items-center">
             <span><a class="h6">All Brands</a></span>
             <span right style="float:right">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table aiz-table mb-0">
+                    <table class="table rit-table mb-0">
                         <thead>
                         <tr>
                             <th>#</th>
@@ -67,7 +67,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <div class="aiz-pagination">
+                    <div class="rit-pagination">
                         {{ $brands->appends(request()->input())->links() }}
                     </div>
                 </div>

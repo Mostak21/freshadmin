@@ -21,7 +21,7 @@
 {{--                    <div class="d-lg-none">--}}
 
 
-{{--                    <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="2" data-lg-items="2"  data-md-items="1" data-sm-items="1" data-xs-items="1" data-rows="8">--}}
+{{--                    <div class="rit-carousel gutters-10 half-outside-arrow" data-items="2" data-lg-items="2"  data-md-items="1" data-sm-items="1" data-xs-items="1" data-rows="8">--}}
 {{--                        @foreach ($best_selers as $key => $seller)--}}
 {{--                            @if ($seller->user != null)--}}
 {{--                                <div class="carousel-box">--}}
@@ -59,7 +59,7 @@
                     <div class="d-none d-lg-block">
 
 
-                    <div class="aiz-carousel gutters-10 half-outside-arrow" data-items="2" data-lg-items="2"  data-md-items="2" data-sm-items="2" data-xs-items="1" data-lg-rows="5" data-xs-rows="10" data-rows="5">
+                    <div class="rit-carousel gutters-10 half-outside-arrow" data-items="2" data-lg-items="2"  data-md-items="2" data-sm-items="2" data-xs-items="1" data-lg-rows="5" data-xs-rows="10" data-rows="5">
                         @foreach ($best_selers as $key => $seller)
                             @if ($seller->user != null)
                                 <div class="carousel-box py-2">

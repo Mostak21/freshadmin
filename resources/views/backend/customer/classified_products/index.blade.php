@@ -7,7 +7,7 @@
         <h5 class="mb-0 h6">{{translate('Classified Products')}}</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -34,7 +34,7 @@
                             @endif
                         </td>
                         <td>
-                            <label class="aiz-switch aiz-switch-success mb-0">
+                            <label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_published(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->published == 1) echo "checked";?> >
                                 <span class="slider round"></span>
                             </label>
@@ -51,7 +51,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $products->links() }}
         </div>
     </div>
@@ -74,10 +74,10 @@
             }
             $.post('{{ route('classified_products.published') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Published products updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

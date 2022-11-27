@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="row align-items-center">
 		<div class="col">
 			<h1 class="h3">{{ translate('Website Header') }}</h1>
@@ -35,7 +35,7 @@
                     <div class="form-group row">
 						<label class="col-md-3 col-from-label">{{translate('Show Language Switcher?')}}</label>
 						<div class="col-md-8">
-							<label class="aiz-switch aiz-switch-success mb-0">
+							<label class="rit-switch rit-switch-success mb-0">
 								<input type="hidden" name="types[]" value="show_language_switcher">
 								<input type="checkbox" name="show_language_switcher" @if( get_setting('show_language_switcher') == 'on') checked @endif>
 								<span></span>
@@ -45,7 +45,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-from-label">{{translate('Show Currency Switcher?')}}</label>
 						<div class="col-md-8">
-							<label class="aiz-switch aiz-switch-success mb-0">
+							<label class="rit-switch rit-switch-success mb-0">
 								<input type="hidden" name="types[]" value="show_currency_switcher">
 								<input type="checkbox" name="show_currency_switcher" @if( get_setting('show_currency_switcher') == 'on') checked @endif>
 								<span></span>
@@ -55,7 +55,7 @@
 	                <div class="form-group row">
 						<label class="col-md-3 col-from-label">{{translate('Enable stikcy header?')}}</label>
 						<div class="col-md-8">
-							<label class="aiz-switch aiz-switch-success mb-0">
+							<label class="rit-switch rit-switch-success mb-0">
 								<input type="hidden" name="types[]" value="header_stikcy">
 								<input type="checkbox" name="header_stikcy" @if( get_setting('header_stikcy') == 'on') checked @endif>
 								<span></span>

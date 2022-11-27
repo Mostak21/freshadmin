@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('content')
-	<div class="aiz-titlebar text-left mt-2 mb-3">
+	<div class="rit-titlebar text-left mt-2 mb-3">
 	    <h5 class="mb-0 h5">{{translate('Edit Digital Product')}}</h5>
 	</div>
 	<div class="row">
@@ -39,7 +39,7 @@
 						<div class="form-group row" id="category">
 							<label class="col-lg-2 col-from-label">{{translate('Category')}}</label>
 							<div class="col-lg-8">
-								<select class="form-control aiz-selectpicker" name="category_id" id="category_id" data-selected="{{ $product->category_id }}" required>
+								<select class="form-control rit-selectpicker" name="category_id" id="category_id" data-selected="{{ $product->category_id }}" required>
 		                            @foreach ($categories as $category)
 		                                <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
 		                                @foreach ($category->childrenCategories as $childCategory)
@@ -66,7 +66,7 @@
 						<div class="form-group row">
 							<label class="col-lg-2 col-from-label">{{translate('Tags')}}</label>
 							<div class="col-lg-8">
-								<input type="text" class="form-control aiz-tag-input" name="tags[]" id="tags" value="{{ $product->tags }}" placeholder="{{ translate('Type to add a tag') }}">
+								<input type="text" class="form-control rit-tag-input" name="tags[]" id="tags" value="{{ $product->tags }}" placeholder="{{ translate('Type to add a tag') }}">
 							</div>
 						</div>
 					</div>
@@ -169,7 +169,7 @@
 								<input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('tax')}}" name="tax" class="form-control" value="{{$product->tax}}" required>
 							</div>
 							<div class="col-md-2">
-								<select class="form-control aiz-selectpicker" name="tax_type" required>
+								<select class="form-control rit-selectpicker" name="tax_type" required>
 									<option value="amount" <?php if($product->tax_type == 'amount') echo "selected";?> >{{translate('Flat')}}</option>
 									<option value="percent" <?php if($product->tax_type == 'percent') echo "selected";?> >{{translate('Percent')}}</option>
 								</select>
@@ -184,7 +184,7 @@
                         <div class="form-group row">
                             <label class="col-sm-3 col-from-label" for="start_date">{{translate('Discount Date Range')}}</label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control aiz-date-range" value="{{ $start_date.' to '.$end_date }}" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
+                              <input type="text" class="form-control rit-date-range" value="{{ $start_date.' to '.$end_date }}" name="date_range" placeholder="{{translate('Select Date')}}" data-time-picker="true" data-format="DD-MM-Y HH:mm:ss" data-separator=" to " autocomplete="off">
                             </div>
                         </div>
 
@@ -194,7 +194,7 @@
 								<input type="number" lang="en" min="0" step="0.01" placeholder="{{translate('Discount')}}" name="discount" class="form-control" value="{{ $product->discount }}" required>
 							</div>
 							<div class="col-lg-2">
-								<select class="form-control aiz-selectpicker" name="discount_type" required>
+								<select class="form-control rit-selectpicker" name="discount_type" required>
 									<option value="amount" <?php if($product->discount_type == 'amount') echo "selected";?> >{{translate('Flat')}}</option>
 									<option value="percent" <?php if($product->discount_type == 'percent') echo "selected";?> >{{translate('Percent')}}</option>
 								</select>
@@ -210,7 +210,7 @@
 						<div class="form-group row">
 							<label class="col-lg-2 col-from-label">{{translate('Description')}}</label>
 							<div class="col-lg-9">
-								<textarea class="aiz-text-editor" name="description">{{ $product->getTranslation('description', $lang) }}</textarea>
+								<textarea class="rit-text-editor" name="description">{{ $product->getTranslation('description', $lang) }}</textarea>
 							</div>
 						</div>
 					</div>

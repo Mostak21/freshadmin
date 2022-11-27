@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div class="mb-3">
-                                    <select class="form-control aiz-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
+                                    <select class="form-control rit-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country') }}" name="country_id" required>
                                         <option value="">{{ translate('Select your country') }}</option>
                                         @foreach (\App\Models\Country::where('status', 1)->get() as $key => $country)
                                             <option value="{{ $country->id }}" selected>
@@ -53,7 +53,7 @@
                                 <label>{{ translate('District')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker" data-live-search="true" name="state_id" required>
+                                <select class="form-control mb-3 rit-selectpicker" data-live-search="true" name="state_id" required>
 
                                 </select>
                             </div>
@@ -64,7 +64,7 @@
                                 <label>{{ translate('Area')}}</label>
                             </div>
                             <div class="col-md-10">
-                                <select class="form-control mb-3 aiz-selectpicker" data-live-search="true" name="city_id" required>
+                                <select class="form-control mb-3 rit-selectpicker" data-live-search="true" name="city_id" required>
 
                                 </select>
                             </div>
@@ -164,7 +164,7 @@
                 success: function (response) {
                     $('#edit_modal_body').html(response.html);
                     $('#edit-address-modal').modal('show');
-                    AIZ.plugins.bootstrapSelect('refresh');
+                    RIT.plugins.bootstrapSelect('refresh');
 
                     @if (get_setting('google_map') == 1)
                         var lat     = -33.8688;
@@ -211,7 +211,7 @@
                     var obj = JSON.parse(response);
                     if(obj != '') {
                         $('[name="state_id"]').html(obj);
-                        AIZ.plugins.bootstrapSelect('refresh');
+                        RIT.plugins.bootstrapSelect('refresh');
                     }
                 }
             });
@@ -238,7 +238,7 @@
                     var obj = JSON.parse(response);
                     if(obj != '') {
                         $('[name="city_id"]').html(obj);
-                        AIZ.plugins.bootstrapSelect('refresh');
+                        RIT.plugins.bootstrapSelect('refresh');
                     }
                 }
             });

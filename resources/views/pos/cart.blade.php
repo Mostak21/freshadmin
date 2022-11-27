@@ -1,4 +1,4 @@
-<div class="aiz-pos-cart-list mb-4 mt-3 c-scrollbar-light">
+<div class="rit-pos-cart-list mb-4 mt-3 c-scrollbar-light">
     @php
         $subtotal = 0;
         $tax = 0;
@@ -14,7 +14,7 @@
             <li class="list-group-item py-0 pl-2">
                 <div class="row gutters-5 align-items-center">
                     <div class="col-auto w-60px">
-                        <div class="row no-gutters align-items-center flex-column aiz-plus-minus">
+                        <div class="row no-gutters align-items-center flex-column rit-plus-minus">
                             <button class="btn col-auto btn-icon btn-sm fs-15" type="button" data-type="plus" data-field="qty-{{ $key }}">
                                 <i class="las la-plus"></i>
                             </button>

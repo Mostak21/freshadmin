@@ -138,7 +138,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8 mx-auto">
-                <div class="row aiz-steps arrow-divider">
+                <div class="row rit-steps arrow-divider">
                     <div class="col active">
                         <div class="text-center text-primary">
                             <i class="la-3x mb-2 las la-shopping-cart"></i>
@@ -267,7 +267,7 @@
                                             </div>
                                             <div class="col-12 col-sm-3 col-md-3 d-flex justify-content-md-end justify-content-center">
 												<div class="row">
-                                                <div class="row no-gutters  align-items-center aiz-plus-minus mr-2 ml-0 " style="max-width: 100px">
+                                                <div class="row no-gutters  align-items-center rit-plus-minus mr-2 ml-0 " style="max-width: 100px">
                                                     @if(isset($product_stock) && $product_stock->qty !=0 && $product_stock->qty != null)
                                                     <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity[{{ $cartItem['id'] }}]">
                                                         <i class="las la-minus"></i>
@@ -322,7 +322,7 @@
 
                                             <div class="col-lg col-6 order-4 order-lg-0">
                                                 @if($cartItem['digital'] != 1 && $product->auction_product == 0)
-                                                    <div class="row no-gutters align-items-center aiz-plus-minus mr-2 ml-0">
+                                                    <div class="row no-gutters align-items-center rit-plus-minus mr-2 ml-0">
                                                         <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity[{{ $cartItem['id'] }}]">
                                                             <i class="las la-minus"></i>
                                                         </button>
@@ -500,10 +500,10 @@
 
 {{--                            <div class="row mb-2">--}}
 {{--                                <div class="col-6">--}}
-{{--                                    <label class="aiz-checkbox">--}}
+{{--                                    <label class="rit-checkbox">--}}
 {{--                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>--}}
 {{--                                        <span class=opacity-60>{{  translate('Remember Me') }}</span>--}}
-{{--                                        <span class="aiz-square-check"></span>--}}
+{{--                                        <span class="rit-square-check"></span>--}}
 {{--                                    </label>--}}
 {{--                                </div>--}}
 {{--                                <div class="col-6 text-right">--}}
@@ -580,7 +580,7 @@
 
         function guestLogin(){
             $.post('{{ route('cart.login.guest') }}', {
-                _token   :  AIZ.data.csrf,
+                _token   :  RIT.data.csrf,
                 // id       :  key,
                 email :  document.getElementById("email").value
             }, function(data){
@@ -630,7 +630,7 @@
 
         function updateQuantity(key, element){
             $.post('{{ route('cart.updateQuantity') }}', {
-                _token   :  AIZ.data.csrf,
+                _token   :  RIT.data.csrf,
                 id       :  key,
                 quantity :  element.value
             }, function(data){

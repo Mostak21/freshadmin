@@ -13,7 +13,7 @@
                 <div class="form-group row">
                     <label class="col-lg-3 col-from-label" for="name">{{translate('Coupon Type')}}</label>
                     <div class="col-lg-9">
-                        <select name="coupon_type" id="coupon_type" class="form-control aiz-selectpicker" onchange="coupon_form()" required>
+                        <select name="coupon_type" id="coupon_type" class="form-control rit-selectpicker" onchange="coupon_form()" required>
                             <option value="">{{translate('Select One') }}</option>
                             <option value="product_base">{{translate('For Products')}}</option>
                             <option value="cart_base">{{translate('For Total Orders')}}</option>

@@ -38,7 +38,7 @@
              <div class="col-md-7 pl-lg-4" >
      
      
-                 <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                 <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                      @foreach ($perfumeproducts->chunk(6) as $key => $chunk)
                          <div class="carousel-box  px-1">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
@@ -89,7 +89,7 @@
              <div class=" col-md-7 order-2 order-lg-1 pr-lg-4  prl-sm-0" >
      
      
-                 <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                 <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                      @foreach ($womensproducts->chunk(6) as $key => $chunk)
                          <div class="carousel-box pb-3 ">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
@@ -162,7 +162,7 @@
              <div class="col-md-7 pl-lg-4" >
      
      
-                 <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                 <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                      @foreach ($kidsproducts->chunk(6) as $key => $chunk)
                          <div class="carousel-box  px-1">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
@@ -208,7 +208,7 @@
              <div class=" col-md-7 order-2 order-lg-1 pr-lg-4  prl-sm-0" >
      
      
-                 <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                 <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                      @foreach ($gadgetproducts->chunk(6) as $key => $chunk)
                          <div class="carousel-box pb-3 ">
                              <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">

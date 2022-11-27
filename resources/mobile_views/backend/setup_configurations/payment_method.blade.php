@@ -35,7 +35,7 @@
                                 <label class="col-from-label">{{translate('Paypal Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="paypal_sandbox" type="checkbox" @if (get_setting('paypal_sandbox') == 1)
                                         checked
                                     @endif>
@@ -136,7 +136,7 @@
                                 <label class="col-from-label">{{translate('Bkash Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="bkash_sandbox" type="checkbox" @if (get_setting('bkash_sandbox') == 1)
                                         checked
                                     @endif>
@@ -246,7 +246,7 @@
                                 <label class="col-from-label">{{translate('Sslcommerz Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="sslcommerz_sandbox" type="checkbox" @if (get_setting('sslcommerz_sandbox') == 1)
                                         checked
                                     @endif>
@@ -294,7 +294,7 @@
                                 <label class="col-from-label">{{translate('Aamarpay Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="aamarpay_sandbox" type="checkbox" @if (get_setting('aamarpay_sandbox') == 1)
                                         checked
                                     @endif>
@@ -343,7 +343,7 @@
                                 <label class="col-from-label">{{translate('IYZICO Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="iyzico_sandbox" type="checkbox" @if (get_setting('iyzico_sandbox') == 1)
                                         checked
                                     @endif>
@@ -392,7 +392,7 @@
                                 <label class="col-from-label">{{translate('Instamojo Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="instamojo_sandbox" type="checkbox" @if (get_setting('instamojo_sandbox') == 1)
                                         checked
                                     @endif>
@@ -502,7 +502,7 @@
                                 <label class="col-from-label">{{translate('Payhere Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="payhere_sandbox" type="checkbox" @if (get_setting('payhere_sandbox') == 1)
                                         checked
                                     @endif>
@@ -618,7 +618,7 @@
                             </div>
                             <div class="col-md-8">
 
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="proxypay_sandbox" type="checkbox" @if (get_setting('proxypay_sandbox') == 1) checked @endif>
                                     <span class="slider round"></span>
                                 </label>
@@ -656,7 +656,7 @@
                                 <label class="col-from-label">{{translate('Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="voguepay_sandbox" type="checkbox" @if (get_setting('voguepay_sandbox') == 1)
                                         checked
                                     @endif>
@@ -740,7 +740,7 @@
                                 <label class="col-from-label">{{translate('Authorize Net Sandbox Mode')}}</label>
                             </div>
                             <div class="col-md-8">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="authorizenet_sandbox" type="checkbox" @if (get_setting('authorizenet_sandbox') == 1)
                                         checked
                                     @endif>

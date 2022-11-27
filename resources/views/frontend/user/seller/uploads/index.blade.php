@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="row align-items-center">
 		<div class="col-md-6">
 			<h1 class="h3">{{translate('All uploaded files')}}</h1>
@@ -21,7 +21,7 @@
                 <h5 class="mb-0 h6">{{translate('All files')}}</h5>
             </div>
             <div class="col-md-3 ml-auto mr-0">
-                <select class="form-control form-control-xs aiz-selectpicker" name="sort" onchange="sort_uploads()">
+                <select class="form-control form-control-xs rit-selectpicker" name="sort" onchange="sort_uploads()">
                     <option value="newest" @if($sort_by == 'newest') selected="" @endif>{{ translate('Sort by newest') }}</option>
                     <option value="oldest" @if($sort_by == 'oldest') selected="" @endif>{{ translate('Sort by oldest') }}</option>
                     <option value="smallest" @if($sort_by == 'smallest') selected="" @endif>{{ translate('Sort by smallest') }}</option>
@@ -47,7 +47,7 @@
 	    			}
     			@endphp
     			<div class="col-auto w-140px w-lg-220px">
-    				<div class="aiz-file-box">
+    				<div class="rit-file-box">
     					<div class="dropdown-file" >
     						<a class="dropdown-link" data-toggle="dropdown">
     							<i class="la la-ellipsis-v"></i>
@@ -71,7 +71,7 @@
     							</a>
     						</div>
     					</div>
-    					<div class="card card-file aiz-uploader-select c-default" title="{{ $file_name }}.{{ $file->extension }}">
+    					<div class="card card-file rit-uploader-select c-default" title="{{ $file_name }}.{{ $file->extension }}">
     						<div class="card-file-thumb">
     							@if($file->type == 'image')
     								<img src="{{ my_asset($file->file_name) }}" class="img-fit">
@@ -93,7 +93,7 @@
     			</div>
     		@endforeach
     	</div>
-		<div class="aiz-pagination mt-3">
+		<div class="rit-pagination mt-3">
 			{{ $all_uploads->appends(request()->input())->links() }}
 		</div>
     </div>
@@ -139,7 +139,7 @@
             $('#info-modal-content').html('<div class="c-preloader text-center absolute-center"><i class="las la-spinner la-spin la-3x opacity-70"></i></div>');
 			var id = $(e).data('id')
 			$('#info-modal').modal('show');
-			$.post('{{ route('my_uploads.info') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+			$.post('{{ route('my_uploads.info') }}', {_token: RIT.data.csrf, id:id}, function(data){
                 $('#info-modal-content').html(data);
 				// console.log(data);
 			});
@@ -151,9 +151,9 @@
 		    $temp.val(url).select();
 		    try {
 			    document.execCommand("copy");
-			    AIZ.plugins.notify('success', '{{ translate('Link copied to clipboard') }}');
+			    RIT.plugins.notify('success', '{{ translate('Link copied to clipboard') }}');
 			} catch (err) {
-			    AIZ.plugins.notify('danger', '{{ translate('Oops, unable to copy') }}');
+			    RIT.plugins.notify('danger', '{{ translate('Oops, unable to copy') }}');
 			}
 		    $temp.remove();
 		}

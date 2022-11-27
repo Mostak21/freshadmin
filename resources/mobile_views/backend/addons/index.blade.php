@@ -5,7 +5,7 @@
     <div class="">
         <div class="row ">
             <div class="col-md-6">
-                <div class="nav border-bottom aiz-nav-tabs">
+                <div class="nav border-bottom rit-nav-tabs">
                     <a class="p-3 fs-16 text-reset show active" data-toggle="tab" href="#installed">{{ translate('Installed Addon')}}</a>
                     <a class="p-3 fs-16 text-reset" data-toggle="tab" href="#available">{{ translate('Available Addon')}}</a>
                 </div>
@@ -39,7 +39,7 @@
                                                 </div>
                                             @endif
                                             <div class="ml-auto mr-0">
-                                                <label class="aiz-switch mb-0">
+                                                <label class="rit-switch mb-0">
                                                     <input type="checkbox" onchange="updateStatus(this, {{ $addon->id }})" <?php if($addon->activated) echo "checked";?>>
                                                     <span></span>
                                                 </label>
@@ -83,10 +83,10 @@
             }
             $.post('{{ route('addons.activation') }}', {_token:'{{ csrf_token() }}', id:id, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Status updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Status updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

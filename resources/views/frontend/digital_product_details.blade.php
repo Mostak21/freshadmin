@@ -45,7 +45,7 @@
                                     $photos = explode(',',$detailedProduct->photos);
                                 @endphp
                                 <div class="col">
-                                    <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true'>
+                                    <div class="rit-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true'>
                                         @foreach ($photos as $key => $photo)
                                         <div class="carousel-box img-zoom rounded">
                                             <img
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="col-auto w-90px">
-                                    <div class="aiz-carousel carousel-thumb product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-focus-select='true'>
+                                    <div class="rit-carousel carousel-thumb product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-focus-select='true'>
                                         @foreach ($photos as $key => $photo)
                                         <div class="carousel-box c-pointer border p-1 rounded">
                                             <img
@@ -305,7 +305,7 @@
                                     <div class="opacity-50 mt-2">{{ translate('Share')}}:</div>
                                 </div>
                                 <div class="col-10">
-                                    <div class="aiz-share"></div>
+                                    <div class="rit-share"></div>
                                 </div>
                             </div>
                         </div>
@@ -425,7 +425,7 @@
                 </div>
                 <div class="col-xl-9">
                     <div class="bg-white mb-3 shadow-sm rounded">
-                        <div class="nav border-bottom aiz-nav-tabs">
+                        <div class="nav border-bottom rit-nav-tabs">
                             <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>
                             @if($detailedProduct->video_link != null)
                                 <a href="#tab_default_2" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Video')}}</a>
@@ -597,10 +597,10 @@
                             </h3>
                         </div>
                         <div class="p-3">
-                            <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
+                            <div class="rit-carousel gutters-5 half-outside-arrow" data-items="5" data-xl-items="3" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
                                 @foreach (filter_products(\App\Models\Product::where('category_id', $detailedProduct->category_id)->where('id', '!=', $detailedProduct->id))->limit(10)->get() as $key => $related_product)
                                 <div class="carousel-box">
-                                    <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
+                                    <div class="rit-card-box border border-light rounded hov-shadow-md my-2 has-transition">
                                         <div class="">
                                             <a href="{{ route('product', $related_product->slug) }}" class="d-block">
                                                 <img
@@ -706,10 +706,10 @@
 
                             <div class="row mb-2">
                                 <div class="col-6">
-                                    <label class="aiz-checkbox">
+                                    <label class="rit-checkbox">
                                         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <span class=opacity-60>{{  translate('Remember Me') }}</span>
-                                        <span class="aiz-square-check"></span>
+                                        <span class="rit-square-check"></span>
                                     </label>
                                 </div>
                                 <div class="col-6 text-right">

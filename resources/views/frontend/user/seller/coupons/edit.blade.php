@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 @section('panel_content')
 
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1 class="h3">{{ translate('Edit Your Coupon') }}</h1>
@@ -23,7 +23,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-from-label" for="name">{{translate('Coupon Type')}}</label>
                             <div class="col-lg-9">
-                                <select name="coupon_type" id="coupon_type" class="form-control aiz-selectpicker" onchange="coupon_form()" required>
+                                <select name="coupon_type" id="coupon_type" class="form-control rit-selectpicker" onchange="coupon_form()" required>
                                     @if ($coupon->type == "product_base"))
                                         <option value="product_base" selected>{{translate('For Products')}}</option>
                                     @elseif ($coupon->type == "cart_base")

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
       <div class="row align-items-center">
         <div class="col-md-6">
             <h1 class="h3">{{ translate('Products') }}</h1>
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -76,7 +76,7 @@
                         <td>{{ $key+1 }}</td>
                         <td><a href="{{ route('customer.product', $product->slug) }}">{{ $product->name }}</a></td>
                         <td>{{ single_price($product->unit_price) }}</td>
-                        <td><label class="aiz-switch aiz-switch-success mb-0">
+                        <td><label class="rit-switch rit-switch-success mb-0">
                             <input onchange="update_status(this)" value="{{ $product->id }}" type="checkbox" <?php if($product->status == 1) echo "checked";?> >
                             <span class="slider round"></span></label>
                         </td>
@@ -102,7 +102,7 @@
                 @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $products->links() }}
           	</div>
         </div>
@@ -125,10 +125,10 @@
             }
             $.post('{{ route('customer_products.update.status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Status has been updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Status has been updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

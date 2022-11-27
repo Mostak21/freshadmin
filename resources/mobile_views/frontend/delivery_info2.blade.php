@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-8 mx-auto">
-                <div class="row aiz-steps arrow-divider">
+                <div class="row rit-steps arrow-divider">
                     <div class="col done">
                         <div class="text-center text-success">
                             <i class="la-3x mb-2 las la-shopping-cart"></i>
@@ -100,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="row gutters-5">
                                         <div class="col-6">
-                                            <label class="aiz-megabox d-block bg-white mb-0">
+                                            <label class="rit-megabox d-block bg-white mb-0">
                                                 <input
                                                     type="radio"
                                                     name="shipping_type_{{ \App\User::where('user_type', 'admin')->first()->id }}"
@@ -109,15 +109,15 @@
                                                     data-target=".pickup_point_id_admin"
                                                     checked
                                                 >
-                                                <span class="d-flex p-3 aiz-megabox-elem">
-                                                    <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                <span class="d-flex p-3 rit-megabox-elem">
+                                                    <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                     <span class="flex-grow-1 pl-3 fw-600">{{  translate('Home Delivery') }}</span>
                                                 </span>
                                             </label>
                                         </div> {{--
                                         @if (\App\BusinessSetting::where('type', 'pickup_point')->first()->value == 1)
                                         <div class="col-6">
-                                            <label class="aiz-megabox d-block bg-white mb-0">
+                                            <label class="rit-megabox d-block bg-white mb-0">
                                                 <input
                                                     type="radio"
                                                     name="shipping_type_{{ \App\User::where('user_type', 'admin')->first()->id }}"
@@ -125,8 +125,8 @@
                                                     onchange="show_pickup_point(this)"
                                                     data-target=".pickup_point_id_admin"
                                                 >
-                                                <span class="d-flex p-3 aiz-megabox-elem">
-                                                    <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                <span class="d-flex p-3 rit-megabox-elem">
+                                                    <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                     <span class="flex-grow-1 pl-3 fw-600">{{  translate('Local Pickup') }}</span>
                                                 </span>
                                             </label>
@@ -135,7 +135,7 @@
                                     </div>
                                     <div class="mt-4 pickup_point_id_admin d-none">
                                         <select
-                                            class="form-control aiz-selectpicker"
+                                            class="form-control rit-selectpicker"
                                             name="pickup_point_id_{{ \App\User::where('user_type', 'admin')->first()->id }}"
                                             data-live-search="true"
                                         >
@@ -203,7 +203,7 @@
                                         <div class="col-md-6">
                                             <div class="row gutters-5">
                                                 <div class="col-6">
-                                                    <label class="aiz-megabox d-block bg-white mb-0">
+                                                    <label class="rit-megabox d-block bg-white mb-0">
                                                         <input
                                                             type="radio"
                                                             name="shipping_type_{{ $key }}"
@@ -212,8 +212,8 @@
                                                             data-target=".pickup_point_id_{{ $key }}"
                                                             checked
                                                         >
-                                                        <span class="d-flex p-3 aiz-megabox-elem">
-                                                            <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                        <span class="d-flex p-3 rit-megabox-elem">
+                                                            <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                             <span class="flex-grow-1 pl-3 fw-600">{{  translate('Home Delivery') }}</span>
                                                         </span>
                                                     </label>
@@ -221,7 +221,7 @@
                                                 @if (\App\BusinessSetting::where('type', 'pickup_point')->first()->value == 1)
                                                     @if (is_array(json_decode(\App\Shop::where('user_id', $key)->first()->pick_up_point_id)))
                                                     <div class="col-6">
-                                                        <label class="aiz-megabox d-block bg-white mb-0">
+                                                        <label class="rit-megabox d-block bg-white mb-0">
                                                             <input
                                                                 type="radio"
                                                                 name="shipping_type_{{ $key }}"
@@ -229,8 +229,8 @@
                                                                 onchange="show_pickup_point(this)"
                                                                 data-target=".pickup_point_id_{{ $key }}"
                                                             >
-                                                            <span class="d-flex p-3 aiz-megabox-elem">
-                                                                <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+                                                            <span class="d-flex p-3 rit-megabox-elem">
+                                                                <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                                                                 <span class="flex-grow-1 pl-3 fw-600">{{  translate('Local Pickup') }}</span>
                                                             </span>
                                                         </label>
@@ -242,7 +242,7 @@
                                                 @if (is_array(json_decode(\App\Shop::where('user_id', $key)->first()->pick_up_point_id)))
                                                 <div class="mt-4 pickup_point_id_{{ $key }} d-none">
                                                     <select
-                                                        class="form-control aiz-selectpicker"
+                                                        class="form-control rit-selectpicker"
                                                         name="pickup_point_id_{{ $key }}"
                                                         data-live-search="true"
                                                     >

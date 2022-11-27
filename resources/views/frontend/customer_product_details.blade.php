@@ -37,7 +37,7 @@
                                     $photos = explode(',',$customer_product->photos);
                                 @endphp
                                 <div class="col order-1 order-md-2">
-                                    <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true'>
+                                    <div class="rit-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true'>
                                         @foreach ($photos as $key => $photo)
                                         <div class="carousel-box img-zoom rounded">
                                             <img
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto w-md-80px order-2 order-md-1 mt-3 mt-md-0">
-                                    <div class="aiz-carousel product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-vertical-sm='false' data-focus-select='true'>
+                                    <div class="rit-carousel product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-vertical-sm='false' data-focus-select='true'>
                                         @foreach ($photos as $key => $photo)
                                         <div class="carousel-box c-pointer border p-1 rounded">
                                             <img
@@ -132,7 +132,7 @@
                                     <div class="opacity-50 mt-2">{{ translate('Share')}}:</div>
                                 </div>
                                 <div class="col-10">
-                                    <div class="aiz-share"></div>
+                                    <div class="rit-share"></div>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
     <section class="mb-4">
         <div class="container">
             <div class="bg-white mb-3 shadow-sm rounded">
-                <div class="nav border-bottom aiz-nav-tabs">
+                <div class="nav border-bottom rit-nav-tabs">
                     <a href="#tab_default_1" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset active show">{{ translate('Description')}}</a>
                     @if($customer_product->video_link != null)
                         <a href="#tab_default_2" data-toggle="tab" class="p-3 fs-16 fw-600 text-reset">{{ translate('Video')}}</a>
@@ -196,13 +196,13 @@
                     <a href="{{ route('customer_products.category', $customer_product->category->slug) }}" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">{{ translate('View More') }}</a>
                 </div>
                 <div class="p-3">
-                    <div class="aiz-carousel gutters-5 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
+                    <div class="rit-carousel gutters-5 half-outside-arrow" data-items="6" data-xl-items="5" data-lg-items="4"  data-md-items="3" data-sm-items="2" data-xs-items="2" data-arrows='true' data-infinite='true'>
                         @php
                             $products = \App\Models\CustomerProduct::where('category_id', $customer_product->category_id)->where('id', '!=', $customer_product->id)->where('status', '1')->where('published', '1')->limit(10)->get();
                         @endphp
                         @foreach ($products as $key => $product)
                         <div class="carousel-box">
-                            <div class="aiz-card-box border border-light rounded hov-shadow-md my-2 has-transition">
+                            <div class="rit-card-box border border-light rounded hov-shadow-md my-2 has-transition">
                                 <div class="position-relative">
                                     <a href="{{ route('customer.product', $product->slug) }}" class="d-block">
                                         <img

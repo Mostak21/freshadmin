@@ -45,7 +45,7 @@
 {{--                    section poster end --}}
 {{--            product section 1 start--}}
             <div class="col-md-7 pl-lg-4">
-                <div class="aiz-carousel dots-inside-bottom slick-initialized slick-slider" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                <div class="rit-carousel dots-inside-bottom slick-initialized slick-slider" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                     @if($section_data)
                                     <div class="carousel-box  px-1">
                                         <div class="row gutters-5 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-3 row-cols-md-3 row-cols-2 pb-lg-5">
@@ -83,7 +83,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[0]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -159,7 +159,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[1]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -235,7 +235,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[2]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -311,7 +311,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[3]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -387,7 +387,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[4]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -463,7 +463,7 @@
                 Wholesale
             </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[5]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -542,7 +542,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[6]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -617,7 +617,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[7]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -692,7 +692,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[8]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -767,7 +767,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[9]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -842,7 +842,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[10]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>
@@ -917,7 +917,7 @@
                   Wholesale
               </span>
                                                         @endif
-                                                        <div class="absolute-top-right aiz-p-hov-icon">
+                                                        <div class="absolute-top-right rit-p-hov-icon">
                                                             <a href="javascript:void(0)" onclick="addToWishList({{ $section_data->products[11]->id }});" data-toggle="tooltip" data-title="Add to wishlist" data-placement="left">
                                                                 <i class="la la-heart-o"></i>
                                                             </a>

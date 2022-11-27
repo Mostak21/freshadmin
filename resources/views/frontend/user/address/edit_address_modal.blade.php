@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-10">
                 <div class="mb-3">
-                    <select class="form-control aiz-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country')}}" name="country" id="edit_country" required>
+                    <select class="form-control rit-selectpicker" data-live-search="true" data-placeholder="{{ translate('Select your country')}}" name="country" id="edit_country" required>
                         @foreach (\App\Country::where('status', 1)->get() as $key => $country)
                         <option value="{{ $country->name }}" @if($address_data->country == $country->name) selected @endif>
                             {{ $country->name }}
@@ -31,7 +31,7 @@
                 <label>{{ translate('City')}}</label>
             </div>
             <div class="col-md-10">
-                <select class="form-control mb-3 aiz-selectpicker" data-live-search="true" name="city" required>
+                <select class="form-control mb-3 rit-selectpicker" data-live-search="true" name="city" required>
 
                 </select>
             </div>

@@ -1,5 +1,5 @@
 @if (get_setting('home_slider_images') != null)
-    <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height rounded-slider" data-dots="true" data-autoplay="true">
+    <div class="rit-carousel dots-inside-bottom mobile-img-auto-height rounded-slider" data-dots="true" data-autoplay="true">
         @php
             //$slider_images = json_decode(get_setting('home_slider_images'), true);
             $featured_categories = Cache::get('featured_categories')??null;

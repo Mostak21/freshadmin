@@ -18,7 +18,7 @@
                 <input type="hidden" name="ticket_id" value="{{$ticket->id}}" required>
                 <input type="hidden" name="user_id" value="{{$ticket->user_id}}">
                 <div class="form-group">
-                    <textarea class="aiz-text-editor" name="reply" data-buttons='[["font", ["bold", "underline", "italic"]],["para", ["ul", "ol"]],["view", ["undo","redo"]]]' required></textarea>
+                    <textarea class="rit-text-editor" name="reply" data-buttons='[["font", ["bold", "underline", "italic"]],["para", ["ul", "ol"]],["view", ["undo","redo"]]]' required></textarea>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-12">

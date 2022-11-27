@@ -4,7 +4,7 @@
 {{-- slider start--}}
 <div id="sliderimages">
     @if (get_setting('home_slider_images') != null)
-        <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-dots="true" data-autoplay="true">
+        <div class="rit-carousel dots-inside-bottom mobile-img-auto-height" data-dots="true" data-autoplay="true">
             @php
                 $slider_images = Cache::get('home_slider_images')??null;
             @endphp

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <h5 class="mb-0 h6">{{translate('City Information')}}</h5>
 </div>
 
@@ -31,7 +31,7 @@
 
                   <div class="form-group">
                       <label for="state_id">{{translate('State')}}</label>
-                      <select class="select2 form-control aiz-selectpicker" name="state_id" data-selected="{{ $city->state_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                      <select class="select2 form-control rit-selectpicker" name="state_id" data-selected="{{ $city->state_id }}" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                           @foreach ($states as $state)
                             <option value="{{ $state->id }}">{{ $state->name }}</option>
                           @endforeach
@@ -73,7 +73,7 @@
                   @csrf
                   <div class="row">
                       <div class="col-2 col-sm-1 text-left">
-                          <label class="aiz-switch aiz-switch-success ">
+                          <label class="rit-switch rit-switch-success ">
                               <input onchange="update_status(this)" data-city="{{$city->id}}" value="{{ $cost->id??'' }}" name="{{$agent->id??''}}" type="checkbox" {{$cost_status??''}} {{ $cost->id??'checked' }}>
                               <span class="slider round"></span>
                           </label>
@@ -122,12 +122,12 @@
             }
             $.post('{{ route('deliverycost.status') }}', {_token:'{{ csrf_token() }}', id:el.value, agent:el.name, city:el.dataset.city, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Shipping Agent status updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Shipping Agent status updated successfully') }}');
                     el.value = data[1];
                     console.log(data);
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                     console.log(data);
                 }
             });

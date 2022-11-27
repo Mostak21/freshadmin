@@ -21,7 +21,7 @@
 
             <div class="col-md-3 ml-auto">
                 <label for=update_payment_status"">{{translate('Payment Status')}}</label>
-                <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
+                <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                     <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>{{translate('Unpaid')}}</option>
                     <option value="paid" @if ($payment_status == 'paid') selected @endif>{{translate('Paid')}}</option>
                     @if ($payment_status == 'partial')
@@ -32,7 +32,7 @@
             <div class="col-md-3 ml-auto">
                 <label for=update_delivery_status"">{{translate('Delivery Status')}}</label>
                 @if($delivery_status != 'delivered' && $delivery_status != 'cancelled')
-                    <select class="form-control aiz-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
+                    <select class="form-control rit-selectpicker"  data-minimum-results-for-search="Infinity" id="update_delivery_status">
                         <option value="pending" @if ($delivery_status == 'pending') selected @endif>{{translate('Pending')}}</option>
                         <option value="confirmed" @if ($delivery_status == 'confirmed') selected @endif>{{translate('Confirmed')}}</option>
                         <option value="picked_up" @if ($delivery_status == 'picked_up') selected @endif>{{translate('Picked Up')}}</option>
@@ -65,7 +65,7 @@
                     @endif
                 </div>
                 <div class="col-md-4 ml-auto">
-                  <table class="table table-bordered aiz-table">
+                  <table class="table table-bordered rit-table">
                       <tbody>
                         <tr>
                             <td class="text-main text-bold">{{translate('Order #')}}</td>
@@ -112,7 +112,7 @@
     		</div>
     		<hr class="new-section-sm bord-no">
     		<div class="">
-    				<table class="table table-bordered aiz-table">
+    				<table class="table table-bordered rit-table">
         				<thead>
             				<tr class="bg-trans-dark">
                         <th data-breakpoints="lg" class="min-col">#</th>
@@ -223,7 +223,7 @@
             var order_id = {{ $order->id }};
             var status = $('#update_delivery_status').val();
             $.post('{{ route('orders.update_delivery_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Delivery status has been updated') }}');
             });
         });
 
@@ -231,7 +231,7 @@
             var order_id = {{ $order->id }};
             var status = $('#update_payment_status').val();
             $.post('{{ route('orders.update_payment_status') }}', {_token:'{{ @csrf_token() }}',order_id:order_id,status:status}, function(data){
-                AIZ.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
+                RIT.plugins.notify('success', '{{ translate('Payment status has been updated') }}');
             });
         });
     </script>

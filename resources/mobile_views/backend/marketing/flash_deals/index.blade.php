@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="row align-items-center">
 		<div class="col-md-6">
 			<h1 class="h3">{{translate('All Flash Deals')}}</h1>
@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="card-body">
-        <table class="table aiz-table mb-0" >
+        <table class="table rit-table mb-0" >
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -52,13 +52,13 @@
                         <td>{{ date('d-m-Y H:i:s', $flash_deal->start_date) }}</td>
                         <td>{{ date('d-m-Y H:i:s', $flash_deal->end_date) }}</td>
                         <td>
-							<label class="aiz-switch aiz-switch-success mb-0">
+							<label class="rit-switch rit-switch-success mb-0">
 								<input onchange="update_flash_deal_status(this)" value="{{ $flash_deal->id }}" type="checkbox" <?php if($flash_deal->status == 1) echo "checked";?> >
 								<span class="slider round"></span>
 							</label>
 						</td>
 						<td>
-							<label class="aiz-switch aiz-switch-success mb-0">
+							<label class="rit-switch rit-switch-success mb-0">
 								<input onchange="update_flash_deal_feature(this)" value="{{ $flash_deal->id }}" type="checkbox" <?php if($flash_deal->featured == 1) echo "checked";?> >
 								<span class="slider round"></span>
 							</label>
@@ -104,7 +104,7 @@
                     location.reload();
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }
@@ -120,7 +120,7 @@
                     location.reload();
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

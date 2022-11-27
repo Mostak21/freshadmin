@@ -1,9 +1,9 @@
 <div class="">
     @foreach (\App\Address::where('user_id',$user_id)->get() as $key => $address)
-        <label class="aiz-megabox d-block bg-white" style="display:block">
+        <label class="rit-megabox d-block bg-white" style="display:block">
             <input type="radio" name="address_id" value="{{ $address->id }}" @if ($address->set_default) checked @endif required>
-            <span class="d-flex p-3 pad-all aiz-megabox-elem">
-                <span class="aiz-rounded-check flex-shrink-0 mt-1"></span>
+            <span class="d-flex p-3 pad-all rit-megabox-elem">
+                <span class="rit-rounded-check flex-shrink-0 mt-1"></span>
                 <span class="flex-grow-1 pl-3 pad-lft">
                     <div>
                         <span class="alpha-6">{{ translate('Address') }}:</span>

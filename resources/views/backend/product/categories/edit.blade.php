@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <h5 class="mb-0 h6">{{translate('Category Information')}}</h5>
 </div>
 
@@ -33,7 +33,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Parent Category')}}</label>
                         <div class="col-md-9">
-                            <select class="select2 form-control aiz-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" data-selected="{{ $category->parent_id }}">
+                            <select class="select2 form-control rit-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" data-selected="{{ $category->parent_id }}">
                                 <option value="0">{{ translate('No Parent') }}</option>
                                 @foreach ($categories as $acategory)
                                     <option value="{{ $acategory->id }}">{{ $acategory->getTranslation('name') }}</option>
@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Type')}}</label>
                         <div class="col-md-9">
-                            <select name="digital" required class="form-control aiz-selectpicker mb-2 mb-md-0">
+                            <select name="digital" required class="form-control rit-selectpicker mb-2 mb-md-0">
                                 <option value="0" @if ($category->digital == '0') selected @endif>{{translate('Physical')}}</option>
                                 <option value="1" @if ($category->digital == '1') selected @endif>{{translate('Digital')}}</option>
                             </select>
@@ -207,7 +207,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Filtering Attributes')}}</label>
                         <div class="col-md-9">
-                            <select class="select2 form-control aiz-selectpicker" name="filtering_attributes[]" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" data-selected="{{ $category->attributes->pluck('id') }}" multiple>
+                            <select class="select2 form-control rit-selectpicker" name="filtering_attributes[]" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" data-selected="{{ $category->attributes->pluck('id') }}" multiple>
                                 @foreach (\App\Models\Attribute::all() as $attribute)
                                     <option value="{{ $attribute->id }}">{{ $attribute->getTranslation('name') }}</option>
                                 @endforeach

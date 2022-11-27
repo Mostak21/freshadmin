@@ -334,8 +334,8 @@
 </div>
 {{--@endsection--}}
 <script>
-    var AIZ = AIZ || {};
-    AIZ.local = {
+    var RIT = RIT || {};
+    RIT.local = {
         nothing_selected: 'Nothing selected',
         nothing_found: 'Nothing found',
         choose_file: 'Choose file',
@@ -366,7 +366,7 @@
     }
     function guestLogin(){
         $.post('{{ route('cart.login.guest') }}', {
-            _token   :  AIZ.data.csrf,
+            _token   :  RIT.data.csrf,
             // id       :  key,
             email :  document.getElementById("email").value
         }, function(data){

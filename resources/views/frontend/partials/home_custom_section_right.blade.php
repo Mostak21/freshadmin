@@ -22,7 +22,7 @@
              <div class=" col-md-7 order-2 order-lg-1 pr-lg-4  prl-sm-0" >
      
      
-                 <div class="aiz-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
+                 <div class="rit-carousel dots-inside-bottom" style="overflow: visible;" data-arrows="true" data-dots="false" data-autoplay="true">
                      @if($section_data)
                      @foreach ($section_data->products->chunk(6) as $key => $chunk)
                          <div class="carousel-box pb-3 ">

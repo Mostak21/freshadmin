@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <b class="h4">{{ translate('Wishlist')}}</b>
@@ -57,7 +57,7 @@
             </div>
         @endforelse
     </div>
-    <div class="aiz-pagination">
+    <div class="rit-pagination">
         {{ $wishlists->links() }}
     </div>
 @endsection
@@ -88,7 +88,7 @@
             $.post('{{ route('wishlists.remove') }}',{_token:'{{ csrf_token() }}', id:id}, function(data){
                 $('#wishlist').html(data);
                 $('#wishlist_'+id).hide();
-                AIZ.plugins.notify('success', '{{ translate('Item has been renoved from wishlist') }}');
+                RIT.plugins.notify('success', '{{ translate('Item has been renoved from wishlist') }}');
             })
         }
     </script>

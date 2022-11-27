@@ -16,28 +16,28 @@
 
     <!-- aiz core css -->
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
 
     <script>
         var AIZ = AIZ || {};
     </script>
 </head>
 <body>
-    <div class="aiz-main-wrapper d-flex">
+    <div class="rit-main-wrapper d-flex">
 
         <div class="flex-grow-1">
             @yield('content')
         </div>
 
-    </div><!-- .aiz-main-wrapper -->
+    </div><!-- .rit-main-wrapper -->
     <script src="{{ static_asset('assets/js/vendors.js') }}" ></script>
-    <script src="{{ static_asset('assets/js/aiz-core.js') }}" ></script>
+    <script src="{{ static_asset('assets/js/rit-core.js') }}" ></script>
 
     @yield('script')
 
     <script type="text/javascript">
     @foreach (session('flash_notification', collect())->toArray() as $message)
-        AIZ.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
+        RIT.plugins.notify('{{ $message['level'] }}', '{{ $message['message'] }}');
     @endforeach
     </script>
 </body>

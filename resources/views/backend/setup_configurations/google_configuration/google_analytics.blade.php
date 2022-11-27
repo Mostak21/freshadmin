@@ -15,7 +15,7 @@
                                 <label class="col-from-label">{{ translate('Facebook Pixel') }}</label>
                             </div>
                             <div class="col-md-7">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="facebook_pixel" type="checkbox" @if (get_setting('facebook_pixel') == 1)
                                         checked
                                     @endif>
@@ -68,7 +68,7 @@
                                 <label class="col-from-label">{{translate('Google Analytics')}}</label>
                             </div>
                             <div class="col-md-7">
-                                <label class="aiz-switch aiz-switch-success mb-0">
+                                <label class="rit-switch rit-switch-success mb-0">
                                     <input value="1" name="google_analytics" type="checkbox" @if (get_setting('google_analytics') == 1)
                                         checked
                                     @endif>

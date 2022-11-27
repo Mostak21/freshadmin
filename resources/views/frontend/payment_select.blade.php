@@ -105,7 +105,7 @@ dataLayer.push({
     <div class="container">
         <div class="row">
             <div class="col-xl-8 mx-auto">
-                <div class="row aiz-steps arrow-divider">
+                <div class="row rit-steps arrow-divider">
                     <div class="col done">
                         <div class="text-center text-success">
                             <i class="la-3x mb-2 las la-shopping-cart"></i>
@@ -164,9 +164,9 @@ dataLayer.push({
                                     <div class="row gutters-10">
                                         @if(get_setting('paypal_payment') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="paypal" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/paypal.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Paypal')}}</span>
@@ -177,9 +177,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('stripe_payment') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="stripe" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/stripe.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Stripe')}}</span>
@@ -190,9 +190,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('sslcommerz_payment') == 1)
                                             <div class="col-6 col-md-6">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="sslcommerz" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/sslcommerz.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('sslcommerz')}}</span>
@@ -203,9 +203,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('instamojo_payment') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="instamojo" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/instamojo.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Instamojo')}}</span>
@@ -216,9 +216,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('razorpay') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="razorpay" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/rozarpay.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Razorpay')}}</span>
@@ -229,9 +229,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('paystack') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="paystack" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/paystack.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Paystack')}}</span>
@@ -242,9 +242,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('voguepay') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="voguepay" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/vogue.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('VoguePay')}}</span>
@@ -255,9 +255,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('payhere') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="payhere" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/payhere.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('payhere')}}</span>
@@ -268,9 +268,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('ngenius') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="ngenius" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/ngenius.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('ngenius')}}</span>
@@ -281,9 +281,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('iyzico') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="iyzico" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/iyzico.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Iyzico')}}</span>
@@ -294,9 +294,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('nagad') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="nagad" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/nagad.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Nagad')}}</span>
@@ -307,9 +307,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('bkash') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="bkash" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/bkash.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Bkash')}}</span>
@@ -320,9 +320,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('aamarpay') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="aamarpay" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/aamarpay.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Aamarpay')}}</span>
@@ -333,9 +333,9 @@ dataLayer.push({
                                         @endif
                                         @if(get_setting('proxypay') == 1)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="proxypay" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/proxypay.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('ProxyPay')}}</span>
@@ -347,9 +347,9 @@ dataLayer.push({
                                         @if(\App\Addon::where('unique_identifier', 'african_pg')->first() != null && \App\Addon::where('unique_identifier', 'african_pg')->first()->activated)
                                             @if(get_setting('mpesa') == 1)
                                                 <div class="col-6 col-md-4">
-                                                    <label class="aiz-megabox d-block mb-3">
+                                                    <label class="rit-megabox d-block mb-3">
                                                         <input value="mpesa" class="online_payment" type="radio" name="payment_option" checked>
-                                                        <span class="d-block p-3 aiz-megabox-elem">
+                                                        <span class="d-block p-3 rit-megabox-elem">
                                                             <img src="{{ static_asset('assets/img/cards/mpesa.png')}}" class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span class="d-block fw-600 fs-15">{{ translate('mpesa')}}</span>
@@ -360,9 +360,9 @@ dataLayer.push({
                                             @endif
                                             @if(get_setting('flutterwave') == 1)
                                                 <div class="col-6 col-md-4">
-                                                    <label class="aiz-megabox d-block mb-3">
+                                                    <label class="rit-megabox d-block mb-3">
                                                         <input value="flutterwave" class="online_payment" type="radio" name="payment_option" checked>
-                                                        <span class="d-block p-3 aiz-megabox-elem">
+                                                        <span class="d-block p-3 rit-megabox-elem">
                                                             <img src="{{ static_asset('assets/img/cards/flutterwave.png')}}" class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span class="d-block fw-600 fs-15">{{ translate('flutterwave')}}</span>
@@ -373,9 +373,9 @@ dataLayer.push({
                                             @endif
                                             @if(get_setting('payfast') == 1)
                                                 <div class="col-6 col-md-4">
-                                                    <label class="aiz-megabox d-block mb-3">
+                                                    <label class="rit-megabox d-block mb-3">
                                                         <input value="payfast" class="online_payment" type="radio" name="payment_option" checked>
-                                                        <span class="d-block p-3 aiz-megabox-elem">
+                                                        <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/payfast.png')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('payfast')}}</span>
@@ -387,9 +387,9 @@ dataLayer.push({
                                         @endif
                                         @if(\App\Addon::where('unique_identifier', 'paytm')->first() != null && \App\Addon::where('unique_identifier', 'paytm')->first()->activated)
                                             <div class="col-6 col-md-4">
-                                                <label class="aiz-megabox d-block mb-3">
+                                                <label class="rit-megabox d-block mb-3">
                                                     <input value="paytm" class="online_payment" type="radio" name="payment_option" checked>
-                                                    <span class="d-block p-3 aiz-megabox-elem">
+                                                    <span class="d-block p-3 rit-megabox-elem">
                                                         <img src="{{ static_asset('assets/img/cards/paytm.jpg')}}" class="img-fluid mb-2">
                                                         <span class="d-block text-center">
                                                             <span class="d-block fw-600 fs-15">{{ translate('Paytm')}}</span>
@@ -420,9 +420,9 @@ dataLayer.push({
                                             @endphp
                                             @if($digital != 1 && $cod_on == 1)
                                                 <div class="col-6 col-md-6">
-                                                    <label class="aiz-megabox d-block mb-3">
+                                                    <label class="rit-megabox d-block mb-3">
                                                         <input value="cash_on_delivery" class="online_payment pls" type="radio" name="payment_option" checked>
-                                                        <span class="d-block p-3 aiz-megabox-elem">
+                                                        <span class="d-block p-3 rit-megabox-elem">
                                                             <img src="{{ static_asset('assets/img/cards/cod.png')}}" class="img-fluid mb-2">
                                                             <span class="d-block text-center">
                                                                 <span class="d-block fw-600 fs-15">{{ translate('Cash on Delivery')}}</span>
@@ -436,9 +436,9 @@ dataLayer.push({
                                             @if (\App\Addon::where('unique_identifier', 'offline_payment')->first() != null && \App\Addon::where('unique_identifier', 'offline_payment')->first()->activated)
                                                 @foreach(\App\ManualPaymentMethod::all() as $method)
                                                     <div class="col-6 col-md-4">
-                                                        <label class="aiz-megabox d-block mb-3">
+                                                        <label class="rit-megabox d-block mb-3">
                                                             <input value="{{ $method->heading }}" type="radio" name="payment_option" onchange="toggleManualPaymentData({{ $method->id }})" data-id="{{ $method->id }}" checked>
-                                                            <span class="d-block p-3 aiz-megabox-elem">
+                                                            <span class="d-block p-3 rit-megabox-elem">
                                                                 <img src="{{ uploaded_asset($method->photo) }}" class="img-fluid mb-2">
                                                                 <span class="d-block text-center">
                                                                     <span class="d-block fw-600 fs-15">{{ $method->heading }}</span>
@@ -475,9 +475,9 @@ dataLayer.push({
                                     </span>
                             </div> <!-- #ch11 option for 100% payment-->
                             <div class="col-6 col-md-4" style="display: inline-block;">
-                                <label class="aiz-megabox d-block mb-3">
+                                <label class="rit-megabox d-block mb-3">
                                     <input value="null" class="online_payment" type="radio" name="partial_pay" id="pam" >
-                                    <span class="d-block p-3 aiz-megabox-elem">
+                                    <span class="d-block p-3 rit-megabox-elem">
                                         <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/bCARNJGeMglSjo4HQC8wPLrHQ6BkQMhNDP81sYyy.webp" class="img-fluid mb-2">
                                         <span class="d-block text-center">
                                             <span class="d-block fw-600 fs-15">Total Amount: {{single_price($total)}}</span>
@@ -487,9 +487,9 @@ dataLayer.push({
                             </div>
 								<!-- #ch11 end option for 100% payment-->
 								  <div class="col-6 col-md-4" style="display: inline-block;">
-                                <label class="aiz-megabox d-block mb-3">
+                                <label class="rit-megabox d-block mb-3">
                                     <input value="partial" class="online_payment" type="radio" name="partial_pay" id="pam" >
-                                    <span class="d-block p-3 aiz-megabox-elem">
+                                    <span class="d-block p-3 rit-megabox-elem">
                                         <img src="https://brandhook.s3.ap-south-1.amazonaws.com/uploads/all/rEdbnVmfqVUfKmxkopvCEaQ2IQtEbU2ytivpd5NL.webp" class="img-fluid mb-2">
                                         <span class="d-block text-center">
                                             <span class="d-block fw-600 fs-15">Partial Amount: {{single_price($partial_payment)}}</span>
@@ -498,8 +498,8 @@ dataLayer.push({
                                 </label>
                             </div>
 									
-                            <div class="form-group aiz-checkbox-inline">
-{{--                                <input type="checkbox" class="form aiz-checkbox" name="partial_pay_amount" value="partial" required="" id="pam" min="10" disabled="disabled" style="width: 20px; height: 20px;">--}}
+                            <div class="form-group rit-checkbox-inline">
+{{--                                <input type="checkbox" class="form rit-checkbox" name="partial_pay_amount" value="partial" required="" id="pam" min="10" disabled="disabled" style="width: 20px; height: 20px;">--}}
 {{--                                <label for="pam" style="font-size:20px;"><span><h3>Pay Partial Amount: {{$partial_payment}} </h3></span></label>--}} <small id="emailHelp" style="font-size:13px;" class="form-text text-muted mt-3"><b>Note* :</b> For partial payment (10% payment) pay 10% in advance & pay rest after receive the product.</small>
                         {{--             <small id="emailHelp" style="font-size:14px;" class="form-text text-muted">Pay 50% of your current amount.</small> --}}
                             </div>
@@ -541,9 +541,9 @@ dataLayer.push({
                     </div>
                     <div class="pt-3">
                         <b>
-                        <label class="aiz-checkbox">
+                        <label class="rit-checkbox">
                             <input type="checkbox" required id="agree_checkbox">
-                            <span class="aiz-square-check" style="border-color: red"></span>
+                            <span class="rit-square-check" style="border-color: red"></span>
                             <span>{{ translate('I agree to the')}}</span>
                         </label>
                         <a href="{{ route('terms') }}">{{ translate('terms and conditions')}}</a>,
@@ -624,7 +624,7 @@ dataLayer.push({
             if($('#agree_checkbox').is(":checked")){
                 $('#checkout-form').submit();
             }else{
-                AIZ.plugins.notify('danger','{{ translate('You need to agree with our policies') }}');
+                RIT.plugins.notify('danger','{{ translate('You need to agree with our policies') }}');
             }
         }
         function submitOrder(el){
@@ -632,7 +632,7 @@ dataLayer.push({
             if($('#agree_checkbox').is(":checked")){
                 $('#checkout-form').submit();
             }else{
-                AIZ.plugins.notify('danger','{{ translate('You need to agree with our policies') }}');
+                RIT.plugins.notify('danger','{{ translate('You need to agree with our policies') }}');
                 $(el).prop('disabled', false);
             }
         }
@@ -658,7 +658,7 @@ dataLayer.push({
                 contentType: false,
                 processData: false,
                 success: function (data, textStatus, jqXHR) {
-                    AIZ.plugins.notify(data.response_message.response, data.response_message.message);
+                    RIT.plugins.notify(data.response_message.response, data.response_message.message);
 //                    console.log(data.response_message);
                     $("#cart_summary").html(data.html);
                 }

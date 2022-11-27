@@ -17,7 +17,7 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Rubik:wght@100;200;300;400;500;600;700;800;900&display=swap">
     <link rel="stylesheet" href="{{ static_asset('assets/css/vendors.css') }}">
-    <link rel="stylesheet" href="{{ static_asset('assets/css/aiz-core.css') }}">
+    <link rel="stylesheet" href="{{ static_asset('assets/css/rit-core.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ static_asset('assets/css/custom-style.css') }}">
 
@@ -334,8 +334,8 @@
 </div>
 {{--@endsection--}}
 <script>
-    var AIZ = AIZ || {};
-    AIZ.local = {
+    var RIT = RIT || {};
+    RIT.local = {
         nothing_selected: 'Nothing selected',
         nothing_found: 'Nothing found',
         choose_file: 'Choose file',
@@ -359,14 +359,14 @@
     }
 </script>
 <script src="{{ static_asset('assets/js/vendors.js') }}"></script>
-<script src="{{ static_asset('assets/js/aiz-core.js') }}"></script>
+<script src="{{ static_asset('assets/js/rit-core.js') }}"></script>
 <script>
     function showCheckoutModal(){
         $('#login-modal').modal();
     }
     function guestLogin(){
         $.post('{{ route('cart.login.guest') }}', {
-            _token   :  AIZ.data.csrf,
+            _token   :  RIT.data.csrf,
             // id       :  key,
             email :  document.getElementById("email").value
         }, function(data){

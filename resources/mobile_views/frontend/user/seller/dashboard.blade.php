@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1 class="h3">{{ translate('Dashboard') }}</h1>
@@ -88,7 +88,7 @@
                   <h5 class="mb-0 h6">{{ translate('Orders') }}</h5>
               </div>
               <div class="card-body">
-                  <table class="table aiz-table mb-0">
+                  <table class="table rit-table mb-0">
                       <tr>
                           <td>{{ translate('Total orders')}}:</td>
                           <td>{{ count(\App\Models\OrderDetail::where('seller_id', Auth::user()->id)->get()) }}</strong></td>
@@ -132,7 +132,7 @@
                   <h6 class="mb-0">{{ translate('Products') }}</h6>
               </div>
     		          <div class="card-body">
-                <table class="table aiz-table mb-0">
+                <table class="table rit-table mb-0">
                   <thead>
                       <tr>
                           <th>{{ translate('Category')}}</th>

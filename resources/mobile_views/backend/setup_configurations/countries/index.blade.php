@@ -17,7 +17,7 @@
             </div>
         </form>
         <div class="card-body">
-            <table class="table aiz-table table-striped table-bordered" cellspacing="0" width="100%">
+            <table class="table rit-table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th width="10%">#</th>
@@ -33,7 +33,7 @@
                             <td>{{ $country->name }}</td>
                             <td>{{ $country->code }}</td>
                             <td>
-                              <label class="aiz-switch aiz-switch-success mb-0">
+                              <label class="rit-switch rit-switch-success mb-0">
                                 <input onchange="update_status(this)" value="{{ $country->id }}" type="checkbox" <?php if($country->status == 1) echo "checked";?> >
                                 <span class="slider round"></span>
                               </label>
@@ -42,7 +42,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $countries->links() }}
             </div>
         </div>
@@ -61,10 +61,10 @@
             }
             $.post('{{ route('countries.status') }}', {_token:'{{ csrf_token() }}', id:el.value, status:status}, function(data){
                 if(data == 1){
-                    AIZ.plugins.notify('success', '{{ translate('Country status updated successfully') }}');
+                    RIT.plugins.notify('success', '{{ translate('Country status updated successfully') }}');
                 }
                 else{
-                    AIZ.plugins.notify('danger', '{{ translate('Something went wrong') }}');
+                    RIT.plugins.notify('danger', '{{ translate('Something went wrong') }}');
                 }
             });
         }

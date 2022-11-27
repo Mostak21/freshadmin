@@ -20,7 +20,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Parent Category')}}</label>
                         <div class="col-md-9">
-                            <select class="select2 form-control aiz-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
+                            <select class="select2 form-control rit-selectpicker" name="parent_id" data-toggle="select2" data-placeholder="Choose ..." data-live-search="true">
                                 <option value="0">{{ translate('No Parent') }}</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->getTranslation('name') }}</option>
@@ -43,7 +43,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Type')}}</label>
                         <div class="col-md-9">
-                            <select name="digital" required class="form-control aiz-selectpicker mb-2 mb-md-0">
+                            <select name="digital" required class="form-control rit-selectpicker mb-2 mb-md-0">
                                 <option value="0">{{translate('Physical')}}</option>
                                 <option value="1">{{translate('Digital')}}</option>
                             </select>
@@ -148,7 +148,7 @@
                     <div class="form-group row">
                         <label class="col-md-3 col-form-label">{{translate('Filtering Attributes')}}</label>
                         <div class="col-md-9">
-                            <select class="select2 form-control aiz-selectpicker" name="filtering_attributes[]" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" multiple>
+                            <select class="select2 form-control rit-selectpicker" name="filtering_attributes[]" data-toggle="select2" data-placeholder="Choose ..."data-live-search="true" multiple>
                                 @foreach (\App\Models\Attribute::all() as $attribute)
                                     <option value="{{ $attribute->id }}">{{ $attribute->getTranslation('name') }}</option>
                                 @endforeach

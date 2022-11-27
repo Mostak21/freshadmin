@@ -19,7 +19,7 @@
             
                 <div class="form-group input-group">
                     <label class="fw-500 fs-14 w-100">Status:</label>
-                    <select class="form-control aiz-selectpicker" name="communication_status" id="status">
+                    <select class="form-control rit-selectpicker" name="communication_status" id="status">
                         <option value="" >Select Status</option>
 
                         <option value="no_answer" @if ($order->communication_status == 'no_answer') selected @endif>No Answer</option>
@@ -49,7 +49,7 @@
 
     <div class="form-group input-group">
         <label class="fw-500 fs-14 w-100">Status:</label>
-        <select class="form-control aiz-selectpicker" name="communication_status" id="status" disabled>
+        <select class="form-control rit-selectpicker" name="communication_status" id="status" disabled>
             <option >Sellect Status</option>
             <option value="no_answer" @if ($order->communication_status == 'no_answer') selected @endif>No Answer</option>
             <option value="product_not_available" @if ($order->communication_status == 'product_not_available') selected @endif>Prodcut Not available</option>

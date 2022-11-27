@@ -113,7 +113,7 @@
     @if (!isset($type))
         <section class="mb-5">
             <div class="container-custom rounded-custom">
-                <div class="aiz-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
+                <div class="rit-carousel dots-inside-bottom mobile-img-auto-height" data-arrows="true" data-dots="true" data-autoplay="true">
                     @if ($shop->sliders != null)
                         @foreach (explode(',',$shop->sliders) as $key => $slide)
                             <div class="carousel-box">
@@ -192,7 +192,7 @@
                 @endforeach
             </div>
            
-            <div class="aiz-pagination aiz-pagination-center mb-4">
+            <div class="rit-pagination rit-pagination-center mb-4">
                 
                         {{ $products->links('vendor.cartzilla') }}
                         

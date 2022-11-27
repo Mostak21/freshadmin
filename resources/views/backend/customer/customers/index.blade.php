@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class="align-items-center">
         <h1 class="h3">{{translate('All Customers')}}</h1>
     </div>
@@ -33,16 +33,16 @@
         </div>
 
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                     <tr>
                         <!--<th data-breakpoints="lg">#</th>-->
                         <th>
                             <div class="form-group">
-                                <div class="aiz-checkbox-inline">
-                                    <label class="aiz-checkbox">
+                                <div class="rit-checkbox-inline">
+                                    <label class="rit-checkbox">
                                         <input type="checkbox" class="check-all">
-                                        <span class="aiz-square-check"></span>
+                                        <span class="rit-square-check"></span>
                                     </label>
                                 </div>
                             </div>
@@ -65,10 +65,10 @@
                                 <!--<td>{{ ($key+1) + ($users->currentPage() - 1)*$users->perPage() }}</td>-->
                                 <td>
                                     <div class="form-group">
-                                        <div class="aiz-checkbox-inline">
-                                            <label class="aiz-checkbox">
+                                        <div class="rit-checkbox-inline">
+                                            <label class="rit-checkbox">
                                                 <input type="checkbox" class="check-one" name="id[]" value="{{$user->id}}">
-                                                <span class="aiz-square-check"></span>
+                                                <span class="rit-square-check"></span>
                                             </label>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $users->appends(request()->input())->links() }}
             </div>
         </div>

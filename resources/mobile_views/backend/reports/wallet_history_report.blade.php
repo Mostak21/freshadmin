@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
     <div class=" align-items-center">
         <h1 class="h3">{{translate('Wallet Transaction Report')}}</h1>
     </div>
@@ -18,7 +18,7 @@
                     </div>
                     @if(Auth::user()->user_type != 'seller')
                     <div class="col-md-3 ml-auto">
-                        <select id="demo-ease" class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" name="user_id">
+                        <select id="demo-ease" class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" name="user_id">
                             <option value="">{{ translate('Choose User') }}</option>
                             @foreach ($users_with_wallet as $key => $user)
                                 <option value="{{ $user->id }}" @if($user->id == $user_id) selected @endif >
@@ -30,7 +30,7 @@
                     @endif
                     <div class="col-md-3">
                         <div class="form-group mb-0">
-                            <input type="text" class="form-control form-control-sm aiz-date-range" id="search" name="date_range"@isset($date_range) value="{{ $date_range }}" @endisset placeholder="{{ translate('Daterange') }}">
+                            <input type="text" class="form-control form-control-sm rit-date-range" id="search" name="date_range"@isset($date_range) value="{{ $date_range }}" @endisset placeholder="{{ translate('Daterange') }}">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -42,7 +42,7 @@
             </form>
             <div class="card-body">
 
-                <table class="table aiz-table mb-0">
+                <table class="table rit-table mb-0">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -80,7 +80,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination mt-4">
+                <div class="rit-pagination mt-4">
                     {{ $wallets->links() }}
                 </div>
             </div>

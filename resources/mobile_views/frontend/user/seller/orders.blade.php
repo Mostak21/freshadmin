@@ -9,7 +9,7 @@
               <h5 class="mb-md-0 h6">{{ translate('Orders') }}</h5>
             </div>
               <div class="col-md-3 ml-auto">
-                  <select class="form-control aiz-selectpicker" data-placeholder="{{ translate('Filter by Payment Status')}}" name="payment_status" onchange="sort_orders()">
+                  <select class="form-control rit-selectpicker" data-placeholder="{{ translate('Filter by Payment Status')}}" name="payment_status" onchange="sort_orders()">
                       <option value="">{{ translate('Filter by Payment Status')}}</option>
                       <option value="paid" @isset($payment_status) @if($payment_status == 'paid') selected @endif @endisset>{{ translate('Paid')}}</option>
                       <option value="unpaid" @isset($payment_status) @if($payment_status == 'unpaid') selected @endif @endisset>{{ translate('Un-Paid')}}</option>
@@ -17,7 +17,7 @@
               </div>
 
               <div class="col-md-3 ml-auto">
-                <select class="form-control aiz-selectpicker" data-placeholder="{{ translate('Filter by Payment Status')}}" name="delivery_status" onchange="sort_orders()">
+                <select class="form-control rit-selectpicker" data-placeholder="{{ translate('Filter by Payment Status')}}" name="delivery_status" onchange="sort_orders()">
                     <option value="">{{ translate('Filter by Deliver Status')}}</option>
                     <option value="pending" @isset($delivery_status) @if($delivery_status == 'pending') selected @endif @endisset>{{ translate('Pending')}}</option>
                     <option value="confirmed" @isset($delivery_status) @if($delivery_status == 'confirmed') selected @endif @endisset>{{ translate('Confirmed')}}</option>
@@ -35,7 +35,7 @@
 
         @if (count($orders) > 0)
             <div class="card-body p-3">
-                <table class="table aiz-table mb-0">
+                <table class="table rit-table mb-0">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -100,7 +100,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="aiz-pagination">
+                <div class="rit-pagination">
                     {{ $orders->links() }}
               	</div>
             </div>
@@ -153,11 +153,11 @@
                 $('#modal-size').addClass('modal-lg');
             }
 
-            $.post('{{ route('orders.details') }}', { _token : AIZ.data.csrf, order_id : order_id}, function(data){
+            $.post('{{ route('orders.details') }}', { _token : RIT.data.csrf, order_id : order_id}, function(data){
                 $('#order-details-modal-body').html(data);
                 $('#order_details').modal();
                 $('.c-preloader').hide();
-                AIZ.plugins.bootstrapSelect('refresh');
+                RIT.plugins.bootstrapSelect('refresh');
             });
         }
         function sort_orders(el){

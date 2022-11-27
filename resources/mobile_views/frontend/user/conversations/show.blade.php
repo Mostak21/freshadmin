@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
         <div class="h6">
             <span>{{ translate('Conversations With ')}}</span>
             @if ($conversation->sender_id == Auth::user()->id && $conversation->receiver->shop != null)

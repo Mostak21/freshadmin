@@ -11,7 +11,7 @@
             });
 @endphp
 
-<div onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)" class="aiz-category-menu bg-white rounded @if(Route::currentRouteName() == 'home') shadow-sm" @else shadow-lg" id="category-sidebar" @endif  style="border-radius: 0 0 10px 10px !important; border-top: solid 2px var(--primary);">
+<div onmouseout="categoryhoverMouseout(this)" onmouseover="categoryhoverMouseover(this)" class="rit-category-menu bg-white rounded @if(Route::currentRouteName() == 'home') shadow-sm" @else shadow-lg" id="category-sidebar" @endif  style="border-radius: 0 0 10px 10px !important; border-top: solid 2px var(--primary);">
 <ul class="list-unstyled categories no-scrollbar py-2 mb-0 text-left">
     @foreach ($categories as $key => $category)
         <li class="category-nav-element" data-id="{{ $category->id }}">
@@ -57,7 +57,7 @@
 
 
 
-{{-- <div class="aiz-category-menu  rounded @if(Route::currentRouteName() == 'home') shadow-sm" @else shadow-lg" id="category-sidebar" @endif>
+{{-- <div class="rit-category-menu  rounded @if(Route::currentRouteName() == 'home') shadow-sm" @else shadow-lg" id="category-sidebar" @endif>
 
     <div class="mnav">
         <div class="cnav">

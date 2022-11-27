@@ -167,7 +167,7 @@
                                 <label class="col-from-label">{{translate('ROUTE')}}</label>
                             </div>
                             <div class="col-lg-6">
-                                <select class="form-control aiz-selectpicker" name="ROUTE" required>
+                                <select class="form-control rit-selectpicker" name="ROUTE" required>
                                     <option value="dlt_manual" @if (env('ROUTE') == "dlt_manual") selected @endif>{{translate('DLT Manual')}}</option>
                                     <option value="p" @if (env('ROUTE') == "p") selected @endif>{{translate('Promotional Use')}}</option>
                                     <option value="t" @if (env('ROUTE') == "t") selected @endif>{{translate('Transactional Use')}}</option>
@@ -180,7 +180,7 @@
                                 <label class="col-from-label">{{translate('LANGUAGE')}}</label>
                             </div>
                             <div class="col-lg-6">
-                                <select class="form-control aiz-selectpicker" name="LANGUAGE" required>
+                                <select class="form-control rit-selectpicker" name="LANGUAGE" required>
                                     <option value="english" @if (env('LANGUAGE') == "english") selected @endif>English</option>
                                     <option value="unicode" @if (env('LANGUAGE') == "unicode") selected @endif>Unicode</option>
                                 </select>

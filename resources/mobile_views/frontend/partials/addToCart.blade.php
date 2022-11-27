@@ -11,7 +11,7 @@
                     $photos = explode(',',$product->photos);
                 @endphp
                 <div class="col">
-                    <div class="aiz-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
+                    <div class="rit-carousel product-gallery" data-nav-for='.product-gallery-thumb' data-fade='true' data-auto-height='true'>
                         @foreach ($photos as $key => $photo)
                             <div class="carousel-box img-zoom rounded">
                                 <img
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col-auto w-90px">
-                    <div class="aiz-carousel carousel-thumb product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-focus-select='true'>
+                    <div class="rit-carousel carousel-thumb product-gallery-thumb" data-items='5' data-nav-for='.product-gallery' data-vertical='true' data-focus-select='true'>
                         @foreach ($photos as $key => $photo)
                             <div class="carousel-box c-pointer border p-1 rounded">
                                 <img
@@ -151,7 +151,7 @@
                                         <div class="opacity-50 mt-2 ">{{ \App\Models\Attribute::find($choice->attribute_id)->name??'' }}:</div>
                                     </div>
                                     <div class="col-10">
-                                        <div class="aiz-radio-inline">
+                                        <div class="rit-radio-inline">
                                             @php
                                                 $attributecheck =  0;
                                                 $key2 = null;
@@ -187,26 +187,26 @@
                                                     }
                                                 @endphp
                                                 @if($attributecheck)
-                                                    <label class="aiz-megabox pl-0 mr-2">
+                                                    <label class="rit-megabox pl-0 mr-2">
                                                         <input
                                                             type="radio"
                                                             name="attribute_id_{{ $choice->attribute_id }}"
                                                             value="{{ $value }}"
                                                             @if($valuex === $value ) checked @endif
                                                         >
-                                                        <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2">
+                                                        <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2">
                                                         {{ $value }}
                                                     </span>
                                                     </label>
                                                 @elseif($qty==0)
-                                                    <label class="aiz-megabox pl-0 mr-2">
+                                                    <label class="rit-megabox pl-0 mr-2">
                                                         <input
                                                             type="radio"
                                                             name="attribute_id_{{ $choice->attribute_id }}"
                                                             value="{{ $value }}"
                                                             @if($keys == 0) checked @endif
                                                         >
-                                                        <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
+                                                        <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center py-2 px-3 mb-2 fs-custom">
                                                         {{ $value }}
                                                         </span>
                                                     </label>
@@ -225,7 +225,7 @@
                                     <div class="opacity-50 mt-2">Color:</div>
                                 </div>
                                 <div class="col-10">
-                                    <div class="aiz-radio-inline">
+                                    <div class="rit-radio-inline">
                                         @php
                                             $colorcheck2 =  0;
                                             $colorcheck =  0;
@@ -242,7 +242,7 @@
 
                                             @endphp
                                             @if($colorcheck)
-                                                <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
+                                                <label class="rit-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
                                                     <input
                                                         type="radio"
                                                         name="color"
@@ -253,13 +253,13 @@
                                                         checked
                                                         @endif
                                                     >
-                                                    <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                    <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                         <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
                                                     </span>
                                                 </label>
 
                                             @elseif($qty==0)
-                                                <label class="aiz-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
+                                                <label class="rit-megabox pl-0 mr-2" data-toggle="tooltip" data-title="{{ \App\Models\Color::where('code', $color)->first()->name }}">
 
                                                     <input
                                                         type="radio"
@@ -267,7 +267,7 @@
                                                         value="{{ \App\Models\Color::where('code', $color)->first()->name }}"
                                                         @if($keys == 0) checked @endif
                                                     >
-                                                    <span class="aiz-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
+                                                    <span class="rit-megabox-elem rounded d-flex align-items-center justify-content-center p-1 mb-2">
                                                         <span class="size-30px d-inline-block rounded" style="background: {{ $color }};"></span>
                                                     </span>
                                                 </label>
@@ -285,7 +285,7 @@
                             </div>
                             <div class="col-10">
                                 <div class="product-quantity d-flex align-items-center">
-                                    <div class="row no-gutters align-items-center aiz-plus-minus mr-3" style="width: 130px;">
+                                    <div class="row no-gutters align-items-center rit-plus-minus mr-3" style="width: 130px;">
                                         <button class="btn col-auto btn-icon btn-sm btn-circle btn-light" type="button" data-type="minus" data-field="quantity" disabled="">
                                             <i class="las la-minus"></i>
                                         </button>

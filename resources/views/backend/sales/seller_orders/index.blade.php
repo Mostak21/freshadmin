@@ -10,12 +10,12 @@
             </div>
             <div class="col-lg-2">
                 <div class="form-group mb-0">
-                    <input type="text" class="aiz-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Filter by date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
+                    <input type="text" class="rit-date-range form-control" value="{{ $date }}" name="date" placeholder="{{ translate('Filter by date') }}" data-format="DD-MM-Y" data-separator=" to " data-advanced-range="true" autocomplete="off">
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="form-group mb-0">
-                    <select class="form-control form-control-sm aiz-selectpicker mb-2 mb-md-0" id="seller_id" name="seller_id">
+                    <select class="form-control form-control-sm rit-selectpicker mb-2 mb-md-0" id="seller_id" name="seller_id">
                         <option value="">{{ translate('All Sellers') }}</option>
                         @foreach (App\Models\Seller::all() as $key => $seller)
                             @if ($seller->user != null && $seller->user->shop != null)
@@ -34,7 +34,7 @@
             </div>
 			
 			<div class="col-lg-2 ml-auto">
-                <select class="form-control aiz-selectpicker" name="showall" id="show_all">
+                <select class="form-control rit-selectpicker" name="showall" id="show_all">
                     <option value="">{{translate('Complete or not')}}</option>
                     <option value="showall">Show all</option>
                     <option value="hideall">Hide Completed</option>
@@ -49,7 +49,7 @@
     </form>
 
     <div class="card-body">
-        <table class="table aiz-table mb-0">
+        <table class="table rit-table mb-0">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>
@@ -149,7 +149,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="aiz-pagination">
+        <div class="rit-pagination">
             {{ $orders->appends(request()->input())->links() }}
         </div>
     </div>
@@ -190,7 +190,7 @@
             $('#note-modal-body').html(null);
             $('#notemodal').modal();
             $('.c-preloader').show();
-            $.get('{{ route('addnote') }}', {_token: AIZ.data.csrf, id:id}, function(data){
+            $.get('{{ route('addnote') }}', {_token: RIT.data.csrf, id:id}, function(data){
                 $('.c-preloader').hide();
                 $('#note-modal-body').html(data);
               

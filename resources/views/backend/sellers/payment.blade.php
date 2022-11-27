@@ -7,7 +7,7 @@
         <h5 class="mb-0 h6">{{ \App\Models\Seller::find($payments->first()->seller_id)->user->name }} ({{ \App\Models\Seller::find($payments->first()->seller_id)->user->shop->name }})</h5>
     </div>
     <div class="card-body">
-        <table class="table aiz-table">
+        <table class="table rit-table">
             <thead>
                 <tr>
                     <th data-breakpoints="lg">#</th>

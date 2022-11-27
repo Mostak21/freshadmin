@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 @section('content')
-<div class="aiz-titlebar text-left mt-2 mb-3">
+<div class="rit-titlebar text-left mt-2 mb-3">
 	<div class="row align-items-center">
 		<div class="col">
 			<h1 class="h3">{{ translate('Add New Page') }}</h1>
@@ -34,7 +34,7 @@
 				<label class="col-sm-2 col-from-label" for="name">{{translate('Add Content')}} <span class="text-danger">*</span></label>
 				<div class="col-sm-10">
 					<textarea
-						class="aiz-text-editor form-control"
+						class="rit-text-editor form-control"
 						data-buttons='[["font", ["bold", "underline", "italic", "clear"]],["para", ["ul", "ol", "paragraph"]],["style", ["style"]],["color", ["color"]],["table", ["table"]],["insert", ["link", "picture", "video"]],["view", ["fullscreen", "codeview", "undo", "redo"]]]'
 						placeholder="Content.."
 						data-min-height="300"

@@ -1,7 +1,7 @@
 @extends('frontend.layouts.user_panel')
 
 @section('panel_content')
-    <div class="aiz-titlebar mt-2 mb-4">
+    <div class="rit-titlebar mt-2 mb-4">
     <div class="row align-items-center">
       <div class="col-md-6">
           <h1 class="h3">{{ translate('My Wallet') }}</h1>
@@ -44,7 +44,7 @@
           <h5 class="mb-0 h6">{{ translate('Wallet recharge history')}}</h5>
       </div>
         <div class="card-body">
-            <table class="table aiz-table mb-0">
+            <table class="table rit-table mb-0">
                 <thead>
                   <tr>
                       <th>#</th>
@@ -77,7 +77,7 @@
 
                 </tbody>
             </table>
-            <div class="aiz-pagination">
+            <div class="rit-pagination">
                 {{ $wallets->links() }}
             </div>
         </div>

@@ -93,7 +93,7 @@
                             <div class="opacity-50 my-2">{{ translate('Share')}}:</div>
                         </div>
                         <div class="">
-                            <div class="aiz-share"></div>
+                            <div class="rit-share"></div>
                         </div>
                     </div>
                     @if (get_setting('facebook_comment') == 1)
